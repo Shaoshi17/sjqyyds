@@ -187,6 +187,7 @@ JV**M是Java程序跨平台的关键部分，只要为不同平台实现了相�
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image22.png){width="3.9444444444444446in"
 height="1.1582895888013998in"}
 
+```java
 //要先定义类才能写方法
 
 //如果是public class 那么类名字要和文件名字一样才能编译
@@ -195,29 +196,29 @@ height="1.1582895888013998in"}
 
 //每个类都存在方法
 
-public class HelloWorld { //这个类是public必须是和文件名一样
+public class HelloWorld {   //这个类是public必须是和文件名一样
 
-public static void main(String\[\] args) { //方法
+    public static void main(String[] args) { //方法
 
-System.out.println(\"Hello\"); //类似printf输出文字
+        System.out.println("Hello"); //类似printf输出文字
 
-}
+    }
 
 }
 
 class HelloWorld2{ //这个类可以任意名字
 
-public static void main(String\[\] args){
+public static void main(String[] args){
 
-int s = 10; //赋值10给s的局部变量，就和shell中:s=10是一样的
+        int s = 10; //赋值10给s的局部变量，就和shell中:s=10是一样的
 
-System.out.println(s);//使用打印s变量的值
+        System.out.println(s);//使用打印s变量的值
 
-System.out.print(\"1234\")
+        System.out.print("1234")
 
-//print默认是不换行的，println是换行的
+ //print默认是不换行的，println是换行的
 
-}
+    }
 
 }
 
@@ -225,23 +226,24 @@ System.out.print(\"1234\")
 
 public class Hello {
 
-public static final String ADDRESS = \"长沙\"; //给常量赋值
+    public static final String ADDRESS = "长沙"; //给常量赋值
 
-public static int i = 100;//给类变量（静态变量）赋值
+    public static int i = 100;//给类变量（静态变量）赋值
 
-public static void main(String\[\] args) { //main
+    public static void main(String[] args) { //main
 
-System.out.println(ADDRESS+\"i\");//常量只能在最前面才能使用
+        System.out.println(ADDRESS+"i");//常量只能在最前面才能使用    
 
-for (int i = 0; i \<5; i++) { //fori
+        for (int i = 0; i <5; i++) { //fori
 
-System.out.println(10); //10.sout
+            System.out.println(10); //10.sout
+
+        }
+
+    }
 
 }
-
-}
-
-}
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image23.png){width="5.760416666666667in"
 height="3.1454910323709537in"}
@@ -307,12 +309,12 @@ Java中的关键字一共包含48个，分别是：abstract、assert、boolean�
 附上java关键字表
 
 **if语句**
+```java 
+/**
 
-/\*\*
+ * if语句的三种语法
 
-\* if语句的三种语法
-
-\* \*/
+ * */
 
 //if实现商品付款
 
@@ -320,59 +322,61 @@ import java.util.Scanner;
 
 public class Hello {
 
-public static void main(String\[\] args) {
+    public static void main(String[] args) {
 
-Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-System.out.println(\"输入裤兜里的所有钱：\");
+        System.out.println("输入裤兜里的所有钱：");
 
-int coin = sc.nextInt();
+        int coin = sc.nextInt();
 
-if (coin \>= 600){
+        if (coin >= 600){
 
-System.out.println(\"付款成功\");
+            System.out.println("付款成功");
 
-}else{
+        }else{
 
-System.out.println(\"付款失败\");
+            System.out.println("付款失败");
+
+        }
+
+    }
 
 }
+```
 
-}
-
-}
-
+```java
 //if实现电影院100个座位奇数做左边偶数坐右边
 
 class cinema {
 
-public static void main(String\[\] args) {
+    public static void main(String[] args) {
 
-Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-System.out.println(\"请输入你的座位号：\");
+        System.out.println("请输入你的座位号：");
 
-int number = sc.nextInt();
+        int number = sc.nextInt();
 
-if (number \< 100 ) {
+        if (number < 100 ) {
 
-if (number % 2 == 1) {
+            if (number % 2 == 1) {
 
-System.out.println(\"请坐左边\");
+                System.out.println("请坐左边");
 
-} else {
+            } else {
 
-System.out.println(\"请做右边\");
+                System.out.println("请做右边");
 
-}
+            }
 
-}else{
+        }else{
 
-System.out.println(\"座位号不对，请离开\");
+            System.out.println("座位号不对，请离开");
 
-}
+        }
 
-}
+    }
 
 }
 
@@ -380,224 +384,230 @@ System.out.println(\"座位号不对，请离开\");
 
 class examin {
 
-public static void main(String\[\] args) {
+    public static void main(String[] args) {
 
-Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-System.out.println(\"输入你的分数：\");
+        System.out.println("输入你的分数：");
 
-int result = sc.nextInt();
+        int result = sc.nextInt();
 
-if (result \>-1 && result \<101) {
+        if (result >-1 && result <101) {
 
-if (result \>= 95 && result \<= 100) {
+            if (result >= 95 && result <= 100) {
 
-System.out.println(\"奖励单车\");
+                System.out.println("奖励单车");
 
-} else {
+            } else {
 
-if (result \>= 90 && result \<= 94) {
+                if (result >= 90 && result <= 94) {
 
-System.out.println(\"去游乐场玩\");
+                    System.out.println("去游乐场玩");
 
-} else {
+                } else {
 
-if (result \>= 80 && result \<= 89) {
+                    if (result >= 80 && result <= 89) {
 
-System.out.println(\"买大黄蜂\");
+                        System.out.println("买大黄蜂");
 
-} else {
+                    } else {
 
-if (result \<= 80) {
+                        if (result <= 80) {
 
-System.out.println(\"来找你谈谈理想\");
+                            System.out.println("来找你谈谈理想");
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }else{
+
+            System.out.println("成绩输入出错，重新运行JAVA脚本");
+
+        }
+
+    }
 
 }
-
-}
-
-}
-
-}
-
-}else{
-
-System.out.println(\"成绩输入出错，重新运行JAVA脚本\");
-
-}
-
-}
-
-}
+```
 
 **Scanner类**
 
+```java
 //Scanner类实现键盘录入整数
 
 import java.util.Scanner;
 
 public class Hello {
 
-public static void main(String\[\] args){
+    public static void main(String[] args){
 
-int k=10;
+        int k=10;
 
-double a=k;
+        double a=k;
 
-// 隐性数据类型转换，取值范围小转大
+        // 隐性数据类型转换，取值范围小转大
 
-double s= 10.0;
+        double s= 10.0;
 
-int b = (int)k;
+        int b = (int)k;
 
-//强制转换，取值范围大转小
+        //强制转换，取值范围大转小
 
-//创建对象
+        //创建对象
 
-Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-//接收数据
+        //接收数据
 
-//变量i记录了键盘录入的数据
+        //变量i记录了键盘录入的数据
 
-System.out.println(\"这是一个加法运算的计算器\");
+        System.out.println("这是一个加法运算的计算器");
 
-System.out.println(\"请输入第一次整数:\");
+        System.out.println("请输入第一次整数:");
 
-int i = sc.nextInt();
+        int  i = sc.nextInt();
 
-System.out.println(\"请输入第二次整数:\");
+        System.out.println("请输入第二次整数:");
 
-//变量k记录了键盘录入的数据
+         //变量k记录了键盘录入的数据
 
-int k = sc.nextInt();
+        int  k = sc.nextInt();
 
-System.out.println(i+k);
+        System.out.println(i+k);
 
-//进行加法运算，并输出
+        //进行加法运算，并输出
 
-}
+    }
 
 // Scanner录入字符
 
-class Name{
+    class Name{
 
-public static void main(String\[\] args) {
+        public static void main(String[] args)    {                    
 
-System.out.println(\"输入字符\")
+        System.out.println("输入字符")
 
-int s = sc.nextLine();
+        int s = sc.nextLine();       
 
-System.out.println(s);
+        System.out.println(s);
 
-// 打印s的值字符
+        // 打印s的值字符
+
+        }
+
+    }
 
 }
+```
 
-}
-
-}
-
+```java
 //switch实现多个选项
 
 class He {
 
-public static void main(String\[\] args){
+    public static void main(String[] args){
 
-Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-System.out.println(\"想吃什么面\");
+        System.out.println("想吃什么面");
 
-String face = sc.nextLine();
+        String face = sc.nextLine();
 
-switch(face){
+        switch(face){
 
-case \"兰州拉面\":
+            case "兰州拉面":
 
-System.out.println(\"吃兰州拉面\");
+                System.out.println("吃兰州拉面");
 
-break;
+                break;
 
-case \"三鲜粉\":
+            case "三鲜粉":
 
-System.out.println(\"吃三鲜粉\");
+                System.out.println("吃三鲜粉");
 
-break;
+                break;
 
-case \"北京炸酱面\":
+            case "北京炸酱面":
 
-System.out.println(\"吃北京炸酱面\");
+                System.out.println("吃北京炸酱面");
 
-break;
+                break;
 
-case \"武汉热干面\":
+            case "武汉热干面":
 
-System.out.println(\"吃武汉热干面\");
+                System.out.println("吃武汉热干面");
 
-break;
+                 break;
 
-default:
+            default:
 
-System.out.println(\"想屁吃，吃泡面\");
+                System.out.println("想屁吃，吃泡面");
 
-break;
+                break;
+
+        }
+
+    }
 
 }
-
-}
-
-}
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image26.png){width="5.760416666666667in"
 height="1.5250120297462817in"}
 
 **for循环**
 
-// 循环1\~5并且相加
+```java
+// 循环1~5并且相加
 
 class She {
 
-public static int k=0;
+    public static int k=0;
 
-//定义变量用来进行累加
+    //定义变量用来进行累加
 
-public static void main(String\[\] args) {
+    public static void main(String[] args) {
 
-for(int i=1;i\<=5;i++){
+        for(int i=1;i<=5;i++){
 
-k += i;
+            k += i;
 
-// 开始逐渐累加到k
+            // 开始逐渐累加到k
+
+        }
+
+        System.out.println(k);
+
+    }
 
 }
 
-System.out.println(k);
-
-}
-
-}
-
-//判断1\~100的偶数的和
+//判断1~100的偶数的和
 
 class Xinag {
 
-public static void main(String\[\] args) {
+    public static void main(String[] args) {
 
-int a= 0;
+        int a= 0;
 
-for (int i=0;i\<=100;i++){
+        for (int i=0;i<=100;i++){
 
-if (i % 2 ==0){
+            if (i % 2 ==0){
 
-a = a+i;
+                a = a+i;
 
-}
+            }
 
-}
+        }
 
-System.out.println(a);
+        System.out.println(a);
 
-}
+    }
 
 }
 
@@ -607,61 +617,64 @@ System.out.println(a);
 
 class keing {
 
-public static void main(String\[\] args) {
+    public static void main(String[] args) {
 
-Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-System.out.println(\"输入第一个数字\");
+        System.out.println("输入第一个数字");
 
-int number1 = sc.nextInt();
+        int number1 = sc.nextInt();
 
-System.out.println(\"输入第二个数字\");
+        System.out.println("输入第二个数字");
 
-int number2 = sc.nextInt();
+        int number2 = sc.nextInt();
 
-int count = 0;
+        int count = 0;
 
-// 定义变量
+        // 定义变量
 
-for (int i=number1;i\<=number2;i++){
+        for (int i=number1;i<=number2;i++){
 
-if (i % 3 ==0&& i % 5 ==0){
+            if (i % 3 ==0&& i % 5 ==0){
 
-count++;
+                count++;
 
-//统计for里面的if执行成功了多少次，然后让上面定义的变量自增就可以统计执行的次数了。
+                //统计for里面的if执行成功了多少次，然后让上面定义的变量自增就可以统计执行的次数了。
+
+            }
+
+        }
+
+        System.out.println(count);
+
+    }
 
 }
-
-}
-
-System.out.println(count);
-
-}
-
-}
+```
 
 **witch循环**
 
 // while
 
+```java
 class Qex {
 
-public static void main(String\[\] args) {
+    public static void main(String[] args) {
 
-int s = 1;
+        int s = 1;
 
-while (s \< 10) {
+        while (s < 10) {
 
-System.out.println(\"ls\");
+            System.out.println("ls");
 
-s++;
+            s++;
+
+        }
+
+    }
 
 }
-
-}
-
-}
+```
 
 // 回文数：如果是回文树就打印true，反过来就是false
 
@@ -669,46 +682,48 @@ s++;
 
 //先把值定义再方法里然后再局部调用更改，还是可以再另一个局部调用（一个变量是在当前的大括号里面实用）
 
+```java
 class Eshan {
 
-public static void main(String\[\] args) {
+    public static void main(String[] args) {
 
-Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-System.out.println(\"输入整数：\");
+        System.out.println("输入整数：");
 
-int number100 = sc.nextInt();
+        int number100 = sc.nextInt();
 
-int tmp = number100;
+        int tmp = number100;
 
-int k = 0;
+        int k = 0;
 
-while (number100 != 0) {
+        while (number100 != 0) {
 
-int get = number100 % 10;
+            int get = number100 % 10;
 
-//获取number100的个位
+            //获取number100的个位
 
-number100 = number100 / 10;
+            number100 = number100 / 10;
 
-//把输入的数字除10就一定小于0就能再执行一次while循环
+           //把输入的数字除10就一定小于0就能再执行一次while循环
 
-k = k \* 10 + get;
+            k = k * 10 + get;
 
-//将获取的数字拼接到最右边
+            //将获取的数字拼接到最右边
 
-}System.out.println(k);
+        }System.out.println(k);
 
-if (tmp==k){
+        if (tmp==k){
 
-System.out.println(\"True\");
+            System.out.println("True");
 
-}else{
+        }else{
 
-System.out.println(\"False\");
+            System.out.println("False");
+
+        }
+
+    }
 
 }
-
-}
-
-}
+```

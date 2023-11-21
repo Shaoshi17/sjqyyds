@@ -4,7 +4,9 @@ PHP_VERSION php版本
 
 **[strcmp]{.mark}**
 
-int strcmp ( string \$str1 , string \$str2 )1
+```
+int strcmp ( string $str1 , string $str2 )1
+```
 
 参数 str1 第一个字符串。str2 第二个字符串。如果 str1 小于 str2 返回
 \<0； 如果 str1 大于 str2 返回\> 0；如果两者相等，返回 0。区分大小写
@@ -48,11 +50,13 @@ FALSE，注意浮点型返回 1，即 TRUE。]{.mark}
 
 preg_match_all 函数用于执行一个全局正则表达式匹配
 
-\<?php
+```php
+<?php
 
-show_source(\"test.php\");
+show_source("test.php");
 
-?\>
+?>
+```
 
 原理: flag_1234.php=\*\_1234.php (绕过)
 
@@ -87,27 +91,27 @@ key普通字符
 
 \[:punct:\]就是特殊字符的意思，\[\[:punct:\]\]就是在特殊字符里取一个，假设是;(当然也可以是@#等等)
 
-**[json_encode()函数]{.mark}**
+**json_encode()函数**
 
-**[格式转换]{.mark}**
+**格式转换**
 
-**[echo 输出不了数组用 json_encode()转换]{.mark}**
+**echo 输出不了数组用 json_encode()转换**
 
-**[如 echo json_encode(\$data);]{.mark}**
+**如 echo json_encode($data);**
 
-**[serialize序列化函数]{.mark}**
+**serialize序列化函数**
 
-**[对象转序列化]{.mark}**
+**对象转序列化**
 
-**[如 echo serialize(\$data);]{.mark}**
+**如 echo serialize($data);**
 
-**[unserialize反序列化]{.mark}**
+**unserialize反序列化**
 
-**[序列化转对象]{.mark}**
+**序列化转对象**
 
-**[在序列化转对象时候如果没过滤并且有执行函数就可以传php代码]{.mark}**
+**在序列化转对象时候如果没过滤并且有执行函数就可以传php代码**
 
-**[如]{.mark}**
+**如**
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image2.png){width="5.760416666666667in"
 height="3.2402351268591425in"}
@@ -138,31 +142,32 @@ height="2.033589238845144in"}
 
 //wakeup绕过 在原来的1个元素加一个数
 
-\<?php
+```php
+<?php
 
 class Demo {
 
-private \$file = \'index.php\';
+private $file = 'index.php';
 
-public function \_\_construct(\$file) {
+public function __construct($file) {
 
-\$this-\>file = \$file;
-
-}
-
-function \_\_destruct() {
-
-echo \@highlight_file(\$this-\>file, true);
+$this->file = $file;
 
 }
 
-function \_\_wakeup() {
+function __destruct() {
 
-if (\$this-\>file != \'index.php\') {
+echo @highlight_file($this->file, true);
+
+}
+
+function __wakeup() {
+
+if ($this->file != 'index.php') {
 
 //the secret is in the fl4g.php
 
-\$this-\>file = \'index.php\';
+$this->file = 'index.php';
 
 }
 
@@ -170,21 +175,20 @@ if (\$this-\>file != \'index.php\') {
 
 }
 
-\$A = new Demo (\'fl4g.php\');//创建对象
+$A = new Demo ('fl4g.php');//创建对象
 
-\$C = serialize(\$A); //对对象A进行序列化
+$C = serialize($A);                     //对对象A进行序列化
 
-\$C = str_replace(\'O:4\',\'O:+4\',\$C); //绕过正则表达式过滤 #将O:4
-替换O:+4
+$C = str_replace('O:4','O:+4',$C);      //绕过正则表达式过滤 #将O:4 替换O:+4
 
-\$C = str_replace(\':1:\',\':2:\',\$C); //wakeup绕过
+$C = str_replace(':1:',':2:',$C); //wakeup绕过
 
-var_dump(\$C);
+var_dump($C);
 
-var_dump(base64_encode(\$C)); //base64加密
+var_dump(base64_encode($C));            //base64加密
 
-?\>
-
+?>
+```
 **getimagesize检查文件大小，一般用于文件上传**
 
 **preg_replace()函数**
@@ -193,13 +197,15 @@ var_dump(base64_encode(\$C)); //base64加密
 
 例如：
 
-\<?php
+```php
+<?php
 
-\$str=preg_replace(\'/a/,\'b\',\"aaaaaaaaa\'\')
+$str=preg_replace('/a/,'b',"aaaaaaaaa'')
 
-echo \$str
+echo $str
 
-?\>
+?>
+```
 
 会将aaaaaaaaa里面包含a的全部替换成b
 
@@ -207,18 +213,19 @@ echo \$str
 
 如：
 
-\<?php
+```php
+<?php
 
-if(isset(\$\_GET\[\'code\'\])){
+if(isset($_GET['code'])){
 
-\$code=\$\_GET\[\'code\'\];
+     $code=$_GET['code'];
 
-preg_replace(\"\\/\[(.\*)\\}/e\",\'\\\\1\',\$code)
-#正则匹配将中括号的值转换成1
+     preg_replace("\/[(.*)\}/e",'\\1',$code) #正则匹配将中括号的值转换成1
 
 }
 
-?\>
+?>
+```
 
 [trim函数：去除首尾空格]{.mark}
 
@@ -248,17 +255,19 @@ magic_quotes_runtime =Off
 [用法：addslashes(\$x)
 #就可以将\$x之前不管是使用什么传入方式发现可以转义就在前面添加反斜杠转义]{.mark}
 
-\<?php
+```php
+<?php
 
-    header(\"content-type:text/html;charset=utf-8\");
+    header("content-type:text/html;charset=utf-8");
 
-    \$x = \$\_GET\[\'cmd\'\];
+    $x = $_GET['cmd'];
 
-    \$y=addslashes(\$x);
+    $y=addslashes($x);
 
-    print_r(\$y);
+    print_r($y);
 
-?\>
+?>
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image6.png){width="5.760416666666667in"
 height="4.345704286964129in"}
@@ -294,17 +303,19 @@ height="1.6954068241469815in"}
 
 htmlspecialchars(\$x);
 
-\<?php
+```php
+<?php
 
-    header(\"content-type:text/html;charset=utf-8\");
+    header("content-type:text/html;charset=utf-8");
 
-    \$x = \$\_GET\[\'cmd\'\];
+    $x = $_GET['cmd'];
 
-    \$y=htmlspecialchars(\$x);
+    $y=htmlspecialchars($x);
 
-    print_r(\$y);
+    print_r($y);
 
-?\>
+?>
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image12.png){width="5.760416666666667in"
 height="1.1708748906386701in"}
@@ -320,17 +331,19 @@ height="0.85793416447944in"}
 
 **用法也是：strip_tags(\$x);**
 
-\<?php
+```php
+<?php
 
-    header(\"content-type:text/html;charset=utf-8\");
+    header("content-type:text/html;charset=utf-8");
 
-    \$x = \$\_GET\[\'cmd\'\];
+    $x = $_GET['cmd'];
 
-    \$y=strip_tags(\$x);
+    $y=strip_tags($x);
 
-    print_r(\$y);
+    print_r($y);
 
-?\>
+?>
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image14.png){width="5.760416666666667in"
 height="0.8960651793525809in"}
@@ -340,18 +353,19 @@ height="0.8960651793525809in"}
 **对字符串中可能会欺骗shell命令执行任意的字符进行转义，保证用户输入数据是安全的**
 
 **用法：escapeshellcmd(\$x);**
+```php
+<?php
 
-\<?php
+    header("content-type:text/html;charset=utf-8");
 
-    header(\"content-type:text/html;charset=utf-8\");
+    $x = $_GET['cmd'];
 
-    \$x = \$\_GET\[\'cmd\'\];
+    $y=escapeshellcmd($x);
 
-    \$y=escapeshellcmd(\$x);
+    print_r($y);
 
-    print_r(\$y);
-
-?\>
+?>
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image15.png){width="5.760416666666667in"
 height="1.03920384951881in"}
@@ -364,15 +378,17 @@ height="1.03920384951881in"}
 
 **\$id=intval(\$\_GET\[\'id\'\]);**
 
-\<?php
+```php
+<?php
 
-    header(\"content-type:text/html;charset=utf-8\");
+    header("content-type:text/html;charset=utf-8");
 
-    \$x = intval(\$\_GET\[\'cmd\'\]);
+    $x = intval($_GET['cmd']);
 
-    print_r(\$x);
+    print_r($x);
 
-?\>
+?>
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image16.png){width="5.760416666666667in"
 height="1.0942443132108486in"}
@@ -405,14 +421,15 @@ height="0.7285520559930009in"}
 
 **[上传页面设置.上传方式是POST还是GET，还有enctype类型，和上传到文件的页面,加入上传的文件类型，和名字定义，]{.mark}**然后加入\<buttor\>提交\</buttor\>按钮
 
-    \<form action=\"update.php\" method=\"post\"
-enctype=\"multipart/form-data\"\>
+```html
+    <form action="update.php" method="post" enctype="multipart/form-data">
 
-        \<input type=\"file\" name=\"up\"\>
+        <input type="file" name="up">
 
-        \<button\>提交\</button\>
+        <button>提交</button>
 
-\</form\>
+    </form>
+```
 
 **[并且设置好php.ini的]{.mark}** upload_tmp_dir =
 \"D:/phpstudy_pro/WWW/update\" （windows格式，默认在前面有；要去掉）
@@ -426,24 +443,22 @@ enctype=\"multipart/form-data\"\>
 
 [将临时文件转移到永久目录里要写的函数：]{.mark}
 
+```php
 function uploader() #定义函数
 
 {
 
-    if(is_uploaded_file(\$\_FILES\[\'up\'\]\[\'tmp_name\'\]))
-#判断是否合法，如果没成功就false
+    if(is_uploaded_file($_FILES['up']['tmp_name'])) #判断是否合法，如果没成功就false
 
     {
 
-        \$to =\'upload/\' . \$\_FILES\[\'up\'\]\[\'name\'\];
-#将保存文件地址为源文件名赋值到\$to,可以使用time时间戳添加以防有相同
+        $to ='upload/' . $_FILES['up']['name']; #将保存文件地址为源文件名赋值到$to,可以使用time时间戳添加以防有相同
 
-       
-if(move_uploaded_file(\$\_FILES\[\'up\'\]\[\'tmp_name\'\],\$to))#将文件转移到\$to的地方去
+        if(move_uploaded_file($_FILES['up']['tmp_name'],$to))#将文件转移到$to的地方去
 
         {
 
-            return \$to; #成功打印地址
+            return $to; #成功打印地址
 
         }
 
@@ -454,56 +469,58 @@ if(move_uploaded_file(\$\_FILES\[\'up\'\]\[\'tmp_name\'\],\$to))#将文件转移
 }
 
 var_dump(uploader());
+```
 
 **[通过前台表单的形式过滤字节大小：]{.mark}**
 
 **[字节大小过滤要放在\<form\>\</form\>里面的最前面]{.mark}**
 
-\<input type=\"hidden\" name=\"MAX_FILE_SIZE\"
-value=\"2000\"\>#字节为单位
+```php
+<input type="hidden" name="MAX_FILE_SIZE" value="2000">#字节为单位
 
-    \<form action=\"update.php\" method=\"post\"
-enctype=\"multipart/form-data\"\>
+    <form action="update.php" method="post" enctype="multipart/form-data">
 
-        \<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"2000\"\>
+        <input type="hidden" name="MAX_FILE_SIZE" value="2000">
 
-        \<input type=\"file\" name=\"up\"\>
+        <input type="file" name="up">
 
-        \<button\>提交\</button\>
+        <button>提交</button>
 
-    \</form\>
+    </form>
+```
 
 **[加固设置文件上传目录无执行权限（简单粗暴）]{.mark}**
 
 **[文件上传设置白名单jpg/png/gif]{.mark}**
 
-\<?php
+```php
+<?php
 
 function uploader(){
 
-    if((\$\_FILES\[\'up\'\]\[\'type\'\] == \'image/jpeg\') \|\|
-(\$\_FILES\[\'up\'\]\[\'type\'\] == \'image/png\') \|\|
-(\$\_FILES\[\'up\'\]\[\'type\'\] == \'image/gif\'))
+    if(($_FILES['up']['type'] == 'image/jpeg') || ($_FILES['up']['type'] == 'image/png') || ($_FILES['up']['type'] == 'image/gif'))
 
     {
 
-        \$to =\'upload/\' . \$\_FILES\[\'up\'\]\[\'name\'\];
+        $to ='upload/' . $_FILES['up']['name'];
 
-        if(move_uploaded_file(\$\_FILES\[\'up\'\]\[\'tmp_name\'\],\$to))
+        if(move_uploaded_file($_FILES['up']['tmp_name'],$to))
 
         {
 
-            return \$to;
+            return $to;
 
         }
 
     }
 
-    return \$\_FILES\[\'up\'\]\[\'name\'\];#失败返回上传名字
+    return $_FILES['up']['name'];#失败返回上传名字
 
 }
 
 var_dump(uploader());
+?>
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image20.png){width="4.861111111111111in"
 height="1.0513320209973753in"}
@@ -553,15 +570,17 @@ strtolower(string \$string): string
 
 当然也可以是数组集体转换
 
-\<?php
+```php
+<?php
 
-\$s=\"1.phP,2.pHTml,3.PHp3\";
+$s="1.phP,2.pHTml,3.PHp3";
 
-\$k=strtolower(\$s);
+$k=strtolower($s);
 
-echo str_ireplace(\"php\",\"\",\$k).\"\\n\";
+echo str_ireplace("php","",$k)."\n";
 
-?\>
+?>
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image24.png){width="3.263888888888889in"
 height="1.3973195538057743in"}
@@ -573,13 +592,15 @@ height="1.3973195538057743in"}
 [**用法：**echo
 str_ireplace(\"php\",\"\",\"hello.php\").\"\\n\";]{.mark}
 
-\<?php
+```php
+<?php
 
-\$s=\"1.php,2.phtml,3.php3\";
+$s="1.php,2.phtml,3.php3";
 
-echo str_ireplace(\"php\",\"\",\$s).\"\\n\";
+echo str_ireplace("php","",$s)."\n";
 
-?\>
+?>
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image25.png){width="3.736111111111111in"
 height="0.978257874015748in"}
@@ -595,13 +616,15 @@ string
 
 PHP5起新增第三个参数\$before_needle，如果\$before_needle取值为true，则返回\$needle前面的部分。
 
-\<?php
+```php
+<?php
 
-\$s=\"hahahphpinfo.php\";
+$s="hahahphpinfo.php";
 
-echo strstr(\$s,\"php\");
+echo strstr($s,"php");
 
-?\>
+?>
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image26.png){width="4.083333333333333in"
 height="1.0in"}
@@ -612,25 +635,27 @@ height="1.0in"}
 
 substr(**string,start,length**)
 
-\<?php
+```php
+<?php
 
-echo substr(\"Hello world\",0,10).\"\<br\>\";
+echo substr("Hello world",0,10)."<br>";
 
-echo substr(\"Hello world\",1,8).\"\<br\>\";
+echo substr("Hello world",1,8)."<br>";
 
-echo substr(\"Hello world\",0,5).\"\<br\>\";
+echo substr("Hello world",0,5)."<br>";
 
-echo substr(\"Hello world\",6,6).\"\<br\>\";
+echo substr("Hello world",6,6)."<br>";
 
-echo substr(\"Hello world\",0,-1).\"\<br\>\";
+echo substr("Hello world",0,-1)."<br>";
 
-echo substr(\"Hello world\",-10,-2).\"\<br\>\";
+echo substr("Hello world",-10,-2)."<br>";
 
-echo substr(\"Hello world\",0,-6).\"\<br\>\";
+echo substr("Hello world",0,-6)."<br>";
 
-echo substr(\"Hello world\",-2-3).\"\<br\>\";
+echo substr("Hello world",-2-3)."<br>";
 
-?\>
+?>
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image27.png){width="4.916666666666667in"
 height="2.6041666666666665in"}
@@ -644,17 +669,19 @@ height="1.1846281714785651in"}
 
 [将两个组合在一起就是strrchr函数一样的作用（文件上传第11题就是用这个方法代替想借此误导我们分析）]{.mark}
 
-\<?php
+```php
+<?php
 
-\$s=\"phpinfo.php\";
+$s="phpinfo.php";
 
-var_dump(strrpos(\$s,\".\"));
+var_dump(strrpos($s,"."));
 
-var_dump(substr(\$s,strrpos(\$s,\".\")));
+var_dump(substr($s,strrpos($s,".")));
 
-var_dump(strrchr(\$s,\".\"));
+var_dump(strrchr($s,"."));
 
-?\>
+?>
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image29.png){width="4.694444444444445in"
 height="1.7317279090113735in"}
@@ -670,16 +697,16 @@ bool]{.mark}
 
 第三个类型默认为false，即不考虑类型是否相同。
 
-\<?php
+```php
+<?php
 
-\$sites = array(\"Google\", \"Runoob\", \"Taobao\",
-\"Facebook\");#创建\$sites数值 
+$sites = array("Google", "Runoob", "Taobao", "Facebook");#创建$sites数值 
 
-if (in_array(\"Runoob\", \$sites))#判断\$sites数值中是否有Runoob
+if (in_array("Runoob", $sites))#判断$sites数值中是否有Runoob
 
 {
 
-    echo \"找到匹配项！\";
+    echo "找到匹配项！";
 
 }
 
@@ -687,99 +714,95 @@ else
 
 {
 
-    echo \"没有找到匹配项！\";
+    echo "没有找到匹配项！";
 
 }
 
-?\>
+?>
 
 利用这些写的加固代码
-
+```
+```php
 //2022.9.14
 
-\<?php
+<?php
 
 function uploader(){
 
-    \$suffis = array(\'.jpg\',\'.gif\',\'.png\'); //定义白名单后缀的数组
+    $suffis = array('.jpg','.gif','.png'); //定义白名单后缀的数组
 
-    \$file_name = trim(\$\_FILES\[\'up\'\]\[\'name\'\]); //文件名字去空
+    $file_name = trim($_FILES['up']['name']); //文件名字去空
 
-    \$file_suffis = strrchr(\$file_name,\'.\');
-//查找点出现最后出现的位置.也就是后缀名赋值
+    $file_suffis = strrchr($file_name,'.'); //查找点出现最后出现的位置.也就是后缀名赋值
 
-    \$file_suffis =
-strtolower(\$file_suffis);//防止大写绕过，后缀名全部转为小写
+    $file_suffis = strtolower($file_suffis);//防止大写绕过，后缀名全部转为小写
 
-    \$file_suffis = str_ireplace(\'::\$DATA\',\'\',\$file_suffis);
-//将::\$DATA转换为空，防止::\$DATA,因为这个还是替换是不管大小写所以小写也可以使用
+    $file_suffis = str_ireplace('::$DATA','',$file_suffis); //将::$DATA转换为空，防止::$DATA,因为这个还是替换是不管大小写所以小写也可以使用
 
-    \$file_suffis = trim(\$file_suffis);//再去空
+    $file_suffis = trim($file_suffis);//再去空
 
-    if(in_array(\$file_suffis,\$suffis)) //判断白名单
+    if(in_array($file_suffis,$suffis)) //判断白名单
 
     {
 
-        \$to =\'upload/\' .rand(1000,9999).\$file_suffis;
-//自定义文件名字,及时你成功绕过，但是文件名后缀是我的白名单赋值的名字是时间戳。
+        $to ='upload/' .rand(1000,9999).$file_suffis; //自定义文件名字,及时你成功绕过，但是文件名后缀是我的白名单赋值的名字是时间戳。
 
-        if(move_uploaded_file(\$\_FILES\[\'up\'\]\[\'tmp_name\'\],\$to))
+        if(move_uploaded_file($_FILES['up']['tmp_name'],$to))
 
         {
 
-            return \$to;
+            return $to;
 
         }
 
     }
 
-    return \$\_FILES\[\'up\'\]\[\'name\'\];
+    return $_FILES['up']['name'];
 
 }
 
 var_dump(uploader());
+```
 
 其实7,8,9行都没必要因为只要后缀是.jpg,.png,.gif，就保存，并且保存时会重新添加这三个白名单的后缀。
 
 **最简最强白名单**
 
-\<?php
+```php
+<?php
 
 function uploader(){
 
-    \$suffis = array(\'.jpg\',\'.gif\',\'.png\');
+    $suffis = array('.jpg','.gif','.png');
 
-    \$file_name = trim(\$\_FILES\[\'up\'\]\[\'name\'\]);
+    $file_name = trim($_FILES['up']['name']);
 
-    \$file_suffis = strrchr(\$file_name,\'.\');
+    $file_suffis = strrchr($file_name,'.');
 
-    var_dump(\$file_suffis);
+    var_dump($file_suffis);
 
-    if(in_array(\$file_suffis,\$suffis))
+    if(in_array($file_suffis,$suffis))
 
     {
 
-        \$to =\'upload/\'.time().rand(100,999).\$file_suffis;
+        $to ='upload/'.time().rand(100,999).$file_suffis;
 
-       
-
-        if(move_uploaded_file(\$\_FILES\[\'up\'\]\[\'tmp_name\'\],\$to))
+        if(move_uploaded_file($_FILES['up']['tmp_name'],$to))
 
         {
 
-            return \$to;
+            return $to;
 
         }
 
     }
 
-    return \$\_FILES\[\'up\'\]\[\'name\'\];
-
-   
+    return $_FILES['up']['name'];
 
 }
 
 var_dump(uploader());
+```
 
 **2.trim函数仅仅是去掉空格，不能去掉空白字符。因此本关可以通过在sh.php文件名末尾加十六进制81\~99（比如下图中加的是0x88）来绕过后缀黑名单限制
 对这个码也是无解**

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "sjqyyds17/编程学习/8086汇编语言.md",
+                "file": "怎么完美平替有道云.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "sjqyyds17/编程学习/8086汇编语言.md",
+                "file": "怎么完美平替有道云.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "sjqyyds17/编程学习/8086汇编语言.md",
+                "file": "怎么完美平替有道云.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "sjqyyds17/编程学习/8086汇编语言.md"
+                "file": "怎么完美平替有道云.md"
               }
             }
           }
@@ -148,38 +148,42 @@
   },
   "active": "d3e60c5239acbd84",
   "lastOpenFiles": [
-    "sjqyyds17/CTF/Web.md",
-    "sjqyyds17/编程学习/8086汇编语言.md",
-    "sjqyyds17/附件/8086汇编语言/media/image99.png",
-    "sjqyyds17/附件/8086汇编语言/media/image98.png",
-    "sjqyyds17/附件/8086汇编语言/media/image97.png",
-    "sjqyyds17/附件/8086汇编语言/media/image96.png",
-    "sjqyyds17/附件/8086汇编语言/media/image95.png",
-    "sjqyyds17/附件/8086汇编语言/media/image94.png",
-    "sjqyyds17/附件/8086汇编语言/media/image93.png",
-    "sjqyyds17/附件/8086汇编语言/media/image92.png",
-    "sjqyyds17/附件/8086汇编语言/media/image91.png",
-    "sjqyyds17/附件/8086汇编语言/media/image90.png",
-    "sjqyyds17/附件/8086汇编语言/media",
-    "sjqyyds17/附件/8086汇编语言",
-    "sjqyyds17/编程学习/8086汇编语言.docx",
-    "sjqyyds17/编程学习/C语言.md",
-    "sjqyyds17/CTF/Misc.md",
-    "sjqyyds17/CTF/Crypto.md",
-    "sjqyyds17/CTF/~$Crypto.docx",
+    "sjqyyds17/高职/2023国赛新赛题总结.md",
+    "sjqyyds17/高职/Word_Excel.md",
+    "sjqyyds17/附件/2023国赛新赛题总结/media/image1.png",
+    "sjqyyds17/附件/2023国赛新赛题总结/media",
+    "sjqyyds17/附件/2023国赛新赛题总结",
+    "sjqyyds17/高职/2023国赛新赛题总结.docx",
+    "sjqyyds17/高职/高三上学期推荐的学习路线规划.md",
+    "sjqyyds17/附件/Word_Excel/media/image9.png",
+    "sjqyyds17/附件/Word_Excel/media/image8.png",
+    "sjqyyds17/附件/Word_Excel/media/image7.png",
+    "sjqyyds17/附件/Word_Excel/media/image6.png",
+    "sjqyyds17/附件/Word_Excel/media/image5.png",
+    "sjqyyds17/附件/Word_Excel/media/image4.png",
+    "sjqyyds17/附件/Word_Excel/media/image3.png",
+    "sjqyyds17/附件/Word_Excel/media/image27.gif",
+    "sjqyyds17/附件/Word_Excel/media/image26.png",
+    "sjqyyds17/附件/Word_Excel/media",
+    "sjqyyds17/附件/Word_Excel",
+    "sjqyyds17/高职/Word_Excel.docx",
+    "sjqyyds17/高职/Word Excel.docx",
+    "sjqyyds17/未命名.canvas",
     "怎么完美平替有道云.md",
+    "sjqyyds17/编程学习/8086汇编语言.md",
+    "sjqyyds17/编程学习/油猴脚本学习.md",
+    "sjqyyds17/编程学习/C语言.md",
     "sjqyyds17/编程学习/Java语言.md",
+    "sjqyyds17/编程学习/~$Java语言.docx",
+    "sjqyyds17/编程学习/Php语言.md",
+    "sjqyyds17/编程学习/~$Php语言.docx",
     "sjqyyds17/编程学习/Python语言.md",
     "sjqyyds17/编程学习/Shell语言.md",
-    "sjqyyds17/附件/Java语言/media",
-    "sjqyyds17/附件/Java语言",
-    "sjqyyds17/附件/Shell语言/media",
-    "sjqyyds17/附件/Shell语言",
-    "sjqyyds17/附件/Python语言/media",
-    "sjqyyds17/附件/Python语言",
-    "sjqyyds17/编程学习/Php语言.md",
+    "sjqyyds17/编程学习/~$thon语言.docx",
+    "sjqyyds17/CTF/Web.md",
+    "sjqyyds17/CTF/Misc.md",
+    "sjqyyds17/CTF/Crypto.md",
     "sjqyyds17/CTF/Reverse.md",
-    "sjqyyds17/编程学习/油猴脚本学习.md",
     "sjqyyds17/编程学习/未命名.md",
     "未命名.md",
     "sjqyyds17/Obsidian软件安装插件推荐：.md",
@@ -187,11 +191,9 @@
     "sjqyyds17/编程学习/shell骚操作.md",
     "sjqyyds17/编程学习/PHP代码审计.md",
     "sjqyyds17/编程学习/Java基础.md",
-    "sjqyyds17/高职/高三上学期推荐的学习路线规划.md",
     "sjqyyds17/编程学习/shell快捷命令.md",
     "sjqyyds17/编程学习/python语言.md",
     "sjqyyds17/编程学习/PHP语言代码审计.md",
-    "sjqyyds17/编程学习/Java学习.md",
-    "sjqyyds17/编程学习/C Primer Plus 学习笔记主修.md"
+    "sjqyyds17/编程学习/Java学习.md"
   ]
 }
