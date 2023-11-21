@@ -99,7 +99,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "8086汇编语言.md",
+                "file": "sjqyyds17/编程学习/8086汇编语言.md",
                 "mode": "source",
                 "source": false
               }
@@ -156,8 +156,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "bccc0561de1089d1",
@@ -173,7 +172,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "8086汇编语言.md",
+                "file": "sjqyyds17/编程学习/8086汇编语言.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -190,7 +189,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "8086汇编语言.md",
+                "file": "sjqyyds17/编程学习/8086汇编语言.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -213,7 +212,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "8086汇编语言.md"
+                "file": "sjqyyds17/编程学习/8086汇编语言.md"
               }
             }
           }
@@ -234,10 +233,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "97d1285d5346c7b4",
+  "active": "baa31b1da621cf25",
   "lastOpenFiles": [
     "sjqyyds17/编程学习/C Primer Plus 学习笔记主修.md",
-    "8086汇编语言.md",
+    "sjqyyds17/编程学习/8086汇编语言.md",
     "Pasted image 20231121120707.png",
     "Pasted image 20231121120703.png",
     "Pasted image 20231121120658.png",
