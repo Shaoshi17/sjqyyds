@@ -8,93 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "43e9cf704e495f12",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "sjqyyds17/编程学习/C Primer Plus 学习笔记主修.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
-            "id": "0008f2c2f4e564ea",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "sjqyyds17/编程学习/C Primer Plus 学习笔记主修.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "d9b5ec83ea1deaec",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "sjqyyds17/编程学习/PHP语言代码审计.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "928c8a2904348212",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "sjqyyds17/编程学习/油猴脚本学习.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "d5438a4f97cb1eaf",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "sjqyyds17/编程学习/shell快捷命令.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "af0f3cfc0390fc95",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "sjqyyds17/编程学习/Java学习.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "df2bd53e50b4c405",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "sjqyyds17/编程学习/shell快捷命令.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "97d1285d5346c7b4",
+            "id": "d3e60c5239acbd84",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -105,8 +19,7 @@
               }
             }
           }
-        ],
-        "currentTab": 7
+        ]
       }
     ],
     "direction": "vertical"
@@ -233,38 +146,52 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "baa31b1da621cf25",
+  "active": "d3e60c5239acbd84",
   "lastOpenFiles": [
-    "sjqyyds17/编程学习/C Primer Plus 学习笔记主修.md",
+    "sjqyyds17/CTF/Web.md",
     "sjqyyds17/编程学习/8086汇编语言.md",
-    "Pasted image 20231121120707.png",
-    "Pasted image 20231121120703.png",
-    "Pasted image 20231121120658.png",
-    "sjqyyds17/编程学习/shell快捷命令.md",
-    "sjqyyds17/中职",
-    "sjqyyds17/编程学习/python语言.md",
-    "sjqyyds17/编程学习/Java学习.md",
+    "sjqyyds17/附件/8086汇编语言/media/image99.png",
+    "sjqyyds17/附件/8086汇编语言/media/image98.png",
+    "sjqyyds17/附件/8086汇编语言/media/image97.png",
+    "sjqyyds17/附件/8086汇编语言/media/image96.png",
+    "sjqyyds17/附件/8086汇编语言/media/image95.png",
+    "sjqyyds17/附件/8086汇编语言/media/image94.png",
+    "sjqyyds17/附件/8086汇编语言/media/image93.png",
+    "sjqyyds17/附件/8086汇编语言/media/image92.png",
+    "sjqyyds17/附件/8086汇编语言/media/image91.png",
+    "sjqyyds17/附件/8086汇编语言/media/image90.png",
+    "sjqyyds17/附件/8086汇编语言/media",
+    "sjqyyds17/附件/8086汇编语言",
+    "sjqyyds17/编程学习/8086汇编语言.docx",
+    "sjqyyds17/编程学习/C语言.md",
+    "sjqyyds17/CTF/Misc.md",
+    "sjqyyds17/CTF/Crypto.md",
+    "sjqyyds17/CTF/~$Crypto.docx",
+    "怎么完美平替有道云.md",
+    "sjqyyds17/编程学习/Java语言.md",
+    "sjqyyds17/编程学习/Python语言.md",
+    "sjqyyds17/编程学习/Shell语言.md",
+    "sjqyyds17/附件/Java语言/media",
+    "sjqyyds17/附件/Java语言",
+    "sjqyyds17/附件/Shell语言/media",
+    "sjqyyds17/附件/Shell语言",
+    "sjqyyds17/附件/Python语言/media",
+    "sjqyyds17/附件/Python语言",
+    "sjqyyds17/编程学习/Php语言.md",
+    "sjqyyds17/CTF/Reverse.md",
     "sjqyyds17/编程学习/油猴脚本学习.md",
-    "sjqyyds17/编程学习/PHP语言代码审计.md",
-    "sjqyyds17/编程学习/语言脚本/shell脚本7.0/功防脚本/后门端口占用.sh",
-    "sjqyyds17/编程学习/语言脚本/shell脚本7.0/功防脚本/全球扫描.sh",
-    "sjqyyds17/编程学习/语言脚本/shell脚本7.0/功防脚本/telnet.sh",
-    "sjqyyds17/编程学习/语言脚本/shell脚本7.0/功防脚本/ssh_pub.sh",
-    "sjqyyds17/编程学习/语言脚本/shell脚本7.0/功防脚本/sshpass.sh",
-    "sjqyyds17/编程学习/语言脚本/shell脚本7.0/功防脚本/smb.sh",
-    "sjqyyds17/编程学习/语言脚本/shell脚本7.0/功防脚本/rsync.sh",
-    "sjqyyds17/编程学习/语言脚本/shell脚本7.0/功防脚本/redis.sh",
-    "sjqyyds17/编程学习/语言脚本/shell脚本7.0/功防脚本/nfs.sh",
-    "sjqyyds17/编程学习/语言脚本/衡阳市干部教育网站刷分/read2.png",
-    "sjqyyds17/编程学习/语言脚本/衡阳市干部教育网站刷分/read1.png",
-    "sjqyyds17/编程学习/语言脚本/shell脚本7.0/AL]_$}WIBFQ)Y`{Q_{(3UHS.png",
-    "sjqyyds17/语言脚本/shell脚本7.0/AL]_$}WIBFQ)Y`{Q_{(3UHS.png",
-    "sjqyyds17/语言脚本/衡阳市干部教育网站刷分/read1.png",
-    "sjqyyds17/语言脚本/衡阳市干部教育网站刷分/read2.png",
+    "sjqyyds17/编程学习/未命名.md",
+    "未命名.md",
     "sjqyyds17/Obsidian软件安装插件推荐：.md",
-    "[.md",
-    "![[Pasted.md",
-    "Pasted image 20231121094746.png",
-    "sjqyyds17/sjqyyds.md"
+    "sjqyyds17/编程学习/python基本操作.md",
+    "sjqyyds17/编程学习/shell骚操作.md",
+    "sjqyyds17/编程学习/PHP代码审计.md",
+    "sjqyyds17/编程学习/Java基础.md",
+    "sjqyyds17/高职/高三上学期推荐的学习路线规划.md",
+    "sjqyyds17/编程学习/shell快捷命令.md",
+    "sjqyyds17/编程学习/python语言.md",
+    "sjqyyds17/编程学习/PHP语言代码审计.md",
+    "sjqyyds17/编程学习/Java学习.md",
+    "sjqyyds17/编程学习/C Primer Plus 学习笔记主修.md"
   ]
 }
