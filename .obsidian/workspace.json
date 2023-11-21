@@ -24,18 +24,31 @@
             "group": "972836a310e50e9f"
           },
           {
-            "id": "0bef1d232a6d6cd8",
+            "id": "0008f2c2f4e564ea",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "[.md",
+                "file": "sjqyyds17/C Primer Plus 学习笔记主修.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d9b5ec83ea1deaec",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "未命名.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       },
       {
         "id": "0b1d9012f89cd4d1",
@@ -101,13 +114,11 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "bccc0561de1089d1",
@@ -123,7 +134,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "sjqyyds17/C Primer Plus 学习笔记主修.md",
+                "file": "未命名.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -140,7 +151,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "sjqyyds17/C Primer Plus 学习笔记主修.md",
+                "file": "未命名.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -163,7 +174,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "sjqyyds17/C Primer Plus 学习笔记主修.md"
+                "file": "未命名.md"
               }
             }
           }
@@ -185,10 +196,27 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "43e9cf704e495f12",
+  "active": "d9b5ec83ea1deaec",
   "lastOpenFiles": [
-    "[.md",
+    "sjqyyds17/语言脚本/shell脚本7.0/C模块脚本/ip.sh",
+    "sjqyyds17/语言脚本/shell脚本7.0/C模块脚本/mysql_ftp.sh",
+    "sjqyyds17/语言脚本/shell脚本7.0/C模块脚本/port.sh",
+    "sjqyyds17/语言脚本/shell脚本7.0/功防脚本/403.sh",
+    "sjqyyds17/语言脚本/shell脚本7.0/功防脚本/B段扫描.sh",
+    "sjqyyds17/语言脚本/shell脚本7.0/功防脚本/curl.php",
+    "sjqyyds17/语言脚本/shell脚本7.0/功防脚本/curl.py",
+    "sjqyyds17/语言脚本/shell脚本7.0/功防脚本/ftp.sh",
+    "sjqyyds17/语言脚本/shell脚本7.0/功防脚本/hydra.sh",
+    "sjqyyds17/语言脚本/shell脚本7.0/功防脚本/iptables.sh",
+    "sjqyyds17/语言脚本/shell脚本7.0/功防脚本/max_redis.sh",
+    "sjqyyds17/语言脚本/shell脚本7.0/AL]_$}WIBFQ)Y`{Q_{(3UHS.png",
+    "sjqyyds17/语言脚本/衡阳市干部教育网站刷分/read1.png",
+    "sjqyyds17/语言脚本/衡阳市干部教育网站刷分/read2.png",
     "sjqyyds17/C Primer Plus 学习笔记主修.md",
+    "未命名.md",
+    "sjqyyds17/Obsidian软件安装插件推荐：.md",
+    "[.md",
+    "![[Pasted.md",
     "Pasted image 20231121094746.png",
     "Pasted image 20231121094547.png",
     "Pasted image 20231121094517.png",
@@ -196,11 +224,6 @@
     "Pasted image 20231121094445.png",
     "Pasted image 20231121094415.png",
     "Pasted image 20231121094357.png",
-    "Pasted image 20231121094331.png",
-    "Pasted image 20231121094041.png",
-    "Pasted image 20231121092652.png",
-    "![[Pasted.md",
-    "sjqyyds17/Obsidian软件安装插件推荐：.md",
     "sjqyyds17/sjqyyds.md"
   ]
 }
