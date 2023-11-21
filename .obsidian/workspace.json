@@ -22,6 +22,18 @@
               "pinned": true
             },
             "group": "972836a310e50e9f"
+          },
+          {
+            "id": "0bef1d232a6d6cd8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "[.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ]
       },
@@ -175,19 +187,19 @@
   },
   "active": "43e9cf704e495f12",
   "lastOpenFiles": [
-    "Pasted image 20231121083008.png",
-    "Pasted image 20231121082910.png",
-    "Pasted image 20231121082825.png",
-    "Pasted image 20231121082728.png",
-    "Pasted image 20231121082141.png",
-    "Pasted image 20231121082136.png",
-    "Pasted image 20231121082110.png",
-    "Pasted image 20231121082028.png",
-    "![[Pasted.md",
+    "[.md",
     "sjqyyds17/C Primer Plus 学习笔记主修.md",
-    "Pasted image 20231121082021.png",
-    "Pasted image 20231121082011.png",
-    "Pasted image 20231121081938.png",
+    "Pasted image 20231121094746.png",
+    "Pasted image 20231121094547.png",
+    "Pasted image 20231121094517.png",
+    "Pasted image 20231121094454.png",
+    "Pasted image 20231121094445.png",
+    "Pasted image 20231121094415.png",
+    "Pasted image 20231121094357.png",
+    "Pasted image 20231121094331.png",
+    "Pasted image 20231121094041.png",
+    "Pasted image 20231121092652.png",
+    "![[Pasted.md",
     "sjqyyds17/Obsidian软件安装插件推荐：.md",
     "sjqyyds17/sjqyyds.md"
   ]
