@@ -265,13 +265,15 @@ height="4.010690069991251in"}
 
 Ctrl+Shift+F12打开搜索框搜索关键字符
 
-Ctrl+X [查看调用情况]{.mark}
+Ctrl+X 查看调用情况
 
-[a:数据转换为字符串]{.mark}
+a:数据转换为字符串
 
-[n:更改变量名称]{.mark}
+==n:更改变量名称==
 
-**[HexRays反编译器入门]{.mark}**
+==y:更改变量类型==
+
+#### HexRays反编译器入门
 
 HexRays作为IDA的插件运行，与IDA同为一家公司开发，与IDA有着紧密的联系。HexRays充分利用IDA确定的函数局部变量和数据类型，优化后生成类似C语言的伪代码。用户可以浏览生成的伪代码、添加注释、重命名其中的标识符，也可以修改变量类型、切换数据的显示格式等。
 
@@ -694,11 +696,38 @@ strings/file/binwalk/stracegoogle/github 搜索
 
 结合动态调试，验证自己的静态分析猜想，在动调过程中进一步熟悉程序功能理清程序流程，根据正向算法推理逆向算法写出解题脚本，求解
 flag
+#### Python 反编译：pyinstxtractor工具和uncompyle6库的使用
+==`pyinstxtractor.py`== 工具的下载地址：[https://sourceforge.net/projects/pyinstallerextractor/](https://sourceforge.net/projects/pyinstallerextractor/)  
+或[https://download.csdn.net/download/qq_63585949/86509791?spm=1001.2014.3001.5503](https://download.csdn.net/download/qq_63585949/86509791?spm=1001.2014.3001.5503)
+> `uncompyle`库为第三方库，可以使用`pip`命令安装：
 
-**[一排db]{.mark}**
+```python
+pip install uncompyle6
+```
 
-![image.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image40.png){width="5.760416666666667in"
-height="4.740873797025372in"}
+> `uncompyle`库为第三方库，可以使用`pip`命令安装：
+
+```python
+pip install uncompyle6
+```
+![[Pasted image 20231125084630.png]]
+> 进入该文件夹，里面有许许多多后缀为`.dll`和`.pyd`的文件，还有一个名为`PYZ-00.pyz_extracted`的文件夹，这个文件夹里放的是程序引入的**依赖库**，如果你引入过自己其他的`.py`文件，就可以用类似的方法将依赖的`.py`文件反编译出来。
+
+> 目录中有两个带`.pyc`后缀的文件，我们要找到那个与你的`.exe`文件同名的文件：
+
+
+> （`pyinstxtractor.py`工具在2.0以前的版本，会生成两个不带后缀的文件，我们仍然是要找到那个与自己的`.exe`文件同名的文件，手动为它添加`.pyc`后缀）
+
+> 为它添加`.pyc`后缀并用Hex编辑器打开：  
+![[Pasted image 20231125084646.png]]
+
+> 这个`.pyc`文件是没有`Magic Number`的，我们需要根据Python版本自行补全：  
+> ![[Pasted image 20231125084714.png]]  
+> `Magic Number`补全相关的详细操作，请见：[Python Uncompyle6 反编译工具使用 与 Magic Number 详解](http://t.csdn.cn/Q8kD8)
+
+> 然后回到目录下，打开控制台，输入命令`uncompyle6 文件名.pyc > 文件名.py`回车执行，就可以看到目录下生成了`.py`文件了：  
+> ![[Pasted image 20231125084722.png]]
+
 
 怎么变成字符串，直接全选这些字符然后右键按A。
 
@@ -725,6 +754,7 @@ Str0 +=bytes(\[i\^ 0x1F\])
 print(Str0)
 
 C语言
+```
 
 #include \<stdio.h\>
 
@@ -747,25 +777,28 @@ system(\"pause\");
 return 0;
 
 }
+```
 
-**[自定义base64加密表]{.mark}**
+##### 自定义base64加密表
 
+```python
 python
 
 import base64
 
 import string
 
-str1 = \"5Mc58bPHLiAx7J8ocJIlaVUxaJvMcoYMaoPMaOfg15c475tscHfM/8==\"
+str1 = "5Mc58bPHLiAx7J8ocJIlaVUxaJvMcoYMaoPMaOfg15c475tscHfM8=="
 
 string1 =
-\"qvEJAfHmUYjBac+u8Ph5n9Od17FrICL/X0gVtM4Qk6T2z3wNSsyoebilxWKGZpRD\"
+"qvEJAfHmUYjBac+u8Ph5n9Od17FrICLX0gVtM4Qk6T2z3wNSsyoebilxWKGZpRD"
 #自定义base加密表
 
 string2 =
-\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"
 
 print(base64.b64decode(str1.translate(str.maketrans(string1,string2))))
+```
 
 **[OllyGDB工具学习]{.mark}**
 
@@ -915,3 +948,4 @@ GetProcAddress 
 处于保护源程序代码和数据的目的，一般会加密源程序文件的各个区块。在程序执行时外壳将这些区块数据解密，以让程序正常运行
 
 外壳一般按区块加密，按区块解密，并将解密的数据放回在合适的内存位置
+

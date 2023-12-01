@@ -1,6 +1,7 @@
 {
   "accentColor": "#5c61f5",
-  "cssTheme": "Dracula for Obsidian",
+  "cssTheme": "Wyrd",
   "interfaceFontFamily": "Inter,仿宋,楷体,微软雅黑",
-  "baseFontSize": 20
+  "baseFontSize": 10,
+  "translucency": false
 }

@@ -133,7 +133,9 @@ hide
 
 提取文件
 
-[steghide extract -sf background.jpg -a 密码]{.mark}
+```
+steghide extract -sf background.jpg -a 密码
+```
 
 当找不到任何方法后可以用010看看有没有关键字（要么在前面要么在后面）
 
@@ -291,6 +293,9 @@ file xxxx 可以查看文件属性，获得文件类型
 首先在windows安装 pip install uncompyle
 
 uncompyle6 xxx.pyc \> py.py
+
+
+
 
 **碰到ascii值被掉换位置**
 

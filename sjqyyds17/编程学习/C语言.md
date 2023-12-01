@@ -1,51 +1,48 @@
-**C Primer Plus 学习笔记主修**
+# C Primer Plus 学习笔记主修
 
-**C语言的概述：**
+## C语言的概述：
 
-**程序细节，打实基础**
+### 程序细节，打实基础
 ```C
+#include<stdio.h>  //包含一个叫stdio.h的文件，
 
-#include\<stdio.h\> //包含一个叫stdio.h的文件，
+                    //这个文件的作用是C语言编译器软件包的基础部分，
 
-//这个文件的作用是C语言编译器软件包的基础部分，
-
-//提供键盘输入和屏幕输出的支持
+                    //提供键盘输入和屏幕输出的支持
 
 int main(void) //函数名，C程序包含多个函数，他们是C程序的基本模块，
 
-//main()表示一个函数名，int表明main()函数是返回一个整数，
+                //main()表示一个函数名，int表明main()函数是返回一个整数，
 
-//void main()表示不带任何参数。
+                //void main()表示不带任何参数。
 
-/\*注释内容\*/ //注释
+/*注释内容*/  //注释
 
-{ //函数的开始
+{     //函数的开始
 
-int num; //声明，将使用一个名为num的变量,而且num是int（整数）类型
+    int num; //声明，将使用一个名为num的变量,而且num是int（整数）类型
 
-num=1; //赋值表达式语句，将值1赋值给num这个变量
+    num=1;    //赋值表达式语句，将值1赋值给num这个变量
 
-printf(\"I am sjq\"); //调用printf函数，在屏幕上输出显示字符\'I am
-sjq\'，
+    printf("I am sjq");  //调用printf函数，在屏幕上输出显示字符'I am sjq'，
 
-//在C语言中使用函数叫调用函数
+                            //在C语言中使用函数叫调用函数
 
-printf(\"ssss.\\n\");
-//再调用printf函数，打印前面的ssss.后\\n表示下回车转到下一行
+    printf("ssss.\n");     //再调用printf函数，打印前面的ssss.后\n表示下回车转到下一行
 
-printf(\"sss=%d.\\n\",num);
-//表示调用printf函数打印sss后接num的值1，内嵌到%d的位置
+    printf("sss=%d.\n",num); //表示调用printf函数打印sss后接num的值1，内嵌到%d的位置
 
-//而%d表示的的是以何种形式输出num的值。
+                                //而%d表示的的是以何种形式输出num的值。
 
-return 0; //C函数给调用方提供一个返回的函数，表示这个main函数结束了
+    return 0;            //C函数给调用方提供一个返回的函数，表示这个main函数结束了
 
-} //函数的结束
+}    //函数的结束
+
 ```
 
 程序再细节，深入分析代码后的细节
 
-#include 指令和文件头，头文件，预处理
+##### #include 指令和文件头，头文件，预处理
 
 #include\<stdio.h\> 的作用就是将stdio.h
 的文件内容都输入到该行所在的位置实际上这是一个\"拷贝加粘贴\"的操作,include
@@ -55,60 +52,60 @@ return 0; //C函数给调用方提供一个返回的函数，表示这个main函
 
 所有的C编译软件包都包含stdio.h文件，该文件包含输入输出函数，如printf，该文件名的含义是标准输入/输出头文件，在C程序中顶部的信息集合被称作头文件，头文件可以帮助编译器正确的将你的程序组合在一起。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image1.png){width="5.760416666666667in"
-height="1.437402668416448in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image1.png)
 
-main函数
+##### main函数
 
 main函数是最普通的一个名称，也是C语言程序必须第一个执行的函数，圆括号的功能就是表示这个是一个函数，目前记住函数是C语言的基本模块　
 
-int
+##### int
 是main()函数的返回类型，这表明main()函数返回的是整数，返回给操作系统。
 
 main()函数括号中包含传入信息以为main()函数并没有传入信息就先放一边
 
-注释
+##### 注释
 
-// \....
+```
+// ....
 
-/\*
+/*
 
-\...\....
+.......
 
-\*/
+*/
+```
 
-注释就不用细说了，没什么特别重要的东西，唯一注意的是别把代码不小心注释了，//是单行注释，/\*
-\*/是多行注释。
+注释就不用细说了，没什么特别重要的东西，唯一注意的是别把代码不小心注释了，//是单行注释，/**/ 是多行注释。
 
-花括号，函数体和快
+#### 花括号，函数体和快
 
+```
 {
 
-\...\...\....
+..........
 
 }
+```
 
 花括号把main()函数括起来，一般而言，所有C语言的程序都用花括号来标记函数体的开始和结束，这是规定
-
 不是，小括号和中括号可以标记的。
 
-声明
+##### 声明
 
-int
-num;声明是C语言的重要特性之一，在该例中，声明完成两件事情，一：在函数中有一个叫num的变量，二：int表明num是一个整数，int
-是一个数据类型，编译器使用这些数据类型信息为num变量在内存中分配储存空间。分号是C语言中大部分语句和声明的一部分，不只是普通的分割符号。
+int num;声明是C语言的重要特性之一，在该例中，==声明完成两件事情，一：在函数中有一个叫num的变量，二：int表明num是一个整数，int
+是一个数据类型，编译器使用这些数据类型信息为num变量在内存中分配储存空间。==分号是C语言中大部分语句和声明的一部分，不只是普通的分割符号。
 
-在C语言中所有变量是要声明之后才能使用的，意味着必须列出程序中用到的所有变量命名和其数据类型
+==在C语言中所有变量是要声明之后才能使用的==，意味着必须列出程序中用到的所有变量命名和其数据类型
 
 以前的
 C语言，还要求把变量声明在块的顶部，其他语句不能在任何声明的前面，现在可以把声明放到任何位置但是首次使用的时候一定要先声明它。
 
-数据类型
+##### 数据类型
 
 C语言有很多数据类型，如整数，浮点数，字符，把变量声明为整数或者字符类型
 ，计算机才能正确的存储,读取和解释数据
 
-命名
+##### 命名
 
 给变量命名可以用变量名来描述如果描述不清楚可以用注释在下面描述，当然给变量名命名也是有要求的
 
@@ -116,32 +113,29 @@ C语言有很多数据类型，如整数，浮点数，字符，把变量声明�
 
 C语言区分大小写，把一个字母的大小写视为两个不同字符。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image2.png){width="3.111111111111111in"
-height="2.0044739720034994in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image2.png)
 
-赋值
+##### 赋值
 
 num=1;这行代码是赋值表达式语句。赋值是C语言的基本操作之一，改行代码的意思是"把值1赋值给变量num",在执行int
 num;声明时，编译器在计算机中为变量num预留了空间，然后执行这行赋值表达式语句时，把值存储到之前预留的位置，可以给num赋不同的值，这就是num之所以被称作为变量的原因，该赋值表达式语句从右侧把值赋到左侧，另外语句以分号结尾。
+```C
 
-printf()函数
+printf("I am simple");
 
-printf(\"I am simple\");
+printf("computer .\n");
 
-printf(\"computer .\\n\");
+printf("My number is %d becaues is first. \n",num);
+```
 
-printf(\"My number is %d becaues is first. \\n\",num);
-
-这三行都使用了C语言的一个标准函数：printf();园括号表明，printf是函数名。圆括号中的内容是从main()函数传递给printf()函数的信息，例如，上面第一行把"I
-am
-simple"传递给printf()函数，该信息被称作为参数，更确切的是函数的实际参数（简称形参），是函数中用于存储值的变量，printf()函数用参数
+这三行都使用了C语言的一个标准函数：printf();园括号表明，printf是函数名。圆括号中的内容是从main()函数传递给printf()函数的信息，例如，上面第一行把"I am simple"传递给printf()函数，==该信息被称作为参数，更确切的是函数的实际参数==（简称实参），是函数中用于存储值的变量，printf()函数用参数
 来打印双引号里面的内容在屏幕上。
 
 \\n 是换行符，\\t 是Tab键，\\b
 是backspace键，转移序列都以反斜杠字符(\\)开始
 
 %d
-相当于一个站位符，作用就是指明num值的位置，%提醒程序，该处要打印变量，d表示变量作为十进制打印。
+相当于一个==站位符==，作用就是指明num值的位置，%提醒程序，该处要打印变量，d表示变量作为十进制打印。
 
 %o表示以八进制打印到屏幕上，%x表示以十六进制打印在屏幕上，%d表示的就是十进制打印在屏幕上,%c打印的时对应的ascii字符输出到屏幕上
 
@@ -152,10 +146,9 @@ return
 int
 main(void)中的int表示main()函数是返回一个整数所以要用return语句返回值，main()函数可以忽略return函数，但是在其他有返回值的函数中不能忘记。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image3.png){width="5.760416666666667in"
-height="2.4297495625546808in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image3.png)
 
-**语法错误和语义错误**
+##### **语法错误和语义错误**
 
 语法错误就是不规范写代码就会发生语法错误
 
@@ -1324,28 +1317,30 @@ height="2.1391021434820647in"}
 
 for循环把上述3个行为（初始化，测试和更新）组合在一起
 
-#include\<math.h\>
+```C
+#include<math.h>
 
-#include\<stdio.h\>
+#include<stdio.h>
 
-#include \<stdint.h\>
+#include <stdint.h>
 
 int main(){
 
 int a=10;
 
-for(int i=0;i\<10;i++){
-
-printf(\"%d\",i);
+	for(int i=0;i<10;i++){
+	
+	printf("%d",i);
+	
+	}
 
 }
-
-}
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image84.png){width="2.7916666666666665in"
 height="0.6041666666666666in"}
 
-关键字for后面的圆括号里面有3个表达式，分别用两个分号隔开，第一个是初始化，只会在for循环执行第一次使用，第二个是测试条件，与值比较，在循环之前与值就开始比较，如果这个测试条件即表达式为假就停止循环进入下一条语句，第三条语句就是执行更新，在每次循环结束的时候求值。
+关键字for后面的圆括号里面有3个表达式，分别用两个分号隔开，==第一个是初始化，只会在for循环执行第一次使用，第二个是测试条件，与值比较，在循环之前与值就开始比较，如果这个测试条件即表达式为假就停止循环进入下一条语句，第三条语句就是执行更新，在每次循环结束的时候求值。==
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image85.png){width="5.760416666666667in"
 height="3.7619050743657043in"}
@@ -1354,62 +1349,68 @@ for循环这么灵活源于三个表达式
 
 可以用字符代替数字计数，该程序能使用，是因为字符在内部是整数形式存储的，因此实际上就是用整数计数
 
-#include\<math.h\>
+```C
+#include<math.h>
 
-#include\<stdio.h\>
+#include<stdio.h>
 
-#include \<stdint.h\>
+#include <stdint.h>
 
 int main(){
 
 int a=10;
 
-for(int i=\'a\';i\<\'z\';i++){
+for(int i='a';i<'z';i++){
 
-printf(\"%c\",i);
-
-}
+printf("%c",i);
 
 }
+
+}
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image86.png){width="2.4027777777777777in"
 height="0.6657042869641295in"}
 
 可以忽略一个或多个表达式（但是不能省略分号），只要在循环中包含能结束的语句即可
 
-#include\<math.h\>
+```
+#include<math.h>
 
-#include\<stdio.h\>
+#include<stdio.h>
 
-#include \<stdint.h\>
+#include <stdint.h>
 
 int main(){
 
 for(;;){
 
-printf(\"sss\");
+printf("sss");
 
 }
 
 }
 
+```
 这个就是一种执行下去
 
 第一个部分也不一定是给变量初始化值，也可以是printf(),记住在执行循环的其他部分之前，先对第一个表达式求值，或执行一次
 
-#include \<stdint.h\>
+```C
+#include <stdint.h>
 
 int main(){
 
 int a=10,b=1;
 
-for(printf(\"We\");b\<a;b++){
+for(printf("We");b<a;b++){
 
-printf(\"sss\");
-
-}
+printf("sss");
 
 }
+
+}
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image87.png){width="2.638888888888889in"
 height="0.5423807961504812in"}
@@ -1418,21 +1419,25 @@ for语句使用三个表达式控制循环过程，分别用分号隔开，inint
 
 形式：
 
+```C
 for(initialize;test;update)
 
 statement
+```
 
 在test为假或0之前，重复执行statement部分。
 
 可以用逗号运算符在for循环中初始化多个或更新多个变量
 
-#include\<stdio.h\>
+```C
+#include<stdio.h>
 
 int main(){
 
-for(int i=0,j=10;i\<j;i++) printf(\"%d\",i);
+for(int i=0,j=10;i<j;i++) printf("%d",i);
 
 }
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image88.png){width="2.486111111111111in"
 height="0.8633770778652669in"}
@@ -1464,38 +1469,41 @@ height="1.4358048993875765in"}
 
 实例：
 
+```
 x=(a=1,b=2,c=3)
 
 相当于x=3，a=1，b=2，c=3
+```
 
 **出口条件循环：do while**
 
 while和for循环都是入口条件循环，即在循环的每次迭代之前检查测试条件，所以有可能不根本不执行循环体中的内容。C语言还有出口条件循环，即在循环的每次迭代之后检查测试条件，这保证了至少执行循环中的内容一次，这种被称为
 do while循环
 
+```C
 do while和while对比
 
-#include\<stdio.h\>
+#include<stdio.h>
 
 int main(){
 
 int a=0,c=0;
 
-printf(\"do while:\");
+printf("do while:");
 
 do{
 
-printf(\"%d\",a);
+printf("%d",a);
 
 a++;
 
-}while(a\<10);
+}while(a<10);
 
-printf(\" while:\");
+printf(" while:");
 
-while(c\<10){
+while(c<10){
 
-printf(\"%d\",c);
+printf("%d",c);
 
 c++;
 
@@ -1504,6 +1512,7 @@ c++;
 return 0;
 
 }
+```
 
 ![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image90.png){width="3.3055555555555554in"
 height="0.625657261592301in"}
@@ -2436,19 +2445,21 @@ height="0.8859831583552056in"}
 
 之前提过，getchar()和putchar()每次只处理一个字符，咱们认为可能太笨拙，但是这却是很适合算机。
 
-#include \<stdio.h\>
+```C
+#include <stdio.h>
 
 int main(){
 
 char ch;
 
-while((ch=getchar())!=\'#\')
+while((ch=getchar())!='#')
 
 putchar(ch);
 
 return 0;
 
 }
+```
 
 自从ANSI
 C标准发布以后，C就把stdio.h头文件于使用getchar()和putchar()相关联。
@@ -2924,7 +2935,8 @@ height="3.985249343832021in"}
 
 下面是分别用递归和循环计算阶乘递归。一个正整数的阶乘是从1到该数字的所有整数的乘积。3的阶乘读作(3!)是1x2x3,负数没有乘阶
 
-#include\<stdio.h\>
+```C
+#include<stdio.h>
 
 long recu(int);
 
@@ -2934,13 +2946,13 @@ int main(){
 
 long a;
 
-printf(\"input:\\n\");
+printf("input:\n");
 
-scanf(\"%ld\",&a);
+scanf("%ld",&a);
 
-printf(\"recursion:%ld\\n\",recu(a));
+printf("recursion:%ld\n",recu(a));
 
-printf(\"fors:%ld\\n\",fors(a));
+printf("fors:%ld\n",fors(a));
 
 return 0;
 
@@ -2958,7 +2970,7 @@ else
 
 //10!=10×9! \--\> recu(10)=10\*recu(9)
 
-n=a\*recu(a-1);
+n=a*recu(a-1);
 
 return n;
 
@@ -2975,6 +2987,7 @@ sum=i\*sum;
 return sum;
 
 }
+```
 
 ![image.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\C语言/media/image159.png){width="3.9305555555555554in"
 height="1.1676979440069992in"}
@@ -5893,7 +5906,7 @@ height="1.040563210848644in"}
 
 auto说明符表明变量是自动存储期的，只能用于块作用域的变量声明中。由于块中声明的变量本身具有自动存储期，使用auto主要是表示于外部同名的局部变量的意图。
 
-register说明符也只能用于块作用域的变量，它把变量归为寄存器变量，请求最快速度访问该变量，并且保护了变量的地址不被获取。
+register说明符也只能用于块作用域的变量，它把==变量归为寄存器变量==，请求最快速度访问该变量，并且保护了变量的地址不被获取。
 
 static说明符创建对象具有静态存储期，载入对象是创建对象，当程序结束时对象取消。如果static用于文件作用域声明，作用域受制于该文件。如果static用于块作用域声明，作用域将受限于该块。块作用域的静态变量无链接。文件作用域的静态变量有内部链接。
 
@@ -5978,17 +5991,1642 @@ C标准还提供一个可移植的标准算法，在不同系统中生成相同�
 
 可移植版本方案开始于一个"种子"数字。该函数使用该种子生成的新数，这个新数又成为新的种子。以此类推随机数函数必须记录它上一次被调用时所使用的种子。这里需要一个静态变量当第一个种子。
 
+```C
 static unsigned long int next=1;
 
 unsigned int rand0(void){
 
 //生成伪随机数的魔术公式
 
-next=next\*111101231230+12345;
+next=next*111101231230+12345;
 
 return (unsigned int)(next/65535)%32768;
 
 }
+```
+
+在上面设置静态变量next的初始化值是1，没次调用rand0()函数时候都会被修改。
+使用驱动函数驱动使用看看
+```C
+#include<stdio.h>
+static unsigned long int next = 1;
+void main(void) {
+	for (int i = 0; i < 10; i++) {
+		printf("%d\n", rand());
+	}
+}
+unsigned int rand0(void) {
+
+	//生成伪随机数的魔术公式
+
+	next = next * 111101231230 + 12345;
+
+	return (unsigned int)(next / 65535) % 32768;
+
+}
+```
+运算结果：
+![[Pasted image 20231121201610.png]]
+第二次
+![[Pasted image 20231121201709.png]]
+看两次都是一样的输出，这体现了“伪随机”的一个方面。每次主程序运行都是使用一个种子1。可以引入另一个函数srand1（）重置种子。srand1()相当于C库中的srand()函数
+```C
+void srand1(unsigned int seed){
+	next=seed;
+}
+```
+然后再套一个循环重置种子就可以了。
+![[Pasted image 20231121202306.png]]
+![[Pasted image 20231121202638.png]]
+```C
+#include<stdio.h>
+unsigned int rand0(void);
+static unsigned long int next = 1;
+void srand1(unsigned int seed);
+void main(void) {
+	int a;
+	while (scanf("%d", &a) == 1) {
+		srand1(a);
+		for (int i = 0; i < 10; i++)
+			printf("%d\n", rand());
+		printf("退出（q)还是继续：\n");
+	}
+}
+
+unsigned int rand0(void) {
+
+	//生成伪随机数的魔术公式
+
+	next = next * 111101231230 + 12345;
+
+	return (unsigned int)(next / 65535) % 32768;
+
+}
+void srand1(unsigned int seed) {
+	next = seed;
+}
+```
+这回我们控制种子。
+##### 自动重置种子
+![[Pasted image 20231121202743.png]]
+可以把这个技巧用到标准的ANSI C函数srand()和rand()中。如果使用这些函数要在文件中包含stdlib.h头文件。
+### 掷色子
+![[Pasted image 20231121202926.png]]
+计算机不用考虑几何问题直接随机1~6就可以了。
+我们要想获得1~6的随机数就要使用rand()生成的随机数，在0~RAND_MAX之间。RAND_MAX被定义在stdlib.h中，其值通常是INT_MAX,因此需要调整。
+#### **rand()调用方法**  
+想要使用rand()函数产生一个（a，b）区间的数num，可以使用以下两种方式：  
+```C
+（1）num=a+(b-a+1)*rand()/(RAND-MAX+1.0)；  
+（2）a+rand%(b-a+1)；  
+```
+注意公式（1）用的是“/”，而公式（2）是“%”。  
+#### srand()函数
+如果我们仅仅调用rand()函数，而没有设置随机数种子，rand()函数在调用时，自动设计随机数种子为1。==随机种子相同，每次产生的随机数也会相同。==解决办法就是使用srand()函数产生随机种子。
+为保证每次产生不同的种子，可以使用time(NULL)和getpid(NULL)的返回值作为srand的参数，以产生不同的种子，因为：  
+（1）time(NULL)得到每次程序运行的时间，每一次运行程序的时间是不同的。  
+（2）getpid()用来取得目前进程的进程识别码，许多程序利用取到的此值来建立临时文件，以避免临时文件相同带来的问题。
+###### time
+```C
+#include<stdlib.h>
+#include<stdio.h>
+int main()
+{
+	int i, j;
+	srand(time(NULL));
+	for (i = 0; i < 10; i++)
+	{
+		//j = 1 + (int)(10.0 * rand() / (RAND_MAX + 1.0));
+		j = 1 + (int)rand()%10;
+		printf("%d", j);
+	}
+	return 0;
+}
+
+```
+###### getpid()
+```C
+#include<stdlib.h>
+#include<stdio.h>
+int main()
+{
+	int i, j;
+	srand(getpid(NULL));
+	for (i = 0; i < 10; i++)
+	{
+		//j = 1 + (int)(10.0 * rand() / (RAND_MAX + 1.0));
+		j = 1 + (int)rand()%10;
+		printf("%d", j);
+	}
+	return 0;
+}
+
+```
+
+1. 把随机数模除6，获取新整数0~5之间。
+2.  把结果加一就到是1~6之间 。
+```C
+#include<stdio.h>
+#include<stdlib.h>
+int rollm(int);
+
+int main() {
+	int sides = 5;
+	for(int i=0;i<10;i++)
+	printf("%d\n", rollm(sides));
+
+	return 0;
+}
+static int rollm(int sides) {
+	return rand() % sides + 1;
+}
+```
+![[Pasted image 20231121204556.png]]
+两次都是重新运行程序还是这个随机数因为这个是伪随机。
+如果使用srand()随机生成随机数种子。
+虽然这章学的是内部静态链接调用问题但是我还没什么接触所以浅浅作一个随机数的笔记
+### 分配内存：malloc()和free()
+前面学习的存储类别有一个共同之处：在确定哪种存储类别后，更加已指定好的内存管理规则，自动选择作用域和存储期。但是还有更灵活的选择，==即库函数分配和管理内存==。
+
+回顾一下内存分配，必须预留足够空间来存储程序使用的数据，这些内存中有些是自动分配的；
+显式分配一定数量的内存：int palae[222];
+该声明预留了222个内存位置，每个位置都用来存储int类型的值，还给内存提供了一个标识符。
+静态数据在程序载入时分配内存，而自动数据在程序执行时候分配内存，离开时销毁。
+
+c能做的不止这些。还可以在程序运行的时候分配更多的内存。主要的工具是malloc()函数，该函数接受一个参数：==所需的内存字符数。malloc()函数会找到合适的空闲内存块==，这样的内存是匿名的。malloc()函数分配内存，但是不会为其赋名。然而==它却返回动态分配的内存块的首元素字节地址==。所以可以将该地址赋值给一个指针变量，并使用指针变量访问这个块内存。
+
+因为char表示1字节，malloc()的返回类型通常被定义为指向char的指针。然而从ANSI C标准开始，C使用一个新类型：指向void的指针。该类型相当于一个”==通用指针==“。malloc()函数可以用于返回指向数组的指针，指针结构的指针等，所以通常会使用==强制类型转换为匹配的类型==。提高代码可读性，把指向void是指针赋值给任意类型的指针都完全不用考虑类型匹配的问题。如果malloc()分配内存失败就会返回空指针。
+
+###### 使用malloc()在创建一个数组。
+```C
+double * ptd
+ptd=(double *)malloc(30* sizeof(double));
+```
+创建为30个double类型的值请求内存空间，并设置ptd指向该位置。而不是内含30个double类型值的块。数组名是数组的首元素地址，让ptd指向这个块的首元素，便可以向调用数组名一样使用它。也很就是ptd[0]访问该块的首元素。根据前面学的可以用数组表示指针，用指针表示数组。
+
+###### 现在我们有三种创建数组的方法。
+- [ ] 声明数组，用常量表达式表示数组的维度，用数组名访问数组元素，可以使用静态内存和自动内存创建该数组
+- [ ] 声明变长数组，（C99新增特性），用变量表达式表示数组的维度，用数组名访问数组元素。具有这特性只能在自动内存中创建。
+- [ ] 声明一个指针，调用malloc(),将其返回值赋给指针，使用指针访问数组元素，该指针可以是静态内存创建也开始是自动内存创建。
+使用2,3可以创建==动态数组==，这种数组和普通数组不同可以在程序运行时候选择数组大小和分配内存。![[Pasted image 20231121213555.png]]
+通常malloc()要和free()配套使用。free()函数的参数是malloc()返回地址，==该函数是用来释放之前malloc()分配的内存==。因此动态内内存分配从malloc()分配内存到free()释放内存为止。
+
+free()参数应该是一个指针，指向由malloc()分配的一块内存。
+==不能用free()释放其他类型声明分配的内存==。malloc()和free()的原型都在stdlib.h头文件中。
+
+![[Pasted image 20231122081747.png]]
+![[Pasted image 20231122082234.png]]
+malloc()可能分配不到所需的内存，这种情况就返回空指针，程序结束；
+```C
+if(ptd==NULL){
+	puts("NO malloc");
+	exit(EXIT_FAILUR); //相当于exit(0);
+}
+```
+如果程序分配成功，便把ptd视为一个有max个元素的数组名。
+```C
+#include<stdio.h>
+#include<stdlib.h>
+int rollm(int);
+
+int main() {
+	int a;
+	int* ptr;
+	scanf("%d", &a);
+	ptr = (int*)malloc(a * sizeof(int));  //动态申请内存块
+	for (int i = 0; i < a ; i++) {
+		scanf("%d", &ptr[i]);
+	}
+	for (int i = 0; i < a ; i++)
+		printf("%d", ptr[i]);
+	free(ptr); //释放malloc()申请的内存块
+	return 0;
+}
+
+```
+![[Pasted image 20231122084621.png]]
+上面这个程序就是可以动态的输入大小。
+
+使用动态的好处是什么，==更加灵活==。
+
+#### free()的重要性
+静态内存的数量在编译时是固定的，在程序运行也不改变。自动变量使用的内存数量在程序执行期间自动增加或减少。动态内存分配数量只会增加，除非使用了free()进行释放。
+![[Pasted image 20231122085508.png]]
+当第一次执行gobble()函数将创建temp指针，分配内存，假设代码遗漏了free()释放内存，作为自变量的temp将会销毁而这段内存块不会销毁因为没有用free()释放。
+要是循环1000次，可能会耗尽所以内存，这类问题被称为==内存泄露==。在函数尾部调用free()可避免。
+
+#### calloc()函数
+分配内存还可以使用calloc(),典型用法如下：
+```C
+long * nuewn;
+nuewn=(long*)calloc(100,sizeof(long));
+```
+和malloc()函数一样calloc()也指向char的指针；在ANSI 后返回指向void的指针。要强制使用其他类型就使用强制转换类型。calloc()接收两个无符号整数作为参数，==第一个是所需存储单元数量，第二个是存储单元大小（字节单位）==在上面是申请数量为100个4字节的存储单元。
+
+用sizeof(long)而不是4，提高了代码的可移植性。
+calloc()还有一个特点，它把块中的所以位置都设置为0（在某些硬件中不是把所有0都设置为浮点值0）
+==free()函数也可以释放calloc()分配的内存==。
+#### 动态内存分配和变长数组
+
+变长数组（VLA）和调用malloc()函数在功能上有些重和，两个都可以在创建运行时确定大小的数组。
+```C
+int a(){
+	int n;
+	scanf("%d",&a);
+	int *ptr=(int *)malloc(a,sizeof(int));
+	int s[a];
+}
+```
+不同的是变长数组是自动存储类型，当程序 离开这个块（a函数结束）就会释放这个空间，不必使用free()释放。
+
+用malloc()函数创建的数组不必局限一个函数内访问，可以在被调函数中创建在主函数中使用然后再结尾free()释放。
+
+==free()不能释放同一块内存两次==
+对于多维数组变长数组更方便。当然可以用malloc()繁琐些二维数组，如果不支持变长数组就用malloc()创建二维数组。
+
+```C
+int a=5;
+int b=6;
+int ar2[a][b]; //变长数组
+int (*p2)[6]; //C99以前写法
+int (*p3)[b]; //支持变长数组
+p2=(int *)malloc(a*6*sizeof(int)); 
+p3=(int *)malloc(a*b*sziefo(int)); //支持变长数组
+
+```
+#### 存储类别和动态内存分配
+![[Pasted image 20231122111829.png]]
+==程序把静态对象，自动对象和动态分配的对象存储在不同的位置==
+![[Pasted image 20231122112357.png]]
+### ANSI C类型限定符
+C90还新增了两个属性：恒定性和易变性。这两个属性可以分别用关键字const和volatile来声明，这两个关键字创建的是限定类型。C99标准新增了三个限定符：restrict,用于提高编译器优化。![[Pasted image 20231122113007.png]]
+#### const类型限定符
+之前学过使用const关键字声明的对象，其值不能被修改。
+![[Pasted image 20231122113341.png]]
+可以初始化const变量
+##### 在指针和形参中声明使用const
+普通变量使用const限定还是简单，指针使用就稍微复杂点，要区分是==限定指针本身为const还是限定指针指向的值为const。==
+```C
+const float*pt;  //限定指针指向的值为const，值不能改变
+float *const pt;  //限定指针本身为cosnt，指向的地址不能改
+const float *const pt //指向的地址不能改，值也不能改
+```
+==总而言之当const放到* 的左侧，限定了指针指向的数据不能改，const放到* 的右侧，限定了指针本身不能改。==
+![[Pasted image 20231122114144.png]]
+##### 对全局数据使用const
+使用全局变量有风险，在程序任何地方都能修改它，所以要使用const限定。这样可以避免危险，因此声明全局变量使用const限定符很合理。
+
+在文件共享的时候要注意，在一个文件使用const定义式声明，在二个使用引用式说明。（extern关键字）
+![[Pasted image 20231122114635.png]]
+另一种是把const变量放到一个头文件中，然后其他文件包含该头文件
+![[Pasted image 20231122114745.png]]
+![[Pasted image 20231122114818.png]]
+==注意：以static声明的文件作用域变量都具有内部链接属性==
+![[Pasted image 20231122114953.png]]
+#### volatitle类型限定符
+volatile限定符告诉计算机，==代理（而不是变量所在的程序）可以改变该变量的值==。通常被用于硬件地址以及在其他程序或同时运行的线程中共享数据。
+volatile语法和const语法一样。
+```C
+volatile int local; /local 是一个易变的位置
+volatile int *pte; /pte是一个易变的位置的指针
+```
+感觉是可有可无的东西，但是这涉及的是编译器的优化![[Pasted image 20231122144247.png]]
+可以同时使用const和volatile限定一个值，例如通常用const把硬件时钟设置为程序不可改的变量但是可以通过代理改变，这时候就要用到volatile。==只能再声明是时同时使用这两个限定符，顺序无所谓==。
+```C
+volatile const int loc;
+const volatile int*ptr;
+```
+#### restrict类型限定符
+restrict关键字运行编译器优化某部分代码以更好的支持计算。==它只用于指针==，表明该指针是访问数据对象的唯一且初始化的方式。
+```C
+int ar[10];
+int *restrict rest=(int *)malloc(10*sizeof(int));
+int *par=ar;
+```
+这里，指针rest是访问malloc()所分配内存的唯一且初始的方式。因此可以用关键字限定它。而指针par既不是访问ar数组中数据的初始化方式，而不是唯一方式 。所以不用把它设置为restrict。
+
+![[Pasted image 20231122145921.png]]
+#### _ Atomic类型限定符
+![[Pasted image 20231122150045.png]]
+#### 旧关键字的新位置
+说明符static放在函数原型和函数头的形式参数的初始方括号中，对于类型限定符而言，这样做功能提供一个替代的语法。
+```C
+void ofmouth(int *const a1,int *restrict a2,int n); //以前的风格
+```
+a1是指向int的const指针，不能改指针本身，可以改指向的数据。除此之外a2是一个restrict的指针，新的等价语法：
+```C
+void ofmouth(int a1[const],int  a2[restrict],int n);
+```
+根据新标准，在声明函数形参时，指针表示法和数组表示法都可以使用这两个限定符。
+
+![[Pasted image 20231122153439.png]]
+### 小结
+内存用于存储程序中的数据，由存储期，作用域，链接等特征。==存储期==可以是静态的，自动的或动态分配的。如果是静态存储期，在程序开始分配内存，在程序结束时才结束，自动存储期是在程序进入变量定义所在块时分配变量的内存，在程序离开块释放变量。如果是动态内存分配存储期，在调用malloc()（或其他函数）分配内存，在调用free()释放内存。
+
+==作用域==决定哪些部分可以访问数据，定义在所以函数的外面的变量具有文件作用域，对于该变量声明后所以函数都可以见。定义在块或函数形参内的变量具有块作用域，只对该块以及它所包含的嵌套块可以见。
+
+==链接==描述定义在程序某翻译单元中的变量可被链接的程度。具有块作用域的是局部变量，无链接。具有文件作用域的变量是可以内部链接或外部链接。内部链接意为着只有其定义的所在文件才能使用变量。外部链接意为着其他文件也可以使用该变量。
+
+五种存储类别
+![[Pasted image 20231122154859.png]]
+==动态内存==分配由malloc()(或相关函数)分配，该函数返回一个指向指定字节数内存块的指针。这块内存被free()函数释放后还能使用，free()函数以该内存块的地址为参数。
+
+类型限定符const,volatile,restrict和_Atomic。const限定符限定数据在程序运行时不能改变。可以限定指针本身不能改变或指针指向的数据不能改变。这取决于const声明的位置。volatile限定符表明，限定的数据除了被当前程序修改外还能被其他进程修改。该限定符的目的是警告编译器不要进行假定的优化。restrict限定符是为了方便设置优化方案。==restrict限定符的指针是访问它所指向的数据的唯一途径==。
+![[Pasted image 20231122175624.png]]
+```C
+#include<stdio.h>
+#include<stdlib.h>
+main() {
+	int a = 10;
+	int a1 = 0, a2 = 2, a3 = 0, a4 = 0, a5 = 0, a6 = 0, a7 = 0, a8 = 0, a9 = 0,a10=10;
+	srand((unsigned int)time(NULL));
+	while (a !=0 ) {
+	
+		for (int i = 0; i < 1000; i++) {
+			if (((rand() % 10) + 1) == 1) a1++;
+			if (((rand() % 10) + 1) == 2) a2++;
+			if (((rand() % 10) + 1) == 3) a3++;
+			if (((rand() % 10) + 1) == 4) a4++;
+			if (((rand() % 10) + 1) == 5) a5++;
+			if (((rand() % 10) + 1) == 6) a6++;
+			if (((rand() % 10) + 1) == 7) a7++;
+			if (((rand() % 10) + 1) == 8) a8++;
+			if (((rand() % 10) + 1)== 9) a9++;
+			if (((rand() % 10) + 1) == 10) a10++;
+		
+
+		}
+		
+		a--;
+	}
+	printf("a1=%d a2=%d a3=%d a4=%d a5=%d a6=%d a7=%d a8=%d a9=%d a10=%d", a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
+	
+}
+
+```
+## 文件输入/输出
+![[Pasted image 20231122181404.png]]
+文件必不可少。作为程序员必须知道创建文件和从文件读写数据的程序。
+### 与文件进行通信
+![[Pasted image 20231122181804.png]]
+重定向读取文件太死板
+#### 文件是什么
+文件通常是在磁盘或固态硬盘中一段已命名的存储区。C把文件看作是一系列连续的字节，每个字节都能被单独读取。这和UNIX环境（C的发源地）中的文件结构对应。由于其他环境可能 无法对应这个模型，C提供两种文件模式：==文本模式和二进制模式==
+##### 文本模式和二进制模式
+首先区分文本格式和二进制格式，文本内容和二进制内容，文本模式和二进制模式
+![[Pasted image 20231122202244.png]]![[Pasted image 20231122202310.png]]C提供两种访问文件的途径：二进制模式和文本模式。在二进制模式中程序可以访问文件中的每个字节。而在文本模式，程序所见的文件内容和实际内容不同。![[Pasted image 20231122202526.png]]
+![[Pasted image 20231122202545.png]]
+虽然提供了二进制模式和文本模式，但是这两种模式可以实现相同。
+#### I/O的级别
+![[Pasted image 20231122202702.png]]
+#### 标准文件
+C程序会自动打开三个文件，它们被称为标准输入，标准输出和标准错误输出。通常情况是标准输入是键盘，标准输出和错误输出是普通输出设备和显示器。
+![[Pasted image 20231122203006.png]]
+#### 标准I/O
+![[Pasted image 20231122203034.png]]
+```C
+#include<stdio.h>
+#include<stdlib.h>
+int main(int argc, char* argv[]) {
+        int ch;
+        FILE* fp;
+        unsigned long count = 0;
+        if (argc != 2) {
+                exit(0);
+        }
+        if ((fp = fopen(argv[1], "r")) == NULL) {
+                exit(0);
+        }
+        while (ch = getc(fp) != EOF)
+        {
+                putc(ch, stdout);
+                count++;
+        }
+        fclose(fp);
+        printf("File:%s has %lu\n", argv[1], count);
+        return 0;
+}
+```
+![[Pasted image 20231122210822.png]]
+#### 检查命令行参数
+首先上面程序会检查argc的值，查看是否有命令行参数 ，如果没有直接退出。字符串argv[0]是该程序名称，而argv[1]是命令行参数。![[Pasted image 20231122211559.png]]
+根据ANSI C规定，在最初调用main()中使用return于调用exit()效果相同。
+```C
+return 0;
+相当于
+exit(0);
+```
+![[Pasted image 20231122211730.png]]
+==在其他函数调用exit()也能结束整个程序==。
+#### fopen()函数
+程序使用fopen()该函数打开文件。该声明在stdio.h中。它的==第一个参数是待打开文件的名称，更确切的说是一个包含该文件名的字符串地址。第二个参数是一个字符串，指定待打开的文件的模式==。下面是一些模式。
+![[Pasted image 20231122212015.png]]
+![[Pasted image 20231122212142.png]]
+x字母写模式，使用带x字母写模式，即使fopen()操作失败原文件也内容也不会被删除。二，如果环境允许x模式的独占特性使得其他程序或线程无法访问正在被打开的文件。
+![[Pasted image 20231122212206.png]]
+程序成功打开文件后，fopen()将返回文件指针，其他I/O函数可以使用这个指针指定该文件。文件指针的类型是指向FILE的指针，FILE是一个定义在stdio.h中的派生类型。![[Pasted image 20231122212459.png]]
+#### getc()和putc()函数
+getc()和putc()函数于getchar()和putchar()函数类似。不同的是要告诉getc()和putc()函数使用哪个文件。
+```C
+从标准输入中获取一个字符
+ch=getchar();
+从fp指定的文件中获取一个字符
+ch=getc(fp);
+把字符ch放入FILE指针fpout指定的文件中
+putc(ch,fpout);
+```
+在putc()函数参数列表中，第一个参数是待写入的字符，第二个是文件指针。
+![[Pasted image 20231122213139.png]]
+#### 文件结尾
+在文件读取到结尾的时候要停止。然后告诉程序读到了文件尾部呢，==getc()读取到文件尾部会返回特殊值EOF==。所以C程序是读取到超过文件尾才发现文件结尾（一些语言用特殊函数检测文件结尾，C不同）。
+为了避免读取空文件这里只能用while循环入口循环不能用do while循环出口循环。进行文件输入。
+
+```C糟糕的设计
+int ch;
+EILF *fp;
+fp=fopen("wacky.txt","r");
+while(ch!=EOF){
+	ch=getc(fp);
+	putchar(ch);
+}
+```
+第一个问题一开始ch的首次比较其值尚未确定。
+第二个问题如果getc()返回EOF，该程序循环会把EOF认为一个有效字符处理。
+```C简化
+int ch;
+EILF *fp;
+fp=fopen("wacky.txt","r");
+while((ch=getc(fp))!=EOF) putchar(ch);
+```
+#### fclose()函数
+==fclose(fp)函数关闭fp指定的文件，必要时刷新缓冲器==。对于比较正式的软件要检查是否关闭了文件。如果成功关闭fclose()函数返回0，否则返回EOF;
+```C
+if(fclose(fp)!=0) printf("%s关闭失败",argv[1]);
+```
+如果磁盘满了或移动硬盘被移除或出现I/O错误，都会调用fclose()失败。
+#### 指向标准文件的指针
+stdio.h头文件把3个文件指针于3个标准文件相关联。
+![[Pasted image 20231123084408.png]]
+![[Pasted image 20231123084507.png]]
+### 一个简单的文件压缩程序
+![[Pasted image 20231123084637.png]]
+```C
+#include<stdio.h>
+#include<stdlib.h>
+int main(int argc,char* argv[]){
+        int a,b,c=0;
+        FILE *pi;
+        FILE *po;
+        pi=fopen(argv[1],"r");
+        po=fopen(argv[2],"w");
+        while((a=getc(pi))!=EOF){ 
+                if(c%3==0){
+                   putc(a,po);
+                }
+                c++;
+        }
+        if(fclose(pi)!=0&&fclose(po)!=0)
+                printf("file close NO");
+        
+        return 0;
+}
+
+```
+自己写的没书上的全和杂。
+### 文件I/O：fprintf(),fscanf(),fgets()和fputs()
+文件I/O函数要用FILE指针指定待处理的文件。如stdout()
+#### fprintf()和fscanf()函数
+文件I/O函数和fprintf()和fscanf()函数与printf()和fscanf()函数类似。==区别在于前者要用第一个参数指定待处理文件==。
+```C
+#include<stdio.h>
+int main(void) {
+	int a, b;
+	scanf("%d", &a);
+	fscanf(stdin, "%d", &b);
+	printf("hahahahaha %d\n",a);
+	fprintf(stdout, "hahahahaha %d",b);
+
+	return 0;
+}
+```
+![[Pasted image 20231123093026.png]]
+fprintf()和fscanf()函数都把FILE指针作为第一个参数。而不是最后一个参数。
+==rewind()函数回到文件开始处==
+```C
+#include<stdio.h>
+#include<stdlib.h>
+int main(int argc,char *argv[]){
+        char ch[100];
+        FILE *pt;
+        long last;
+        if((pt=fopen(argv[1],"w+"))==NULL) exit(EXIT_FAILURE);
+        fscanf(stdin,"%s",ch);
+        fprintf(pt,"%s",ch);
+        rewind(pt); //回到文件开始处
+        while(fscanf(pt,"%s",ch)==1){
+                puts(ch);
+        }
+        if(fclose(pt)!=0) printf("file close NO");
+        return 0;
+}
+
+```
+![[Pasted image 20231123105113.png]]
+#### fgets()和fputs()函数
+前面介绍过，fgets()==第一个参数和gets()函数一样，也是表示存储输入的地址（char * 类型），第二个参数是待输入的字符串大小，第三是文件指针，指定待读取文件。==
+fgets(bug,SIZE,fp);
+bug是char类型的数组名，SIZE是数组大小，fp是指向FILE的文件指针。
+![[Pasted image 20231123093616.png]]
+如果fgets()读取完成会把结尾的换行符读取到空字符前面
+fgets()遇到EOF时将返回NULL值，可以利用这点检测是否达到了文件尾。
+
+fputs()函数接收两个参数：第一个是字符串地址，第二个是文件指针。该函数根据传入地址找到字符串写入指定文件中。和puts()函数不同fputs()不会自动添加换行符。![[Pasted image 20231123093941.png]]
+#### 随机访问：fseek()和ftell()
+有了fseek()函数，便可以把文件看作数组，在fopen()打开文件中直接移动到任意字节处。fseek()有3个参数，返回int类型的值，ftell()函数返回一个long类型的值，表示在文件中的当前位置。
+
+```C
+#include<stdio.h>
+#include<stdlib.h>
+int main(int argc,char *argv[]){
+        char ch;
+        FILE *pt;
+        long last;
+        if((pt=fopen(argv[1],"rb"))==NULL) exit(EXIT_FAILURE);
+        fseek(pt,0L,SEEK_END);
+        last=ftell(pt);
+        for(int count=1L;count<=last;count++){
+                fseek(pt,-count,SEEK_END);
+                putchar(getc(pt));
+        }
+        if(fclose(pt)!=0) printf("file close NO");
+        return 0;
+}
+
+```
+![[Pasted image 20231123102502.png]]
+这个代码的作用就是用last记录文件长度，然后从文件尾部打印到文件头部。
+![[Pasted image 20231123102752.png]]
+接下来学习：fseek()和ftell()函数的工作原理，然后使用二进制流，然后让程序可移植。
+#### fseek()和ftell()的工作原理
+fseek()的第一个参数是FILE指针，==指向带查找的文件，fopen()应该打开该文件。==
+fseek()的第二个参数是偏移量,==该参数表示从起点开始移动的距离。==该参数必须是一个long类型的值。可以为正（前移），负（后移）0保持不动。
+fseek()的第三个参数是模式，==该参数确定起点==。根据ANSI C的规定几个表示模式的明示常量![[Pasted image 20231123105553.png]]
+![[Pasted image 20231123105612.png]]
+是一个0L,1L,2L三种模式表示。
+```C
+fseek(fp,0L,SEEK_SET); //定位到文件开始处
+fseek(fp,10L,SEEK_SET); //定位到文件的第10个字节
+fseek(fp,2L,SEEK_CUR);  //从文件当前位置前移两个字节
+fseek(fp,0L,SEEK_END); //定位到文件末尾
+fseek(fp,-10L,SEEK_END); //从文件末尾退回10个字节
+```
+如果一切正常，fseek()的返回值为0；如果出现错误（如移动的距离超出了文件的范围）其返回值为-1;
+
+==ftell()函数的返回值的类型是long，它返回的是当前位置。==ANSI C 定义在==stdio.h在以前是用来返回距离文件开始处的字节数来确定文件位置==。ANSI C规定，该定义适用于二进制模式打开文件，以文件模式打开文件的情况不同。
+来分析上面程序：
+```C
+fseek(pt,0L,SEEK_END);
+把当前位置设置到文件尾部偏移为0的。也就是数定位到文件尾部。
+last=(ftell(fp))
+把文件开始处到文件结尾处的字节数赋值给last
+    for(int count=1L;count<=last;count++){
+            fseek(pt,-count,SEEK_END);
+            putchar(getc(pt));
+    }
+重复从后面开始倒着打印出字符。
+```
+#### 二进制模式和文本模式
+![[Pasted image 20231123111552.png]]
+对于文本模式，ftell()返回的值可以作为fseek()的第二个参数。
+#### 可移植性
+fseek()和ftell()应该符合UNIX模型。有时候无法做到一致
+![[Pasted image 20231123114200.png]]
+#### fgetpos()和fsetpos()函数
+fseek()和ftell()的问题是它们大小都限制在long类型能表示的范围。但是发展这么快==根本不够放==。ANSI C新增两个处理较大文件的新定位函数：fgetpos()和fsetpos()。这两个不使用long类型的值表示位置，它们使用新类型：fpos_t（文件定位类型）。==fpos_t类型不是基本类型，它是根据其他类型定义的。==
+![[Pasted image 20231123115507.png]]
+ANSI C定义了如何使用fpos_t类型。==fgetpos()函数原型如下：==
+```
+int fgetpos(FILE *restict stream,fpos_t*restict pos);
+```
+调用该函数，它把fpos_t类型的值放在pos指向的位置上，该值描述了文件的一个位置。如果成功fgetpos()返回0，如果失败返回非0；
+
+==fsetpos()函数原型如下：==
+```
+int fsetpos(FILE *stream,const fpos_t *pos);
+```
+![[Pasted image 20231123144406.png]]
+### 标准I/O的机理
+分析标准I/O的工作原理
+![[Pasted image 20231123145357.png]]
+![[Pasted image 20231123145928.png]]
+### 其他标准I/O函数
+![[Pasted image 20231123150234.png]]
+#### int ungetc(int c,FILE * fp)函数
+int ungetc()函数把c指定的字符放回输入流中。如果把一个字符放回输入流，下次调用标准输入函数时将读取该字符。![[Pasted image 20231123153200.png]]
+#### int fflush()函数
+fflush()函数原型如下：
+int fflush(FILE * fp);
+调用fflush()函数会将输出缓冲器将所有未写入数据被发送到fp指定的输出文件，这一操作叫==刷新缓冲区==
+==如果fp是空指针所有缓冲区都被刷新。==
+在输入流是使用fflush()是未定义的。只要最近一次不输入操作，就可以用该函数刷新流（任何读写模式）
+#### int setvbuf()函数
+setvbuf()函数原型是：
+int setvbuf(FILE * restrict fp,char * restrict buf,int mode,size_t size);
+==setvbuf()函数创建一个供标准I/O函数替换使用的缓冲区==
+![[Pasted image 20231123154830.png]]
+#### 二进制I/O:fread()和fwrite()
+之前用到的标准函数I/O函数都是面向文本的，用于处理字符和字符串。如何在文件中保存数值数据，用fprintf()函数和%f转换说明只是把数值保存为字符串。
+![[Pasted image 20231123162905.png]]
+为了保证数值存储的前后一致，最精确的做法是于计算机相同的位结合来储存。==如果程序所用的表示法把数据存储在文件中，则称以二进制形式存储数据。==不存在从数值转换字符串的过程。对于标准I/O，==fread()和fwrite函数用于以二进制形式处理数据。==
+
+实际上在计算机中所有数据都是二进制存储的，如果把文件的所有数据解释成字符码，则称该文件包含==文本数据==。
+如果部分数据或全是被解析为二进制形式的数值数据，则称该文件包含二进制数据![[Pasted image 20231123163837.png]]
+![[Pasted image 20231123163856.png]]
+#### size_t fwrite()函数
+```C
+size_t fwrite(const void* restrict ptr,size_t size,size_t nmemb,FILE * restrict fp);
+```
+fwrite()把二进制写入文件。size_t是根据标准C类型定义的类型，它是sizeof()运算符返回的类型。通常是unsigned int。==指针ptr是待写入数据块的地址相当于读取内容的地址==。size表示数据块的大小（字节为单位）nmemb表示待写入数据块的数量,==fp指定带写入的文件==。
+```C
+char buffer[256];
+fwrite(buffer,256,1,fp);
+```
+以上调用把一块256字节的数据从buffer写入文件。
+```C
+double earnings[10];
+fwrite(earnings,sizeof(double),10,fp);
+```
+以上调用把earnings数组中的数据写入文件，数据被分为10块，每块都是double的大小。![[Pasted image 20231123170254.png]]
+#### size_t fread()函数
+size_t fread()函数原型如下：
+```C
+size_t frad(void * restrict ptr,size_t size,size_t nmemb,FILE * restrict fp);
+```
+fread()函数接收的参数和fwrite()函数相同。在fread()函数==ptr是待读取文件数据在内存中的地址也就是待写入的地址==，==fp指定待读取的文件==。该函数用于读取被fwrite()函数写入文件的数据。
+要恢复上一个保存的含10个double类型值的数组这样做
+```C
+double earnings[10];
+fread(earnings,sizeof(double),10,fp);
+```
+![[Pasted image 20231123171511.png]]
+#### int feof(FILE * fp)和int ferror(FILE * fp)函数
+![[Pasted image 20231123171700.png]]
+当上次输入调用检查到文件结尾时，feof()函数返回非零值，否则返回0,。当读写错误ferror()函数返回一个非零值否则返回0;
+#### 程序实例
+下面程序就把一系列文件的内容附加到另一个文件的尾部。
+![[Pasted image 20231123172110.png]]
+```C
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define BUFSIZE 4096
+#define SLEN 81
+void append(FILE* source, FILE* dest);
+int main(void) {
+    FILE* fa, * fs; //fa 指向目标文件，fs指向源文件
+    int ch, files = 0;  //附加文件的数量
+    char file_app[SLEN]; //目标文件名
+    char file_src[SLEN]; //源文件名
+    puts("输入目标文件名：\n");
+    gets(file_app);
+    if ((fa = fopen(file_app, "ab+")) == NULL) {
+        printf("打开目标文件失败：%s\n", file_app);
+        exit(EXIT_FAILURE);
+    }                       //fopen()打开目标文件地址给fa文件指针
+    if (setvbuf(fa, NULL, _IOFBF, BUFSIZE) != 0) {
+        fputs("创建写入缓冲区失败\n", stderr);
+        exit(EXIT_FAILURE);
+    }                       //创建一个供fa使用的缓冲区，满载时刷新
+    puts("输入源文件：\n");
+    while (gets(file_src) && file_src[0] != '\0') {
+        if (strcmp(file_src, file_app) == 0)
+            fputs("目标文件不能和源文件相等\n", stderr);
+        else if ((fs = fopen(file_src, "r")) == NULL)
+            fprintf(stderr,"源文件打开失败:%s\n", file_src);
+        else {
+            if (setvbuf(fs, NULL, _IOFBF, BUFSIZE) != 0) {
+                fputs("创建读取缓冲区失败\n", stderr);
+                continue;
+            }
+            append(fs, fa); //
+            if (ferror(fs) != 0)
+                fprintf(stderr, "读取到文件尾部%s\n", file_src);
+            if (ferror(fa) != 0)
+                fprintf(stderr, "读取到文件尾部%s\n", file_app);
+            fclose(fs);
+            files++;
+            printf("读取成功%s\n", file_src);
+            printf("输入新文件或则退出\n");
+        }
+    }
+    printf("已经读取了%d个文件\n", files);
+    rewind(fa);
+    while ((ch = getc(fa)) != EOF)
+        putchar(ch);
+    fclose(fa);
+    return 0;
+}
+void append(FILE* source, FILE* dest) {
+    size_t bytes;
+    static char temp[BUFSIZE];
+    while ((bytes = fread(temp, sizeof(char), BUFSIZE, source)) > 0)
+        fwrite(temp, sizeof(char), bytes, dest);
+}          //以二进制形式读取写入。
+
+```
+### 关键概念
+C程序把输入看作是字节流，输入流可以是文件，输入设备，或者是另一个程序输出。C程序也把输出看作是字节流，输出流的目的可以是文件，视频等。
+
+C如何解释输入流或输出流取决于使用的输入/输出函数。![[Pasted image 20231124103251.png]]
+### 小结
+标准I/O包自动创建输入和输出缓冲区以加快数据传输。
+![[Pasted image 20231124103316.png]]
+以二进制模式打开文件，可以逐字节读取文件
+以文本模式打开文件，会把文件内容的系统表示法映射为C表示法。
+
+fseek()和ftell()函数让程序可以随机访问文件中的任意位置。fgetpos()和fsetpos()把类似的的功能扩展到更大的文件也可以使用。
+![[Pasted image 20231127083619.png]]
+```C
+#include<stdio.h>
+#include<stdlib.h>
+int main(int argc,char *argv[]) {
+    FILE* pt;
+    char ch;
+    if (argc == 1)exit(0);
+    for (int i = 1; i <= argc; i++) {
+            pt=fopen(argv[i],"r");
+        while ((ch=getc(pt)) != EOF) {
+            
+            putchar(ch);
+            
+        }
+    }
+    if (fclose(pt) != 0) exit(0);
+    return 0;
+}
+
+```
+![[Pasted image 20231127085317.png]]
+![[Pasted image 20231127092414.png]]
+```C
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h>
+int main(int argc,char *argv[]) {
+    FILE* pt;
+    char ch,oh;
+    if (argc == 1)exit(0);
+    pt = fopen(argv[1], "r+");
+    
+    while ((ch=getc(pt)) != EOF) {
+        ch = toupper(ch);
+        fseek(pt,-1,SEEK_CUR);//使用偏移量就不会冲突
+        putc(ch, pt);
+    }
+    
+    if (fclose(pt) != 0) exit(0);
+    return 0;
+}
+
+```
+## 结构体和其他数据形式
+![[Pasted image 20231127092630.png]]
+在许多情况下简单变量或数组还是不够，C提供了结构变量提高你表示数据的能力。
+### 实例问题：创建图书目录
+打印一份图书目录包括：书名，作者，出版社，版权日期，页数，册数和价格。
+==如果能把这些东西都放到一个数组就好了，其中每个元素包括一本书。==
+因此需要包含字符串和数字的数据形式，还要各信息独立。C结构就满足条件。
+```C
+#include<stdio.h>
+#include<string.h>
+#define MAXTITL 41 //书名最大长度
+#define MAXNAME 31 //作者姓名最大长度
+
+struct book {      //结构模板：标记是book
+	char title[MAXTITL];
+	char author[ MAXNAME];
+	float value;
+};         //结构模版结束要加分号
+int main(void){
+	struct book libraary; //把libraary声明为一个book类型的变量
+	scanf("%s %s %f", &libraary.title, &libraary.author, &libraary.value);
+	printf("书名：%s 作者名：%s %f", libraary.title, libraary.author, libraary.value);
+	return 0;
+}
+
+```
+![[Pasted image 20231127153149.png]]
+结构有3部分，每个部分都成为成员或字段。
+必须掌握的三个技巧：
+- [ ] 为结构建立一个格式或样式。
+- [ ] 声明应该适合的该样式的变量。
+- [ ] 访问结构变量的各部分。
+### 建立结构声明
+结构声明，描述了一个结构的组织布局。类似声明这样。
+```C
+struck book{
+	char tile[MAXTILE];
+	char name[MAXNAME];
+	float value;
+};
+```
+该声明描述一个由两个字符数组和一个float类型的变量组成的结构。
+==该声明并未创建实际的数据对象==，只是描述了该对象的组成。
+有时候成结构声明为模版。我们来分析一些细节。关键字struct，表明跟在其后面的是一个结构，后面是一个可选标记，稍后程序可以使用该标记引用结构所以后面可以这样用
+```C
+struct book libraary;
+```
+==把library声明一个使用book结构布局的结构变量==
+在结构声明中用一对花括号括起来的是结构成员列表。每个成员都用自己的声明来描述。
+结构标记名是可选的。
+### 定义结构变量
+结构有两层含义，第一层是==“结构布局”==，刚才讨论过，告诉编译器如何表示数据，但是不让编译器为数据分配空间。第二层是==“结构变量”==，即是结构的另一层含义。
+程序中创建变量的一行是：struct book library;
+编译器执行代码创建结构变量library。编译器使用book模版为该变量分配空间：一个内含MAXTILE个元素的char数组，...这些存储空间都于一个名称library结合一起。
+在结构声明中，，struct book所起的作用相当于一般声明int或float。例如可以定义两个struct book类型的变量，甚至是指向==struct book类型结构的指针==
+```C
+struct book douly,palen,*ptbook;
+```
+一个结构的内存分配：
+![[Pasted image 20231127192643.png]]
+结构douly,palen都包含tile，name，value部分。
+==指针ptbook可以指向douly，palen或者其他book类型的结构变量==。
+从本质上看book结构声明创建了一个名为strcut book的新类型。
+就计算机而言，下面的声明：
+```C
+strcut book library;
+```
+是以下的简化：
+```C
+strcut book{
+	char tile[MAXTILE];
+	char name[MAXNAME];
+	float value;
+} library; //声明的右花括号后跟变量名。
+```
+换一个意思就是声明和定义可以一起。==结合后的声明和结构变量定义可以不需要使用结构标记==。
+要是需要使用多次模版就要使用结构标记。或者用介绍的typedef。这也是结构变量的一个方面。==上面这个例子并未初始化结构变量。==
+#### 初始化结构
+初始化数组和变量是这样的：
+```C
+int count=0;
+int fi[9]={1,1,2,3,4};
+```
+结构变量初始化是这样的。
+```C
+struct book library={
+	"骆驼祥子",
+	"老舍",
+	19.5
+};
+```
+和初始化数组比较类似。
+简单说用一对大括号括起来的初始化列表进行初始化化，各初始化项用逗号分隔开。
+为了每个成员的关联更加明显，==我们让每个成员独占一行。提高代码可读性。==对编译器而言用逗号分开初始化成员就可以了
+###### 初始化结构和类别存储期
+![[Pasted image 20231127203422.png]]
+#### 访问结构成员
+结构类似于一个超级数组，可以是下一个数组是char也可以是int，通过数组下标访问数组的各元素。那么然后访问结构体成员，使用==成员运算符==---点（.）访问结构中的成员。
+==例如：library.value，即访问library的value部分。==
+可以像任何使用flaot类型的变量那样用library.value
+scanf()需要一个地址 .优先级比&高，因此&(library.value)
+#### 结构的初始化器
+C99和C11为结构提供了==指定初始化器==，
+其语法和数组指定元素初始化类似。
+结构的指定初始化使用点运算符和成员名标识的特定元素。
+```C
+struct book surprise ={.value=100.9};
+可以按任意顺序使用指定初始化器
+strcut book gift={.value=12.1,
+				   .name="毛泽东",
+				   .tile="星星之火可以燎原"
+	
+};
+```
+![[Pasted image 20231128083922.png]]
+对特定成员最后一次赋值才是它真正的值。
+```C
+struct book gift={.value=12.2
+				  .name="王爽",
+				  25.1}
+```
+value的值为25.1，因为value紧跟这name后面新值取代了12.2.
+### 结构数组
+![[Pasted image 20231128084903.png]]
+```C
+#include<stdio.h>
+#define MAXTILE 40    //书名最大长度
+#define MAXAUTHOR 40 //作者名最大长度
+#define MAXBKS 100   //最大存放的书的个数
+struct book {
+    char tile[MAXTILE];
+    char author[MAXAUTHOR];
+    float value;
+};
+int main(void) {
+    struct book library[MAXBKS];
+    int count = 0;
+    printf("输入书名：\n");
+    while (count < MAXBKS && gets(library[count].tile) != NULL && library[count].tile[0] != '\0') {
+        printf("输入作者名：\n");
+        scanf("%s", &library[count].author);
+        printf("输入价格：\n");
+        scanf("%f", &library[count].value);
+        while (getchar() != '\n') continue; //去除换行
+        printf("书名：%s，作者名：%s，价格：%f\n", library[count].tile, library[count].author, library[count].value);
+        count++;
+        printf("输入书名：\n");
+    }
+
+    
+    return 0;
+}
+```
+#### 声明结构数组
+声明结构数组和其他类型的数组声明类似。
+```C
+struct book library[MAXBKS];
+```
+把library声明一个内含MSXBKS个元素的数组。数组每个元素都是book类型的数组。
+因此library[0]是第一个book类型的结构变量，![[Pasted image 20231128093258.png]]
+数组名library本身不是结构名，该数组中的每个元素都是strcut book类型的结构变量。
+#### 标识结构数组的成员
+为了标识结构数组中的成员，可以采用单独访问单独结构的规则：==在结构名后面加点运算符，再在点运算符后面写上成员名。==
+```C
+library[0].value //第一个数组的元素有value关联
+
+
+library[2].tile //第三个数组的元素于tile关联
+
+```
+
+注意数组下标经跟着library后面，不是成员后面：
+```C
+library.value[2] //错误
+library[2].value //正确
+```
+下面表达式代表什么
+```C
+library[2].title[4]
+```
+这是library数组的第三个结构体，成员title的第五个字符。
+==点运算符右侧的下标作用于各个成员。点运算符右侧的下标用于各成员内部，点运算符的左侧的下标作用于结构数组==
+最后总结一下：
+```C
+library  //一个book结构的数组
+library[2]  //一个数组元素，该元素是book结构
+library[2].title //一个char数组（library[2]的title成员）
+library[2].title[4] //数组中library[2]元素成员的一个字符。
+```
+#### 程序讨论
+上面那个程序主要是插入了while循环读取多个写入到library数组里面。
+```C
+while (count < MAXBKS && gets(library[count].tile) != NULL && library[count].tile[0] != '\0')
+```
+如果gets(library[count].tile)读取到了文件尾部就返回NULL，如果判断字符串中的首字符是空字符（在一行按回车相当于一个空字符）循环结束。
+```C
+while (getchar() != '\n') continue; //去除换行
+```
+如果不删除换行将，\n直接被读取给library[count].tile当空字符。
+### 嵌套结构
+有时候在结构中包含另一个结构（==即嵌套结构==）很方便。
+```C
+#include<stdio.h>
+#define LEN 20
+struct names {
+    char first[LEN];
+    char last[LEN];
+};
+struct guy {
+    struct names handle;//嵌套结构
+    char favfood[LEN];
+    char job[LEN];
+    float income;
+};
+
+int main(void) {
+    struct guy fellow = { {"毅","谢"},
+        "son",
+        "games",
+        6811.2 };
+    printf("姓：%s\n", fellow.handle.last);
+    printf("名：%s\n", fellow.handle.first);
+
+    return 0;
+}
+```
+打印的时候再套一个标识就可以了。
+使用两次点运算符，从左往右解释fellow.handle.first
+==先找到fellow，然后找到成员handle，在找到handle成员last或first。==
+### 指向结构的指针
+为什么要使用指向结构体指针的指针：
+1. 就像指向数组的指针比数组本身更易操控（如排序），指向结构的指针通常比结构本身更易操控。
+2. 早期C语言中结构不能作为参数传递给函数，但是可以传递结构指向结构的指针。
+3. 即使函数能传递一个结构，传递指针的更有效率
+4. 一些用于表示数据的结构中包含指向其他结构的指针。
+==指向结构的指针如何利用指针访问结构的成员==
+```C
+#include<stdio.h>
+#define LEN 20
+struct name {
+    char last[LEN];
+    char first[LEN];
+
+};
+struct guy {
+    struct name handle;
+    char favfood[LEN];
+    char job[LEN];
+    float income;
+};
+int main(void) {
+    struct guy fellow[2] ={ //这里的2不是从第二个数组2开始而是总共3个元素。从0开始初始化。
+        {
+            {"谢","毅"},
+            "粑粑",
+            "games",
+            522.1
+        },
+        { {"王","鑫"},
+            "拉粑粑",
+            "games",
+            212.1
+        }
+    };
+    struct guy* him;
+    printf("%s %s\n", fellow[0].handle.last, fellow[1].handle.last);
+    him = &fellow[0]; //告诉编译器指针指向的结构地址
+    printf("%s %s\n", him[0].handle.first, him[1].handle.first);
+
+    return 0;
+}
+```
+#### 声明和初始化结构指针
+声明结构指针很简单：
+```C
+struct guy *him
+```
+首先是关键字struct，其次结构标记是guy，然后是星号（ * ）后跟着指针名。这语法和其他指针声明一样。
+如果barney是一个guy类型的结构，可以这样写
+```C
+struct guy *him;
+him=&barney;
+```
+和数组不同，结构名并不是结构的地址，因此要在前面加&运算符。
+him指向fellow[0],him+1指向fellow[1]。
+him+1相当于him指向的地址加84。
+![[Pasted image 20231128201257.png]]
+==内部结构存在未使用的缝隙==
+#### 用指针访问成员
+指针him指向结构变量fellow[0]，通过him获得fellow[0]成员的值。
+- [ ] 使用->运算符。一个连接号后跟着大于号组成。
+![[Pasted image 20231128202434.png]]
+- [ ] (* him).income代替fellow[0].income,必须要用圆括号* 优先级没.高。==不能只用him.income==
+- [ ] him[0].income。
+```C
+struct fellow barne;
+struct fellow * him;
+him=&fellow[0];
+barne.income==(*him).income==him->income
+```
+接下来，学习结构和函数的交互。
+### 向函数传递结构的信息
+一个结构比单独的值复杂，所以之前C实现不允许把结果作为参数传递给函数。
+但是已经ANSI C运行把结构当做参数使用，接下来分析3种传递方式。
+#### 传递结构成员
+只要结构成员是一个具有一个单值的数据类型，（int,char,float,double）或指针，便可以把它作为参数传递给制定类型函数。
+```C
+#include<stdio.h>
+#define LEN 20
+struct name {
+    char last[LEN];
+    char first[LEN];
+
+};
+double shan(float a, float b);
+struct guy {
+    struct name handle;
+    char favfood[LEN];
+    char job[LEN];
+    float income;
+};
+int main(void) {
+    struct guy fellow[2] ={ //这里的2不是从第二个数组2开始而是总共3个元素。从0开始初始化。
+        {
+            {"谢","毅"},
+            "粑粑",
+            "games",
+            522.1
+        },
+        { {"王","鑫"},
+            "拉粑粑",
+            "games",
+            212.1
+        }
+    };
+    struct guy* him;
+    printf("%s %s\n", fellow[0].handle.last, fellow[1].handle.last);
+    him = &fellow[0]; //告诉编译器指针指向的结构地址
+    printf("%s %s\n", him[0].handle.first, him[1].handle.first);
+    printf("综合：%f", shan(him[0].income, him[1].income));
+    return 0;
+}
+double shan(float a, float b) {
+    return a + b;
+}
+```
+在被调函数中修改主函数结构成员的值，就把成员的地址传过去。
+```
+modil(&stan.banfund);
+```
+#### 传递结构的地址
+
+```C
+#include<stdio.h>
+#define LEN 20
+struct name {
+    char last[LEN];
+    char first[LEN];
+
+};
+float shan(struct guy*);
+struct guy {
+    struct name handle;
+    float income;
+};
+int main(void) {
+    struct guy fellow[2] = { //这里的2不是从第二个数组2开始而是总共3个元素。从0开始初始化。
+        {
+            {"谢","毅"},
+            522.1
+        },
+        { {"王","鑫"},
+            212.1
+        }
+    };
+    struct guy* him;
+    printf("%s %s\n", fellow[0].handle.last, fellow[1].handle.last);
+    him = &fellow[0]; //告诉编译器指针指向的结构地址
+    printf("%s %s\n", him[0].handle.first, him[1].handle.first);
+    printf("综合：%f\n", shan(&fellow[0]));
+    printf("谢意的钱：%f", fellow[0].income);
+    return 0;
+}
+float  shan(struct guy* money) {
+    money[0].income = money[1].income;
+    return money[0].income + money[1].income;
+}
+```
+==这个程序是可以直接修改源程序的。==结构指针传参可以修该源程序。
+![[Pasted image 20231130083808.png]]
+
+shan()函数拿struct guy * money作为参数，把地址传过去相当于就可以直接用指针一样，操作这个结构。
+==必须使用&运算符来获取结构的地址。和数组名不同，结构名只是地址的别名==
+#### 传递结构
+对允许把结构作为参数的编译器。
+```C
+#include<stdio.h>
+#define LEN 20
+struct name {
+    char last[LEN];
+    char first[LEN];
+
+};
+float shan(struct guy );
+struct guy {
+    struct name handle;
+    float income;
+};
+int main(void) {
+    struct guy fellow[2] ={ //这里的2不是从第二个数组2开始而是总共3个元素。从0开始初始化。
+        {
+            {"谢","毅"},
+            522.1
+        },
+        { {"王","鑫"},
+            212.1
+        }
+    };
+    struct guy* him;
+    printf("%s %s\n", fellow[0].handle.last, fellow[1].handle.last);
+    him = &fellow[0]; //告诉编译器指针指向的结构地址
+    printf("%s %s\n", him[0].handle.first, him[1].handle.first);
+    printf("综合：%f,谢意的钱%f\n", shan(fellow[0]), fellow[0].income);
+    return 0;
+}
+float  shan(struct guy money) {
+   
+    return money.income + money.income;
+}
+```
+编译器根据guy的模版创建了money的==自动结构变量==。然后该结构的各成员被初始化为fellow结构变量相应成员的值的==副本==。因为这里是==结构传参==。
+结构一般用(.)，指针一般用(->)
+#### 其他结构特性
+C语言允许把一个结构赋值给另一个结构。但是数组不能这样做。
+如果n_data和o_data都是==同类型的结构==，可以这样做：
+```C
+o_data=n_data; //把一个结构赋值给另一个结构
+```
+==这条语句把n_data的每个成员的值都赋值给o_data的相应成员 ，即使成员是数组也可以完成赋值。==
+还可以将结构初始化为相同类型的另一个结构
+```C
+struct names redit={"Ruther","Gered"};
+struct names cape=redit;
+//把一个结构初始化为另一个结构
+```
+现在不仅能把结构本身作为参数还能把结构作为返回值返回。
+
+结构指针也允许这种双向通信。传入和传出
+
+```C
+#include<stdio.h>
+#include<string.h>
+#define LEN 30
+struct namct {
+	char fname[LEN];
+	char lname[LEN];
+	int letters;
+};
+
+void getinfo(struct namct *);
+void makeinfo(struct namct*);
+void showinfo(const struct namct*);
+
+int main(){
+	struct namct person;
+	getinfo(&person);
+	makeinfo(&person);
+	showinfo(&person);
+	return 0;
+}
+void getinfo(struct namct* pst) {
+	puts("输入名：\n");
+	scanf("%s",&pst->fname);
+	puts("输入姓：\n");
+	scanf("%s",&pst->lname);
+
+}
+void makeinfo(struct namct* pst) {
+	pst->letters = strlen(pst->fname)+strlen(pst->lname);
+}
+void showinfo(const struct namct* pst) {
+	printf("姓：%s名：%s姓名总长度：%d\n", pst->lname, pst->fname, pst->letters);
+}
+```
+该程序把任务分成三份，都在main()中调用。每调用一个函数就把person的结构的地址传递过去。
+
+这些操作只有一个结构变量person，每个函数都在使用该结构变量的地址访问。
+
+```C
+#include<stdio.h>
+#include<string.h>
+#define LEN 30
+struct namct {
+	char fname[LEN];
+	char lname[LEN];
+	int letters;
+};
+
+struct namct getinfo(void);
+struct namct makeinfo(struct namct);
+void showinfo(const struct namct);
+
+int main(){
+	struct namct person;
+	person =getinfo();
+	person=makeinfo(person);
+	showinfo(person);
+	return 0;
+}
+struct namct getinfo(void) {
+	struct namct temp;
+	puts("输入名：\n");
+	scanf("%s", temp.fname);
+	puts("输入姓：\n");
+	scanf("%s", temp.lname);
+	return temp;
+}
+struct namct makeinfo(struct namct pst){
+	pst.letters = strlen(pst.fname)+strlen(pst.lname);
+	return pst;
+}
+void showinfo(const struct namct pst) {
+	printf("姓：%s名：%s姓名总长度：%d\n", pst.lname, pst.fname, pst.letters);
+}
+```
+这个版本的输出和前面相同但是，使用的是不同方式，程序中每个函数都创建了自己的person的备份。
+之前是只使用一个结构。
+函数处理的只是这些的副本。用返回机制，改写主函数的person
+![[Pasted image 20231129145022.png]]
+#### 结构和结构指针的选择
+把指针作为参数有两个优点：无论是以前还是现在的C都能用这个方法， ==而且执行很快==，只需要传一个地址。==缺点是无法保护源数据==。被调函数可能会意为影响原来结构中的数据。不过ANSI C的关键字const解决了这个问题。
+
+把结构作为参数的优点是，==函数处理的是原始数据的副本==。这为了保护原始数据。![[Pasted image 20231130084259.png]]
+传递结构的两大缺点：比较老的版本不支持，而且传递结构==浪费时间和存储空间==。尤其是把大型结构传递
+给函数，而被调函数只使用一两个成员特别浪费。
+==这种情况使用结构指针或者只传递需要的结构成员。==
+
+通常程序员都是传递==结构指针作为函数参数==，如果需要防止源数据被修改就加const限定符，按值传递结构是处理小型结构的常用的方法。
+
+#### 结构中的字符数组和字符指针
+```C
+#define LEN 20
+struct names{
+	char first[LEN];
+	char last[LEN];
+};
+//////////可以使用下面这种////////////
+struct pnames{
+	char *first;
+	char *last;
+};
+```
+以上代码都没问题，但是要思考一下字符串被存储到何处。
+对于struct names类型的结构，==结构总分配40字节存储姓名。==
+对于struct pnames类型的结果，==字符串存储在编译器存储常量的地方，结构本身只存储两给地址，==在我们系统中占十六位字节。因为64位CPU的一个指针占8位字节。==所以struct pnames不用给字符串分配地址。==
+![[Pasted image 20231130092821.png]]
+结构定义指针字符串这个并未初始化，地址可以是任何值，因此有潜伏的==危险==。
+#### 结构,指针和malloc()
+如果使用malloc()分配内存并使用指针存储该地址。那么结构中使用指针处理字符串就比较合理。
+```C
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define LEN 30
+struct namct {
+	char * fname;
+	char * lname;
+	int letters;
+};
+
+void getinfo(struct namct *); //动态内存分配
+void makeinfo(struct namct *);
+void showinfo(const struct namct *);
+void clesp(struct namct*); //动态内存释放
+
+int main() {
+	struct namct person;
+	getinfo(&person);
+	makeinfo(&person);
+	showinfo(&person);
+	clesp(&person);
+	return 0;
+}
+void getinfo(struct namct* pst) {
+	char temp[LEN];
+	puts("输入名：\n");
+	scanf("%s", temp);
+	pst->fname = (char*)malloc(strlen(temp) + 1);	//动态内存分配,加一是因为要给空白符让路。如果用sizeof()那相当于将LEN写进去了。
+	strcpy(pst->fname, temp);  //把字符串复制给结构对应的成员
+	puts("输入姓：\n");
+	scanf("%s", temp);
+	pst->lname = (char*)malloc(strlen(temp) + 1);
+	strcpy(pst->lname, temp);
+}
+void makeinfo(struct namct *pst) {
+	pst->letters = strlen(pst->fname) + strlen(pst->lname);
+	
+}
+void showinfo(const struct namct * pst) {
+	printf("姓：%s名：%s姓名总长度：%d\n", pst->lname, pst->fname, pst->letters);
+}
+void clesp(struct namct* pst) {
+	free(pst->fname);
+	free(pst->lname);//释放分配的内存
+}
+```
+#### 复合字面量和结构（C99）
+C99复合字面量特性可用于结构和数组。
+如果只需要一个临时结构值，复合字面量很好用。
+
+==可以用复合字面量创建一个数组作为函数的参数赋值给另一个结构。==
+语法：把类型名放原括号中，后面跟花括号括起来的初始化列表。
+```C
+(struct book){"骆驼仙子","老舍",123.2};
+```
+还可以吧复合字面量做为函数的参数。![[Pasted image 20231130112010.png]]
+复合字面量在所有函数外部有，静态存储期；如果在块中具有自动存储期。
+复合字面量和普通初始化列表规则一样，==可以在复合字面量中使用指定初始化器。==
+
+#### 伸缩型数组成员（C99）
+C99新增一个特性：伸缩型数组成员。
+利用这个特性声明的结构，其最后一个数组成员具有一些特性。
+- [ ] 该数组不会立即存在。
+- [ ] 使用这个伸缩型数组成员可以编写合适的代码，就好像确实存在并所需数目的元素一样。
+声明应该伸缩型数组成员规则：
+- [ ] 伸缩型数组成员必须是结构的最后一个成员；
+- [ ] 结构中必须要有一个成员；
+- [ ] 伸缩数组的声明类似于普通数组，只是它的方括号是空的；
+示例：
+```C
+struct flex{
+	int count;
+	double average;
+	double scores[];//伸缩型数组成员
+}
+```
+声明struct flex类型的结构变量时，不能用scorce做任何事，因为==没有给这个数组预留空间==。
+C99的意图并不是让你声明结构而是结构指针，然后用malloc()分配足够的空间。以存储struct flex类型结构的常规内容和伸缩型的成员额外需要的空间。
+假设：用scores表示一个内含5个double
+```C
+struct flex * pf; //声明一个结构指针。
+pf=malloc(sizeof(struct flex)+5*sizeof(double));
+//足够空间存储struct flex的各个成员和内含5个double类型值的数组。
+pf->count=5;
+pf->scores[2]=14.1;
+```
+带伸缩型数组成员的结构确实有一些处理要求：
+- [ ] 不能用结构进行赋值或拷贝
+```C
+struct flex *pt1,*pt2; 
+*pt1=*pt2; //不能这样
+```
+- [ ] 不要以按值的方式把结构传递给结构。原因相同，按值传递相当于赋值，要把结构地址传给函数。
+- [ ] 不要使用带伸缩结构型数组成员的结构当做数组的成员或则另一样结构的成员。
+![[Pasted image 20231130151349.png]]
+#### 匿名结构
+匿名结构就是没有名称的结构成员。了解它之前先温习一下嵌套结构：
+```C
+struct names{
+	char fname[20];
+	char lname[20];
+};
+struct person{
+	int id;
+	struct names name; //嵌套结构成员
+};
+struct person red={8848,{"钛合金","手机"}};
+```
+这里name成员是一个嵌套结构成员，可以通过（red.names.lname）访问到。
+==在C11可以使用嵌套的匿名结构定义person;==
+```C
+struct person{
+	int id;
+	struct {char fname[20],char lname[20]};
+	//嵌套匿名结构
+};
+struct person =red;// 初始化方式也相同
+```
+但是在访问的时候简化了步骤，只需要把fname成员看作是person成员那样使用它:
+(red.fname)
+当然可以在嵌套结构中把匿名中的成员当做person的成员，去除嵌套循环，==匿名特性在嵌套中联合中更有用。==
+
+#### 使用结构数组的函数
+假设一个函数要访问一个结构数组。由于数组名就是该数组的地址，所以可以直接传递给函数。
+```C
+#include<stdio.h>
+#define N 4
+void income(const struct person persons[]);
+struct person {
+	int id;
+	struct { char name[20]; int age; float weight; };
+	int income;
+};
+main() {
+	struct person fellow[N] = { {1,{"m",56,120},2000},
+					{1,{"l",34,130},5000}};
+	income(fellow);//传递结构数组名，即首元素地址
+	return 0;
+}
+void income(const struct person persons[]) {
+	int sum = 0;
+	for (int i = 0; i < N; i++) {
+		sum += persons[i].income;
+	}
+	printf("全家收入为：%d", sum);
+}
+```
+![[Pasted image 20231130153555.png]]
+要点：
+- [ ] 可以把数组名作为数组的第一个结构的地址传递给函数
+- [ ] 可以用数组表示法传递访问数组的其他结构，（&fellow[0]）= =fellow,地址相同
+- [ ] 可以用const限定符保护原始数据。
+### 把结构内容保存在文件中
+![[Pasted image 20231130154040.png]]
+将上面所学的技巧做一个关于什么东西的==记录==，可以随时更新。
+==用最没效率存储的方法是用fprintf().==
+```C
+#define MAX 40
+struct book{
+	char title[MAX];
+	char author[MAx];
+	float vaule;
+};
+```
+这里假设如果bookp是一个文件流，通过下面语句将信息存储在struct book类型结构的变量persim中。
+```C
+fprintf(bookp,"%s %s %.2f\n",persim.title,persim.author,persim.vaule);
+//把persim结构的每个成员的信息都读取到bookp文件流中
+```
+但是对于多个（30多个成员的大结构）结构将特别麻烦。
+另外再检索还存在问题，要知道到开始和结束的位置。虽然可以使用固定==字段宽度解决问题==可是还是太牵强。（"%39s,%39,%8.2f"）
+
+更好的方法是用fread()和fwrite()函数读写结构大小的单元。
+回忆一下用法：
+```C
+fwrite(&primer,sizeof(struct book),1,pbooks);
+```
+==定位到primer结构变量开始的地方，并把结构中所有的字节拷贝到pbooks相关文件中。sizeof(struct book)告诉函数拷贝的一块数据的大小。1表示只拷贝一块数据。==
+
+带相同参数的fread()函数从文件中拷贝一块结构大小的数据到&primer指向的位置。简而言之，这两次函数的一次读写，不仅仅是一个字段。
+
+以二进制表示存储数据的缺点是，不同系统可能使用不同的二进制表示法，所以数据文件可能==不具有可移植性。==甚至同一个系统不同的编译器也可能有不同的二进制排版。
+#### 保护结构的程序序列
+![[Pasted image 20231130160359.png]]
+这个就很棒写了一节课。
+```C
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define LEN 30
+#define NUMBER 1000
+void writebook(void); //写入
+void readbook(void); //读取
+struct book {
+	int id;
+	char title[LEN];
+	char name[LEN];
+	float value;
+};
+main() {
+	writebook();
+	readbook();
+	return 0;
+}
+void writebook(void) { //
+	FILE* books;				//创建文件指针
+	if ((books = fopen("book.bat", "a+b")) == NULL) {
+		puts("文件创建打开失败\n");
+		exit(1);
+	}
+	struct book library[NUMBER];		//创建结构指针
+	fseek(books, 0L, SEEK_SET);	//把位置调到文件头
+	int i = 0, len=sizeof(struct book),ek=0;
+	printf("输入书名：\n");
+	while (i < NUMBER && gets(library[i].title) != NULL && library[i].title[0] != '\0')//写入book数据
+	{
+		library[i].id = i;
+		printf("输入作者名：\n");
+		scanf("%s", &library[i].name);
+		printf("输入价格：\n");
+		scanf("%f", &library[i].value);
+		while (getchar() != '\n') continue; //删除换行。
+		fwrite(&library[i], len, 1, books);
+		fseek(books,ek+=len,SEEK_SET); //修改写入文件中的位置
+		i++;
+		printf("输入书名：\n");
+
+	}
+	if (fclose(books) != 0)printf("book.bat 文件关闭失败\n");
+}
+void readbook(void) { //打印整个book.bat的库存
+	FILE* books; //创建文件指针
+	struct book library[NUMBER]; //创建结构数组
+	if ((books = fopen("book.bat", "rb")) == NULL) {
+		puts("文件创建打开失败\n");
+		exit(1);
+	}
+	int i = 0,len= sizeof(struct book),ek=0,last=0;
+	fseek(books, 0L, SEEK_END);		//移动到文件头
+	last = ftell(books);		//计算文件尾部和文件头的距离
+	rewind(books);					//回到文件头部不然会丢失一些东西。
+	for (int i = 1L; i <= last;i++) {
+			fread(&library[i],len, 1, books);
+			printf("序号：%d,书名：%s,作者名：%s,价格：%.2f\n", library[i].id, library[i].title, library[i].name, library[i].value);
+			fseek(books, ek += len, SEEK_SET);
+			i++;
+		}
+	if (fclose(books) != 0)printf("book.bat 文件关闭失败\n");
+}
+
+
+```
+效果完美
+![[Pasted image 20231130193241.png]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 **\-\--主修和杂修分割线\-\--**
 
@@ -7893,10 +9531,11 @@ return 0;
 srand()设置随机数的生成器，小括号里面的是整形，使用时间戳就可以解决这个问题
 
 rand() 生成随机数是从1-32767里面随机生成
+```C
 
-#include \<stdio.h\>
+#include <stdio.h>
 
-#include \<time.h\>
+#include <time.h>
 
 main()
 
@@ -7906,13 +9545,13 @@ srand((unsigned int)time(NULL)); //用时间戳生成随机数
 
 int i = 0;
 
-for (i=1;i\<=100;i++)
+for (i=1;i<=100;i++)
 
 {
 
 int a = 0;
 
-scanf_s(\"%d\",&a);
+scanf_s("%d",&a);
 
 if (a == 1)
 
@@ -7922,7 +9561,7 @@ int rea = 0;
 
 rea = rand()%100+1; //100以内的随机数
 
-printf(\"%d\\n\", rea);
+printf("%d \n", rea);
 
 continue;
 
@@ -7932,7 +9571,7 @@ else
 
 {
 
-printf(\"sb\");
+printf("sb");
 
 }
 
@@ -7941,6 +9580,7 @@ printf(\"sb\");
 return 0;
 
 }
+```
 
 执行系统命令函数
 

@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "869754b836c4a0b3",
+        "id": "3c4392221d0ecd5d",
         "type": "tabs",
         "children": [
           {
-            "id": "d3e60c5239acbd84",
+            "id": "7da842d4a5122bb4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "怎么完美平替有道云.md",
+                "file": "sjqyyds17/编程学习/C语言.md",
                 "mode": "source",
                 "source": false
               }
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "http://www.hiencode.com/playfair.html",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "bccc0561de1089d1",
@@ -85,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "怎么完美平替有道云.md",
+                "file": "sjqyyds17/编程学习/C语言.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "怎么完美平替有道云.md",
+                "file": "sjqyyds17/编程学习/C语言.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "怎么完美平替有道云.md"
+                "file": "sjqyyds17/编程学习/C语言.md"
               }
             }
           }
@@ -143,47 +144,52 @@
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "command-palette:打开命令面板": false,
+      "random-note:开始漫游笔记": false,
+      "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "d3e60c5239acbd84",
+  "active": "7da842d4a5122bb4",
   "lastOpenFiles": [
+    "sjqyyds17/附件/C语言/media/Pasted image 20231130193241.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231130160359.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231130154040.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231130153555.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231130151349.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231130112010.png",
+    "sjqyyds17/高职/高三学期推荐的学习路线规划.md",
+    "sjqyyds17/编程学习/C语言.md",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231130092821.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231130084259.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231130083808.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231129145022.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231129083659.png",
+    "sjqyyds17/编程学习/8086汇编语言.md",
     "sjqyyds17/高职/2023国赛新赛题总结.md",
+    "Pasted image 20231125084245.png.md",
+    "sjqyyds17/编程学习/~$C语言.docx",
+    "sjqyyds17/CTF/Reverse.md",
+    "sjqyyds17/CTF/Misc.md",
+    "sjqyyds17/CTF/Crypto.md",
+    "未命名.canvas",
+    "sjqyyds17/CTF/Web.md",
+    "去你妈的有道云.md",
+    "sjqyyds17/高职/D模块.pdf",
+    "sjqyyds17/编程学习/Java语言.md",
+    "sjqyyds17/编程学习/油猴脚本学习.md",
     "sjqyyds17/高职/Word_Excel.md",
-    "sjqyyds17/附件/2023国赛新赛题总结/media/image1.png",
+    "sjqyyds17/编程学习/Shell语言.md",
+    "sjqyyds17/编程学习/Php语言.md",
     "sjqyyds17/附件/2023国赛新赛题总结/media",
     "sjqyyds17/附件/2023国赛新赛题总结",
     "sjqyyds17/高职/2023国赛新赛题总结.docx",
-    "sjqyyds17/高职/高三上学期推荐的学习路线规划.md",
-    "sjqyyds17/附件/Word_Excel/media/image9.png",
-    "sjqyyds17/附件/Word_Excel/media/image8.png",
-    "sjqyyds17/附件/Word_Excel/media/image7.png",
-    "sjqyyds17/附件/Word_Excel/media/image6.png",
-    "sjqyyds17/附件/Word_Excel/media/image5.png",
-    "sjqyyds17/附件/Word_Excel/media/image4.png",
-    "sjqyyds17/附件/Word_Excel/media/image3.png",
-    "sjqyyds17/附件/Word_Excel/media/image27.gif",
-    "sjqyyds17/附件/Word_Excel/media/image26.png",
     "sjqyyds17/附件/Word_Excel/media",
     "sjqyyds17/附件/Word_Excel",
     "sjqyyds17/高职/Word_Excel.docx",
     "sjqyyds17/高职/Word Excel.docx",
     "sjqyyds17/未命名.canvas",
-    "怎么完美平替有道云.md",
-    "sjqyyds17/编程学习/8086汇编语言.md",
-    "sjqyyds17/编程学习/油猴脚本学习.md",
-    "sjqyyds17/编程学习/C语言.md",
-    "sjqyyds17/编程学习/Java语言.md",
     "sjqyyds17/编程学习/~$Java语言.docx",
-    "sjqyyds17/编程学习/Php语言.md",
-    "sjqyyds17/编程学习/~$Php语言.docx",
     "sjqyyds17/编程学习/Python语言.md",
-    "sjqyyds17/编程学习/Shell语言.md",
-    "sjqyyds17/编程学习/~$thon语言.docx",
-    "sjqyyds17/CTF/Web.md",
-    "sjqyyds17/CTF/Misc.md",
-    "sjqyyds17/CTF/Crypto.md",
-    "sjqyyds17/CTF/Reverse.md",
     "sjqyyds17/编程学习/未命名.md",
     "未命名.md",
     "sjqyyds17/Obsidian软件安装插件推荐：.md",
@@ -192,8 +198,6 @@
     "sjqyyds17/编程学习/PHP代码审计.md",
     "sjqyyds17/编程学习/Java基础.md",
     "sjqyyds17/编程学习/shell快捷命令.md",
-    "sjqyyds17/编程学习/python语言.md",
-    "sjqyyds17/编程学习/PHP语言代码审计.md",
-    "sjqyyds17/编程学习/Java学习.md"
+    "sjqyyds17/编程学习/python语言.md"
   ]
 }
