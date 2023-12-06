@@ -9094,19 +9094,133 @@ math.h头文件包含提供这些函数原型。
 ![[Pasted image 20231206085311.png]]
 atan2()函数可以检查正负号得出争取的角度值。
 
+```C
+//把直角坐标转化极坐标
+#include<stdio.h>
+#include<math.h>
+#define RAD_TO_DEG (180/(4*atan(1))) //弧度制转换角度制
 
+typedef struct polar_v {
+	double magnit; //弧度
+	double angle;  //角度
+}Polar_v;
 
+typedef struct rect_v {
+	double x;
+	double y;
+}Rect_v;
+Polar_v rect_to_polar(Rect_v); //声明一个函数，返回类型是Polar_v结构，接收参数类型结构是Rect_v.
 
+int main(void) {
+	Rect_v input;
+	Polar_v result;
+	puts("输入x和y的值，退出输入q：\n");
+	while (scanf("%lf %lf", &input.x, &input.y) == 2) {
+		result = rect_to_polar(input);  //把x和y的值递给函数。
+		printf("弧度=%02f,角度=%0.2f\n", result.magnit, result.angle);
+	}
+	puts("退出\n");
+}
+Polar_v rect_to_polar(Rect_v rv) {
+	Polar_v pv;
+	pv.magnit = sqrt(rv.x * rv.x + rv.y * rv.y);
+	if (pv.magnit == 0)
+		pv.angle = 0.0;
+	else
+		pv.angle = RAD_TO_DEG * atan2(rv.x, rv.y);
+	return pv;
+}
+```
+![[Pasted image 20231206091437.png]]
+#### 类型变体
+基本浮点类型数学函数==接受double类型的参数==，并返回double类型的值。可以把flaot或long double类型参数传递给这些函数，它们仍然能工作。因为==这些类型会自动转换成double类型==。但是双精度速度会慢些。
+==sqrtl()是sqrt()的long double类型==
+==sqrf()是sqrt()的float类型版本==
+	利用C11新增的泛型选择表达式定义一个泛型宏，==根据参数类型选择最合适的数学函数版本==。
+```C
+#include<stdio.h>
+#include<math.h>
+#define RAD_TO_DEG (180/(4*atanl(1))) //弧度制转换角度制
+#define SQRT(x) _Generic((x),long double: sqrtl,default: sqrt,float: sqrtf)(x) //泛型平方根函数
+#define SIN(x) _Generic((x),long double:sinl((x)/RAD_TO_DEG),float:sinf((x)/RAD_TO_DEG),default:sin((x)/RAD_TO_DEG)) //泛型弧度制，单位是度。
+```
+如何让_ Generic宏行为像一个函数，表达式的值是一个特定的函数调用，sinf((x)/RAD_TO_DEG)。
+![[Pasted image 20231206101046.png]]
+==简而言之，函数调用在泛型选择表达式内部；对于SQRT(),先对泛型选择表达式求值一个指针，然后通过表达式求值，然后该指针调用指向它的函数。==
+#### tgmath.h库(C99)
+C99标准提供的tgmath.h头文件中定义了泛型类型宏。和上面类似，如果math.h中为函数定义了3种类型（float，double和long double）的版本，那么tgmath.h文件就创建一个==泛型宏==，于原来double版本函数同名。
+例如：根据提供的参数类型，定义了sqrt()宏展开为sqrt(),sqrtl(),sqrtf()函数。
 
+复数运算![[Pasted image 20231206104438.png]]
+![[Pasted image 20231206105242.png]]
+![[Pasted image 20231206105321.png]]
+### 通用工具库
+通用工具库包含各种函数，包括随机数生成器，查找，排序函数，转换函数和内存管理函数。
+之前介绍过fread(),srand(),malloc(),free()函数。这些函数都在stdlib.h文件头中。
+#### exit()和atexit()函数
+之前用过exit()函数，==在main()返回系统的时候自动调用exit()函数==。atexit()函数通过==退出时注册被调用的函数==提供这种功能，atexit()函数接受一个函数指针作为参数。
+##### atexit()函数用法
+```C
+#include<stdio.h>
+#include<stdlib.h>
+void sig(void);
+void kig(void);
+void aig(void);
 
+int main(void) {
+	atexit(sig);
+	atexit(kig);
+	aig();
+	return;
+}
+void sig(void) {
+	puts("试试看");
+}
+void kig(void) {
+	puts("真不错");
+}
+void aig(void) {
+	puts("没想到");
+}
+```
+效果：![[Pasted image 20231206110644.png]]
+可以看见我们源代码最后使用aig却在程序中是第一个调用的，这也就是atexit的原理。
+atexit()这个函数使用函数指针当参数，
+atexit()原理：==把要exit()退出的前要调用的函数地址传递给atexit()函数atexit()注册函数列表中的函数，当调用exit()前执行这些函数。就会在快退出的时候调用传递的函数==。这也就是为什么我是最后调用aig却是编译是第一个使用。
+作用：
+```C
+#include<stdio.h>
+#include<stdlib.h>
+void sig(void);
+void kig(void);
+void aig(void);
 
-
-
-
-
-
-
-
+int main(void) {
+	int a;
+	if (scanf("%d", &a) != 1) {
+		atexit(sig);
+		return 0;
+	}
+	else
+		atexit(kig);
+	atexit(kig);
+	aig();
+	return;
+}
+void sig(void) {
+	puts("输入错误");
+}
+void kig(void) {
+	puts("完成任务");
+}
+void aig(void) {
+	puts("没想到");
+}
+```
+![[Pasted image 20231206111339.png]]
+可以输出多种报错信息，即使不调用exit()也会使用atexit()函数因为==main()主函数退出的时候会调用exit();==
+##### exit()函数用法
+exit()函数执行完atexit()指定的函数中，
 
 
 
