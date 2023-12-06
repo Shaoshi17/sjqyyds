@@ -5097,11 +5097,15 @@ height="2.133794838145232in"}
 
 ANSI C有二十多个函数处理字符串。下面总结常用的函数：
 
-char \*strcpy(char \* restrict s1,const char \*restrict s2);
+```
+char *strcpy(char * restrict s1,const char *restrict s2);
+```
 
 把s2指向的字符串（包括空字符）拷贝到s1指向的位置。返回值是s1.
 
-char \*strncpy(char \* restrict s1,const char \*restrict s2,size_t n);
+```
+char *strncpy(char * restrict s1,const char *restrict s2,size_t n);
+```
 
 把s2指向的字符串拷贝到s1指向的位置，拷贝的字符数不超过n，其返回值是s1。该函数不会拷贝空字符后面的字符，如果源字符串的字符数小于n个目标字符串以空字符结尾；如果源字符串有n个或超过n个字符，就不拷贝空字符。
 
@@ -5115,9 +5119,11 @@ int strcmp(const char \*s1,const char\*s2);
 
 int strncmp(const char \*s1,const char\*s2,size_t n);
 
-该函数和strcmp()函数类似不同的是该函数在比较n个空字符后或遇到第一个空字符就停止比较
+strchr该函数和strcmp()函数类似不同的是该函数在比较n个空字符后或遇到第一个空字符就停止比较
 
-char \*strchr(const char\*s,int c);
+```
+char *strchr(const char*s,int c);
+```
 
 如果s字符串包含c字符串该函数返回指向s字符串的首位置的指针（末尾的空字符也是字符串的一部分，所以在查找范围内）；如果在字符串s中没找到c字符,该函数返回空指针。
 
@@ -7603,6 +7609,1488 @@ void readbook(void) { //打印整个book.bat的库存
 ```
 效果完美
 ![[Pasted image 20231130193241.png]]
+#### 程序要点
+ 这里我们用的是a+，是追加到文件尾部，然后b是ANSI 的一种标识方法，表示以二进制模式。
+ 使用二进制模式是因为fwrite()和fread()函数要使用二进制文件。虽然有些内容是中文但是value成员不是文本，直接看book.dat是看不出的甚至是乱码。
+ ==rewind()函数==是确保文件指针位于文件开始处，为读文件做好准备。
+ 写入函数用while循环读取，除非读取到了\0也就是在书名这换行实现结束while,然后就会使用fwrite()读取结构中的内容传递给文件中
+ ，再使用fseek()调整调到后面继续写入，不然就会和之前的内容搞混。这里应该可以直接用a+就不用自己跳了。
+
+ 读取函数就比较简单就是要计算一下文件尾部，然后重新用rewrite()定位到文件头进行读取，使用fseek()进行跳转到下一个节点。
+ 
+ 但是这个==空间浪费的太大==了，实际上并不需要这么多，但是让每一块检索数据很方便。
+ 另一个是可变大小的记录：链式结构
+ 
+### 链式结构
+链式结构：每个结构都包括一两个数据项和一两个指向其他同类型的指针。这些指针把一个结构和另一个结构链接起来，并==提供一种路径可以遍历整个彼此链接的结构==。
+![[Pasted image 20231202085338.png]]
+
+### 联合简介
+联合是一种 数据类型，它能在==同一内存空间存储不同的数据类型==（不是同时存储）。
+创建联合和创建结构的方式一样。需要一个联合模版和联合变量。
+```C
+union hold{
+	int digit;
+	double bigfl;
+	char letter;
+};
+```
+上面声明了一个int和double和char类型的值。然而声明联合只能存储一个int类型的值或者一个double类型的值或者是char类型的值。
+下面定义相关变量：
+```C
+union hold fit;  //hold类型的联合变量
+union hold save[10];  //内含10个联合变量的数组
+union hold * pu;    //指向hold类型联合变量的指针
+```
+第一个声明创建了单独的联合变量fit。编译器分配足够的空间，以便分配的空间能存储联合==声明中占用最大的字节类型==。在本例中最大是double类型的数据。占64位即8字节。
+第二个声明中创建了一个数组save，内含10个元素，每个元素都是8字节。
+第三个声明中创建了一个指针，该指针变量存储hold类型联合变量的地址。
+
+初始化联合。联合只能存储一个值，这于结构不同。
+```C
+union hold valA;
+valA.letter='R';
+union hold valB=valA  //用另一个联合来初始化
+union hold valC={88}  //初始化联合的digit成员
+union hold valD={.bigfl=12.2};  //指定初始化器
+```
+#### 使用联合
+```C
+fit.digit=23 //把23存储在fit，占2字节
+fit.bigfl=2.0 //清除23，存储2.0,占8字节
+fit.letter='h' //清除2.0，存储h，占1字节
+
+```
+点运算符表示正在使用哪种数据类型。在联合中，==一次只存储一个值==，即使没有足够的空间。也不能同时存储一个int类型和一个char类型的值。编写代码要注意当前存储在联合中的数据类型。
+
+使用指针访问联合时和结构指针一样用->运算符。
+![[Pasted image 20231202091951.png]]
+因为存储的是char类型而下面运算的确是double类型。
+
+用一个成员把值存储在一个联合中，然后用另一个成员查看内容，这做法很要效。后面会学。
+
+![[Pasted image 20231202092642.png]]
+#### 联合匿名（C11）
+联合匿名和匿名结构工作原理相同。==匿名联合是一个结构或者联合的无名联合成员==
+重写上面图片的内容
+```C
+struct car_data{
+	char make[15];
+	int status /私有为0 ,租赁为1/
+	union { struct owner owncar;
+		struct leasecompany leasecar;
+	};
+	。。。。。。。
+};
+```
+现在，如果flits是car_data类型的结构变量，可以用flits.owncar.socsecurity代替flits.owner.owncar.socsecurity
+##### 总结
+==成员运算符：.==
+该运算符于结构或联合名一起使用，指定结构或联合的一个成员。如果name是结构，fname是name结构的成员，下面表示了该成员：name.fname
+name.fname类型就是fname的类型，联合使用成员和这个一样。
+![[Pasted image 20231202093601.png]]
+==间接成员运算符：->==
+该运算符和指向结构或联合的指针一起使用，表示结构或联合的一个成员。假设ptrstr是指向结构的指针，member是结构的成员，那么：ptrstr->member
+标识了指向结构的成员。联合使用间接成员运算符的方式与结构相同。
+![[Pasted image 20231202093850.png]]
+
+### 枚举类型
+可以使用枚举类型声明符号名称来表示整型常量。==使用enum关键字==创建一个新的“类型”并指定它的值。实际上enum常量是int类型，只要能用int类型的地方就能用枚举类型。==枚举类型的目的是提高程序的可读性==，语法和结构语法相同。
+```C
+enum spectrum { red,orange,yellow,green,blue,violet};
+enum spectrum color;
+```
+第一个声明创建了spectrum作为标记名，允许enum spectrum作为一个类型名使用。
+第二个声明中使color作为该类型的变量。第一个声明中表示花括号内标识符枚举了spectrum变量可能有的值。
+因此color可能值是 red,orange,yellow,green,blue,violet。这些符号常量被称为==枚举符==。
+这样用
+```C
+#include<stdio.h>
+main() {
+	enum spectrum { red, orange, yellow, green, blue, violet };
+	enum spectrum color;
+	color = blue;
+	for (color = red; color <= violet; color++) {
+		printf("%d", color);
+	
+}
+```
+![[Pasted image 20231202095219.png]]
+虽然枚举符（red和blue）是int类型，但是枚举变量可以是任意整数类型。，前提是能存储枚举常量。
+C枚举的一些特性不适用c++，
+![[Pasted image 20231202095413.png]]
+#### enum常量
+blue和red到底是什么？从技术层面看是int类型的常量。例如下面
+```C
+printf("red=%d,orange=%d\n",red,orange);
+
+```
+![[Pasted image 20231202095634.png]]
+==red成为一个有名称的常量==，代表整数0，类似的其他的标识符都有 名称常量分别代表1~5。==只要是能使用整型常量的地方都可以使用枚举常量。==
+例如声明数组，和==switch语句中，可以把枚举常量作为标签==。
+
+#### 默认值
+默认的情况下枚举列表中的常量都是赋值0开始。
+#### 赋值
+在枚举声明中可以==为枚举常量指定整数值：==
+```
+enum levels{low =100,medium=500,high=2000};
+```
+如果只给一个枚举常量赋值后面的值，那么后面的常量会被赋予后续的值。
+```
+enum felis{cat ,lynx=10,puma,tiger};
+```
+那么cat=0，(默认)，lynx,puma,tiger分别是10,11,12。
+#### enum用法
+枚举类型的目的是为了提高代码可读性和可维护性。要处理颜色red和blue比0和1更直观。
+==注意枚举类型只能在内部使用。==如果要输入color中orange的值要输入1，而不是单词orange。或者自己写个转换的语句。
+因为枚举类型是整数类型所以在case中很方便
+```C
+#include<stdio.h>
+#include<stdbool.h>
+main() {
+	enum spectrum { red, orange, yellow, green, blue, violet };
+	const char * colors[] = { "red","orange","yellow","green","blue","violet"}; //这里不用*号会报错预定项太多了
+	enum spectrum  color;
+	char ch[10];
+	bool colors_found = false;
+	while (gets(ch)!=NULL&&ch[0]!='\0') {
+		for (color = red; color <= violet; color++) {
+			if (strcmp(ch,colors[color]) == 0) {
+				colors_found = true; //如果成功就开闸。
+				break;
+			}
+		}
+		if (colors_found) { //判断一下，是否开闸。
+			switch (color) {
+			case red: puts("红色风暴"); break;
+			case orange:puts("橙色不知道"); break;
+			case yellow:puts("黄色闪电"); break;
+			case green:puts("绿色求原谅"); break;
+			case blue:puts("蓝色玫瑰"); break;
+			case violet:puts("粉色妖姬"); break;
+			}
+		}
+	}
+	
+}
+```
+#### 共享名称空间
+C语言使用==名称空间==标识程序中的各个部分，即通过名称来识别。作用域就是名称空间概念的一部分：
+两个不同作用域的同名变量不冲突；两个相同的作用域的同名变量冲突。名称空间是分类别的。
+在==特定的作用域中结构标记，联合标记，枚举标记都共享相同的名称空间==，该名称空间和普通的不同。
+	所以==在相同作用域中变量和标记名称相同也没事==，不会起冲突。但是不能再相同的作用域中声明两个同标签或同变量。
+```C
+struct rect{double x;double y;};
+int rect //在C中不会冲突
+```
+尽管如此，还是要注意不要写相同容易混乱。C++不允许这样做，因为它把标记名和变量名放在相同空间里
+### typedef简介
+typedef工具是一个高举数据特性，利用typedef可以为某一些类型自定义名称。这方面和#define 类似，但是两者三处不同
+- [ ] 与#define不同，typedef创建的符号只受限于类型，不能用于值
+- [ ] typedef由编译器解释，不是预处理器
+- [ ] 与其受限范围内，typedef比#denfine更灵活
+介绍工作原理，![[Pasted image 20231202105716.png]]
+该定义的作用域取决于typedef定义的所在位置，如果是函数中那就是局部作用域，受限于定义的函数中，如果在外面就是文件作用域。
+typedef使用名称遵循变量的命名规则。可以用大写醒目。
+为现有类型创建一个名称，看起来和二傻子一样，实则有时候很有用。![[Pasted image 20231202105944.png]]
+typedef的一些特性和#define的功能重合。
+```C
+#define BYTE unsigned char
+这使用预处理器用BYTE替换unsigned char，但是也有#define没有的功能
+typedef  char * STRING;
+没有typedef关键字，会解释为SIRING识别为指向char类型的指针，有了typedef关键字就是识别为STRING类型的标识符，该类型是指向char的指针。
+```
+因此：
+```
+STRING name,sign;
+```
+相当于：
+```
+char * name,* sign;
+```
+但是如果是：#define STRING char *
+然后下面声明：
+```
+STEING name,sign;
+```
+被翻译为：
+```
+char * name,sign;
+```
+==这回导致只有name才是指针。==
+还可以把typedef用于结构：
+```C
+typedef struct complex{
+	float real;
+	float imag;
+}COMPLEX;
+```
+==然后就可以使用COMPLEX类型代替complex结构来表示复数。==使用typedef的第一个原因是：==为经常出现的类型创建一个方便，容易识别的类型名。==
+![[Pasted image 20231202110908.png]]
+使用typedef的第二个原因是：==typedef常用于给复杂的类型名命名==.如下：
+```C
+typedef char (* FRPTC())[5];
+```
+把FRPTC声明为一个函数类型，该函数返回一个指针，该指针指向内含5个char类型元素的数组。
+使用typedef并没有创建任何新类型==只是为已有的类型增加一个方便的标签==。
+通过结构，联合和typedef，C提供了有效处理数据的工具和处理可移植数据的工具。
+### 其他复杂声明
+C语言允许用户自定义数据形式。有时候需要复杂形式的，在一些复杂的声明中常包括下面符号
+![[Pasted image 20231202140018.png]]
+```C
+* 表示一个指针
+()  表示一个函数
+[] 表示一个数组
+```
+下面是一些复杂声明示例：
+```C
+int board[8][8] //声明一个内含int数组的数组。
+int **ptr;     //声明一个指向指针的指针，被指向的指针指向int
+int * risks[10]; //声明一个内含10个元素的数组，每个都是指向int类型的指针。
+int (*rusks)[10];   //声明一个指向数组的指针，该数组内含10个int类型的值
+int *oof[3][4];    //声明一个3x4的二维数组，每个元素都是指向int的指针
+int (*uuf)[3][4];     //声明一个指向3x4的二维数组的指针，该数组内含int类型的值
+int (* uof[3])[4];    //声明一个内含3个指针元素的数组，其中每个值都指向应该内含4个int类型元素的数组。
+```
+要看懂以上说明很简单，要理解*,()和[]的优先级。记住下面的规则：
+- [ ] 数组后面的[]和函数名后面的()是相同优先级。==它们比*（解引用运算符）的优先级高==。
+```C
+意思是：[]=()>*
+```
+所以下面声明的risk一个指针数组，不是指向数组的指针：==因为是先知道是数组，然后才是指针所以是指针数组==
+```C
+int * risk[10];
+```
+- [ ] []和()优先级相同，由于是==从左往右==结合，所以下面声明中，* 先和rusks结合，因此rusk是一个指向数组的指针，内含10个int类型的元素
+```C
+int (* rusk)[10];
+```
+- [ ]  []和()是从左往右结合。因此下面声明的goods是一个由12个内含50个int类型值的数组组成的二维数组,不是50个内含12个int类型的数组成的二维数组。
+```C
+int goods[12][50];
+```
+
+把以上规则应用于下面声明：
+```C
+int *oof[3][4];
+```
+ [3]的优先级比* 高，由于从左往右结合所以是[3]先和oof结合再和[4]结合，* 说明这些元素是指针，int表明这些元素都是指向int的指针，因此oof是一个3x4的二维数组，每个元素都是指向int的指针。编译器预留12个指针空间。
+```C
+ int (* uuf)[3][4];
+```
+圆括号里使得* 先和uuf结合，说明uuf是一个指针 ，所以uuf是一个指向3x4的int类型二维数组的指针。编译器要为一个指针预留空间。
+```C
+char * fump(int);    //返回字符指针的函数
+char (*frump)(int);   //指向函数的指针返回类型为char
+char (* flump[3])(int);   //内含3个指针数组，每个指针都指向返回char类型的函数
+```
+这3个函数都接受int类型的参数。
+==可以使用typedef建立一些列相关类型：==
+```C
+typedef int arr5[5];
+typedef arr5*p_arr5;
+typedef p_arr5 arr10[10];
+arr5 togs;   //togs是内含5个int类型值的数组
+p_arr5 p2;   //p2是指向数组的指针，该数组内含5给int类型的值
+arr_10 ap;   //ap是一个内含10个指针的数组，每个指针都指向内含5个的int类型值的数组。
+```
+### 函数和指针
+可以声明一个指向函数的指针。这个复杂的东西有什么用？
+==通常是函数指针常用作另一个函数的参数，告诉该函数要使用什么函数。==
+C库中==qsort()函数可以处理任意类型的数组==，但是要告诉qsort()函数用哪个函数来比较元素。为此qsort()函数的参数列表中，有一个接收指向函数的指针。然后qsort()函数使用功能进行排序无论这个元素是数组，整数，结构还是字符串都可以排序。
+我们来进一步研究函数指针。首先什么是函数指针？假设有一个指向int类型变量的指针，该指针存储着这个int类型变量存储在内存的地址。==同样函数也有地址==，因为函数的机器语言实现由载入内存的代码组成。指向函数的指针中存储着函数代码的起始处地址。
+
+其次声明一个数据指针时，必须声明指针指向所指向的数据类型。而声明一个函数指针时，必须声明指针指向的函数类型。为了指明函数类型，必须指明函数签名，即函数的返回类型和形参类型。
+```C
+void ToUpper(char *); //把字符串中的字符转换为大写
+```
+Toupper()函数的类型是带“char * 类型参数，返回类型是void的函数”。下面声明指针pf指向该函数类型：
+```C
+void (*pf)(char *);  //pf是一个指向函数的指针
+```
+![[Pasted image 20231202153103.png]]
+```C
+void *pf(char *);   //pf是一个返回字符指针的函数
+```
+![[Pasted image 20231202153152.png]]
+
+声明了函数指针后就，可以把类型匹配的函数地址赋给它。在这种上下文中函数名可以用于表示函数的地址：
+```C
+void ToUpper(char *);
+void ToLower(char *);
+int round(double);
+void (*pf)(char *);
+pf=ToUpper;   //有效，ToUpper是该函数的地址
+pf=ToLower;   //有效ToLwer是该函数的地址
+pf=found;    //无效，round和指针类型不匹配
+pf=ToLower();  //无效，ToUpper()不是地址
+```
+最后一条语句是无效的，不仅因为ToLower()不是地址，而且ToLower()的返回类型是void，没有返回值。不能赋值。
+
+==既然可以用数据指针访问数据，也可以用函数指针访问函数。==
+![[Pasted image 20231202154812.png]]
+分析第一种方法：由于pf指向ToUpper函数，那么* pf就相当于ToUpper函数，所以表达式(* pf)(mis)和ToUpper(mis)等价.从声明就看得出来ToUpper和(* pf)等价。：![[Pasted image 20231202155232.png]]
+作为函数的参数是数据指针最常见的用法之一，函数指针亦是如此。
+```C
+void show(void (* fp)(char*),char * str);
+```
+这让人看上去头晕，它声明了两个形参，fp和str，fp是函数指针，str是一个数据指针。更具体是，fp指向的函数接受char * 类型的参数其返回类型为void.
+假如有以上声明，，可以这样调用函数
+```C
+show(ToUpper,mis);    //show使用函数ToLower函数:fp=ToLower;
+show(pf,mis);        //show使用了pf指向函数的函数：fp=pf；
+```
+
+show()如何处理传入的函数指针:
+```C
+void show(void (* fp)(char*),char * str){
+	(*fp)(str);   /把选择函数作用于str
+	puts(str); 
+}
+```
+这里的show首先使用fp指向的函数装换str，然后显示装换后的字符串。
+
+把==返回值的函数作为参数传递给另一个函数==的两种不同的方法。
+```C
+fun(sqrt);         //传递sqrt()函数的地址
+fum(sqrt(4.0));   //传递sqrt()函数的返回值
+```
+![[Pasted image 20231202160453.png]]
+```C
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#define LEN 81
+void show(void(*fp)(char*), char* str);
+char showmenu(void);
+void eatline(void);
+void ToUpper(char* str);
+void ToLower(char* str);
+void Transpose(char* str);
+void Dummy(char* str);
+int main(void) {
+	char line[LEN];
+	char copy[LEN];
+	void (*pfun)(char *)=Dummy; //声明一个函数指针，被指向的函数接受char*类型的参数无返回值
+	char choie;
+	puts("按回车退出：\n");
+	while (gets(line) != NULL && line[0] != '\0') {
+		while ((choie = showmenu()) != 'n') { //这里如果showmenu返回的是n就退出。
+			switch (choie) //switch语句设置指针
+			{
+			case 'u':pfun = ToUpper; break;	//如果choie是u就将Toupper函数的地址赋值给pfun
+			case 'l':pfun = ToLower; break;
+			case 't':pfun = Transpose; break;
+			case 'o':pfun = Dummy; break;
+			}
+			strcpy(copy, line);		//为show()函数拷贝一份
+			show(pfun,copy);			//根据用户选择，使用选定函数。
+		}
+		puts("按回车退出：\n");
+	}
+	puts("退出！\n");
+	return 0;
+}
+
+char showmenu(void) {   //接收用户选择
+	char ans;
+	puts("u) 大写 l) 小写 ");
+	puts("t) 大小写转换 o) 不变 ");
+	puts("n) 退出");
+	ans = getchar();
+	ans = tolower(ans); //以防是写大写，给转换成小写
+	eatline();
+	while (strchr("ulton",ans)==NULL) { //strctr函数从字符串中找ans的字符如果没找到就返回空字符，找到返回首次出现的ans字符的指针
+		puts("请输入 u,l,t,o或n\n");
+		ans = tolower(getchar());
+		eatline();			//自定义函数清除换行符
+	}
+	return ans;
+}
+void eatline(void){
+	while (getchar() != '\n') continue;
+}
+void ToUpper(char* str) {
+	while (*str) { //当str指向\0，就退出
+		*str = toupper(*str); //str当前指向的内容内容变成大写
+		str++;   //指针递增，就是指向的位置向前移动。
+	}
+}
+void ToLower(char * str) {
+	while (*str) {
+		*str = tolower(*str);
+		str++;
+	}
+}
+void Transpose(char* str) {
+	while (*str) {
+		if (islower(*str))  //如果是小写就转换为大写
+			*str = toupper(*str);
+		else if (isupper(*str))  //如果是大写就转换为小写
+			*str = tolower(*str);
+		str++;
+	}
+}
+
+void Dummy(char* str) {
+	//不改变字符
+}
+void show(void(*fp)(char*), char* str) {
+	(*fp)(str);		//把用户选择的函数用于str
+	puts(str);		//显示结果
+}
+```
+
+
+
+
+效果图：
+![[Pasted image 20231202164443.png]]
+
+注意ToUpper(),ToLower(),Transpose()和Dummy()函数的类型相同，所以这4个函数都可以赋值给pfun指针，当然可以直接把这4个函数任意一个函数名作为参数，show(Dummy,str);
+![[Pasted image 20231202164739.png]]
+以上介绍了使用函数的4种方法：定义函数，声明函数，调用函数和作为指针。
+![[Pasted image 20231202164822.png]]
+至于怎么处理菜单，showmenu()函数提供了几种技巧
+```
+ans=tolower(getchar());
+```
+把用户输入转换为小写形式就不用检测用户输入是大写了
+eatline()就是我们经常用的清除换行。
+![[Pasted image 20231202170401.png]]
+### 关键概念
+我们在现实生活中不止一些数字和字符串，还有一些复杂信息，这时候就要结构来存储这些复杂的内容。
+设计结构的时，开发一套配套函数包通常很有用。
+联合声明于结构声明类似。但是，联合成员==共享相同的存储空间==，而且在联合中同一时间内==只能有一个成员==。
+enum工具提供一种定义符号常量的方法，==枚举==，typedef工具提供一种为基本或派生类型创建新标识符的方法
+==指向函数的指针提供一种告诉函数应使用哪一种函数的方法。==
+### 本章小结
+C结构提供在相同的数据对象中存储多个不同类型数据项的方法。可以使用标记来识别一个具体的结构模版，并声明该类型的变量。通过成员==点运算符==(.)==可以使用结构模版中的标签来访问结构的各个成员==。
+	如果有一个指向结构的指针，可以用该指针和间接成员运算符（->）==代替结构名和点运算符==来访问各成员。和数组不同，==结构名不是结构的地址==，要在结构前面加&运算符才能得到结构地址。
+	之前不能把结构当函数的参数传递，但是传递结构的地址通常更好。
+	联合使用于结构相同的语法。然而，联合的成员共享一个共同的存储空间。联合同时只能存储一个单独的数据项，不和结构那样可以同时存储多个数据类型。
+	通过枚举可以创建一些列代表常量（枚举常量）的符号和定义的相关的枚举类型。
+	typedef工具可以用于建立C标准==类型==的别名或缩写。
+	==函数名代表函数的地址==，可以把函数的地址传递为参数给其他函数，然后这些函数就可以使用被指向的函数。
+	如果把特定函数的地址赋给一个名为pf函数指针，可以通过下面两种方式调用该函数
+```C
+#include<math.h> //提供sin()函数的原型double sin(double);
+double (*ptf)(double);
+double x;
+pdf=sin;
+x = (*pdf)(1.2);   //调用sin(1.2);
+x=pdf(1.2);    //同样调用sin(1.2);
+```
+
+![[Pasted image 20231202190231.png]]
+```C
+#include <stdio.h>
+#include <stdlib.h>  
+#include <string.h>
+double f1(double, double);
+double f2(double, double);
+double f3(double, double);
+double f4(double, double);
+double (*pf[4])(double ,double)={f1,f2,f3,f4};
+pf[1](10.0,2.5);
+(*pf[1])(10.0,2.5);
+```
+## 位操作
+![[Pasted image 20231202191001.png]]
+
+==在C语言中可以单独操控变量中的位==。![[Pasted image 20231202191517.png]]
+### 二进制数，位和字节
+通常是基于数字==10来书写数字==，例如2157千位是2，百位是1，十位是5，各位是7。可以写成：
+```
+2x1000+1x100+5x10+7x1
+```
+注意1000是10的立方（3次幂）,100是10的平方（2次幂），10是10的1次幂，而10（任意正数）的0次幂是1因此可以写为：
+```
+2x10^3+1x10^2+5x10^1+7x10^0
+```
+这种书写数字的方法是==基于10的幂==，所以称为10为基底书写2157；
+![[Pasted image 20231202192229.png]]
+以2为基底的表示的数字被称为二进制数。二进制中的2和十进制中的10作用相同。例如二进制的1101可表示为：
+```
+1x2^3+1x2^2+0x2^1+1^2^0
+```
+以十进制表示为：
+```
+1x8+1x4+0x2+1x1=13
+```
+用二进制系统可以把任意整数（==如果有足够位==）表示为0和1的组合。由于数字计算机通过开启和关闭组合表示信息，这两种状态分别用0和1来表示。
+#### 二进制整数
+通常1字节包含8位。C语言用字节（byte）单位表示存储系统字符集所需的大小。
+计算机界通常用八位组这个术语特指8位字节。
+![[Pasted image 20231202192709.png]]
+==编号7被称为高阶位。0是低阶位。==128是2的7次幂，以此类推。一个字节最大就是把所有都设置为11111111。这个二进制数的值是255；最小当然是0.因此1字节可存储0~255范围内的数字，总共256个值。
+通过不同的方式解释==位组合==，程序可以用一个字节存储-128~127范围内的整数。
+通常unsigned char用1字节表示的范围是0~255，而signed char用一字节是-128~127。
+#### 有符号整数
+如何表示有符号整数取决于硬件，而不是C语言，表示有符号数最简单的方式是==用1位（高阶位）存储符号==，只剩7位表示数字本身（假设存储在1字节中）。用这种==符号量==表示法10000001表示-1，因此，其表示范围是==-127~+127==。
+这种缺点是有两个0：+0和-0。很容易混淆，而且用两位组合表示一个值有点浪费。
+
+==二进制补码==方法避免了这个问题，我们用1字节讨论这个方法。==二进制补码用1字节中的后7位表示0~127，高阶是0。==这种方法和符号量的方法相同。如果高价位是1，表示值为负。这两种方法区别在于如何确定负值。
+![[Pasted image 20231203171120.png]]
+而补码可以表示到==-128~+127==
+要得到二进制补码数的相反数，最简单的方法就是反转每一位（0变1,1变0），然后加1。
+![[Pasted image 20231203172505.png]]
+==二进制反码==通过反转位组成每一位形成一个负数。只能表示==-127~+127==
+![[Pasted image 20231203172622.png]]
+#### 二进制浮点数
+==浮点数分两部分存储：二进制小数和二进制指数==。
+##### 二进制小数：
+一个普通小数0.527,表示如下：
+```
+5/10+2/100+7/1000
+```
+==从左往右，各分母都是10的递增次幂==。二进制是用2的幂作为分母，所以二进制小数.101表示为：
+```
+1/2+0/4+1/8
+用十进制表示法为：
+0.50+0.00+0.125
+即0.625
+```
+![[Pasted image 20231204080000.png]]
+##### 浮点数表示法
+![[Pasted image 20231204080124.png]]
+### 其他进制数
+程序员通常用8进制和16进制因为这和计算机的二进制是幂的关系。
+#### 八进制
+指八进制记数系统。该系统基于8的幂，用0~7表示数字，八进制的451在C中写作0451表示为：
+```
+4x8^2+5x8^1+1x8^0=  297(十进制)
+```
+==每个八进制对位3个二进制==这是的二进制转8进制比较容易。
+![[Pasted image 20231204080831.png]]
+![[Pasted image 20231204080756.png]]
+#### 十六进制
+十六进制的计数系统。基于16的幂，用数字0~15表示数字。表示10~15用字母A~F来表示。
+十六进制的A3F（在C中写作0xA3F）表示为：
+```
+10x16^2+3x16^1+15x16^0= 2623(十进制)
+```
+在C语言中A~F既==可以大写也可以小写==。==每个十六进制位都对应4个二进制位==，==两个十六进制恰好表示一个8位字==节 。第一个十六进制对应前4位，第二个十六进制表示后4位。十六进制很适合表示==字节值==。
+![[Pasted image 20231204081424.png]]
+### C按位运算符
+C提供==按位逻辑运算符==和==移位运算符==。
+![[Pasted image 20231204081708.png]]
+#### 按位逻辑运算符
+4个按位逻辑运算符都用于整型数据，包括char。之所以叫按位运算，因为都是==针对每一个位==进行，不影响左右两边的位。==不能和常规的逻辑运算符混淆==，（&& || ！）他们是把取整个值。
+##### 二进制反码或按位取反：~
+一元运算符~把1变为0，把0变为一，就是==反码==一 样。
+```
+~(10011010)  //表达式
+(01100101)   //结果
+```
+假设val类型是unsigned char，已经被赋值为2.在二进制中，00000010表示2，那么~val的值就是11111101即253，==注意该运算符不会改变val的值==，就像3* val不会改变val那样。val仍然是2，但是该运算符创建了一个可使用可复制的新值。
+![[Pasted image 20231204083155.png]]
+##### 按位与：&
+二元运算符通过比较两个运算对象，生成一个新值。对于每个位，==两个运算对象中相应的位都为1时，结果才表示1==（真假看两个都为真才为真）。
+```
+（10010011）&（00111101）//表达式
+（00010001） //结果值
+```
+![[Pasted image 20231204084753.png]]
+##### 按位或: |
+二元运算符|，通过逐位比较两个运算符对象，生成新值。对于每个位，==如果两个运算对象中相应的位为1，结果就为1==（从真假看就是两个对应的位只要一个为真就为真）
+```
+(10010011)|(00111101)   //表达式
+(10111111)          //结果值
+```
+![[Pasted image 20231204085603.png]]
+##### 按位异或：^
+二元运算符^逐位比较两个运算对象。对于每个位，如果每个运算对象中相应的位一个为1（但不是两个为1 ），结果为1（从真假反面看，如果两个运算对象中==相应的一个位为真且不是两个同时为1，结果才为1==）
+```
+(10010011) ^ (00111101) //表达式
+(10101110)    //结果值
+```
+![[Pasted image 20231204092233.png]]
+#### 用法，掩码
+
+按位运算符常用于==掩码==。所谓掩码就是一些设置位开(1)或关(0)的为组合。
+![[Pasted image 20231204092806.png]]
+使用掩码，掩码的0隐藏了1
+==掩码相当于把0设置为不透明，1设置透明。==
+![[Pasted image 20231204092812.png]]
+![[Pasted image 20231204093105.png]]
+
+##### 用法：打开位（设置位）
+有时候需要打开特定位，同时其他不变。
+例如必须打开一号位其他位不变。这种情况可以使用按位或运算符（|）。
+![[Pasted image 20231204093615.png]]
+#### 用法：关闭位（清空位）
+有时候需要关闭flags中的一号位。同样mask只有一号位为1。
+![[Pasted image 20231204093847.png]]
+#### 用法：切换位
+==切换位是指打开已经关闭的位或则是关闭已经打开的位==。可以用异或运算符(^)切换位。
+假设：b是一位(1或0)，如果b=1，则1^b=0;如果b=0，则1^b=1;
+![[Pasted image 20231204094254.png]]
+#### 用法：检查位的值
+有时候需要检查某个位的值是否被设置为1不能直接比较
+```
+if(flags=MASK)
+```
+因为这个是比较整个值，而我们只要比较其中一个
+因此我们必须用掩码将不需要的值都变透明。只留一号位比较
+```C
+if((flags&MASK)==MASK)
+```
+由于按位运算符的优先级比= =低，所以要加小括号。以免影响到其他的就必须掩码只覆盖和值相同的宽度。
+#### 移位运算符
+当然也是使用二进制，移位运算符向左或向右动位
+##### 左移：<<
+将其运算对象每一位向左移动其右侧运算对象指定的位数，==左侧运算对象移出左末端位的值丢失，用0填充空出的位置。==
+```
+(10001010) << 2   //表达式
+(00101000)      //结果值
+```
+该操作产生一个新的位值，不改变原来运算对象。
+例如假设stok为1，那么stok<<2为4，但是stok本身不变，仍然是1，可以使用左移赋值符(<<=)来改变变量的值。
+![[Pasted image 20231204095709.png]]
+##### 右移：>>
+将其运算对象每一位向右移动其右侧运算对象指定的位数，==左侧运算对象移出右末端位的值丢失，对于无符号位用0填充空出的位置。==，右符号位就看机器，空出的位可以用0填充，==或者符号位的副本填充==。
+
+右符号
+![[Pasted image 20231204100226.png]]
+无符号
+![[Pasted image 20231204100255.png]]
+右移赋值运算符(>>=)将其左侧的变量向右移动制定数量的位数。![[Pasted image 20231204100346.png]]
+##### 用法：移位运算符
+移位运算符针对2的幂提供快速有效的乘法和除法：
+```
+number <<n number乘以2的次幂
+number >>n 如果number非负，则用number除以2的n次幂。
+```
+这些移位运算符类似于在十进制中移动小数点来乘以或除以10.
+![[Pasted image 20231204103130.png]]
+==使用右移运算符把高八位移动到低阶字节，然后用掩码技术只读取到低阶字节给指定变量，之前汇编8086CPU学过==
+#### 编程实例
+写一个函数itobs().将整数和一个字符串地址传递给itobs()函数即将整数转换为二进制字符串，然后该函数将计算出正确的1和0的组合存储在这个字符串中。
+```C
+#include<stdio.h>
+#include<limits.h> //提供CHAR_BIT的定义，表示每个字节的位数。
+char itobs(int, char*);
+void show_bit(char*);
+main() {
+	char str_bin[CHAR_BIT * sizeof(int) + 1]; //给尾部空字符留个位置
+	int number;
+	puts("输入数字：\n");
+	while (scanf("%d", &number) == 1) {
+		itobs(number, str_bin);
+		show_bit(str_bin);
+	}
+}
+char itobs(int n, char* ps) {
+	const static int size = CHAR_BIT * sizeof(int);
+	for (int i = size - 1; i >= 0; i--, n >>= 1)ps[i] = (01 & n) + '0';
+	ps[size] = '\0';
+	return ps;
+}
+void show_bit(char* ps) {
+	int i = 0;
+	while (ps[i]) {
+		putchar(ps[i]);
+		if (++i % 4 == 0&&ps[i])putchar(' '); //这里是前缀++不能后缀，判断四个字符加一个空格。
+	}
+}
+```
+效果：
+![[Pasted image 20231204112337.png]]
+对01&n求值。01是一个八进制形式的掩码，该掩码除了0号位是1其它位都是0.因此就是求最后一位值。该值为0或1。但是对数组而言，需要的是字符'0'或字符'1'。该值加上'0'就完成==转换==了。==这里不是在后面加'0'而是这个值进行从ascii码值的0转换成字符'0'==，相当于加48
+i=size-1就是留给尾部空字符的，前面声明的时候已经留了空间。
+![[Pasted image 20231204113913.png]]
+#### 另一个例子
+这次要编写的是切换一个值的后n位，待处理值和n都是函数的参数。
+==~运算符切换一个字节的所有位，而不是选定位的少数位。但是可以用^运算符（按位异或）可以用于切换单个位。==
+假设创建一个掩码，把后n位设置为1，其他都设置为0，然后进行异或使用^组合掩码和待切换的值便可以切换该值的后n位，而其他值不变。
+```C
+#include<stdio.h>
+#include<limits.h> //提供CHAR_BIT的定义，表示每个字节的位数。
+char itobs(int, char*);
+int inver_end(int n, int bits); //指定位进行切换
+void show_bit(char*);   //四个一个空格的打印二进制
+#define LEN 4
+main() {
+	char str_bin[CHAR_BIT * sizeof(int) + 1]; //给尾部空字符留个位置
+	int number;
+	puts("输入数字：\n");
+	while (scanf("%d", &number) == 1) {
+		itobs(number, str_bin);
+		puts("正常：\n");
+		show_bit(str_bin);
+		itobs(inver_end(number, LEN), str_bin);
+		puts("指定切换：\n");
+		show_bit(str_bin);
+	}
+}
+char itobs(int n, char* ps) {
+	const static int size = CHAR_BIT * sizeof(int);
+	for (int i = size - 1; i >= 0; i--, n >>= 1)ps[i] = (01 & n) + 48;
+	ps[size] = '\0';
+	return ps;
+}
+int inver_end(int n, int bits) {
+	int mask = 0; 
+	int m=1;
+	while (bits-- > 0) {
+		mask |= m; 
+		m <<= 1;
+	}
+	return n ^ mask;
+}
+void show_bit(char* ps) {
+	int i = 0;
+	while (ps[i]) {
+		putchar(ps[i]);
+		if (++i % 4 == 0&&ps[i])putchar(' '); //这里是前缀++不能后缀，判断四个字符加一个空格。
+	}
+}
+```
+![[Pasted image 20231204115450.png]]
+==这里mask一开始所以为都为0,while循环一开始把mask的0号位设置为1，然后执行多少次bits就mask的多少次位设置为1.最后num^mask所需结果。==
+==这里bist=1也是把0号位设置为1.==
+![[Pasted image 20231204142530.png]]
+### 位字段
+操作位的第二个方法就是==位字段==。![[Pasted image 20231204143112.png]]
+位字段通过一个结构来声明来建立，该结构声明为每个字段提供标签，并确定该字段宽度。例如下面声明建立一个4个==位==的字段：
+```C
+struct {
+	unsigned int autfd:1;
+	unsigned int bldfc:1;
+	unsigned int undln:1;
+	unsigned int itals:1;
+}prnt;
+```
+根据该声明，prnt包含4个1位的字段。现在可以通过普通的结构成员运算符(.)单独给这些字段赋值。
+```
+prnt.autfd=0;
+prnt.itals=1;
+```
+每个字段只能是一位只能赋值0和1.变量prnt被存储在int大小的内存单元中。
+带位字段的结构==提供一种记录设置==的方便途径。
+有些时候也有多个选择多个位来表示。不限制1位大小。
+```C
+struct {
+	unsigned int code1:2;
+	unsigned int code2:4;
+	unsigned int code3:8;
+}prcode;
+```
+以上代码创建了两个2位的字段和一个8个位的字段。
+```C
+prcode.code1=0;
+prcode.code2=3;
+prcode.code3=102;
+```
+==但是要确保所赋值不能超过字段可容纳的范围==
+如果超过这个类型怎么办？
+![[Pasted image 20231204144542.png]]
+![[Pasted image 20231204144715.png]]
+#### 位字段示例
+![[Pasted image 20231204144941.png]]
+![[Pasted image 20231204145056.png]]
+![[Pasted image 20231204145120.png]]
+```C
+#include<stdio.h>
+#include<stdbool.h> //C99定义了bool，true，false
+//线的样式
+#define SOLID 0
+#define DOTTED 1
+#define DASHED 2
+//三原色
+#define BLUE 4
+#define GREEN 2
+#define RED 1
+//混合色
+#define BLACK 0
+#define YELLOW (RED|GREEN)
+#define MAGENTA (RED|BLUE)
+#define CYAN (GREEN|BLUE)
+#define WHITE (RED|GREEN|BLUE)
+
+const char* color[8] = { "black","red","green","yellow","blue","magenta","cyan","white" };
+
+struct box_props {
+	bool opaque : 1;
+	unsigned int fill_color : 3;
+	unsigned int : 4;
+	bool show_border : 1;
+	unsigned int border_color : 3;
+	unsigned int border_style : 2;
+	unsigned int : 2;
+};
+
+void show_settings(const struct box_pros* pb);
+
+int main(void) {
+	//创建并初始化box_props结构
+	struct box_props box = {true,YELLOW,true,GREEN,DASHED };
+
+	show_settings(&box);
+	box.opaque = false;
+	box.fill_color = WHITE;
+	box.border_color = MAGENTA;
+	box.border_style = SOLID;
+	show_settings(&box);
+	return 0;
+}
+
+```
+上面设置
+![[Pasted image 20231204151511.png]]
+初始化位字段结构于初始化的普通结构语法相同：
+```C
+struct box_props box = {true,YELLOW,true,GREEN,DASHED };
+```
+#### 位字段和按位运算符（并不是很看得懂这小章）
+解释一下这两种方法的区别。
+可以通过一个联合把结构方法和位方法放在一起。声明联合
+```C
+union Views{
+	struct box_pros st_view;
+	unsigned short us_view;
+};
+```
+### 对齐特性(C11)（现在对我不觉得有什么用）
+C11的对齐的特性比用位填充字节更自然，它还代表了C在处理硬件相关问题的能力。
+![[Pasted image 20231204195346.png]]
+```
+_Aligof运算符给类型的对齐要求，在关键字_Aligof后面的圆括号中写上类型名即可：
+size_t d_align=_Alignof(float);
+```
+![[Pasted image 20231204201500.png]]
+![[Pasted image 20231204201528.png]]
+### 关键概念
+![[Pasted image 20231204201920.png]]
+### 本章小结
+计算机硬件于二进制计数系统密不可分，因为二进制的1和0代表着计算机的开或者关。虽然C不允许以二进制形式书写数字，但是它识别于二进制相关的八进制和十六进制计数法。正如每个二进制数字表示1位一样，每个8进制代表三位，每个16进制代表位。这种关系使二进制转换8进制和16进制比较简单。
+
+C提供多种按位运算符，之所以按位是因为他们操作单独一个值的每个位。
+反码运算符(~)将其运算对象每一位取反，将1转位0，0转1，
+按位与运算符(&)通过两个运算对象形成一个值。如果两个相同号位都为1，那么该值中对应的也为1
+按位或运算符(|)通过两个运算对象形成一个值。如果两个相同号位其中一个为1或者都为1，那么该值中对应的也为1
+按位异或运算符(^)也类似的操作，只有运算对象中相同号位只有一个位为1，结果值就为1.
+左移右移。
+![[Pasted image 20231204213905.png]]
+![[Pasted image 20231204214342.png]]
+```C
+#include<stdio.h>
+int main() {
+	char a[] = "1101010";
+	char b[] = "1000000";
+	puts("打印a的反码:\n");
+	for (int i = 0; i < 7; i++) {
+		a[i] -= '0';
+		b[i] -= '0';
+		putchar((~a[i]) + 50); //打印反码
+		
+	}
+	puts("\n打印a和b的按位与:\n");
+	for (int i = 0; i < 7; i++) {
+		putchar((a[i] & b[i]) + 48); //按位与
+	}
+	puts("\n打印a和b的按位或:\n");
+	for (int i = 0; i < 7; i++) {
+		putchar((a[i] | b[i]) + 48); //按位或
+	}
+	puts("\n打印a和b的按位异或:\n");
+	for (int i = 0; i < 7; i++) {
+		putchar((a[i] ^ b[i]) + 48); //按位异或
+	}
+
+}
+```
+![[Pasted image 20231204220004.png]]
+## C预处理器和C库
+![[Pasted image 20231205075813.png]]
+### 翻译程序第一步
+在预处理之前，编译器必须对程序进行一些翻译处理。==编译器把源代码中出现的字符映射到源字符集==。该程序处理多字节符和三字符序列--字符扩展让C更国际化
+![[Pasted image 20231205080400.png]]
+把换行的源码恢复
+第三，编译器把文本划分成预处理记号序列（空格，制表符或换行符分隔的项），空白序列和注释序列。这里注意编译器用空格字符替换每一条注释。
+```C
+int /*hahahahahaah*/ fox;
+变成
+int fox;
+```
+而且，实现可以用一个空格替换所有空白字符序列（不包括换行）。最后程序进入预处理阶段。预处理器会查找一行中以#开始的预处理指令。
+### 明示常量 #define 
+
+#define 预处理器指令和其它预处理器指令一样，以#作为一行的开始。ANSI和后来的标准都允许在#号面前或其他地方有空格。之前旧版本要求只能#放最左别，而且不能有空格。指令指明可以出现在源文件的任何地方，其定义从指令出现的地方到文件尾部都有效果。
+一下演示#define的操作
+```C
+#include<stdio.h>
+#define TWO 2 /*可以使用注释*/
+#define OW "Consistency is ther last refuge of the \
+tive. dhahah" /*可以用反斜杠延续到下一行*/
+#define FOUR TWO*TWO
+#define PX printf("X is %d\n"m,x)
+#define FMT "X is %d,\n"
+int main(void){
+	int x=TWO;
+	PX;
+	printf(FMT,x);
+	printf("%s\n",OW);
+	printf("TWO:OW\n");
+	return 0;
+	
+}
+```
+程序效果
+![[Pasted image 20231205082642.png]]
+#define（逻辑行）都由3部分组成。第一部分是#define本身。第二部分是选定的缩写，也称为宏。有些宏代表值，这类宏称为==类对象宏==。C语言还有类函数宏，==宏不允许有空格==，必须遵守C变量的命名规则：==只能使用字母，数字和下划线，但是数字不能开头==。第三部分就是称为替换列表或替换体。一旦预处理器在程序中找到宏的示实例，就会用替换体代替该宏。从宏变成最终替换文本的过程叫做==宏展开==。可以在#define使用注释，如前所示，每条注释都会被一个空格代替。
+![[Pasted image 20231205083337.png]]
+如上面程序，pritnf("X is %d.\n",x);都能替换到目前为止我们只是用宏来描述常量。从例中可以看出
+宏可以表示任何字符串，甚至有表示整个C表达式。但是要注意，PX是一个字符串常量，它只打印x的变量
+下面也是新用法：读者可能认为FOUR被替换成4，其实最后的确是，只不过预处理过程是下面这样
+```C
+x=FOUR;
+变成：
+x=TWO*TWO;
+即是2*2;
+```
+宏展开到此为止，由于编译器在编译期对所以常量表达式求值，所以==预处理并不会去乘法求值，只会宏展开==。
+注意==宏还可以包含宏==（一些编译器不支持）
+![[Pasted image 20231205084423.png]]
+一般而言，预处理器发现程序中的宏后，会用宏等价替换文本进行替换。如果替换的字符串中还包含宏，则继续替换这些宏，唯一例外的是双引号中的宏。
+```
+pritnf("TOW:OW");
+打印的是TWO：OW，而不是OW的替换体
+除非是这样写
+pritnf("%d:%s\n"TOW,OW);
+这行带中宏不在双引号内。
+```
+
+那么什么时候使用字符常量![[Pasted image 20231205085134.png]]
+C语言现在也支持了const关键字，提供更灵活的方法。宏可以指定数组大小和const变量的初始值
+```C
+#define LTMIT 20
+const int LIM =50;
+static int data1[LIMIT];
+static int data2[TIM];  //无效
+const int LIM2=2*LIMIT;
+const int LIM3=2*LIM;  //无效
+```
+这里解释上面为什么无效。在C中，非自动数组大小应该是==整型常量表达式==，这意味着数组大小必须是整型常量的组合（如5），枚举常量，sizeof()表达式，不包括const声明的值。（C++可以把const的值作为常量表达式的一部分）。
+#### 记号
+从技术角度来看，可以把宏的替换体看作是==记号型字符串==，而不是字符型字符串。C预处理器记号是宏定义的替换体中单独的“词”。用空白把这些词分开。
+```C
+#define FOUR 2*2
+该宏定义有一个记号：2*2序列。但是下面宏定义中：
+#define SIX 2 * 3
+有3个记号：2,*,3。
+替换体中有多个空格时候，字符型字符串和记号型字符的处理方式不一样。
+
+```
+如果预处理器把替换体解释为==字符型==字符串，将用2 * 3替换掉SIX，即，==额外的空格是替换体的一部分。==
+如果预处理器把替换体解释为==记号型==字符串，则用3个记号 2 * 3(分别由单个空格分隔)来替换SIX。
+字符型字符串把空格当做==字符串一部分==，记号型字符串把空格当做替换体各记号的==分隔符==。
+![[Pasted image 20231205090751.png]]
+#### 重定义常量
+重复定义常量。的过程叫做重定义常量。一些小规则![[Pasted image 20231205091129.png]]
+具有相同定义意味着替换体中的记号必须相同，且顺序也相同。因此下面两个定义相同
+```
+#define SIX 2 * 3
+#define SIX 2 * 3
+```
+这两条定义都有3个相同的记号，额外的空格不算替换体的一部分。而且下面的定义则于上面两条宏定义不同：
+```
+#define SIX 2*3
+```
+这条宏定义只一个记号，和前面两个不同。如果需要重定义可以使用#undef指令。
+如果确实需要重定义常量使用const关键字更容易些。
+### 在#define中使用参数
+在#define中使用参数可以创建外形和作用于函数类似的==类函数宏==。带有参数的宏看上去很像函数，因为这样的宏也使用圆括号。==类函数宏定义的圆括号可以有一个或多个参数，随后这些参数出现在替换体中==。
+![[Pasted image 20231205092351.png]]
+看上去有点像函数调用，但是==它们的行为和函数调用完全不一样==。
+```C
+#include<stdio.h>
+#define SQUAR(x) x*x
+#define PR(x) printf("the is %d\n",x)
+int main(void) {
+	int x = 5;
+	int z;
+	PR(x);
+	z = SQUAR(x);
+	PR(z);
+	PR(z + x);
+	PR(SQUAR(x + 2));
+	PR(SQUAR(++x));
+	PR(100 / SQUAR(2));
+
+}
+```
+![[Pasted image 20231205094715.png]]
+SQUAR宏定义如下：
+#define SQUAR(x) x * x
+这里SQUAR是宏标识符，SAUAR(x)中的x是宏参数，x * x是替换列表。上面程序出现SAUAR(x)都会被x * x替换。
+这和之前学的示例不同，使用该宏时可以用x，也可以用其它符号。宏定义自动定义中x由宏调用中的符号代替。
+因此SQUAR(2)替换成2 * 2，==x实际上起到了参数的作用==。
+
+看到上面的程序输出就看发现和函数调用完全不同。
+看到第四行的值：17，应该来说是SQUAR(x+2)应该是7 * 7即49.但是输出的是17，导致这样的结果是，==我们前面说过预处理不做计算，不求值，只替换字符序列==。预处理器把出现x的地方都替换成了x+2。因此x * x变成了x+2* x+2。如果x为5就：5+2* 5+2=17
+接下来的就好说了，可以看懂了吧。
+```
+	PR(100 / SQUAR(2));
+	首先经过预处理器
+	PR(100/2*2);
+	然后从左到右对表达式求值。
+	PR((100/2)*2);
+	得到100
+```
+可以将SQUAR(x)定义为下面形式可以解决这种混乱:
+#define SQUARE(x) (x * x)
+因此，必要时候使用足够多的圆括号来确保运算和结合的正确顺序。
+```
+PR(SQUAR(++x));
+```
+上面这个代码有些编译器解析的不一样
+![[Pasted image 20231205101041.png]]
+==避免用++x作为函数参数==
+#### 用宏参数创建字符串：#运算符
+下面是一个类函数宏：
+```C
+#define PSQR(x) printf("The is x %d.\n",((x)*(x)))
+```
+假设这样使用宏：PSQR(8);输出为：The is x 64.
+注意双引号字符串中的x被视为普通文本，==而不是一个可被替换的记号==。
+C==允许==在字符串中包含宏参数。在类函数宏的替换体中，==#号作为一个预处理运算符，可以把记号转换成字符串。==
+例如：如果x是一个宏形参，那么#x就是转换为字符串"x"的形参名。这个过程称为==字符串化==。
+```C
+#include <stdio.h>
+#define PSQR(x) printf("The of "#x" is %d.\n",((x)*(x)))
+int main(void) {
+	int y = 5;
+	PSQR(y);
+	PSQR(2 + 4);
+	return 0;
+}
+```
+![[Pasted image 20231205105624.png]]
+调用第一个宏时，用”y“替换#x.等。ANSI C字符串的串联特性将这些字符串与printf()语句的其他字符串结合，生成最终的字符串。
+#### 预处理器粘合剂：##运算符
+与#运算符类似，##运算符可用于类函数宏的替换部分。==而且##还可用于对象宏的替换部分==。##运算符把两个记号组成一个记号.
+```C
+#include <stdio.h>
+#define XNAME(n) x ## n
+#define PRINTF(n) printf("x"#n" = %d\n",x ## n);
+int main(void) {
+	int XNAME(1) = 14; 
+	int XNAME(2) = 20;
+	int x3 = 30;
+	PRINTF(1);
+	PRINTF(2);
+	PRINTF(3);
+
+	return 0;
+}
+```
+![[Pasted image 20231205112341.png]]
+PTRINTF() 宏用==#运算符组合字符串==，==##运算符把记号组合为一个新的标识符==。
+上面直接x3=30,然后PRINTF(3)就可以精准定位到x3的值并打印出来。
+#### 变参宏：...和__VA_ARGS__
+一些函数（如printf()）接收数量==可变的参数==。stdvar.h头文件（后面介绍）提供了工具，==让用户自定义带可变参数的函数。==C99/C11也对宏提供这样的工具。虽然标准中未使用可变这个词，但是已经成为描述这种工具的通用词。
+通过把宏参数列表中最后的参数写成省略号（即三个点）来实现这个功能。这样，预定义宏__VA_ARGS__可用在替换体中，表明省略号代表什么，例如下面定义：
+```C
+#include<stdio.h>
+#include<math.h>
+#define PR(...) printf(__VA_ARGS__)
+
+main() {
+	int wt = 0, sp = 1;
+	PR("Howdy");
+	PR("weiht=%d,shiping=%d\n", wt, sp);
+}
+```
+![[Pasted image 20231205145418.png]]
+第一次调用，_ _ VA_ARGS__展开为一个参数Howdy
+第二次调用，_ _ VA_ARGS__展开为3个参数："weiht=%d,shiping=%d\n", wt, sp
+```C
+#include<stdio.h>
+#include<math.h>
+#define PR(x, ...) printf("Message " #x ":"__VA_ARGS__)
+main() {
+	double x = 48;
+	double y;
+	y = sqrt(x);
+	PR(1, "x=%g\n", x);
+	PR(2, "x=%.2f,y=%.f\n", x,y);
+}
+```
+![[Pasted image 20231205145434.png]]
+![[Pasted image 20231205145531.png]]
+==省略号只能替代最后的宏参数==
+### 宏和函数的选择
+有些编程任务可以使用带参数的宏完成，也可以用函数完成。
+使用宏要比普通函数复杂些，稍微不慎就会产生奇怪的副作用。一些编译器只运行宏定义行，当然也应该这么做。
+宏和函数的选择实际上是时间和空间的权衡。==宏生成内联代码==，即在程序中生成语句。如果调用20次宏，即在程序中插入20行代码，但是调用20次函数，程序中只有一份函数语句的副本，==函数相对来说所以节省了空间==。
+另一方面，程序控制必须跳转到函数内，然后再返回主函数程序，==这样比内联代码花费时间更多些==。
+宏的一个优点是，==不必担心变量类型==（这是因为==宏处理的是字符串而不是实际的值==）。因此主要能用int 或float类型都可以使用SQUR(x)宏。
+C99提供了第3种可替换的方法--内联函数。
+对于简单函数，程序员通常使用宏，
+```C
+#define MAX(x,y) ((x)>(y)?(x):(y))
+#define ABS(x) ((x)<0?-(x):(x))
+#define ISSIGN(x) ((x)=='+'||(x)=='-'?1:0)
+如果x是一个代数符号，最后一个宏的值为1，即真
+```
+使用宏注意一下几点：
+- [ ] 记住宏名中不允许有空格，但是在替换字符串中可以有空格。
+- [ ] 用小括号把宏的参数和替换体括起来。这样就可以确保被括起来的部分在表达式正确的展开
+- [ ] 用大写字母表示宏函数是名称。大写字母可以提高程序可读性，可以让程序员知道这个可能宏可能会产生副作用
+- [ ] 还有就是如果是要多次使用，用宏比函数更快
+![[Pasted image 20231205153951.png]]
+### 文件包含 #include 
+当预处理器发现#include指令时，==会查看后面文件名并把文件的内容包含到当前文件中，即替换源文件中的#include指令==。相当于把文件所有内容都放到这一行中。
+#include 有两种形式：
+```
+#include <stdio.h>    //文件名在尖括号中
+#include "mystuff.h"  //文件名在双引号中
+```
+在UNIX系统中，尖括号告诉预处理器在标准系统目录中查找该文件。
+==双引号告诉预处理器在当前目录中查找该文件，如果没找到就去标准系统目录中==
+```
+#include <stdio.h>   //查找系统目录
+#include "hot.h"   //查找当前工作目录
+#include "/usr/biff/p.h" //查找/usr/biff目录
+```
+集成开发环境（IDE）也有标准路径或系统头文件的路径。
+![[Pasted image 20231205155127.png]]
+![[Pasted image 20231205155147.png]]
+当然也可以包含其他文件之类的不一定是.h后缀的头文件。
+#### 头文件实例
+假设开发一个存放人名的结构，还编写一些适合该结构的函数。可以把不同的声明放到头文件中。
+namse.h
+```C
+#include <string.h>
+#define SLEN 23
+typedef struct namse{ //结构声明
+	char first[SLEN];
+	char last[SLN];
+}namses;
+namses names; //类型定义
+
+//函数原型
+void get_names(names *);
+void show_names(const names *);
+char * s_gets(char * st,int n);
+```
+该文件头包含常见内容：#define指令，结构声明和函数原型。注意这些内容都是在创建可执行代码需要的信息，==不是可执行代码==。==可执行代码通常在源码中，不是头文件中==。
+namse.c
+```C
+#include <stdio.h>
+#include "namse.h" //包含头文件
+//函数定义
+void get_names(names*pn){
+	puts("输入你的姓：");
+	gets(pn->first);
+	puts("输入你的名：");
+	gets(pn->last);
+	
+}
+void show_names(const names *){
+pritnf("姓：%s名：%s",pn->first,pn->last);
+}
+```
+驱动程序
+```C
+#include <stdio.h>
+#include "namse.h"
+int main(void) {
+	names candidate;
+	get_names(&candidate);
+	show_names(&candidate);
+	return 0;
+}
+```
+==该程序注意一下几点：==
+- [ ] 两个源代码文件都使用；namse结构类型，所以必须都包含namse.h头文件
+- [ ] 必须编译和链接namse.c和驱动源码文件
+- [ ] 声明和指令放在namse.h头文件中，函数定义放在namse.c源代码中
+#### 使用头文件
+浏览任何一个标准文件头都可以了解头文件的基本信息。
+头文件中最常用的形式如下：
+1. 明示常量---例如，stdio.h中定义 EOF,NULL和BUFSIZE(标准I/O缓冲区大小)
+3. 宏函数---例如，getc(stdin)通常用getchar()定义，而getc()经常用于定义较为复杂的宏，头文件ctypto.h通常包括ctype系列函数的宏定义。
+4. 函数声明---例如，string.h头文件（一些旧系统中strings.h）包含字符串数系统的函数声明。在ANSI C和后面的标准中，函数声明都是函数原型形式。
+5. 结构模版定义---标准 I/O函数使用 ETLE 结构,该结构中包含了文件和与文件缓冲区相关的信息。FILE结构在头文件stdio.h中
+6. 类型定义---标准 IO 函数使用指向 FILE 的指针作为参数。通常，stdio.h 用#define 或typedef 把 FILE 定义为指向结构的指针。类似地，size t 和time t 类型也定义在头文件中。
+![[Pasted image 20231205163413.png]]
+### 其他指令
+程序员通过修改#define的值即可生成可移植的代码。==#undef指令取消之前的#define定义==。#if,#ifdef,#ifndef,#else,#elif和#endif指令用于指定什么情况下编写哪些代码。#line指令用于重置行和文件信息，#error指令用于给出错误信息，#pragma指令用于向编译器发出指令。
+#### #undef指令 
+#undef指令用于“取消”已定义的#define指令。
+```
+#define LIMT 1200
+#undef LIMT
+```
+将移除上面的定义。==即使之前没有定义，取消也有效==。如果想用一个名称，又不确定之前是否被用过，为安全起见，可以使用#undef指令取消该名字的定义。
+#### 从C预处理器角度看已定义
+![[Pasted image 20231205174107.png]]
+已定义宏可以是对象宏，包括空宏或类函数宏
+```C
+#define LMTI 1000 //已定义
+#define GOOD //已定义
+#define A(x) ((-x)*(x)) //已定义
+int q;    //q不是宏，未定义
+#undef GOOD  //GOOD取消定义
+```
+注意#define宏的作用域从它在文件中声明处开始，直到用#undef指令取消宏为止，或延伸到文件尾。(二者中先满足的条件作为宏作用域结束)。如果宏通过文件头引入，那么宏的起始位置就看#include指令位置，当然这是毋庸置疑的废话。
+#### 条件编译
+可以使用其他指令创建==条件编译==。也就是说，可以使用这些指令告诉编译器根据编译时的条件执行或忽略信息（或代码块）
+#####  #ifdef,#else和#endif指令
+用一个代码来演示一下条件编译情况。
+```C
+#ifdef MAVIS
+	#include "horse.h" //如果#define定义了MAVIS则执行下面命令
+	#define STABLES 5
+#else
+	#include "cow.h"  //如果#define没定义了MAVIS则执行下面命令
+	#define STABLES 15
+#endif
+```
+新的可以支持缩进格式。旧的只能左对齐。
+#ifdef指令说明，如果预处理器已经定义了后面的标识符（MAVIS），则执行#else或则#endif指令之前的所有指令并编译所有C代码。如果没有定义MAVIS且有#else指令，则执行#else和endif指令之间的代码。
+
+#ifdef #else很像C语言的if else.两者的主要区别是，==预处理器不识别用于标记快的花括号（{}）==，因此它使用#else（如果需要）和#endfi（==必须存在==）来标记块。这些指令可以嵌套就和if else一样。
+```C
+#include <stdio.h>
+#define TIM 10
+int main(void) {
+#ifdef TIM
+	printf("TIM是宏定义");
+#endif
+	return 0;
+}
+
+```
+![[Pasted image 20231205180929.png]]
+##### #ifndef指令 
+#ifndef指令和#ifdef指令用法类似，也可以和#else，#endif一起使用， 但是它们的==逻辑相反==。#ifndef是判断后面的标识符是否未定义，==常用于定义之前未定义的变量==。
+```C
+#ifndef TIM
+	#define TIM 100   //如果之前#define没有定义TIM这里就定义TIM
+#endif
+```
+通常包含多个头文件时，其中文件可能包含了相同宏定义。==#ifndef指令可以防止相同的宏被重复定义==
+![[Pasted image 20231205183246.png]]
+![[Pasted image 20231205183301.png]]
+![[Pasted image 20231205183345.png]]
+总的来说#ifndef就是用来防止在多个文件头中重复定义
+##### #if和elif指令
+#if指令很像C语言中的if。#if后面跟的整型常量表达式，如果表达式为非零，则表示为真。
+可以在指令中使用C的关系运算符和逻辑运算符：
+```
+#if SYS==1
+#include "lim.b"
+#endif
+```
+可以按照if else的形式使用#elif（早期的实现不支持#elif）。
+```
+#if SYS==1
+	#include "lbmpc.h"
+#elif SYS==2
+	#include "vax.h"
+#elif SYS==3
+	#include "mac.h"
+#endif
+```
+较新的编译器提供另一种方法测试名称是否已定义。即用==#if defined (VAX)代替#ifdef VAX==
+这里defined是一个预处理运算符，==如果它的参数是用#define定义过的,则返回1：否则返回0。==
+这种方法的优点是，可以和#elif一起使用。
+```
+#if defined (IBMP)
+	#include "lbmpc.h"
+#elif defined (VAR)
+	#include "vax.h"
+#elif defined (MAC)
+	#include "mac.h"
+#endif
+```
+![[Pasted image 20231205185654.png]]
+#### 预处理宏
+![[Pasted image 20231205185716.png]]
+```
+__func__的预定义标识符，它展开为一个代表函数名的字符串，那么__func__必须具备函数作用域。
+```
+```C
+#include <stdio.h>
+void why_me();
+int main(void) {
+	puts(__FILE__); //当前源代码文件名中的字符串字面量
+	puts(__DATE__); //预处理的日期（"Mmm dd yyyy"形式的字符串字面量）
+	puts(__TIME__); //翻译代码时间，格式："hh:mm:ss"
+	puts(__func__); //当前函数名字
+	printf("%d\n",__LINE__); //当前代所在的行数
+	why_me();
+}
+void why_me() {
+	puts(__func__); //当前函数名字
+	printf("%d\n", __LINE__); //当前代所在的行数
+}
+```
+![[Pasted image 20231205190149.png]]
+```C
+#include <stdio.h>
+int main(void) { 
+        printf("%ld", __STDC_VERSION__); //打印支持的协议
+}
+
+```
+![[Pasted image 20231205193011.png]]
+#### #line和#error
+#line指令重置__LINE__和__FILE__宏报告的行数和文件名。可以这样使用#line：
+```
+#line 1000 //把当前行号重置为1000
+#line 10 "cool.c"  //把行号设置为10，把文件名重置为cool.c
+```
+```C
+#include <stdio.h>
+void why_me();
+#line 100 "cool.c"  //把行号设置为10，把文件名重置为cool.c
+int main(void) {
+	puts(__FILE__);
+	puts(__DATE__);
+	puts(__TIME__);
+	puts(__func__);
+
+	printf("%d\n",__LINE__);
+
+	why_me();
+}
+void why_me() {
+
+	puts(__func__);
+	printf("%d\n", __LINE__);
+}
+```
+![[Pasted image 20231205191616.png]]
+#error指令让预处理器发出一条错误消息，该消息包含指令中的文本。==如果可能编译器应该中断==。
+```C
+#include <stdio.h>
+int main(void) {
+#if __STDC_VERSION__ !=201112L
+#error Not C11
+#endif
+}
+
+```
+![[Pasted image 20231205192702.png]]
+如果支持旧标准就编译失败，如果支持新标准就编译成功
+```
+-std=c11就是指定协议来编译
+```
+#### #pragma
+在现在的编译器可以通过命令行参数或者IDE菜单修改编译器的一些设置。#pragma把编译器指令放入源代码中。
+让编译器支持 C9X：
+```
+#pragma c9x on
+```
+![[Pasted image 20231205193449.png]]
+![[Pasted image 20231205193454.png]]
+#### 泛型选择（C11）
+在程序设计中，==泛型编程指哪些没有特定类型，但是一旦指定一种类型，就可以以转成类型的代码==。
+例如，C++在模版中可以创建泛型算法，然后编译器根据指定类型自动使用实例化代码。
+C11新增了一种表达式，叫做==泛型选择表达式==可以根据表达式类型（即int，double，其他类型）选择一个值。
+==泛型选择表达式不是预处理器指令==，但是在一些泛型编程中它常用于#define宏定义的一部分。
+下面是一个泛型选择表达式的实例：
+```
+_Generic(x,int:0,float:1,double:2,default:3)
+```
+_ Generic是C11的关键字。_ Generic后面的圆括号中包含多个用逗号分隔的项。==第一个项是一个表达式==，后面每个项都是由一个类型，一个冒号和一个值组成，==如float:1.第一个项的类型匹配哪个标签，整个表达式的值是该标签后面的值。==如果没有类型匹配的标签，表达式的值就是default:标签后面的值。==泛型选择语句于switch语句类似==，只是前者用表达式的类型匹配标签，而后者用表达式的值匹配标签。
+下面是把泛型选择语句和宏定义组合的例子：
+```C
+#include <stdio.h>
+#define MYTPE(X) _Generic((X),int : "int",float: "float",double: "double",default: "other")
+int main(void) {
+	int a=7;
+	printf("这是什么类型：%s\n", MYTPE(a));
+	printf("这是什么类型：%s\n", MYTPE(2.0*a));
+}
+
+```
+![[Pasted image 20231205195406.png]]
+主要演示这个原理。
+![[Pasted image 20231205195530.png]]
+### 内联函数（C99）
+函数调用都有一定开销，建立，传递参数，跳转之类的。如果使用宏使代码内联，可以避免这些开销。C99还提供另一种方法==内联函数==，内联函数意思是：==把函数变成内联函数建议尽可能的调用该函数，具体效果由实现定义==。
+
+创建内联函数的定义有多种方法。标准规定有内部链接的函数有称为内联函数，还规定了内联函数的定义和调用必须在同一文件中。最简单方法就是使用函数说明符==inline==和内存类别说明符static。通常，内联函数应定义在首次使用它的文件中，所以内联函数相当于函数原型。
+```C
+#include <stdio.h>
+inline static void eatline() //内联函数定义/原型
+{	
+	while (getchar() != '\n') continue;
+}
+int main(void) {
+	eatline(); //函数调用
+}
+
+```
+编译器查看内联函数的定义（也是原型），可能会用函数体中的代码替换eatline()函数调用。也就是说==相当于在函数调用的位置输入函数体中的代码==。
+
+由于并未给内联函数预留单独代码块，所以无法获得内联函数的地址（实际上可以获得地址，不过会产生一个非内联函数）。==另外内联函数无法再调试器中显示==
+内联函数应该比较短，不然节省不了多少时间 ，所以学到了现在我们可以用，带参数的宏或则内联函数和带参数的函数来做函数的任务。
+![[Pasted image 20231205200905.png]]
+建议把内联函数放到文件头，这样想用就直接包含文件头就可以了。
+一般不在文件头中放可执行代码，==内联函数是个例外==，因为内联函数有内部链接，所以多个文件中内联一个函数不会产生问题。因为我们用的是#include包含文件的源程序就能使用这个内部链接。
+### _ Noreturn 函数（C11）
+![[Pasted image 20231205201328.png]]
+表明调用完成就不返回主函数。
+### C库
+最初并没有官方的C库。后来基于UNIX的C实现成为了标准，慢慢的经过ANSI C委员会开发了官方的标准库。
+本章介绍更多函数。
+#### 访问C库
+![[Pasted image 20231206080343.png]]
+##### 自动访问
+在一些系统中只需要编译程序就可以使用一些常用的库函数。
+![[Pasted image 20231206081456.png]]
+##### 文件包含
+==如果函数被定义为宏，那么可以通过#include指令包含宏函数的文件==。类似的宏都放到了合适的名称中 比如ctype.h该文件包含了一些确定字符性质的宏。
+##### 库包含
+在编译和链接程序的某些阶段，可能需要指定库选项。![[Pasted image 20231206081811.png]]
+#### 使用库描述
+了解学习函数文档
+![[Pasted image 20231206082132.png]]
+阅读文档的关键看懂函数头。许多内容会因为时代的进步而改变 。下面是UNIX文档中的fread()的描述
+```C
+#include <stdio.h>
+fread(ptr,sizeof(*ptr),nitems,stream)
+FILE * stream;
+```
+fread()函数给出了应该包含的文件但是没有给出它们的类型
+![[Pasted image 20231206082659.png]]
+后来变成了这样
+```C
+#include <stdio.h>
+int fread(ptr,size,nitems,stream;)
+char *ptr;
+int size,nitems;
+FILE * stream;
+```
+现在所有类型都显式说明，ptr作为指向char的指针。
+==ANSI C90标准：==
+```C
+#include <stdio.>
+size_t fread(void *ptr,size_t size,size_t nmemb,FILE *stream);
+```
+首先使用了新的函数原型格式，其次使用了size_t类型，==它是被定义为sizeof运算符的返回值类型----无符号类型，通常是unsigned int或unsigned long。==许多函数都要使用sizeof运算符，形式参数的size_t类型正好匹配这个情况。
+另外，ANSI C把==指向void的指针作为一个通用指针==，用于指针指向不同类型的情况。面对各种类型也是轻轻松松。不会冲突。
+C99/C11标准加入了新==关键字restric:==
+```C
+#include <stdio.>
+size_t fread(void * restric ptr,size_t size,size_t nmemb,FILE * restric stream);
+```
+### 数学库
+math.h头文件包含提供这些函数原型。
+![[Pasted image 20231206083713.png]]
+#### 三角问题
+我们可以使用数学解决，（x,y）坐标的角度和长度问题。例如求一个线在平面直角坐标系中的大小和角度
+![[Pasted image 20231206084101.png]]
+数学库提供一个平方根函数和一对反正切函数，所以可以用C解决这个问题。==平方根函数是sqrt(),接受一个double类型的参数，并以double类型返回参数的平方根。==
+==atan()函数接受一个double类型的参数（正切值），并返回一个角度（该角度就是正切的值即参数的值）==。但是当x和y的值均为-5时，atan()函数会产生混乱。因为(-5)/(-5)得1，所以atan()返回45度，该x和y值均为5时的返回值也相同。atan()函数无法区分角度相同相反的线。（==atan()返回的值单位是弧度不是度==。）
 
 
 
@@ -7664,7 +9152,7 @@ void readbook(void) { //打印整个book.bat的库存
 |           |          |           | 变量名\-- |           |           |
 +-----------+----------+-----------+-----------+-----------+-----------+
 |           | \*       | 取        | \         |           |           |
-|           |          | 值运算符  | *指针变量 |           |           |
+|           |          | 值运算符  | * 指针变量 |           |           |
 +-----------+----------+-----------+-----------+-----------+-----------+
 |           | &        | 取地      | &变量名   |           |           |
 |           |          | 址运算符  |           |           |           |
@@ -7713,7 +9201,7 @@ void readbook(void) { //打印整个book.bat的库存
 |           |          |           | \<=表达式 |           |           |
 +-----------+----------+-----------+-----------+-----------+-----------+
 | 7         | ==       | 等于      | 表达式    | 左到右    | 双        |
-|           |          |           | ==表达式  |           | 目运算符  |
+|           |          |           | = =表达式  |           | 目运算符  |
 +-----------+----------+-----------+-----------+-----------+-----------+
 |           | ！=      | 不等于    | 表达式!=  |           |           |
 |           |          |           | 表达式    |           |           |
@@ -7943,8 +9431,9 @@ return 0;
 #字符输入函数 **getchar()**
 
 一次只接收一个字符，如果是whlie循环，就可以一个一个接受了
+```C
 
-#include \<stdio.h\>
+#include <stdio.h>
 
 int main()
 
@@ -7955,7 +9444,7 @@ char ch;
 ch = getchar();
 //程序等待用户输入，但用户按下某个键的时，变量ch就得到了该键的代码值
 
-printf(\"ch=%c,ch = %d\",ch,ch);
+printf("ch=%c,ch = %d",ch,ch);
 
 return 0;
 
@@ -7963,7 +9452,7 @@ return 0;
 
 密码检查
 
-#include \<stdio.h\>
+#include <stdio.h>
 
 main()
 
@@ -7971,17 +9460,17 @@ main()
 
 int ret = 0;
 
-char password\[20\] = \"0joijojoihun\";
+char password\[20\] = "0joijojoihun";
 
-printf(\"input passwd:\");
+printf("input passwd:");
 
-scanf_s(\"%s\", &password,10);
+scanf_s("%s", &password,10);
 
-printf(\"%s\\n\", password);
+printf("%s\n", password);
 
 int ch = 0;
 
-while ((ch = getchar()) != \'\\n\') //死循环读走所有字符，直到\\n就停止
+while ((ch = getchar()) != '\n') //死循环读走所有字符，直到\n就停止
 
 {
 
@@ -7989,27 +9478,28 @@ while ((ch = getchar()) != \'\\n\') //死循环读走所有字符，直到\\n就
 
 }
 
-printf(\"输入（Y/N）确认/返回\");
+printf("输入（Y/N）确认/返回");
 
 ret = getchar();
 
-if (ret == \'Y\')
+if (ret == 'Y')
 
 {
 
-printf(\"确认成功\");
+printf("确认成功");
 
 }
 
 else {
 
-printf(\"返回成功\");
+printf("返回成功");
 
 }
 
 return 0;
 
 }
+```
 
 运行如图#只会读取第一个键
 
@@ -8546,7 +10036,7 @@ return 0;
 
 }
 
-static 是修饰局部变量，延长局部变量的生命周期，使它可以走出局部
+==static 是修饰局部变量==，延长局部变量的生命周期，使它可以走出局部
 
 static修饰全局变量，会改变全局变量的作用域，只能在原文件内部，出来就不能使用了
 

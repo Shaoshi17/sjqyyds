@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "sjqyyds17/编程学习/C语言.md",
+                "file": "sjqyyds17/编程学习/语言脚本/C语言.md",
                 "mode": "source",
                 "source": false
               }
@@ -48,8 +48,8 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "http://www.hiencode.com/playfair.html",
-                "matchingCase": false,
+                "query": "",
+                "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "sjqyyds17/编程学习/C语言.md",
+                "file": "sjqyyds17/编程学习/语言脚本/C语言.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "sjqyyds17/编程学习/C语言.md",
+                "file": "sjqyyds17/编程学习/语言脚本/C语言.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "sjqyyds17/编程学习/C语言.md"
+                "file": "sjqyyds17/编程学习/语言脚本/C语言.md"
               }
             }
           }
@@ -135,7 +135,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -151,19 +152,20 @@
   },
   "active": "7da842d4a5122bb4",
   "lastOpenFiles": [
-    "sjqyyds17/附件/C语言/media/Pasted image 20231130193241.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231130160359.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231130154040.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231130153555.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231130151349.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231130112010.png",
-    "sjqyyds17/高职/高三学期推荐的学习路线规划.md",
+    "sjqyyds17/Obsidian软件安装插件推荐：.md",
+    "sjqyyds17/编程学习/语言脚本/C语言.md",
     "sjqyyds17/编程学习/C语言.md",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231130092821.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231130084259.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231130083808.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231129145022.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231129083659.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231206084342.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231206084334.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231206084101.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231206083713.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231206082659.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231206082132.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231206081811.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231206081456.png",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231206080343.png",
+    "sjqyyds17/高职/高三学期推荐的学习路线规划.md",
+    "sjqyyds17/附件/C语言/media/Pasted image 20231205201328.png",
     "sjqyyds17/编程学习/8086汇编语言.md",
     "sjqyyds17/高职/2023国赛新赛题总结.md",
     "Pasted image 20231125084245.png.md",
@@ -192,7 +194,6 @@
     "sjqyyds17/编程学习/Python语言.md",
     "sjqyyds17/编程学习/未命名.md",
     "未命名.md",
-    "sjqyyds17/Obsidian软件安装插件推荐：.md",
     "sjqyyds17/编程学习/python基本操作.md",
     "sjqyyds17/编程学习/shell骚操作.md",
     "sjqyyds17/编程学习/PHP代码审计.md",
