@@ -9220,7 +9220,792 @@ void aig(void) {
 ![[Pasted image 20231206111339.png]]
 可以输出多种报错信息，即使不调用exit()也会使用atexit()函数因为==main()主函数退出的时候会调用exit();==
 ##### exit()函数用法
-exit()函数执行完atexit()指定的函数中，
+exit()函数执行完atexit()指定的函数中，会完成清理工作：刷新所有输出流，关闭所有文件流和关闭由标准I/O函数tmpfile()创建临时文件。然后exit()把控制权返回给主机环境，如果可能的话，向主机报告中职状态。
+![[Pasted image 20231206113304.png]]
+#### qsort()函数
+对于较大型数组而言：“快速排序”方法是最有效的排序算法之一。它的操作是：把数组不断分成更小的数组直至元素，然后把数组分成两部分，==一部分小于另一部分的值，这个过程一直执行到数组完全排序好为止==。
+快速排序算法在C语言的名称是qsort().qsort()函数排序数组对象原型如下：
+```C
+void qsort(void *base,size_t nmemb,size_t size,int (*compar)(const void *,const void *));
+```
+第一个参数是==指向待排序数组的首元素==毋庸置疑又是，通用指针，。ANSI C允许指向任何类型的指针强行转换成指向void的指针，因此qsort()的==第一个实际参数可以指向任何类型的数组==。
+==第二个参数是待排序项的数量==。函数原型把该值转换为size_t类型，前面提到过size_t定义在标准头文件中，是siezof运算符返回整型类型，
+由于第一个参数把然后类型的指针强行转换成了void指针，导致并不知道，数组的每个各元素的大小。为此==第三个==参数补偿这个缺失，显示==指明了待排序的数组中每个元素的大小==，如果是double类型就是sizeof(double)
+最后一个类型就是指向函数的指针，这个被指向的指针用于确定排序顺序。该函数接收两个参数：分别指向比较两项的指针。==如果第一项大于第二项，比较函数返回正数==如果相同放回0，如果第一项小于第二项返回负数。
+qsort()根据给定其他信息计算出两个指针的值，然后传递给函数。
+![[Pasted image 20231206145255.png]]
+```C
+#include <stdio.h>
+#include<stdlib.h>
+#define LEN 40
+void red(double ar[], int n); //生成随机浮点数
+void show_nm(double ar[], int n); //打印浮点数
+int mycomp(const void* p1, const void* p2);//给double类型排序
+main() {
+	double vals[LEN];
+	red(vals, LEN);
+	puts("随机浮点数：\n");
+	show_nm(vals, LEN);
+	qsort(vals, LEN, sizeof(double), mycomp);
+	puts("\n排序后的浮点数：\n");
+	show_nm(vals, LEN);
+	return 0;
+
+}
+int mycomp(const void* p1, const void * p2) {
+	//强制类型转换，使用double访问这两个值
+	const double* a1 = (const double *) p1;
+	const double* a2 = (const double *) p2;
+	if (*a1 > *a2)
+		return 1;
+	else if (*a1 == *a2)
+		return 0;
+	else return -1;
+}
+
+void red(double ar[], int n) {
+	for (int i = 0; i < n; i++) {
+		ar[i] = (double)rand() / ((double) rand() + 0.1);
+	}
+}
+void show_nm(double ar[], int n) {
+	for (int i = 1; i < n; i++) {
+		printf("%9.4f", ar[i]);
+		if(i%7==0&&n>0){
+			putchar('\n');
+		}
+	}
+}
+```
+![[Pasted image 20231206151457.png]]
+只要按照它最后一个程序走就可以了，对p1和p2排序。
+##### qsort()的用法
+和前面一样就不赘述了
+![[Pasted image 20231206151621.png]]
+##### mycom()定义
+前面提到过qsort()函数的比较函数形式
+```C
+int (*compar)(const void *,const void *)
+```
+这表明qsort()最后一个参数是指向函数的指针，该函数返回int类型的值且接收两个const void的指针作为参数。
+==记住，当函数名做参数的时候，函数名就是指向函数的指针==。
+```C
+	const double* a1 = (const double *) p1;
+	const double* a2 = (const double *) p2;
+```
+这里把两个带比较的元素地址传递给p1,p2注意为比较指向的值必须用解引用指针。因为值是double类型，所以要把指针==解引用为double类型的值==。
+![[Pasted image 20231206152227.png]]
+##### 注意C和C++的void*
+![[Pasted image 20231206152250.png]]
+下面再来看看例子。
+```C
+struct names {
+	char first[40];
+	char list[40];
+};
+struct names staff[100];
+```
+调用qsort()应该是这样：
+```C
+qsort(staff,100,sizeof(struct names),comp);
+```
+这里的comp应该这样写：
+```C
+int comp(const void *p1,const void*p2){
+		//这里的类型一定要对。
+	const struct names *a1=(const struct names *) p1;
+	const struct names *a2=(const struct names *) p2;
+	int sum=strcmp(a1->last,a2->last);
+	if(sum!=0)
+		return sum;
+	else         //姓相同判断名
+		sum=strcmp(a1->first,a2->first);
+	return sum;
+}
+```
+### 断言库
+assert.h头文件支持的断言库是一个辅助调试程序的小型库。它由assert.h宏组成，接受一个整数表达式作为参数。==如果表达式求值为假（非零），assert.h()宏在标准错误流(stderr)中输入一条错误信息==，并调用abort()函数终止程序。
+assert()宏是为了标识出程序中某些条件为真的关键位置，如果起其中一个条件为假，就终止程序。
+==如果aseert()终止了程序会显示失败的测试，包含测试的文件名和行号。==
+![[Pasted image 20231206153858.png]]
+#### assert用法
+```C
+#include <stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+
+main() {
+	int a = 0;
+	assert(a >0 );
+	return 0;
+}
+
+```
+![[Pasted image 20231206154259.png]]
+看起来很弱鸡但是，使用assert有好处：它不仅自动标识文件和出问题的行，还有一种无需更改代码就能开启或关闭assert()的机制。==如果认为已经排查了bug，可以在宏定义写在包含assert.h的位置前面：#define NDEBUG
+并重新编译程序，这样编译器就会警用文件中的所有assert()语句。如果有问题就移出这个宏==。
+```C
+#include <stdio.h>
+#include<stdlib.h>
+#define NDEBUG //移出所有assert()语句
+#include<assert.h>
+
+main() {
+	int a = 0;
+	assert(a >0 );
+	return 0;
+
+}
+
+
+```
+没有报错
+![[Pasted image 20231206154907.png]]
+#### _ Static_assert (C11)
+assert()表达式是在运行的时候进行检查。而_ Static_assert()可以在编译的时候检查assert()表达式，导致无法通过编译。
+_ Static_assert()可以接受两个参数。第一个参数是整型常量表达式，第二个是一个字符串。如果第一个为0，编译器就会显示字符串，而不编译该程序。
+```C
+#include <stdio.h>
+#include<limits.h>
+_Static_assert(CHAR_BIT==16, "16-bit");
+int main() {
+        return 0;
+}
+
+```
+![[Pasted image 20231206160644.png]]
+![[Pasted image 20231206160714.png]]
+### string.h库中的memcpy()和memmove()
+不能把一个数组赋值给另一个数组，所以只能通过循环把数组的每个元素赋给另一个相对应的元素。
+有个例外，用strcpy()和strncpy()函数来处理字符串数组。==memcpy()和memmove()函数提供类似的方法处理任意类型数组。==
+函数原型：
+```C
+void *memcpy(void *restrict s1,const void*restrict s2,size_t n);
+void *memmover(void *s1,const void *s2,size_t n);
+```
+这两个函数都是从s2指向的位置拷贝n字节到s1指向的位置，而且都返回s1的值。不同的是memcpy()
+![[Pasted image 20231206163626.png]]
+```C
+#include <stdio.h>
+#include<string.h>
+#define SIZE 40
+void show_i(const int ar[], int n);
+main() {
+	int value[SIZE] = { 1,2,3,4,6,6,7,8,9,9,4,4 };
+	int tagen[SIZE];
+	int sagen[SIZE];
+	show_i(value, SIZE);
+	memcpy(tagen, value, SIZE * sizeof(int));
+	putchar('\n');
+	show_i(tagen, SIZE);
+	memmove(sagen, value, SIZE * sizeof(int));
+	putchar('\n');
+	show_i(sagen, SIZE);
+	return 0;
+}
+void show_i(const int ar[], int n) {
+	for (int i = 0; i < n; i++) {
+		printf("%d ", ar[i]);
+	}
+}
+```
+![[Pasted image 20231206165435.png]]
+### 可变参数：stdarg.h
+之前学过可变参数宏，即该宏有接受可变数量的参数。stdarg.h 头文件为函数提供了一个类似的功能，但是用法复杂。必须按下面步骤：
+- [ ] 提供一个使用省略号的函数原型；
+- [ ] 在函数定义中创建一个va_list类型的变量；
+- [ ] 用宏把该变量初始化一个参数列表
+- [ ] 用宏访问参数列表
+- [ ] 用宏完成清理工作
+分析步骤，函数原型有形参列表，和省略号至少有一个形参：
+```C
+void f1(int n,...);    //有效
+int f2(const char *s,int k,...); //有效
+char f3(char c1,...char c2);    //无效省略号不在后面
+double f4(...);          //无效没有形参
+```
+![[Pasted image 20231206183737.png]]
+```C
+f1(2,200,100);
+f2(4,12,14,14,52);
+```
+==前面第一个形参存放的是省略号部分代表的参数数量==。
+接下来，声明在stdarg.h中的==va_list类型代表一种用于存储形参对应的形参列表中省略号部分的数据对象 。==
+```C
+double sum(int lim,...){
+	va_list ap;   //声明一个存储参数的对象
+}
+```
+该例子中lim是parmN形参，它表明变参列表中的数量。
+然后，该函数将使用的定义在stdarg.h中的va_start()宏，==把参数列表拷贝到va_list类型的变量==中。该宏有两个参数，一个是va_list类型的变量额parmN形参。va_list的变量是ap。所以可以这样调用它
+```C
+va_start(ap,lim);  //把ap初始化为参数列表
+```
+下一步就是==访问参数列表中的内容==，这设计使用另一个宏va_arg()。该宏接受两个参数：一个va_list类型的变量和一类型名。第一次调用va_arg()时，它返回参数列表的第一项；第二次调用返回第二项。以此类推。
+```C
+int tic;
+doube toc;
+...
+tic=va_arg(ap,int);  //检索第一个参数
+toc=va_arg(ap,double); //检索第二个参数
+```
+如果类型出了问题是不会自动转换类型的，而是直接报错。
+==最后要使用va_end()清零工作==和释放内存一样。该宏接收一个va_list类型的变量。
+```
+va_end(ap); //清理工作
+```
+![[Pasted image 20231206190654.png]]
+va_copy()，接受两个va_list类型的变量作为参数。把第二个拷贝给第一个。
+```C
+va_list ap;
+va_list aps;
+double tic;
+int tic;
+....
+va_start(ap,lim);
+va_copy(aps,ap);
+tic=va_age(ap,double);
+tic=va_age(ap,int);
+va_end(ap); //就算删除了ap也可以从aps中检索出来
+```
+演示：
+```C
+#include<stdio.h>
+#include<stdarg.h>
+int sum(int, ...);
+main() {
+	int a = sum(6, 1, 3, 4, 5, 12, 2);
+	printf("%d", a);
+}
+int sum(int lim, ...) {
+	va_list ap;    //声明一个va_list类型的变量，用来存储对象
+	va_start(ap,lim);  //把ap初始化为参数列表
+	int sum = 0;
+	for (int i = 0; i < lim; i++) {
+		sum += va_arg(ap, int);  //调用里面的值
+	}
+	va_end(ap);
+	return sum;
+}
+
+```
+总而言之，使用变参函数比使用变参宏函数更加复杂，但是范围更广。
+### 关键概念
+C语言标准不仅仅描述C语言，还描述C语言的库和软件包，预处理器。
+### 小结
+C预压处理器和C库是C语言重要的两个附件。C预处理器遵循预处理器指令，在编译代码之前调用整个源代码。C库提供许多帮助函数，有助有完成各种任务。包括输入输出，文件处理，内存管理，排序搜索，数学运算，字符串处理等。
+## 高级数据表示
+![[Pasted image 20231206192315.png]]
+本章教我们提高到高层次，把项目看成一个整体。
+
+我们先从程序设计的关键部分，即程序 ==的方式开始==。通常，程序开发的重要就是找到程序中表示数据的最好方法。正确的表示数据可以更容易的编写程序的其他内容。我们现在应该很熟悉，内置类型：简单变量，数组，指针，结构和联合;
+然而，找出正确的数据表示不仅仅是选择一种数类型，还要考虑必须进行的那些操作。==也就是说，必须确定的类型可以完成有效的操作==。例如，把int和指针都存储为整型但是这两种类型的==有效操作不相同==，int整数可以像乘，而两个指针不可以相乘。可以用解引用运算符，但是对整数毫无意义。==设计一种数据类型包括设计如何存储数据类型和设计一套管理该数据的函数。==
+### 研究数据表示
+我们先从数据开始。假设要创建一个地址簿程序，要考虑方方面面。
+![[Pasted image 20231206211540.png]]
+![[Pasted image 20231206211610.png]]
+我们来处理一个实例：![[Pasted image 20231206211829.png]]
+```C
+#include<stdio.h>
+#include<string.h>
+#define TSIZE 45 //存储片名的数组大小
+#define FMAX 5  //影片的最大数量
+#define eat_ling while(getchar()!='\n')continue;
+typedef struct film {
+	char title[TSIZE]; //片名等
+	float rating;   //评分
+}films;
+int main() {
+	films movies[FMAX];
+	int i = 0;
+	while (i<5&&gets(movies[i].title) != NULL && movies[i].title[0] != '\0') {
+		scanf("%f", &movies[i].rating);
+		eat_ling;
+		i++;
+	}
+	for (int a = 0; a < i; a++) {
+		printf("片名：%s,评分：%.2f\n", movies[a].title, movies[a].rating);
+	}
+	return 0;
+
+}
+
+
+```
+该程序创建一个结构数组，判断影片如果大于5就退出，或者按下换行，终端。
+这样的程序有很大的问题，首先有些电影名字很长，而且有些人一年看500多部电影也是有可能的，这样太局限，分配的内存不合理。
+	该程序数据表示不太灵活，应该在编译时确定所需的内存量，运行时候确定更好。
+	解决这个问题就要使用动态内存分配：
+	使用malloc()就可以推迟到程序运行时确定，那样就不会浪费和少存储空间了。
+```C
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define TSIZE 45 //存储片名的数组大小
+#define FMAX 5  //影片的最大数量
+#define eat_ling while(getchar()!='\n')continue;
+ struct film {
+        char title[TSIZE]; //片名等
+        float rating;   //评分
+};
+int main() {
+        struct film*movies;
+        int i = 0,n;
+        scanf("%d", &n);
+        movies = (struct film*)malloc(n * sizeof(struct film));
+        while (i < 5 && gets(movies[i].title) != NULL && movies[i].title[0] != '\0') {
+                scanf("%f", &movies[i].rating);
+                eat_ling;
+                i++;
+        }
+        for (int a = 0; a < i; a++) {
+                printf("片名：%s,评分：%.2f\n", movies[a].title, movies[a].rating);
+        }
+        return 0;
+
+}
+
+```
+### 从数组到链表
+但是最理想的情况当然是不需要一开始确定多少部影片，也能分配多余的内存空间。
+可以通过在输入每一项调用一次malloc()分配空间，写3部就调用3次malloc()。
+使用malloc()一次性分配300个空间和使用malloc()分配300次。
+
+若干是一次性分配的内存块就可以很好的访问到，==使用简单的数组表示一下，就可以访问到每个结构==。
+而分配300次意为着内存可能不是连续的，==需要用300个指针接收==，每个指针指向单独存储结构。
+![[Pasted image 20231207085032.png]]
+这个解决办法也有就是把==每个指针在分配的时候存到一个大的指针数组里面==。但是先不用这个方法。
+```C
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define TSIZE 45 
+#define FMAX 500 
+#define eat_ling while(getchar()!='\n')continue;
+struct film {
+    char title[TSIZE]; //片名等
+    float rating;   //评分
+};
+int main() {
+    struct film* movies[FMAX];
+    int i = 0, n;
+    eat_ling;
+    for (int i = 0; i < FMAX; i++) {
+        movies[i] = (struct film*)malloc(sizeof(struct film));
+    }
+    return 0;
+
+}
+```
+尽管如此，节约了大量内存，==因为500个指针数组比内含500个结构数组占用的少的多==。如果用不到500个也是浪费，而且还有500的限制。
+
+还有一种更好的方法。==每次使用malloc()为新结构分配空间的时候，也需要为新指针分配空间。但是还需要一个指着跟踪新分配的空间用于跟踪的新指针的指针本身，也需要一个指针来跟踪==。以此类推。要重新定义一个结构才能解决这个潜在的问题，即每个结构都包含指向next结构的指针，然后当创建新的结构式时，可以把该结构地址村存在上一个结构中。修改一下film结构
+```C
+struct film{
+	char title[TSIZE];
+	int raing;
+	struct film*next;
+};
+```
+虽然结构不能包含于本身类型相同的结构，但是==可以包含和同类型的指针==。这种定义就是定义链式表的基础，链表中的每一项都包含在何处找到下一项的信息。
+
+学习链表之前先理解链表的概念。
+![[Pasted image 20231207093316.png]]
+第一个是把next成员指针设置为NULL.
+要单独定义一个指针叫==头指针==，代表链式的第一项。
+![[Pasted image 20231207093354.png]]
+如果有连续的就会把前面的NULL擦拭，换成现在新结构的地址。然后再把第二个结构的next成员指针设置为NULL,表明是链表最后一个结构。
+![[Pasted image 20231207093441.png]]
+![[Pasted image 20231207093627.png]]
+每加入一部新电影就，以相同的方式来处理。新结构地址就会存储在上一个结构中，新信息存储在新结构，而新结构中的next成员就设置为NULL。
+![[Pasted image 20231207093756.png]]
+假如要显示这个链表的每一项，就可以根据每个项存储地址来定位下一个待显示的项。这时候就要使用上头指针。
+#### 使用链表
+既然我们理解了链表我们这就来实现它。
+```C
+#include<string.h>  //提供strcpy()原型
+#include<stdio.h>   //
+#include<stdlib.h>  //提供malloc()原型
+#define TSIZE 45    //片名数组大小
+#define eat_line while(getchar()!='\n')continue;  //清理空格
+
+typedef struct film {
+	char title[TSIZE];
+	int rating;
+	struct filme* next;   //指向链表中的下一个结构
+}films;
+void show_film(films* head);   //打印链式结构内容
+void eat_film(films* head);    //清理链式结构内容
+int main(void) {
+	films* head = NULL;      //定义头指针
+	films*prev=NULL,* current;
+	char input[TSIZE];		//占存片名
+	puts("输入片名之类的信息：\n");
+
+	while (gets(input) != NULL && input[0] != '\0') {   //收集存储信息
+		current = (films*)malloc(sizeof(films));
+		if (head == NULL)
+			head = current;   //第一个结构
+		else                  
+			prev->next = current;  //后续结构
+		current->next=NULL;
+		strcpy(current->title, input);  //把暂存片名存储到结构中
+		puts("输入评分：\n");
+		scanf("%d", &current->rating);
+		eat_line;                //清理空格
+		puts("退出按回车：\n");
+		prev = current;   
+	}
+	show_film(head);
+	eat_film(head);
+}
+
+void show_film(films* head) { 
+	while (head != NULL) {
+		printf("片名：%s,评分：%d\n", head->title, head->rating);
+		head = head->next;
+	}
+
+}
+
+void eat_film(films* head) {
+	films* current=NULL;
+	while (current != NULL) {
+		current = head;
+		head = current->next;
+		free(current);
+	}
+	puts("清理完成：\n");
+}
+```
+##### 显示链表
+显示链表从设置一个头指针，也就是指向第一个结构。
+```
+current=head;
+```
+然后使用指针访问链表结构成员：
+```
+printf("片名：%s,评分：%d\n", current->title, current->rating);
+```
+下一步是根据存储在结构中的next成员中的信息，==重新设置current指向链表的下一个结构==。
+```
+current=current->next;
+```
+完成这些任务，在重复整个过程。当显示到最后一个项的时候，current将被设置为NULL，因为链表中最后一个结构next成员的值就是NULL;
+##### 创建链表
+创建链表三步：
+- [ ] 使用malloc()分配足够的空间
+- [ ] 存储结构的地址
+- [ ] 把当前信息存储在结构中
+无不必要就不要创建结构，这个程序就是创建了零时的存储空间（input）数组获取电影名，然后此时按下回车将退出循环：
+```
+while (gets(input) != NULL && input[0] != '\0') 
+```
+如果用户输入就创建一个结构，分配好空间并把地址赋值给current：
+```
+current = (films*)malloc(sizeof(films));
+```
+链表的第一个结构地址存储在head中其他链式结构的存储在上一个结构的next中。因此要判断第一个结构。最简单方法就是在一开始给head初始化为NULL就可以通过值来判断出来了。
+```C
+if (head == NULL)
+	head = current;   //第一个结构
+else                  
+	prev->next = current;  //后续结构
+```
+上面代码中prev->next指向上一个分配的结构
+接下来就是把成员的值都填入进去。尤其是把next设置为NULL，表明当前结构是链表的最后一个结构。然后把input的值拷贝到title成员中，在写入值给rating成员。
+```C
+current->next=NULL;
+strcpy(current->title, input);  //把暂存片名存储到结构中
+puts("输入评分：\n");
+scanf("%d", &current->rating);
+```
+最后最关键一步，为下次输入做好准备。把设置的prev指向当前结构。因为下次用户输入的值将会填满current，当前结构会成为上一个结构，所以程序要在循环末尾这样设置指针。
+```
+prev=current;
+```
+##### 释放列表
+在许多环境中程序结束都会自动释放malloc()分配的内存。但是最好还是调用malloc()和free()。因此程序在清理内存时为每个已经分配的结构都调用了free()函数;
+```C
+void eat_film(films* head) {
+	films* current=NULL;
+	while (current != NULL) {
+		current = head;
+		head = current->next;
+		free(current);
+	}
+	puts("清理完成：\n");
+}
+```
+#### 反思
+![[Pasted image 20231207110205.png]]
+### 抽象数据类型（ADT）
+![[Pasted image 20231207110348.png]]
+什么是类型？类型特指两类信息：==属性和操作==。例如int类型的属性是他代表一个整数数值，因此它共享整数的属性。允许对int类型进行算术操作：改变类型的符号，两个int类型相加减乘除等等，==所以当声明一个int类型的变量时候，就表明了这个变量的只能做这些操作==。
+###### 整数属性
+![[Pasted image 20231207112920.png]]
+计算机科学领域已经开发一种定义新类型的好方法，三个步骤从抽象到具体的过程。
+- [ ] 提供类型属性和相关操作的抽象描述。描述不依赖特定实现，和语句，这种正式的抽象描述被称为==抽象数据类型（ADT）==
+- [ ] 开发一个实现ADT的编程接口。 指明如何存储数据和执行所需操作的函数。
+- [ ] 编写代码实现接口。
+#### 建立抽象
+![[Pasted image 20231207120805.png]]
+- [ ] 类型名：简单列表
+- [ ] 类型属性：可以存储一系列项
+- [ ] 类型操作：初始化列表为空
+- [ ] 确定链表为空
+- [ ] 确定链表为满
+- [ ] 确定链表中的项数
+- [ ] 遍历链表，处理链表中的项
+- [ ] 清理链表
+下一步就是开发简单链表的ADT开发一个C接口
+#### 建立接口
+这个简单链表的接口有两个部分，一个是如何描述数据，第二个是如何实现ADT操作的函数。
+接口设计尽量于ADT的描述一致。应该用通用类型不是特殊类型，如int或struct film或者C的typedef功能定义所需的==Item==类型。
+```C
+#define TSIZE 45
+typedef struct film {
+	char title[TSIZE];
+	int rating;
+}Item ;
+
+```
+这样需要使用直接用Item来定义，不允许动接口定义。如果需要其他形式的链表也可以重新定义Item类型不需要改接口定义。
+定义了Item之后，现在需要确定然后存储这种类型的项。
+```C
+typedef struct node{
+	Item item;
+	struct node *next;
+}Node;
+typedef Node * List;
+```
+在链表实现中，每个链表叫做节点。每个节点包含形成链表的内容的信息和指向下一个节点的指针。为了强调这个操作我们把node作为节点的结构的标记名。然后定义一个链表的开始指指针，我们使用typedef把List作为该类型的指针名。因此，下面声明：
+```
+List movies;
+```
+创建了该链表的指针movies;
+添加一个记录变量项数：
+```C
+typedef struct list
+{
+	Node *head;
+	int size;   //链表的项数
+}List; //List的另一种定义
+```
+![[Pasted image 20231207150132.png]]
+使用InitializeList()函数初始化链表也不需要知道里面的细节，这个叫做==数据隐藏==，==数据隐藏是一种编程的更高层次隐藏数据表示的细节艺术。==
+为了引导用户使用，可以在函数原型多做些注释。
+![[Pasted image 20231207150500.png]]
+C语言把所有类型和函数的信息集合成一个软件包的方法：==把类型定义函数原型（包括注释）放在一个头文件里。该文件提供程序员使用的所有信息。==
+在文件头将函数名的每个单词的首字母大写之类的区分函数是接口包的一部分。还可以用上之前学的#ifndef指令防止重复包含一个文件。
+![[Pasted image 20231207151211.png]]
+![[Pasted image 20231207151153.png]]
+这里使用的函数都是用指针当形参，如果不==尽量统一形参==的话，用户会困惑。
+![[Pasted image 20231207151432.png]]
+#### 使用接口
+先写一个伪代码![[Pasted image 20231207151555.png]]
+```C
+#include<stdio.h>
+#include<stdlib.h>
+#include"List.h"
+void showmovies(Item item); //打印内容
+int main(void) {
+	List movies;
+	Item temp;
+	//初始化
+	InitializeList(&movies);
+	if (ListIsFull(&movies)) {
+		fprintf(stderr, "没有可用的内存\n");
+		exit(1);
+	}
+	//获取用户输入并存储
+	puts("输入片名：\n");
+	while (gets(temp.title) != NULL && temp.title[0] != '\0') {
+		puts("输入1-10的整数评分：\n");
+		scanf("%d", &temp.raing);
+		while (getcahr() != '\n')continue; //gets()和scanf()使用尤其要注意换行
+		if (AddItem(temp, &movies) == false) {
+			fprintf(stderr, "内存分配问题\n");
+			break;
+		}
+		if (ListIsFull(&movies)) {
+			puts("满了：\n");
+			break;
+		}
+		puts("输入回车退出:\n");
+
+	}
+	//显示
+	if (ListIsEmpty(&movies))
+		puts("没有数据\n");
+	else {
+		puts("电影列表如下：\n");
+		Traverse(&movies, showmovies);
+	}
+	printf("你一共录入了%d部电影\n", ListItemCount(&movies));
+	//清理
+	EmptyTheList(&movies);
+	puts("退出\n");
+	return 0;
+
+}
+void showmovies(Item item) {
+	printf("电影名字:%s,电影评分:%d\n", item.title, item.raing);
+}
+
+```
+#### 实现接口
+当然我们要来实现List接口。C方法是把函数定义在list.c文件中。然后整个程序由list.h(定义数据结构和提供用户接口的原型)list.c(提供函数代码实现接口)和film.c(把链表接口应用于特定的编程问题和源代码文件)组成。
+list.h
+# 停更：应为下面的都比较面对对象用户，相当于在写软件包一样，讲的一些算法也比较繁琐，不如自己单独学习算法来的实在。
+
+```
+#ifndef LIST_H_ 
+#define LIST_H_ //以防重复包含
+#include<stdbool.h>
+#define TSIZE 45 
+typedef struct fim {
+	char title[TSIZE];
+	int raing;
+}Item;
+typedef struct node {
+	Item item;
+	struct node* next;
+}Node;
+typedef Node* List;
+
+
+void InitializeList(List* plist);
+bool ListIsEmpty(const List* plist);
+bool IistIsFull(const List* plist);
+unsigned int ListItemCount(const List* plist);
+bool AddItem(Item item, List* plist);
+void Traverse(const	List* plist, void(*pfun)(Item item));
+//清空
+void EmptyTheList(List* plist);
+
+
+
+
+#endif
+
+
+```
+
+```
+#include<string.h>  //提供strcpy()原型
+#include<stdio.h>   //
+#include<stdlib.h>  //提供malloc()原型
+#define TSIZE 45    //片名数组大小
+#define eat_line while(getchar()!='\n')continue;  //清理空格
+
+typedef struct film {
+	char title[TSIZE];
+	int rating;
+	struct filme* next;   //指向链表中的下一个结构
+}films;
+void show_film(films* head);   //打印链式结构内容
+void eat_film(films* head);    //清理链式结构内容
+int main(void) {
+	films* head = NULL;      //定义头指针
+	films*prev=NULL,* current;
+	char input[TSIZE];		//占存片名
+	puts("输入片名之类的信息：\n");
+
+	while (gets(input) != NULL && input[0] != '\0') {   //收集存储信息
+		current = (films*)malloc(sizeof(films));
+		if (head == NULL)
+			head = current;   //第一个结构
+		else                  
+			prev->next = current;  //后续结构
+		current->next=NULL;
+		strcpy(current->title, input);  //把暂存片名存储到结构中
+		puts("输入评分：\n");
+		scanf("%d", &current->rating);
+		eat_line;                //清理空格
+		puts("退出按回车：\n");
+		prev = current;   
+	}
+	show_film(head);
+	eat_film(head);
+}
+
+void show_film(films* head) { 
+	while (head != NULL) {
+		printf("片名：%s,评分：%d\n", head->title, head->rating);
+		head = head->next;
+	}
+
+}
+
+void eat_film(films* head) {
+	films* current=NULL;
+	while (current != NULL) {
+		current = head;
+		head = current->next;
+		free(current);
+	}
+	puts("清理完成：\n");
+}
+```
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include"List.h"
+//局部函数原型
+static void CopyToNode(Item item, Node* pnode);
+void InitializeList(List* plist) {  //把链表设置为空
+	*plist = NULL;
+}
+
+bool ListIsEmpty(List* plist) {  //如果链表为空就返回true
+	if (*plist = NULL)
+		return true;
+	else 
+		return false;
+	
+}
+
+bool ListIsFull(const List* plist) {   //如果链表满了就返回true
+	Node* pt;
+	bool full;
+	pt = (Node*)malloc(sizeof(Node));
+	if (pt = NULL)
+		full = true;
+	else
+		full = false;
+	free(pt);
+	return full;
+}
+unsigned int ListItemCount(const List* plist) {   //返回节点数量
+	unsigned int count = 0;
+	Node* pnode = *plist;
+	while (pnode != NULL) {
+		++count;
+		pnode=pnode->next;  //指向下一个节点
+	}
+	return count;
+}
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
