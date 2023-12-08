@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "3c4392221d0ecd5d",
+        "id": "d76cc4593161005b",
         "type": "tabs",
         "children": [
           {
-            "id": "7da842d4a5122bb4",
+            "id": "74c890255ecac0c7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "sjqyyds17/编程学习/语言脚本/C语言.md",
+                "file": "sjqyyds17/高职/赛题环境解析.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "bccc0561de1089d1",
@@ -86,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "sjqyyds17/编程学习/语言脚本/C语言.md",
+                "file": "sjqyyds17/高职/赛题环境解析.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "sjqyyds17/编程学习/语言脚本/C语言.md",
+                "file": "sjqyyds17/高职/赛题环境解析.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "sjqyyds17/编程学习/语言脚本/C语言.md"
+                "file": "sjqyyds17/高职/赛题环境解析.md"
               }
             }
           }
@@ -150,54 +149,55 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "7da842d4a5122bb4",
+  "active": "74c890255ecac0c7",
   "lastOpenFiles": [
+    "sjqyyds17/附件/赛题环境解析/media/image15.png",
+    "sjqyyds17/附件/赛题环境解析/media/image14.png",
+    "sjqyyds17/附件/赛题环境解析/media/image7.png",
+    "sjqyyds17/高职/2023国赛新赛题总结.md",
+    "sjqyyds17/高职/靶机渗透思路和感想.md",
     "sjqyyds17/高职/高三学期推荐的学习路线规划.md",
-    "sjqyyds17/编程学习/语言脚本/C语言.md",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231207151555.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231207151432.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231207151211.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231207151153.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231207150500.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231207150132.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231207120805.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231207112920.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231207110348.png",
-    "sjqyyds17/附件/C语言/media/Pasted image 20231207110205.png",
+    "true.md",
+    "去你妈的有道云.md",
+    "sjqyyds17/高职/数据分析.md",
+    "sjqyyds17/附件/数据分析/media/image9.png",
+    "sjqyyds17/附件/数据分析/media/image8.png",
+    "sjqyyds17/附件/数据分析/media/image7.png",
+    "sjqyyds17/附件/数据分析/media/image6.png",
+    "sjqyyds17/附件/数据分析/media/image5.png",
+    "sjqyyds17/附件/数据分析/media/image4.png",
+    "sjqyyds17/附件/数据分析/media/image3.png",
+    "sjqyyds17/附件/数据分析/media/image2.png",
+    "sjqyyds17/附件/数据分析/media",
+    "sjqyyds17/附件/数据分析",
+    "sjqyyds17/高职/渗透.md",
+    "sjqyyds17/附件/渗透/media",
+    "sjqyyds17/附件/渗透",
+    "sjqyyds17/高职/赛题环境解析.md",
+    "sjqyyds17/附件/赛题环境解析/media",
+    "sjqyyds17/附件/赛题环境解析",
+    "sjqyyds17/附件/靶机渗透思路和感想/media",
+    "sjqyyds17/附件/靶机渗透思路和感想",
+    "sjqyyds17/高职/靶机渗透思路和感想.docx",
+    "sjqyyds17/高职/数据分析.docx",
     "sjqyyds17/Obsidian软件安装插件推荐：.md",
+    "sjqyyds17/编程学习/语言脚本/C语言.md",
     "sjqyyds17/编程学习/C语言.md",
     "sjqyyds17/编程学习/8086汇编语言.md",
-    "sjqyyds17/高职/2023国赛新赛题总结.md",
     "Pasted image 20231125084245.png.md",
-    "sjqyyds17/编程学习/~$C语言.docx",
     "sjqyyds17/CTF/Reverse.md",
     "sjqyyds17/CTF/Misc.md",
     "sjqyyds17/CTF/Crypto.md",
     "未命名.canvas",
     "sjqyyds17/CTF/Web.md",
-    "去你妈的有道云.md",
-    "sjqyyds17/高职/D模块.pdf",
     "sjqyyds17/编程学习/Java语言.md",
     "sjqyyds17/编程学习/油猴脚本学习.md",
     "sjqyyds17/高职/Word_Excel.md",
     "sjqyyds17/编程学习/Shell语言.md",
     "sjqyyds17/编程学习/Php语言.md",
-    "sjqyyds17/附件/2023国赛新赛题总结/media",
-    "sjqyyds17/附件/2023国赛新赛题总结",
-    "sjqyyds17/高职/2023国赛新赛题总结.docx",
-    "sjqyyds17/附件/Word_Excel/media",
-    "sjqyyds17/附件/Word_Excel",
-    "sjqyyds17/高职/Word_Excel.docx",
-    "sjqyyds17/高职/Word Excel.docx",
     "sjqyyds17/未命名.canvas",
-    "sjqyyds17/编程学习/~$Java语言.docx",
     "sjqyyds17/编程学习/Python语言.md",
     "sjqyyds17/编程学习/未命名.md",
-    "未命名.md",
-    "sjqyyds17/编程学习/python基本操作.md",
-    "sjqyyds17/编程学习/shell骚操作.md",
-    "sjqyyds17/编程学习/PHP代码审计.md",
-    "sjqyyds17/编程学习/Java基础.md",
-    "sjqyyds17/编程学习/shell快捷命令.md"
+    "未命名.md"
   ]
 }
