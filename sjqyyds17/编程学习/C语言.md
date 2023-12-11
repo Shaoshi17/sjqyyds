@@ -14053,7 +14053,8 @@ return 0;
 
 //例如：153是一个\"水仙花数\"，因为153=1的三次方＋5的三次方＋3的三次方。
 
-#include \<stdio.h\>
+```C
+#include <stdio.h>
 
 main(){
 
@@ -14067,7 +14068,7 @@ main(){
 
         z=i/100%10;
 
-        if(i==(x\*x\*x+y\*y\*y+z\*z\*z)){
+        if(i==(x*x*x+y*y*y+z*z*z)){
 
             printf(\"%d\\n\",i);
 
@@ -14076,6 +14077,7 @@ main(){
     }
 
 }
+```
 
 **判断素数**
 
@@ -14086,7 +14088,8 @@ main(){
 优秀链接[(20条消息)
 C语言判断一个数是否为素数（质数），C语言经典例题计算素数，C语言二级重点_c语言判断素数_程序员-虎哥的博客-CSDN博客](https://blog.csdn.net/Eliauk1234/article/details/121473675)
 
-#include \<stdio.h\>
+```C
+#include <stdio.h>
 
 int main()
 
@@ -14094,27 +14097,28 @@ int main()
 
 int n,i;
 
-printf(\"请输入一个数：\\n\");
+printf("请输入一个数：\n");
 
-scanf(\"%d\",&n);
+scanf("%d",&n);
 
-for(i=2;i\<n;i++)
+for(i=2;i<n;i++)
 
 if(n%i==0)
 
 break;
 
-if(i\<n)
+if(i<n)
 
-printf(\"%d不是素数\\n\",n);
+printf("%d不是素数\\n\",n);
 
 else
 
-printf(\"%d是素数\\n\",n);
+printf("%d是素数\\n\",n);
 
 return 0;
 
 }
+```
 
 **判断语句**
 
