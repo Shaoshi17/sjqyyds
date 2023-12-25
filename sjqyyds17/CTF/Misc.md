@@ -70,7 +70,7 @@ bmp的文件格式
 
 (487248-54)/3=162398
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image1.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image1.png){width="5.760416666666667in"
 height="0.9549759405074366in"}
 
 题目提示图片高度是正确的，所以说要计算宽度、
@@ -243,7 +243,7 @@ HTM文件隐写_黑色地带(崛起)的博客-CSDN博客](https://blog.csdn.net/
 
 用多了就熟练了
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image2.png)
+![截图.png](   Misc/media/image2.png)
 
 **杂**
 
@@ -253,11 +253,11 @@ s=123456
 
 python(s\[::-1\])
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image3.png)
+![截图.png](   Misc/media/image3.png)
 
 文件头有这样的字符就说明有exif信息
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image4.png)
+![截图.png](   Misc/media/image4.png)
 
 **exif信息查看网站**
 
@@ -276,7 +276,7 @@ python(s\[::-1\])
 
 [当检查各个]{.mark}[通道](https://so.csdn.net/so/search?q=%E9%80%9A%E9%81%93&spm=1001.2101.3001.7020)[均未发现异常，常看隐藏东西比较多的最低有效位]{.mark}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image5.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image5.png){width="5.760416666666667in"
 height="4.232306430446195in"}
 
 修改magic number
@@ -316,15 +316,15 @@ print(str.replace(\" \",\"\"))
 
 pcap文件内容是sql手，盲注
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image6.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image6.png){width="5.760416666666667in"
 height="3.2402351268591425in"}
 
 首先导出到文件夹然后调大小（如下因为正确与错误是大小不一样的）
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image7.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image7.png){width="5.760416666666667in"
 height="3.2402351268591425in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image8.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image8.png){width="5.760416666666667in"
 height="3.2402351268591425in"}
 
 **pcap文件提权usb首先用命令将它分离**
@@ -371,7 +371,7 @@ flag.txt]{.mark}
 
 **ftp-data**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image9.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image9.png){width="5.760416666666667in"
 height="4.946832895888014in"}
 
 [3.继续查看数据包文件分析出恶意用户读取服务器的文件名是什么，并将该文件名作为FLAG（形式：\[robots.txt\]）提交；]{.mark}
@@ -380,37 +380,37 @@ height="4.946832895888014in"}
 
 [tcp contains \"load_file\"]{.mark}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image10.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image10.png){width="5.760416666666667in"
 height="2.8405905511811023in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image11.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image11.png){width="5.760416666666667in"
 height="6.427412510936133in"}
 
 7.继续查看数据包文件将恶意用户下载的文件里面的内容作为Flag值（形式：\[文件内容\]）提交。
 
 （一般是跟在一句话木马的密码后面）
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image12.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image12.png){width="5.760416666666667in"
 height="7.15334208223972in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image13.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image13.png){width="5.760416666666667in"
 height="5.6450317147856515in"}
 
 7.继续查看数据包文件Bravo-1.pcapng将Web服务器连接的数据库名作为Flag值提交。
 
 Tcp contains "mysql_elect_db"
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image14.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image14.png){width="5.760416666666667in"
 height="2.1776377952755905in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image15.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image15.png){width="5.760416666666667in"
 height="2.9368132108486438in"}
 
 Flag: [kingsman]{.mark}
 
 1.分析Server8桌面下的Bravo-1.pcapng数据包文件，通过分析数据包Bravo-1.pcapng找出恶意用户目录扫描的第2个目录名，并将该目录名作为Flag值提交;
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image16.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image16.png){width="5.760416666666667in"
 height="1.5812904636920384in"}
 
 分析扫描流量可以看到，扫目录的请求头一般为HEAD，所以
@@ -421,7 +421,7 @@ flag{/uploads}
 
 **telnet登录时候会回显**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image17.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image17.png){width="5.760416666666667in"
 height="1.2539687226596676in"}
 
 ftp找到黑客登录的账号密码（root,toor）(ftp登录成功都会返回230状态)
@@ -430,7 +430,7 @@ ftp找到黑客登录的账号密码（root,toor）(ftp登录成功都会返回2
 
 ftp\|telnet\|http contains \"230\" 或 ftp contains \"success\"
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image18.png){width="4.319444444444445in"
+![截图.png](   Misc/media/image18.png){width="4.319444444444445in"
 height="1.6236953193350832in"}
 
 黑客执行命令LIST，一般是dir，ls
@@ -453,12 +453,12 @@ http contains "KB"
 
 分析黑客nmap扫过的端口
 
-![stickPicture.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image19.png){width="4.361111111111111in"
+![stickPicture.png](   Misc/media/image19.png){width="4.361111111111111in"
 height="0.9900218722659667in"}
 
 如果端口是关闭的，则会直接返回RST/ACK报文断开连接，说明端口是关闭的。
 
-![stickPicture.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image19.png){width="4.361111111111111in"
+![stickPicture.png](   Misc/media/image19.png){width="4.361111111111111in"
 height="0.9900218722659667in"}
 
 该种方法进行扫描会留下扫描纪录，而且速度较慢
@@ -477,7 +477,7 @@ ip.addr==172.16.123.115 and tcp.port == 88
 
 ip.src==黑客ip and tcp.connection.rst
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image20.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image20.png){width="5.760416666666667in"
 height="3.2402351268591425in"}
 
 使用Wireshark查看并分析PYsystem20191桌面下的capturepcap数据包文件，通过设置过滤规则，要求只显示三次握手协议过程中的RST包以及实施攻击的源IP地址，将该过滤规则作为Flag值（存在两个过滤规则时，使用and连接，提交的答案中不包含空格，例d如tcp.ack
@@ -503,10 +503,10 @@ tcpxtract -f 434c8c0ba659476caa9635b97f95600c.pcap
 
 选择导出的位置
 
-![stickPicture.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image21.png){width="5.760416666666667in"
+![stickPicture.png](   Misc/media/image21.png){width="5.760416666666667in"
 height="2.3758639545056868in"}
 
-![stickPicture.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image22.png){width="5.760416666666667in"
+![stickPicture.png](   Misc/media/image22.png){width="5.760416666666667in"
 height="4.3924015748031495in"}
 
 [最近需要解析HTTPS流量，所以对]{.mark}[wireshark](https://so.csdn.net/so/search?q=wireshark&spm=1001.2101.3001.7020)[的HTTPS解密进行了实测。]{.mark}
@@ -517,10 +517,10 @@ height="4.3924015748031495in"}
 
 [1、在wireshark的首选项中的protocols的tls选项里添加服务器]{.mark}[私钥](https://so.csdn.net/so/search?q=%E7%A7%81%E9%92%A5&spm=1001.2101.3001.7020)[文件。p12文件需要填写密码。]{.mark}
 
-![stickPicture.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image23.png){width="5.760416666666667in"
+![stickPicture.png](   Misc/media/image23.png){width="5.760416666666667in"
 height="3.9649628171478564in"}
 
-![微信截图_20220610122623.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image24.png){width="5.760416666666667in"
+![微信截图_20220610122623.png](   Misc/media/image24.png){width="5.760416666666667in"
 height="4.176099081364829in"}
 
 **[git的相关指令操作]{.mark}**
@@ -537,12 +537,12 @@ git stash apply 复原文件
 
 **[.cap数据包]{.mark} IEEE 802.11**
 
-![微信截图_20220623193011.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image25.png){width="5.760416666666667in"
+![微信截图_20220623193011.png](   Misc/media/image25.png){width="5.760416666666667in"
 height="3.508728127734033in"}
 
 在.cap文件中找到 SSID
 
-![微信截图_20220623193346.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image26.png){width="5.760416666666667in"
+![微信截图_20220623193346.png](   Misc/media/image26.png){width="5.760416666666667in"
 height="0.9185400262467192in"}
 
 用crunch生成提示相关的密码比如说网络密码一般是八位数，或者使用kali自带字典
@@ -554,7 +554,7 @@ height="0.9185400262467192in"}
 
 [airdecap-ng cacosmia.cap -e mamawoxiangwantiequan -p 12345678]{.mark}
 
-![stickPicture.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image27.png){width="5.305555555555555in"
+![stickPicture.png](   Misc/media/image27.png){width="5.305555555555555in"
 height="4.148548775153106in"}
 
 [（如果是题目说找网站域名那就试试dns因为它解析域名）]{.mark}
@@ -576,12 +576,12 @@ png文件头的问题首先复制缺少部分然后在文件头粘贴AS-HEN]{.ma
 
 已知文件：
 
-![stickPicture.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image28.png){width="5.760416666666667in"
+![stickPicture.png](   Misc/media/image28.png){width="5.760416666666667in"
 height="0.21334864391951006in"}
 
 未知密钥压缩包：
 
-![stickPicture.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image29.png){width="5.760416666666667in"
+![stickPicture.png](   Misc/media/image29.png){width="5.760416666666667in"
 height="0.28155293088363953in"}
 
 只要两者CRC值相等，那么就可以进行明文攻击
@@ -596,8 +596,8 @@ height="0.28155293088363953in"}
 
 **word选项**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image30.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image30.png){width="5.760416666666667in"
 height="4.586621828521435in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Misc/media/image31.png){width="5.760416666666667in"
+![截图.png](   Misc/media/image31.png){width="5.760416666666667in"
 height="4.519795494313211in"}

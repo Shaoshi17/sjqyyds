@@ -1,5 +1,7 @@
 [
   "obsidian-git",
   "cm-editor-syntax-highlight-obsidian",
-  "remember-cursor-position"
+  "remember-cursor-position",
+  "mousewheel-image-zoom",
+  "obsidian-regex-pipeline"
 ]

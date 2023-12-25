@@ -8,39 +8,39 @@ idea 2020.2.4
 
 jdk-14.0.2
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image1.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image1.png){width="5.760416666666667in"
 height="0.8142541557305337in"}
 
 idea安装
 
 就这个要注意
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image2.png){width="5.305555555555555in"
+![截图.png](    Java语言/media/image2.png){width="5.305555555555555in"
 height="4.148548775153106in"}
 
 然后激活idea,选择代码激活
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image3.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image3.png){width="5.760416666666667in"
 height="3.46496719160105in"}
 
 idea激活码经常更新：<https://www.yuque.com/yueryi/oldfish/bqrfq3?>
 
 然后打开这个链接复制里面的代码进去就可以了
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image4.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image4.png){width="5.760416666666667in"
 height="4.479005905511811in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image5.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image5.png){width="5.760416666666667in"
 height="3.457684820647419in"}
 
 激活成功
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image6.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image6.png){width="5.760416666666667in"
 height="4.115788495188101in"}
 
 （如果这个激活方面有问题可以看这个
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image7.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image7.png){width="5.760416666666667in"
 height="1.3659426946631672in"}
 
 ）
@@ -53,7 +53,7 @@ jdk的安装配置
 
 控制面板---系统和安全---系统---高级系统设置---环境变量
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image8.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image8.png){width="5.760416666666667in"
 height="6.3634930008748904in"}
 
 新建系统变量JAVA_HOME 和CLASSPATH
@@ -62,7 +62,7 @@ height="6.3634930008748904in"}
 
 　　变量值：C:\\Program Files\\Java\\jdk-14.0.2 #jdk的安装目录
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image9.png){width="4.097222222222222in"
+![截图.png](    Java语言/media/image9.png){width="4.097222222222222in"
 height="4.201477471566054in"}
 
 　　变量名：CLASSPATH
@@ -77,14 +77,14 @@ win7是用分;号做分割符
 
 win10是可以直接添加
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image10.png){width="4.069444444444445in"
+![截图.png](    Java语言/media/image10.png){width="4.069444444444445in"
 height="4.121482939632546in"}
 
 然后打开cmd输入java \--version
 
 如图就成功了
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image11.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image11.png){width="5.760416666666667in"
 height="0.888847331583552in"}
 
 maven配置
@@ -95,17 +95,17 @@ maven配置
 
 变量值为Maven的安装路径
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image12.png){width="4.277777777777778in"
+![截图.png](    Java语言/media/image12.png){width="4.277777777777778in"
 height="4.66288167104112in"}
 
  配置完成后，通过cmd输入mvn -version验证是否安装成功。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image13.png){width="4.208333333333333in"
+![截图.png](    Java语言/media/image13.png){width="4.208333333333333in"
 height="4.666666666666667in"}
 
 成功
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image14.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image14.png){width="5.760416666666667in"
 height="1.5637937445319334in"}
 
 进入idea内校验并配置maven本地路径
@@ -114,22 +114,22 @@ File\--\>Settings\--\>Maven，直接搜maven 更改下图的几个路径。
 
 打开idea配置
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image15.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image15.png){width="5.760416666666667in"
 height="2.9795264654418196in"}
 
 接下来就默认就可以了
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image16.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image16.png){width="5.760416666666667in"
 height="3.107823709536308in"}
 
 等他转完
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image17.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image17.png){width="5.760416666666667in"
 height="3.222813867016623in"}
 
 搭建成功
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image18.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image18.png){width="5.760416666666667in"
 height="3.1415288713910763in"}
 
 要配置java环境就看这个<https://product.pconline.com.cn/itbk/software/rjwt/1505/6483358.html>
@@ -138,7 +138,7 @@ height="3.1415288713910763in"}
 
 基础知识：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image19.png){width="4.486111111111111in"
+![截图.png](    Java语言/media/image19.png){width="4.486111111111111in"
 height="1.0096347331583553in"}
 
 java需要用javac来编译.java后缀的文件得到.class文件
@@ -147,12 +147,12 @@ java需要用javac来编译.java后缀的文件得到.class文件
 
 .class是编译文件
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image20.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image20.png){width="5.760416666666667in"
 height="3.2402351268591425in"}
 
 使用kali2.o的java编译，2021以上都没有javac编译工具
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image21.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image21.png){width="5.760416666666667in"
 height="3.8481474190726157in"}
 
 **原理篇**
@@ -184,7 +184,7 @@ JV**M是Java程序跨平台的关键部分，只要为不同平台实现了相�
 
 **效果图：**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image22.png){width="3.9444444444444446in"
+![截图.png](    Java语言/media/image22.png){width="3.9444444444444446in"
 height="1.1582895888013998in"}
 
 ```java
@@ -245,7 +245,7 @@ public class Hello {
 }
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image23.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image23.png){width="5.760416666666667in"
 height="3.1454910323709537in"}
 
 java中的注释
@@ -270,7 +270,7 @@ xxx.java
 
 **-encoding UTF-8 -charset UTF-8 字符集修改为UTF-8**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image24.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image24.png){width="5.760416666666667in"
 height="2.0278105861767277in"}
 
 字符常量分类：
@@ -287,7 +287,7 @@ height="2.0278105861767277in"}
 
 空常量:null
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image25.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image25.png){width="5.760416666666667in"
 height="2.5690299650043746in"}
 
 Java所有关键字
@@ -557,7 +557,7 @@ class He {
 }
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Java语言/media/image26.png){width="5.760416666666667in"
+![截图.png](    Java语言/media/image26.png){width="5.760416666666667in"
 height="1.5250120297462817in"}
 
 **for循环**

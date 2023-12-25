@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Obsidian软件安装插件推荐：.md",
+                "file": "编程学习/Shell语言.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Obsidian软件安装插件推荐：.md",
+                "file": "编程学习/Shell语言.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Obsidian软件安装插件推荐：.md",
+                "file": "编程学习/Shell语言.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Obsidian软件安装插件推荐：.md"
+                "file": "编程学习/Shell语言.md"
               }
             }
           }
@@ -157,10 +157,14 @@
   },
   "active": "26cb06421b6f506e",
   "lastOpenFiles": [
+    "编程学习/Php语言.md",
+    "编程学习/C语言.md",
+    "编程学习/8086汇编语言.md",
+    "编程学习/油猴脚本学习.md",
+    "Obsidian软件安装插件推荐：.md",
     "j/sjqyyds17/sjqyyds.md",
     "j/sjqyyds17/未命名.md",
     "j/sjqyyds17",
-    "j",
-    "Obsidian软件安装插件推荐：.md"
+    "j"
   ]
 }

@@ -153,12 +153,12 @@ width表示进行补零之后的字符串的长度，如果补零后的长度小
 
 就是不够就在前面补0的一个函数
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Python语言/media/image1.png){width="3.611111111111111in"
+![截图.png](    Python语言/media/image1.png){width="3.611111111111111in"
 height="3.767661854768154in"}
 
 **进制字符转换：**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Python语言/media/image2.png){width="5.760416666666667in"
+![截图.png](    Python语言/media/image2.png){width="5.760416666666667in"
 height="2.0651946631671043in"}
 
 **[chr函数：]{.mark}**
@@ -184,7 +184,7 @@ chr(i)
 
 #step：可以表示切片的步长，当为1时表示顺序存取
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Python语言/media/image3.png){width="5.760416666666667in"
+![截图.png](    Python语言/media/image3.png){width="5.760416666666667in"
 height="4.970145450568679in"}
 
 ```
@@ -342,7 +342,7 @@ k=re.findall(r'.{8}',s) #匹配长度为8的值赋给k
 
 按7个一组的分割字符串
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Python语言/media/image4.png){width="5.760416666666667in"
+![截图.png](    Python语言/media/image4.png){width="5.760416666666667in"
 height="0.9772134733158355in"}
 
 **python模拟键盘鼠标基本操作**
@@ -523,7 +523,7 @@ By.TAG_NAME，根据标签名称来查找元素，不太好用，不常用
 
 value：元素位置，字符串类型
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Python语言/media/image5.png){width="5.760416666666667in"
+![截图.png](    Python语言/media/image5.png){width="5.760416666666667in"
 height="2.638642825896763in"}
 
 ```python

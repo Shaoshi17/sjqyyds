@@ -45,43 +45,43 @@ sort pass.txt \|uniq \> pass1.txt
 
 sed -i \'s#0# #\' c //把所有0转换为空格
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image1.png){width="5.152777777777778in"
+![]( Shell语言/media/image1.png){width="5.152777777777778in"
 height="4.109705818022747in"}
 
 **执行命令默认yes的办法**
 
 echo yes \| 命令
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image2.png){width="5.760416666666667in"
+![]( Shell语言/media/image2.png){width="5.760416666666667in"
 height="2.7081966316710413in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image3.png){width="2.361111111111111in"
+![]( Shell语言/media/image3.png){width="2.361111111111111in"
 height="1.0029494750656167in"}
 
 可以使用{}代替do done
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image4.png){width="4.986111111111111in"
+![]( Shell语言/media/image4.png){width="4.986111111111111in"
 height="0.17733048993875766in"}
 
 zsh不适用
 
 获取用户输入
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image5.png){width="5.760416666666667in"
+![]( Shell语言/media/image5.png){width="5.760416666666667in"
 height="1.1315102799650043in"}
 
 \$便捷传参
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image6.png){width="5.611111111111111in"
+![]( Shell语言/media/image6.png){width="5.611111111111111in"
 height="2.581735564304462in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image7.png){width="2.6944444444444446in"
+![]( Shell语言/media/image7.png){width="2.6944444444444446in"
 height="0.9362937445319335in"}
 
 循环用" \` "符合可以写入命令执行代替 \${} ，当然可以可以使用
 \$(要使用的命令)
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image8.png){width="2.5in"
+![]( Shell语言/media/image8.png){width="2.5in"
 height="2.1041666666666665in"}
 
 **4. seq 的使用总结**
@@ -100,25 +100,25 @@ height="2.1041666666666665in"}
 
  　　
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image9.png){width="4.805555555555555in"
+![]( Shell语言/media/image9.png){width="4.805555555555555in"
 height="3.064714566929134in"}
 
 **ascii转换**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image10.png){width="3.111111111111111in"
+![]( Shell语言/media/image10.png){width="3.111111111111111in"
 height="2.570048118985127in"}
 
 shell字符串逆转
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image11.png){width="2.0277777777777777in"
+![]( Shell语言/media/image11.png){width="2.0277777777777777in"
 height="0.4991447944006999in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image12.png){width="5.760416666666667in"
+![]( Shell语言/media/image12.png){width="5.760416666666667in"
 height="1.4041021434820646in"}
 
 **以统计sh出现的次数**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image13.png){width="4.069444444444445in"
+![]( Shell语言/media/image13.png){width="4.069444444444445in"
 height="0.6244674103237096in"}
 
 **[将已执行程序暂停/运行在后台]{.mark}**
@@ -133,7 +133,7 @@ vi t.txt
 
 date \'+%Y%m%d%H%M%S\'
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image14.png){width="2.361111111111111in"
+![]( Shell语言/media/image14.png){width="2.361111111111111in"
 height="0.5850535870516186in"}
 
 **13 、MD5加密**
@@ -144,32 +144,32 @@ echo -n \"sr\" \| md5sum
 
 tr -d \'\[:/\]\' \< passwd  //删除文件中 :和/ 符号
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image15.png){width="5.760416666666667in"
+![]( Shell语言/media/image15.png){width="5.760416666666667in"
 height="3.813069772528434in"}
 
 tr \'\[0-9\]\' \'#\' \< passwd   //替换文件中0-9数字为#
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image16.png){width="5.760416666666667in"
+![]( Shell语言/media/image16.png){width="5.760416666666667in"
 height="2.810870516185477in"}
 
 **去除字符串中的所有空格**
 
 echo \$string\|tr -d \" \"
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image17.png){width="3.763888888888889in"
+![]( Shell语言/media/image17.png){width="3.763888888888889in"
 height="1.1468919510061242in"}
 
 **大小写转换**
 
 tr  'a-z'  'A-Z'  转换大小写
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image18.png){width="3.736111111111111in"
+![]( Shell语言/media/image18.png){width="3.736111111111111in"
 height="1.1655839895013123in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image19.png){width="5.760416666666667in"
+![]( Shell语言/media/image19.png){width="5.760416666666667in"
 height="4.674084645669291in"}
 
 **shell多线程**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Shell语言/media/image20.png){width="5.760416666666667in"
+![]( Shell语言/media/image20.png){width="5.760416666666667in"
 height="4.294442257217848in"}

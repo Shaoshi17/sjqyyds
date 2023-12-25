@@ -1,4 +1,4 @@
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image1.png){width="5.760416666666667in"
+![  ](  Crypto/media/image1.png){width="5.760416666666667in"
 height="2.6918996062992124in"}
 
 **编码种类：**
@@ -7,7 +7,7 @@ height="2.6918996062992124in"}
 
 解密网站：http://www.hiencode.com/playfair.html
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image2.png){width="5.760416666666667in"
+![  ](  Crypto/media/image2.png){width="5.760416666666667in"
 height="2.7543252405949255in"}
 
 **埃特巴什码Atbash Cipher**
@@ -37,12 +37,12 @@ Cipher）是一种换位密码，需要事先双方约定密钥（也就是曲�
 
 填入 5 行 7 列表（事先约定填充的行列数）
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image3.png){width="5.736111111111111in"
+![  ](  Crypto/media/image3.png){width="5.736111111111111in"
 height="1.1680807086614173in"}
 
 加密的回路线（事先约定填充的行列数）
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image4.png){width="5.736111111111111in"
+![  ](  Crypto/media/image4.png){width="5.736111111111111in"
 height="1.1680807086614173in"}
 
 密文：gesfc inpho dtmwu qoury zejre hbxva lookT
@@ -53,21 +53,21 @@ Polybius(波利比奥斯密码)棋盘密码
 
 原理：把字母在密码表里面用两个数字定位后代替，解码查个表就可以了，这个加密的密码表比较混乱。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image5.png){width="5.760416666666667in"
+![  ](  Crypto/media/image5.png){width="5.760416666666667in"
 height="2.523509405074366in"}
 
 **ADFGX密码**
 
 棋盘密码的升级版
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image6.png){width="5.760416666666667in"
+![  ](  Crypto/media/image6.png){width="5.760416666666667in"
 height="2.3228379265091865in"}
 
 **ADFGVX密码**
 
 ADFGX的升级版，加了数字进去
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image7.png){width="5.760416666666667in"
+![  ](  Crypto/media/image7.png){width="5.760416666666667in"
 height="4.550903324584427in"}
 
 **列置换加密（列位移密码）**
@@ -79,24 +79,24 @@ height="4.550903324584427in"}
 nice 相当于 4312
 为什么是4312呢？因为c在这个四个字母内按照字母表排序是最前面就是1，其他的以此类推就可以得到4321.
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image8.png){width="5.760416666666667in"
+![  ](  Crypto/media/image8.png){width="5.760416666666667in"
 height="2.7730807086614173in"}
 
 解密：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image9.png){width="5.760416666666667in"
+![  ](  Crypto/media/image9.png){width="5.760416666666667in"
 height="2.487055993000875in"}
 
 这个比较混乱的是有些人喜欢用行读取，有的喜欢列读取。
 
 下面这个是不一样的一种
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image10.png){width="5.760416666666667in"
+![  ](  Crypto/media/image10.png){width="5.760416666666667in"
 height="3.747066929133858in"}
 
 python库
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image11.png){width="5.760416666666667in"
+![  ](  Crypto/media/image11.png){width="5.760416666666667in"
 height="1.419902668416448in"}
 
 **杰斐逊转轮加密**
@@ -105,7 +105,7 @@ height="1.419902668416448in"}
 
 典型的多表替换加密方式
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image12.png){width="5.760416666666667in"
+![  ](  Crypto/media/image12.png){width="5.760416666666667in"
 height="2.774717847769029in"}
 
 **费纳姆密码**
@@ -114,7 +114,7 @@ height="2.774717847769029in"}
 
 原理:就是用一段二进制的秘钥对明文的二进制进行异或
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image13.png){width="5.760416666666667in"
+![  ](  Crypto/media/image13.png){width="5.760416666666667in"
 height="2.519776902887139in"}
 
 特点是密文和秘钥是一样长，注意解密的时候要七位一组
@@ -123,7 +123,7 @@ height="2.519776902887139in"}
 
 这里要注意这个地方，A是0，不是1，下面是范围表
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image14.png){width="5.760416666666667in"
+![  ](  Crypto/media/image14.png){width="5.760416666666667in"
 height="0.680320428696413in"}
 
 mod
@@ -131,17 +131,17 @@ mod
 
 加密公式：E(x)=(ax+b) mod 26
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image15.png){width="3.375in"
+![  ](  Crypto/media/image15.png){width="3.375in"
 height="2.4791666666666665in"}
 
 解密公式：D(x)=a\^-1(x-b) mod 26
 
 模运算不能用除法运算，要转换成乘法逆元运算
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image16.png){width="5.760416666666667in"
+![  ](  Crypto/media/image16.png){width="5.760416666666667in"
 height="3.16337489063867in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image17.png){width="5.760416666666667in"
+![  ](  Crypto/media/image17.png){width="5.760416666666667in"
 height="3.2177887139107613in"}
 
 解码方式：CTF在线工具-在线仿射密码加密\|在线仿射密码解密\|仿射密码算法\|Affine
@@ -197,10 +197,10 @@ Cipher (hiencode.com)
 
 密钥：crypto
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image18.png){width="5.760416666666667in"
+![  ](  Crypto/media/image18.png){width="5.760416666666667in"
 height="1.0018121172353456in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image19.png){width="4.972222222222222in"
+![  ](  Crypto/media/image19.png){width="4.972222222222222in"
 height="4.096610892388451in"}
 
 从而得到密文
@@ -211,12 +211,12 @@ height="4.096610892388451in"}
 
 密文：efkt zferrltzn
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image20.png){width="5.760416666666667in"
+![  ](  Crypto/media/image20.png){width="5.760416666666667in"
 height="4.264924540682415in"}
 
 解码方式：维吉尼亚密码在线加密解密 - 千千秀字 (qqxiuzi.cn)
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image21.png){width="5.760416666666667in"
+![  ](  Crypto/media/image21.png){width="5.760416666666667in"
 height="2.1976815398075242in"}
 
 **云隐密码（01248密码）**
@@ -289,25 +289,25 @@ f AABAB m ABABB s BAAAB z BABBB
 
 **词频分析：**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image22.png){width="5.208333333333333in"
+![  ](  Crypto/media/image22.png){width="5.208333333333333in"
 height="1.0729166666666667in"}
 
 解决方式：quipqiup - cryptoquip and cryptogram solver然后再找关键字
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image23.png){width="5.611111111111111in"
+![  ](  Crypto/media/image23.png){width="5.611111111111111in"
 height="2.8708016185476817in"}
 
 **Rabbit加密**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image24.png){width="5.760416666666667in"
+![  ](  Crypto/media/image24.png){width="5.760416666666667in"
 height="2.418124453193351in"}
 
 特征没什么，主要看提示吧，算是个骚加密，一般提示兔子就是这个加密
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image25.png){width="5.760416666666667in"
+![  ](  Crypto/media/image25.png){width="5.760416666666667in"
 height="0.662405949256343in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image26.png){width="5.760416666666667in"
+![  ](  Crypto/media/image26.png){width="5.760416666666667in"
 height="2.791129702537183in"}
 
 **关键词加密：**
@@ -316,30 +316,30 @@ height="2.791129702537183in"}
 
 随机选择一个词组或短语作为密钥，如果该关键词中有重复字母，则去掉除第一次出现外的所有重复字母。例如选取关键词"nextlegend"，则处理后为"nextlgd"。将处理后的关键词依次排列在字母表的下方，并将除去这些关键词后字母表中剩余的字母依次填入剩余空间。如下图:
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image27.png){width="5.760416666666667in"
+![  ](  Crypto/media/image27.png){width="5.760416666666667in"
 height="0.4298818897637795in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image28.png){width="4.402777777777778in"
+![  ](  Crypto/media/image28.png){width="4.402777777777778in"
 height="0.9285476815398075in"}
 
 解密网站：http://www.hiencode.com/keyword.html
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image29.png){width="5.760416666666667in"
+![  ](  Crypto/media/image29.png){width="5.760416666666667in"
 height="3.0432392825896764in"}
 
 **猪圈编码：**
 
 原理：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image30.png){width="2.4027777777777777in"
+![  ](  Crypto/media/image30.png){width="2.4027777777777777in"
 height="2.4027777777777777in"}
 
 我们举一个例子，如明文为 X marks the spot ，那么密文如下
 
-![stickPicture.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image31.png){width="4.486111111111111in"
+![stickPicture.png](  Crypto/media/image31.png){width="4.486111111111111in"
 height="0.4892049431321085in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image32.png){width="3.1527777777777777in"
+![  ](  Crypto/media/image32.png){width="3.1527777777777777in"
 height="0.6368197725284339in"}
 
 解密方式：http://mmoersima.00cha.net/zhuquan.asp
@@ -351,7 +351,7 @@ height="0.6368197725284339in"}
 用手机键盘表示就是：7382，那么这里就可以知道了，手机键盘加密方式不可能用
 1 开头，第二位数字不可能超过 4，解密的时候参考此
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image33.png){width="5.166666666666667in"
+![  ](  Crypto/media/image33.png){width="5.166666666666667in"
 height="2.34375in"}
 
 关于手机键盘加密还有另一种方式，就是「音的」式（这一点可能根据手机的不同会有所不同），具体参照手机键盘来打，例如：「数字」表示出来就是：748
@@ -361,17 +361,17 @@ height="2.34375in"}
 
 **摩斯编码：**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image34.png){width="5.760416666666667in"
+![  ](  Crypto/media/image34.png){width="5.760416666666667in"
 height="0.3696522309711286in"}
 
 解密方式：http://www.jsons.cn/morse/
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image35.png){width="5.760416666666667in"
+![  ](  Crypto/media/image35.png){width="5.760416666666667in"
 height="1.7067902449693788in"}
 
 **[Morse编码]{.mark}**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image36.png){width="4.694444444444445in"
+![  ](  Crypto/media/image36.png){width="4.694444444444445in"
 height="6.050617891513561in"}
 
 特点 ¶
@@ -386,47 +386,47 @@ height="6.050617891513561in"}
 
 解密图纸：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image37.png){width="4.597222222222222in"
+![  ](  Crypto/media/image37.png){width="4.597222222222222in"
 height="9.246567147856519in"}
 
 **[brainfuck加密]{.mark}**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image38.png){width="5.486111111111111in"
+![  ](  Crypto/media/image38.png){width="5.486111111111111in"
 height="1.6166294838145232in"}
 
 解密方式：https://www.splitbrain.org/services/ook
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image39.png){width="5.180555555555555in"
+![  ](  Crypto/media/image39.png){width="5.180555555555555in"
 height="2.3036275153105863in"}
 
 **Ook!加密**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image40.png){width="4.0in"
+![  ](  Crypto/media/image40.png){width="4.0in"
 height="1.5in"}
 
 解密方式：https://www.splitbrain.org/services/ook
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image39.png){width="5.180555555555555in"
+![  ](  Crypto/media/image39.png){width="5.180555555555555in"
 height="2.3036275153105863in"}
 
 **short Ook!加密**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image41.png){width="5.486111111111111in"
+![  ](  Crypto/media/image41.png){width="5.486111111111111in"
 height="5.7984142607174105in"}
 
 解密方式：https://www.splitbrain.org/services/ook
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image42.png){width="4.027777777777778in"
+![  ](  Crypto/media/image42.png){width="4.027777777777778in"
 height="1.5715616797900263in"}
 
 **Bubble密码加密/解密**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image43.png){width="5.760416666666667in"
+![  ](  Crypto/media/image43.png){width="5.760416666666667in"
 height="0.5021412948381452in"}
 
 解密方式：http://www.hiencode.com/bubble.html
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image44.png){width="5.760416666666667in"
+![  ](  Crypto/media/image44.png){width="5.760416666666667in"
 height="5.251055336832896in"}
 
 **Unicode编码**
@@ -435,69 +435,69 @@ height="5.251055336832896in"}
 
 0.  大量的\\u
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image45.png){width="5.760416666666667in"
+![  ](  Crypto/media/image45.png){width="5.760416666666667in"
 height="0.20194225721784778in"}
 
 解码方式：http://www.jsons.cn/unicode/
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image46.png){width="5.760416666666667in"
+![  ](  Crypto/media/image46.png){width="5.760416666666667in"
 height="1.8083847331583551in"}
 
 python
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image47.png){width="3.0972222222222223in"
+![  ](  Crypto/media/image47.png){width="3.0972222222222223in"
 height="0.7091283902012249in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image48.png){width="3.9027777777777777in"
+![  ](  Crypto/media/image48.png){width="3.9027777777777777in"
 height="0.5530675853018373in"}
 
 **Rabbit加密：**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image49.png){width="5.611111111111111in"
+![  ](  Crypto/media/image49.png){width="5.611111111111111in"
 height="0.9681430446194226in"}
 
 解码网站：在线Rabbit加密 \| Rabbit解密- 在线工具 (sojson.com)
 
 **jother编码**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image50.png){width="5.![[Pasted image 20231121182939.png]]
+![  ](  Crypto/media/image50.png){width="5.![[Pasted image 20231121182939.png]]
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image51.png){width="5.760416666666667in"
+![  ](  Crypto/media/image51.png){width="5.760416666666667in"
 height="1.9092082239720034in"}
 
 解密方法：浏览器F12找到console复制回车就flag出来了
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image52.png){width="5.760416666666667in"
+![  ](  Crypto/media/image52.png){width="5.760416666666667in"
 height="7.483351924759405in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image53.png){width="5.388888888888889in"
+![  ](  Crypto/media/image53.png){width="5.388888888888889in"
 height="5.336772747156606in"}
 
 \]+\[\])\[!+\[\]+!+\[\]+!+\[\]\]+(\![\]+\[\])\[!+\[\]+!+\[\]+!+\[\]\]\]()+\[\])\[!+\[\]+!+\[\]\]+(\[\]\[(\![\]+\[\])\[+\[\]\]+(\[\![\]\]+\[\]\[\[\]\])\[+!+\[\]+\[+\[\]\]\]+(\![\]+\[\])\[!+\[\]+!+\[\]\]+(\![\]+\[\])\[!+\[\]+!+\[\]\]\]+\[\])\[(\![\]+\[\])\[!+\[\]+!+\[\]+!+\[\]\]+(\![\]+\[\])\[!+\[\]+!+\[\]\]+(\[\![\]\]+\[\]\[\[\]\])\[+!+\[\]+\[+\[\]\]\]+(\[\]\[(\![\]+\[\])\[+\[\]\]+(\[\![\]\]+\[\]\[\[\]\])\[+!+\[\]+\[+\[\]\]\]+(\![\]+\[\])\[!+\[\]+!+\[\]\]+(\![\]+\[\])\[!+\[\]+!+\[\]\]\]+\[\])\[!+\[\]+!+\[\]+!+\[\]\]+(!\![\]+\[\])\[!+\[\]+!+\[\]+!+\[\]\]\]((+((+(+!+\[\]+\[+!+\[\]\]+(!\![\]+\[\])\[!+\[\]+!+\[\]+!+\[\]\]+\[!+\[\]+!+\[\]\]+\[+\[\]\])+\[\])\[+!+\[\]\]+\[+\[\]+\[+\[\]\]+\[+\[\]\]+\[+\[\]\]+\[+\[\]\]+\[+\[\]\]+\[+\[\]\]+\[+\[\]\]+\[+\[\]\]+\[+!+\[\]\]\])+\[\])\[!+\[\]+!+\[\]\]+\[+!+\[\]\])
 
 丢到控制台直接run \[\]()+!等符号就足以实现几乎任意Javascript代码
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image54.png){width="5.760416666666667in"
+![  ](  Crypto/media/image54.png){width="5.760416666666667in"
 height="1.0121336395450569in"}
 
 **社会主义核心价值观算法**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image55.png){width="5.760416666666667in"
+![  ](  Crypto/media/image55.png){width="5.760416666666667in"
 height="0.9214227909011373in"}
 
 解密网站:http://z.duoluosb.com/或http://www.atoolbox.net/Tool.php?Id=850
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image56.png){width="5.760416666666667in"
+![  ](  Crypto/media/image56.png){width="5.760416666666667in"
 height="3.169161198600175in"}
 
 **uuencode算法**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image57.png){width="3.513888888888889in"
+![  ](  Crypto/media/image57.png){width="3.513888888888889in"
 height="1.1573939195100613in"}
 
 解密网站：https://www.qqxiuzi.cn/bianma/uuencode.php
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image58.png){width="3.9444444444444446in"
+![  ](  Crypto/media/image58.png){width="3.9444444444444446in"
 height="3.5270428696412948in"}
 
 **base91**
@@ -514,35 +514,35 @@ height="3.5270428696412948in"}
 
 密文由**64**个字符(A-Z,a-z,0-9,+,/)组成
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image59.png){width="1.3194444444444444in"
+![  ](  Crypto/media/image59.png){width="1.3194444444444444in"
 height="0.12566163604549432in"}
 
 **base62**
 
 密文由62个字符(A-Z,a-z,0-9)组成
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image60.png){width="3.763888888888889in"
+![  ](  Crypto/media/image60.png){width="3.763888888888889in"
 height="0.42747812773403326in"}
 
 **base32**
 
 密文由**32**个字符（A-Z,2-7)组成
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image61.png){width="1.3472222222222223in"
+![  ](  Crypto/media/image61.png){width="1.3472222222222223in"
 height="0.1775404636920385in"}
 
 **base16**
 
 密文由**16**个字符（0-9,A-F）
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image62.png){width="1.6527777777777777in"
+![  ](  Crypto/media/image62.png){width="1.6527777777777777in"
 height="0.12473753280839894in"}
 
 **base85**
 
 特点是奇怪的字符比较多，但是很难出现等号
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image63.png){width="1.1527777777777777in"
+![  ](  Crypto/media/image63.png){width="1.1527777777777777in"
 height="0.16767716535433072in"}
 
 **base58：**
@@ -553,26 +553,26 @@ height="0.16767716535433072in"}
 
 1-9,a-f
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image64.png){width="3.1944444444444446in"
+![  ](  Crypto/media/image64.png){width="3.1944444444444446in"
 height="0.5514840332458443in"}
 
 解密方式：网站https://www.sojson.com/hexadecimal.html或者用winhex，编码转ascii
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image65.png){width="5.760416666666667in"
+![  ](  Crypto/media/image65.png){width="5.760416666666667in"
 height="1.3364555993000875in"}
 
 **凯撒编码家族（Casear）：**
 
 这里要注意这个地方，A是0，不是1，下面是范围表
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image66.png){width="5.760416666666667in"
+![  ](  Crypto/media/image66.png){width="5.760416666666667in"
 height="0.680320428696413in"}
 
 凯撒密码是位移密码
 
 原理：加密时会将明文密码的每个字符都按照其他字母表中的顺序，移动固定数目作为密文
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image67.png){width="4.486111111111111in"
+![  ](  Crypto/media/image67.png){width="4.486111111111111in"
 height="0.5633716097987752in"}
 
 代码实现解密：
@@ -611,12 +611,12 @@ qvxkbhekq
 
 用凯撒偏移量13加密：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image68.png){width="3.2916666666666665in"
+![  ](  Crypto/media/image68.png){width="3.2916666666666665in"
 height="3.0625in"}
 
 用ROT13解密成功
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image69.png){width="2.9027777777777777in"
+![  ](  Crypto/media/image69.png){width="2.9027777777777777in"
 height="5.335681321084865in"}
 
 **Cassis (K-6) 偏移量为-5：**
@@ -669,17 +669,17 @@ def zhalan():
 
     print(pycipher.Railfence(l).decipher(s))# 调用python自带的模块解密
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image70.png){width="4.361111111111111in"
+![  ](  Crypto/media/image70.png){width="4.361111111111111in"
 height="2.216984908136483in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image71.png){width="2.4722222222222223in"
+![  ](  Crypto/media/image71.png){width="2.4722222222222223in"
 height="3.5779418197725286in"}
 
 **二进制转字符串**
 
 解密网站：http://xiaoniutxt.com/binaryToString.html
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image72.png){width="5.760416666666667in"
+![  ](  Crypto/media/image72.png){width="5.760416666666667in"
 height="2.9636001749781276in"}
 
 **Rot47编码**
@@ -688,10 +688,10 @@ height="2.9636001749781276in"}
 
 原理就凯撒的位移密码的47次
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image73.png){width="2.9166666666666665in"
+![  ](  Crypto/media/image73.png){width="2.9166666666666665in"
 height="0.4270833333333333in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image74.png){width="5.760416666666667in"
+![  ](  Crypto/media/image74.png){width="5.760416666666667in"
 height="3.2370483377077863in"}
 
 **对称加密**
@@ -710,7 +710,7 @@ height="3.2370483377077863in"}
 
 (不安全)
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image75.png){width="5.760416666666667in"
+![  ](  Crypto/media/image75.png){width="5.760416666666667in"
 height="3.3492333770778653in"}
 
 **3DES加密算法**
@@ -723,7 +723,7 @@ height="3.3492333770778653in"}
 
 （安全但是效率低）
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image76.png){width="5.347222222222222in"
+![  ](  Crypto/media/image76.png){width="5.347222222222222in"
 height="4.065139982502187in"}
 
 **AES算法加密算法**
@@ -740,13 +740,13 @@ height="4.065139982502187in"}
 
 列题：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image77.png){width="5.760416666666667in"
+![  ](  Crypto/media/image77.png){width="5.760416666666667in"
 height="3.6069181977252844in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image78.png){width="5.760416666666667in"
+![  ](  Crypto/media/image78.png){width="5.760416666666667in"
 height="2.6842760279965003in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image79.png){width="5.638888888888889in"
+![  ](  Crypto/media/image79.png){width="5.638888888888889in"
 height="3.533426290463692in"}
 
 使用python的gmpy2模块可以解密d和m
@@ -876,7 +876,7 @@ b2a_hex是字符串转十六进制,a2b_hex是十六进制转字符串
 
 哈希函数的算法哈希函数的算法中具有代表性的是
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image80.png){width="5.760416666666667in"
+![  ](  Crypto/media/image80.png){width="5.760416666666667in"
 height="2.266091426071741in"}
 
 爆破例题
@@ -899,12 +899,12 @@ ECM模式加密存在严重安全问题，原因是相同的数据块加密以�
 
 就比如这个照片最顶上这个粉色的块是数据块一样的，密文的块也加密出来的也差不多。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image81.png){width="4.819444444444445in"
+![  ](  Crypto/media/image81.png){width="4.819444444444445in"
 height="2.0133180227471565in"}
 
 原理图
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image82.jpeg){width="5.760416666666667in"
+![  ](  Crypto/media/image82.jpeg){width="5.760416666666667in"
 height="5.217834645669291in"}
 
 **CBC分组模式（密码块链模式）**
@@ -919,7 +919,7 @@ XOR：叫做异或 符合为\^
 
 a \^ b =c ; c \^ b =a
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image83.png){width="5.760416666666667in"
+![  ](  Crypto/media/image83.png){width="5.760416666666667in"
 height="4.8892913385826775in"}
 
 **CFB分组模式（密文反馈模式）**
@@ -927,14 +927,14 @@ height="4.8892913385826775in"}
 原理：每一个分组要和前一个分组进行加密操作，然后再
 进行异或，由于后一个分组要依赖前一个分组，所以第一个分组要定义一个长度和分组一样的初始向量IV，先加密后异或和CBC反着来的。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image84.png){width="5.760416666666667in"
+![  ](  Crypto/media/image84.png){width="5.760416666666667in"
 height="2.422836832895888in"}
 
 **OFB分组模式（输出反馈模式）**
 
 原理图：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image85.png){width="5.760416666666667in"
+![  ](  Crypto/media/image85.png){width="5.760416666666667in"
 height="3.3725798337707786in"}
 
 **CTR分组模式（计算器模式）**
@@ -959,7 +959,7 @@ height="3.3725798337707786in"}
 
 9.用当前分组和加密后的初始化向量进行异或加密
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image86.png){width="5.760416666666667in"
+![  ](  Crypto/media/image86.png){width="5.760416666666667in"
 height="4.185119203849519in"}
 
 **明文分组填充问题：**
@@ -974,7 +974,7 @@ height="4.185119203849519in"}
 
 Feistel结构：加密和解密的流程是一样的只不过是加密和解密用的密钥顺序是要翻过来。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image87.png){width="5.760416666666667in"
+![  ](  Crypto/media/image87.png){width="5.760416666666667in"
 height="8.015164041994751in"}
 
 加密解说：
@@ -1137,10 +1137,10 @@ RSA
 
 (a mod n)=(b mod n)记作 a=b(mod n)
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image88.png){width="5.760416666666667in"
+![  ](  Crypto/media/image88.png){width="5.760416666666667in"
 height="1.416606517935258in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image89.png){width="5.760416666666667in"
+![  ](  Crypto/media/image89.png){width="5.760416666666667in"
 height="3.2237970253718284in"}
 
 同余性质：
@@ -1155,7 +1155,7 @@ height="3.2237970253718284in"}
 
 **平方剩余**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image90.png){width="5.760416666666667in"
+![  ](  Crypto/media/image90.png){width="5.760416666666667in"
 height="1.0704516622922136in"}
 
 当m是正整数，x平方同余a模m，并且gcd(a,m)=1也就是a和m的最小公因数是1
@@ -1168,7 +1168,7 @@ height="1.0704516622922136in"}
 
 [只有1和它本身两个因数的自然数叫做质数或者叫素数]{.mark}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image91.png){width="5.760416666666667in"
+![  ](  Crypto/media/image91.png){width="5.760416666666667in"
 height="2.1697287839020123in"}
 
 **费马定理**
@@ -1177,10 +1177,10 @@ height="2.1697287839020123in"}
 
 **RSA加密系统**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image92.png){width="4.486111111111111in"
+![  ](  Crypto/media/image92.png){width="4.486111111111111in"
 height="1.3041021434820648in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image93.png){width="1.25in"
+![  ](  Crypto/media/image93.png){width="1.25in"
 height="0.2916666666666667in"}
 
 **RSA加密类型**
@@ -1269,22 +1269,22 @@ print('💌:',long_to_bytes(m))
 
 题目：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image94.png){width="5.760416666666667in"
+![  ](  Crypto/media/image94.png){width="5.760416666666667in"
 height="0.9245111548556431in"}
 
 [命令：openssl rsa -pubin -text -modulus -in key.pem/key.key]{.mark}
 
 [这里的Modulus是n的十六进制要转十进制]{.mark}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image95.png){width="5.760416666666667in"
+![  ](  Crypto/media/image95.png){width="5.760416666666667in"
 height="2.23661198600175in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image96.png){width="5.760416666666667in"
+![  ](  Crypto/media/image96.png){width="5.760416666666667in"
 height="3.577280183727034in"}
 
 SSL在线工具-公钥解析 (hiencode.com)
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image97.png){width="5.760416666666667in"
+![  ](  Crypto/media/image97.png){width="5.760416666666667in"
 height="3.7083595800524933in"}
 
 用python脚本跑flag
@@ -1316,14 +1316,14 @@ as f: #以二进制读取，密文
 
     print(rsa.decrypt(f,key)) #f:公钥加密结果 key:私钥
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image98.png){width="5.760416666666667in"
+![  ](  Crypto/media/image98.png){width="5.760416666666667in"
 height="5.460503062117235in"}
 
 2.  **模不互素**
 
 求两个模n的最大公因数就可以得到其中的大素数
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image99.png){width="5.760416666666667in"
+![  ](  Crypto/media/image99.png){width="5.760416666666667in"
 height="1.4490715223097113in"}
 
 #!/usr/bin/python
@@ -1378,7 +1378,7 @@ print libnum.n2s(m1) + libnum.n2s(m2)
 
 [1.利用]{.mark}factordb[在线分解n]{.mark}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image100.png){width="5.760416666666667in"
+![  ](  Crypto/media/image100.png){width="5.760416666666667in"
 height="1.2889206036745406in"}
 
 2  yafu
@@ -1389,12 +1389,12 @@ yafu download \| SourceForge.net
 
 下载  yafu-x64.exe------windows系统
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image101.png){width="5.760416666666667in"
+![  ](  Crypto/media/image101.png){width="5.760416666666667in"
 height="3.4204035433070867in"}
 
 对该文件地址处输入  cmd  打开该文件终端
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image102.png){width="5.760416666666667in"
+![  ](  Crypto/media/image102.png){width="5.760416666666667in"
 height="2.3656616360454943in"}
 
 输入.\\yafu-x64.exe 按回车进入下一行
@@ -1417,12 +1417,12 @@ dq=d%(q-1)
 
 **关系公式：**
 
-![stickPicture.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image103.webp){width="0.0in"
+![stickPicture.png](  Crypto/media/image103.webp){width="0.0in"
 height="0.0in"}
 
 **解密公式：**
 
-![stickPicture.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image104.jpeg){width="5.760416666666667in"
+![stickPicture.png](  Crypto/media/image104.jpeg){width="5.760416666666667in"
 height="2.1169017935258094in"}
 
 解密脚本：
@@ -1461,7 +1461,7 @@ print(long_to_bytes(m))
 
 5.  **dp 泄露**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image105.png){width="5.760416666666667in"
+![  ](  Crypto/media/image105.png){width="5.760416666666667in"
 height="2.1364654418197726in"}
 
 exp:
@@ -1647,10 +1647,10 @@ print(flag)
 
     **共模攻击**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image106.png){width="5.760416666666667in"
+![  ](  Crypto/media/image106.png){width="5.760416666666667in"
 height="1.963497375328084in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image107.png){width="5.760416666666667in"
+![  ](  Crypto/media/image107.png){width="5.760416666666667in"
 height="2.5690135608048994in"}
 
 import gmpy2
@@ -1677,7 +1677,7 @@ print(long_to_bytes(m))
 
 当e等于1，2，3的时候就可以达到低加密指数攻击的条件，枚举k，直到出现整数。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image108.png){width="5.152777777777778in"
+![  ](  Crypto/media/image108.png){width="5.152777777777778in"
 height="3.289449912510936in"}
 
 解密脚本
@@ -2026,19 +2026,19 @@ print(flag)
 
 0.  **知道phi和n求p,q**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image109.png){width="5.760416666666667in"
+![  ](  Crypto/media/image109.png){width="5.760416666666667in"
 height="1.6516951006124234in"}
 
 p+q=n+1-phi
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image110.png){width="2.7777777777777777in"
+![  ](  Crypto/media/image110.png){width="2.7777777777777777in"
 height="4.803675634295713in"}
 
 **知道n,e,d求q,p**
 
 原理图
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Crypto/media/image111.png){width="5.760416666666667in"
+![  ](  Crypto/media/image111.png){width="5.760416666666667in"
 height="2.887204724409449in"}
 
 def getpq(n,e,d):

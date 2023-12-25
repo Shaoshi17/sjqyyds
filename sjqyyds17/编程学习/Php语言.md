@@ -1,3 +1,92 @@
+# 7天理解掌握php基础
+
+## day1
+
+#### 静态网站与动态网站的区别
+静态网站是web1.0时代
+动态网闸是web2.0时代
+##### 网站：
+Website的中文名叫做网站，使用一定规则，使用html和php等代码语言制作的用于展示指定内的相关网页，可以供管理人员操作后台及用户使用前台。简单说Website是一种网络通讯工具。或者使用Websize提供某种服务。
+###### 静态网站的特点：
+- [ ] 网页是保存在服务器上的，每个网页都是独立的文件夹
+- [ ] 静态网页相对稳定，因此==容易被搜索引擎检索==
+- [ ] ==静态网页没有数据库的支持==，在网站制作的工作量大于动态网站
+- [ ] 静态网页交互性差，在功能上有很大限制
+
+==静态网站相当于只读文档==
+###### 动态网站的特点
+- [ ] 交互性：==可以根据用户的要求和选择而动态的改变和响应==，实现的原理就是有连接数据库。
+- [ ] 自动更新：可以根据数据库自动生成不同的内容。
+###### 识别网页是静态还是动态
+网页后缀是：htm,html,shtml,xml是静态
+网页后缀是：asp,jsp,php,perl,cgi等形式是动态
+还有就是动态网站有一个标志性符号“?”
+#### 网站基本概念
+##### 服务器概念 
+服务器(server),提供计算机服务的设备。由于服务器需要响应服务请求，进行处理，==因此需要具备承担服务并保障服务的能力==。
+服务构成包括：处理器，硬盘，内存，系统总线路等和通用计算机架构类似，但是要提供可靠的服务==需要更高的硬件水平==
+在网站下，根据提供服务的不同可以分为，文件服务器，数据库服务器，应用程序服务器，WEB服务器。
+
+==ip具有唯一性，一个域名的目的是便于记忆和沟通的一组服务器地址。==
+==DNS，进行域名解析，进行访问ip
+端口是设备于外界通讯的出口，虚拟端口是指计算机内部不可见的端口。==在一台电脑上区分不同的软件访问的作用
+==用户输入域名和端口 localhost:端口>DNS（localhost 127.0.01）>服务器电脑>服务器电脑上端口指示的软件==
+下面是演示静态网页的访问流程
+![[Pasted image 20231225085711.png]]
+动态访问流程多了数据进行对网页的处理和更新
+![[Pasted image 20231225085837.png]]
+#### 安装apache
+
+安装包名字的意思![[Pasted image 20231225090940.png]]
+
+## day2
+## day3
+## day4
+## day5
+## day6
+## day7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------
+# 杂
+
+
+
 \_FILE\_ 文件路径和文件名
 
 PHP_VERSION php版本
@@ -60,7 +149,7 @@ show_source("test.php");
 
 原理: flag_1234.php=\*\_1234.php (绕过)
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image1.png){width="4.291666666666667in"
+![截图.png](    Php语言/media/image1.png){width="4.291666666666667in"
 height="2.3755096237970252in"}
 
 [正则分析 /key.\*key.{4,7}key:/./(.\*key)\[a-z\]\[\[:punct:\]\]/]{.mark}
@@ -113,17 +202,17 @@ key普通字符
 
 **如**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image2.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image2.png){width="5.760416666666667in"
 height="3.2402351268591425in"}
 
 **[有@eval()函数和\$\_GET变量利用]{.mark}**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image3.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image3.png){width="5.760416666666667in"
 height="3.2402351268591425in"}
 
 **[注意长度也要符合]{.mark}**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image4.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image4.png){width="5.760416666666667in"
 height="2.033589238845144in"}
 
 2 要绕过正则表达式
@@ -231,7 +320,7 @@ if(isset($_GET['code'])){
 
 [file_get_contents函数：读取文件内容]{.mark}
 
-![stickPicture.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image5.png){width="5.760416666666667in"
+![stickPicture.png](    Php语言/media/image5.png){width="5.760416666666667in"
 height="2.576596675415573in"}
 
 **[PHP内置过滤函数]{.mark}**
@@ -269,7 +358,7 @@ magic_quotes_runtime =Off
 ?>
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image6.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image6.png){width="5.760416666666667in"
 height="4.345704286964129in"}
 
 ** stripslashes（）**
@@ -280,23 +369,23 @@ height="4.345704286964129in"}
 
 stripslashes使用方法：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image7.png){width="4.138888888888889in"
+![截图.png](    Php语言/media/image7.png){width="4.138888888888889in"
 height="1.7931714785651793in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image8.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image8.png){width="5.760416666666667in"
 height="1.5382327209098863in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image9.png){width="4.986111111111111in"
+![截图.png](    Php语言/media/image9.png){width="4.986111111111111in"
 height="2.217205818022747in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image10.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image10.png){width="5.760416666666667in"
 height="1.0523840769903763in"}
 
 **[htmlspecialchars()函数]{.mark}**
 
 **[防止xss注入的绝招]{.mark}**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image11.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image11.png){width="5.760416666666667in"
 height="1.6954068241469815in"}
 
 将危险字符进行html实体化使用方法,无效编码就返回空：
@@ -317,10 +406,10 @@ htmlspecialchars(\$x);
 ?>
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image12.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image12.png){width="5.760416666666667in"
 height="1.1708748906386701in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image13.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image13.png){width="5.760416666666667in"
 height="0.85793416447944in"}
 
 **strip_tags()函数**
@@ -345,7 +434,7 @@ height="0.85793416447944in"}
 ?>
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image14.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image14.png){width="5.760416666666667in"
 height="0.8960651793525809in"}
 
 **escapeshellcmd()函数**
@@ -367,7 +456,7 @@ height="0.8960651793525809in"}
 ?>
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image15.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image15.png){width="5.760416666666667in"
 height="1.03920384951881in"}
 
 **intval函数**
@@ -390,12 +479,12 @@ height="1.03920384951881in"}
 ?>
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image16.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image16.png){width="5.760416666666667in"
 height="1.0942443132108486in"}
 
 **http-only防御那么js脚本将无法读取cookie信息。**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image17.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image17.png){width="5.760416666666667in"
 height="0.6598862642169728in"}
 
 **sprintf函数漏洞**
@@ -409,10 +498,10 @@ case对15种类型做了匹配，包括%s、%d、%u...但如果在15种类型之
 
 具体漏洞可见 php sprintf 漏洞
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image18.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image18.png){width="5.760416666666667in"
 height="0.718853893263342in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image19.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image19.png){width="5.760416666666667in"
 height="0.7285520559930009in"}
 
 **[\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--]{.mark}**
@@ -522,15 +611,15 @@ var_dump(uploader());
 ?>
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image20.png){width="4.861111111111111in"
+![截图.png](    Php语言/media/image20.png){width="4.861111111111111in"
 height="1.0513320209973753in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image21.png){width="4.430555555555555in"
+![截图.png](    Php语言/media/image21.png){width="4.430555555555555in"
 height="1.0633333333333332in"}
 
 文件上传加固
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image22.png){width="3.6527777777777777in"
+![截图.png](    Php语言/media/image22.png){width="3.6527777777777777in"
 height="0.5531353893263342in"}
 
 设置目录内禁止解析php后缀文件
@@ -559,7 +648,7 @@ strrchr函数在字符串\$haystack中查找\$needle，并将最后一次查找�
 
 \<?php\$s=\"1.phP\";\$k=strtolower(\$s);echo \$e=strrchr(\$k,\".\");?\>
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image23.png){width="4.013888888888889in"
+![截图.png](    Php语言/media/image23.png){width="4.013888888888889in"
 height="1.084271653543307in"}
 
 **5. strtolower**
@@ -582,7 +671,7 @@ echo str_ireplace("php","",$k)."\n";
 ?>
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image24.png){width="3.263888888888889in"
+![截图.png](    Php语言/media/image24.png){width="3.263888888888889in"
 height="1.3973195538057743in"}
 
 **[str_ireplace函数]{.mark}**
@@ -602,7 +691,7 @@ echo str_ireplace("php","",$s)."\n";
 ?>
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image25.png){width="3.736111111111111in"
+![截图.png](    Php语言/media/image25.png){width="3.736111111111111in"
 height="0.978257874015748in"}
 
 **strstr**
@@ -626,7 +715,7 @@ echo strstr($s,"php");
 ?>
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image26.png){width="4.083333333333333in"
+![截图.png](    Php语言/media/image26.png){width="4.083333333333333in"
 height="1.0in"}
 
 **substr函数**
@@ -657,14 +746,14 @@ echo substr("Hello world",-2-3)."<br>";
 ?>
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image27.png){width="4.916666666666667in"
+![截图.png](    Php语言/media/image27.png){width="4.916666666666667in"
 height="2.6041666666666665in"}
 
 [**strrpos()**]{.mark}
 
 [函数查找字符串在另一字符串中最后一次出现的位置（区分大小写）]{.mark}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image28.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image28.png){width="5.760416666666667in"
 height="1.1846281714785651in"}
 
 [将两个组合在一起就是strrchr函数一样的作用（文件上传第11题就是用这个方法代替想借此误导我们分析）]{.mark}
@@ -683,7 +772,7 @@ var_dump(strrchr($s,"."));
 ?>
 ```
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image29.png){width="4.694444444444445in"
+![截图.png](    Php语言/media/image29.png){width="4.694444444444445in"
 height="1.7317279090113735in"}
 
 [in_array函数]{.mark}
@@ -811,5 +900,5 @@ var_dump(uploader());
 
 **弱类型绕过**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Php语言/media/image30.png){width="5.760416666666667in"
+![截图.png](    Php语言/media/image30.png){width="5.760416666666667in"
 height="2.8830522747156606in"}

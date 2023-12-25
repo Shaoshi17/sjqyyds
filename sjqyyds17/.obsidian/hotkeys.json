@@ -1,1 +1,10 @@
-{}
+{
+  "theme:switch": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "`"
+    }
+  ]
+}

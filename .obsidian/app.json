@@ -1,6 +1,7 @@
 {
   "promptDelete": false,
   "newFileLocation": "root",
-  "attachmentFolderPath": "sjqyyds17/附件/C语言/media",
-  "tabSize": 8
+  "attachmentFolderPath": "/",
+  "tabSize": 8,
+  "alwaysUpdateLinks": true
 }
