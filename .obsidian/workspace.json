@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "16d270c547cb0bbe",
+        "id": "d8269cac16a40156",
         "type": "tabs",
         "children": [
           {
-            "id": "17cfd9153314944a",
+            "id": "dfada01c1843461a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "sjqyyds17/CTF/文件上传漏洞.md",
+                "file": "sjqyyds17/CTF/Web.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "sjqyyds17/CTF/文件上传漏洞.md",
+                "file": "sjqyyds17/CTF/Web.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "sjqyyds17/CTF/文件上传漏洞.md",
+                "file": "sjqyyds17/CTF/Web.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "sjqyyds17/CTF/文件上传漏洞.md"
+                "file": "sjqyyds17/CTF/Web.md"
               }
             }
           }
@@ -134,7 +134,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -149,20 +150,39 @@
       "obsidian-regex-pipeline:Regex Rulesets": false
     }
   },
-  "active": "17cfd9153314944a",
+  "active": "dfada01c1843461a",
   "lastOpenFiles": [
-    "sjqyyds17/CTF/信息泄露漏洞.md",
-    "sjqyyds17/CTF/文件上传漏洞.md",
-    "sjqyyds17/CTF/文件包含和Php伪协议.md",
+    "sjqyyds17/CTF/SQL注入.md",
+    "sjqyyds17/编程学习/正则表达式.md",
+    "sjqyyds17/附件/Php语言/media/Pasted image 20240117192720.png",
+    "sjqyyds17/高职/渗透.md",
+    "sjqyyds17/CTF/代码审计.md",
     "sjqyyds17/CTF/命令执行绕过.md",
     "sjqyyds17/CTF/反序列化.md",
-    "sjqyyds17/CTF/代码审计.md",
-    "sjqyyds17/CTF/Reverse.md",
-    "sjqyyds17/编程学习/Php语言.md",
-    "Pasted image 20231225090940.png",
-    "Pasted image 20231225085837.png",
-    "Pasted image 20231225085711.png",
+    "sjqyyds17/CTF/CTF.md",
+    "sjqyyds17/CTF/Misc.md",
+    "sjqyyds17/CTF/文件包含和Php伪协议.md",
+    "sjqyyds17/附件/Php语言/media/Pasted image 20240116201828.png",
+    "sjqyyds17/附件/Php语言/media/Pasted image 20240116201533.png",
     "sjqyyds17/编程学习/C语言.md",
+    "sjqyyds17/附件/Php语言/media/Pasted image 20240116145432.png",
+    "sjqyyds17/附件/Php语言/media/Pasted image 20240116145334.png",
+    "sjqyyds17/附件/Php语言/media/Pasted image 20240116144728.png",
+    "sjqyyds17/CTF/WAF.md",
+    "sjqyyds17/附件/Php语言/media/Pasted image 20240116103143.png",
+    "sjqyyds17/附件/Php语言/media/Pasted image 20240116102944.png",
+    "sjqyyds17/CTF/暴力破解.md",
+    "sjqyyds17/CTF/Web.md",
+    "未命名.canvas",
+    "sjqyyds17/编程学习/Php语言.md",
+    "sjqyyds17/附件/Php语言/media/Pasted image 20240113210924.png",
+    "sjqyyds17/附件/Php语言/media/Pasted image 20240113210858.png",
+    "sjqyyds17/编程学习/Python语言.md",
+    "sjqyyds17/CTF/文件上传漏洞.md",
+    "sjqyyds17/附件/未命名",
+    "sjqyyds17/编程学习/Shell语言.md",
+    "sjqyyds17/CTF/信息泄露漏洞.md",
+    "sjqyyds17/CTF/Reverse.md",
     "/regex-rulesets/index.txt",
     "regex-rulesets/index.txt",
     "/regex-rulesets",
@@ -170,34 +190,14 @@
     "sjqyyds17/编程学习/Java语言.md",
     "sjqyyds17/编程学习/油猴脚本学习.md",
     "sjqyyds17/编程学习/语言脚本/未命名.md",
-    "sjqyyds17/CTF/Web.md",
     "sjqyyds17/CTF/PHP伪协议详解.md",
-    "sjqyyds17/附件/高职/vulnhub靶机综合渗透/media/Pasted image 20231222113722.png",
-    "sjqyyds17/附件/高职/vulnhub靶机综合渗透/Pasted image 20231222114116.png",
-    "sjqyyds17/附件/高职/vulnhub靶机综合渗透/media/Pasted image 20231222113901.png",
     "sjqyyds17/高职/vulnhub靶机综合渗透.md",
-    "sjqyyds17/附件/高职/vulnhub靶机综合渗透/media/Pasted image 20231222152611.png",
-    "sjqyyds17/附件/高职/vulnhub靶机综合渗透/media/Pasted image 20231222152547.png",
-    "sjqyyds17/附件/高职/vulnhub靶机综合渗透/media/Pasted image 20231222152436.png",
-    "sjqyyds17/附件/高职/vulnhub靶机综合渗透/media/Pasted image 20231222152235.png",
-    "sjqyyds17/CTF/暴力破解.md",
     "sjqyyds17/高职/赛题环境解析.md",
-    "sjqyyds17/高职/高三学期推荐的学习路线规划.md",
-    "sjqyyds17/去你妈的有道云.md",
-    "vulnhub靶机综合渗透.md",
-    "sjqyyds17/高职/数据分析.md",
     "sjqyyds17/高职/D模块.pdf",
     "sjqyyds17/高职/vulnhub靶机综合渗透",
     "sjqyyds17/附件/高职/vulnhub靶机综合渗透/media",
     "sjqyyds17/附件/高职/vulnhub靶机综合渗透",
     "sjqyyds17/附件/高职",
-    "sjqyyds17/高职/vulnhub靶机渗透.docx",
-    "sjqyyds17/高职/2023国赛新赛题总结.md",
-    "().md",
-    "sjqyyds17/高职/靶机渗透思路和感想.md",
-    "sjqyyds17/CTF/WAF.md",
-    "sjqyyds17/高职/渗透.md",
-    "未命名.canvas",
     "sjqyyds17/未命名.canvas"
   ]
 }

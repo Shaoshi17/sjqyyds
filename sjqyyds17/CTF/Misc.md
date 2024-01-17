@@ -545,7 +545,7 @@ height="3.508728127734033in"}
 ![微信截图_20220623193346.png](   Misc/media/image26.png){width="5.760416666666667in"
 height="0.9185400262467192in"}
 
-用crunch生成提示相关的密码比如说网络密码一般是八位数，或者使用kali自带字典
+用==crunch==生成提示相关的密码比如说网络密码一般是八位数，或者使用kali自带字典
 
 [ aircrack-ng cacosmia.cap -w /usr/share/wordlists/fern-wifi/common.txt
 破解密码]{.mark}
