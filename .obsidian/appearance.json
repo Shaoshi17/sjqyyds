@@ -1,8 +1,8 @@
 {
   "accentColor": "#5c61f5",
-  "cssTheme": "Wyrd",
+  "cssTheme": "Blue Topaz",
   "interfaceFontFamily": "Inter,仿宋,楷体,微软雅黑",
-  "baseFontSize": 12,
+  "baseFontSize": 13,
   "translucency": false,
   "theme": "obsidian"
 }

@@ -1,6 +1,11 @@
+---
+created: 2023-11-21T17:23
+updated: 2024-03-09T14:42
+---
 # 7天理解掌握php基础
 
-## day1 （配置环境）
+
+## （配置环境）
 
 #### 静态网站与动态网站的区别
 静态网站是web1.0时代
@@ -85,7 +90,7 @@ mysql客户端访问服务器需要寻找匹配，连接认证
 
 
 
-## day2（PHP基础）
+## （PHP基础）
 php是一种可以运行在服务器的脚本语言，可以嵌入html中
 ##### php代码标记
 在php中可以用多种标记来区分php脚本
@@ -96,7 +101,7 @@ php是一种可以运行在服务器的脚本语言，可以嵌入html中
 
 ##### php的编码规范
 通常是以分号结尾";"
-在php代码中的结束标记隐含了一个分号，所以可以不用加分号
+在php代码中的==结束标记隐含了一个分号，所以可以不用加分号==
 ```
 <?php phpinfo();
 ?>
@@ -184,7 +189,7 @@ $b=&$a;   //将变量$a的地址引用赋给$b，两个变量指向同一块内�
 ##### 内置超全局变量
 所谓超全局变量就是不管在程序什么地方都能访问到。
 - [ ] `$GLOBALS`：包括全含变量的数组
-- [ ] `$_GET`:包含所有通过GET方法传递给代码的变量
+- [ ] `$_GET`:包含所有通过GET方法传递给代码的变量 `$_GET`会自动调用,urldecode
 - [ ] `$_POST`:包含所有通过POST方法传递给代码的变量
 - [ ] `$_REQUEST`:包含用户所有的输入内容的数组(`$_GET`,`$_POST`,`$_COOKIE`)
 - [ ] `$_FILES`：包含文件上传变量的数组
@@ -192,6 +197,34 @@ $b=&$a;   //将变量$a的地址引用赋给$b，两个变量指向同一块内�
 - [ ] `$_SERVER`：包含服务器环境变量的数组
 - [ ] `$_ENF`:包含环境变量的数组
 - [ ] `$_SESSION`:包含会话变量的数组
+###### 下表列出了您能够在 `$_SERVER` 中访问的最重要的元素：
+
+|Element/Code|描述|
+|---|---|
+|$_SERVER['PHP_SELF']|返回当前执行脚本的文件名。|
+|$_SERVER['GATEWAY_INTERFACE']|返回服务器使用的 CGI 规范的版本。|
+|$_SERVER['SERVER_ADDR']|返回当前运行脚本所在的服务器的 IP 地址。|
+|$_SERVER['SERVER_NAME']|返回当前运行脚本所在的服务器的主机名（比如 www.w3schools.cn）。|
+|$_SERVER['SERVER_SOFTWARE']|返回服务器标识字符串（比如 Apache/2.2.24）。|
+|$_SERVER['SERVER_PROTOCOL']|返回请求页面时通信协议的名称和版本（例如，"HTTP/1.0"）。|
+|$_SERVER['REQUEST_METHOD']|返回访问页面使用的请求方法（例如 POST）。|
+|$_SERVER['REQUEST_TIME']|返回请求开始时的时间戳（例如 1377687496）。|
+|$_SERVER['QUERY_STRING']|返回查询字符串，如果是通过查询字符串访问此页面。|
+|$_SERVER['HTTP_ACCEPT']|返回来自当前请求的请求头。|
+|$_SERVER['HTTP_ACCEPT_CHARSET']|返回来自当前请求的 Accept_Charset 头（ 例如 utf-8,ISO-8859-1）|
+|$_SERVER['HTTP_HOST']|返回来自当前请求的 Host 头。|
+|$_SERVER['HTTP_REFERER']|返回当前页面的完整 URL（不可靠，因为不是所有用户代理都支持）。|
+|$_SERVER['HTTPS']|是否通过安全 HTTP 协议查询脚本。|
+|$_SERVER['REMOTE_ADDR']|返回浏览当前页面的用户的 IP 地址。|
+|$_SERVER['REMOTE_HOST']|返回浏览当前页面的用户的主机名。|
+|$_SERVER['REMOTE_PORT']|返回用户机器上连接到 Web 服务器所使用的端口号。|
+|$_SERVER['SCRIPT_FILENAME']|返回当前执行脚本的绝对路径。|
+|$_SERVER['SERVER_ADMIN']|该值指明了 Apache 服务器配置文件中的 SERVER_ADMIN 参数。|
+|$_SERVER['SERVER_PORT']|Web 服务器使用的端口。默认值为 "80"。|
+|$_SERVER['SERVER_SIGNATURE']|返回服务器版本和虚拟主机名。|
+|$_SERVER['PATH_TRANSLATED']|当前脚本所在文件系统（非文档根目录）的基本路径。|
+|$_SERVER['SCRIPT_NAME']|返回当前脚本的路径。|
+|$_SERVER['SCRIPT_URI']|返回当前页面的 URI。|
 ##### 全局变量
 所谓全局变量就是在函数外声明的变量。在代码间可以访问，==但是在函数内是不能访问的==。
 ```php
@@ -206,7 +239,7 @@ echo $root." 2";
 ```
 这里和C语言不一样不能在函数中引用外部全局变量，但是代码间可以访问
 ![[Pasted image 20231228113725.png]]
-使用关键字global，可以让函数访访问到全局变量
+==使用关键字global，可以让函数访访问到全局变量==
 ```php
 <?php
 $root=20;
@@ -246,14 +279,12 @@ function show(){
 show();
 show();
 show();
-
 ?>
-
 ```
 ![[Pasted image 20231228144204.png]]
-如果不使用关键字static那这个函数的值将不会保留。
+==如果不使用关键字static那这个函数的值将不会保留==。
 ##### 变量的销毁
-使用 unset()函数实现销毁，不能销毁全局变量
+使用 unset()函数实现销毁，==不能销毁全局变量==
 该函数语法是：void unset(变量)
 ```php
 <?php
@@ -262,12 +293,9 @@ function show(){
 	static $b=20;
 	unset ($b);
 	unset ($a);
-	
-	
 }
 echo $a;
 echo $b;
-
 show();
 ?>
 ```
@@ -290,11 +318,22 @@ $float1=3.14;
 echo $float1."\t";
 echo (Boolean)($int1); //将int1整型转换为布尔变量
 ?>
-
 ```
 ![[Pasted image 20231228150850.png]]
 ##### 数组型
 在PHP中，使用list()函数或array()函数来创建数组，也可以直接赋值。
+==list() 函数用于在一次操作中给一组变量赋值。==
+语法
+```
+list(var1,var2...)
+```
+
+|参数|描述|
+|---|---|
+|_var1_|必需。第一个需要赋值的变量。|
+|_var2_,...|可选。更多需要赋值的变量。|
+
+
 例题：
 ```php
 <?php
@@ -302,126 +341,11 @@ $arr=array(   //数组定义
 	0=>15,
 	1=>1.2,
 	2=>"hello",
-	
-);
-for($i=0;$i<3;$i++){  //循环打印数组
-	echo "$arr[$i]<br \>";
-}
-?>
-
-```
-
-![[Pasted image 20231228151648.png]]
-用”=>“为数组赋值，也可以一个一个赋值
-```
-$arr[0]=15;
-..........
-```
-##### 资源类型
-资源类型是很特殊的类型，他可以表示php扩展资源，也可以表示数据库的连接。对象型类型也算资源类型
-##### 对象型
-对象就是类的实例。
-#### 类型转换
-##### 自动类型转换
-```php
-<?php
-	$flo1=1.23;
-	echo (int)$flo1;
-	
-?>
-
-```
-![[Pasted image 20231228152148.png]]
-使用settype函数强制转换数据类型。
-```
-Bool settype(var,string type)
-```
-==这里type的可能值不能是资源类型的数据==
-```php
-<?php
-	$flo1=1.23;
-	echo settype($flo1,"int"); //强制转换
-	
-?>
-
-```
-#### 标量类型的声明
-默认情况所有PHP文件都处于弱类型校验模式。PHP7加了标量类型声明的特性，标量类型声明有两种情况：==强制模式（默认）和严格模式==
-标量类型声明语法格式如下：
-```php
-declare(strict_types=1);
-```
-通过指定strict_types的值（1或0）来表示模式，1是严格模式，0是强制模式。
-
-强制即使不是设置的类型也可以执行
-```php
-//强制模式
-<?php
-function test(int $param){echo($param);}
-test("1");
 ?>
 ```
-![[Pasted image 20231228184828.png]]
-因为默认是强制
 
-严格不是设置的类型就报错
-```php
-//严格模式
-<?php
-declare(strict_types=1);
-function test(int $param){echo($param);}
-test("1");
-?>
-```
-![[Pasted image 20231228184818.png]]
-## day3(运算符)
-#### 运算符
-##### 算术运算符
-| 运算符 | 名称 | 描述 | 实例 | 结果 |
-| :--- | :--- | :--- | :--- | :--- |
-| x + y | 加 | x 和 y 的和 | 2 + 2 | 4 |
-| x - y | 减 | x 和 y 的差 | 5 - 2 | 3 |
-| x * y | 乘 | x 和 y 的积 | 5 * 2 | 10 |
-| x / y | 除 | x 和 y 的商 | 15 / 5 | 3 |
-| x % y | 模（除法的余数） | x 除以 y 的余数 | 5 % 2  <br>10 % 8  <br>10 % 2 | 1  <br>2  <br>0 |
-| -x | 设置负数 | 取 x 的相反符号 | <?php<br>$x = 2;<br>echo -$x;<br>?> | -2 |
-| ~x | 取反 | x 取反，按二进制位进行"取反"运算。运算规则：<br><br>~1=-2;   <br>~0=-1; | <?php<br>$x = 2;<br>echo ~$x;<br>?> | -3 |
-| a . b | 并置 | 连接两个字符串 | "Hi" . "Ha" | HiHa |
 
-##### PHP递增/递减运算符
 
-|运算符|名称|描述|
-|:--|:--|:--|
-|++ x|预递增|x 加 1，然后返回 x|
-|x ++|后递增|返回 x，然后 x 加 1|
-|-- x|预递减|x 减 1，然后返回 x|
-|x --|后递减|返回 x，然后 x 减 1|
-##### PHP 赋值运算符
-
-在 PHP 中，基本的赋值运算符是 =。它意味着左操作数被设置为右侧表达式的值。也就是说，$x = 5 的值是 5。
-
-|运算符|等同于|描述|
-|:--|:--|:--|
-|x = y|x = y|左操作数被设置为右侧表达式的值|
-|x += y|x = x + y|加|
-|x -= y|x = x - y|减|
-|x *= y|x = x * y|乘|
-|x /= y|x = x / y|除|
-|x %= y|x = x % y|模（除法的余数）|
-|a .= b|a = a . b|连接两个字符串|
-##### PHP 比较运算符
-
-比较操作符可以让您比较两个值：
-
-|运算符|名称|描述|实例|
-|:--|:--|:--|:--|
-|x == y|等于|如果 x 等于 y，则返回 true|5==8 返回 false|
-|x === y|绝对等于|如果 x 等于 y，且它们类型相同，则返回 true|5==="5" 返回 false|
-|x != y|不等于|如果 x 不等于 y，则返回 true|5!=8 返回 true|
-|x <> y|不等于|如果 x 不等于 y，则返回 true|5<>8 返回 true|
-|x !== y|不绝对等于|如果 x 不等于 y，或它们类型不相同，则返回 true|5!=="5" 返回 true|
-|x > y|大于|如果 x 大于 y，则返回 true|5>8 返回 false|
-|x < y|小于|如果 x 小于 y，则返回 true|5<8 返回 true|
 |x >= y|大于等于|如果 x 大于或者等于 y，则返回 true|5>=8 返回 false|
 |x <= y|小于等于|如果 x 小于或者等于 y，则返回 true|5<=8 返回 true|
 `===`和`！==`需要注意一下。`$b===$c`表示`$b的值和$c`的值不仅仅是值相同==还要类型相同==,而`$b!==$c`表示`$b和$c可能是类型不同也可能是数值不同`
@@ -435,7 +359,7 @@ test("1");
 |x xor y|异或|如果 x 和 y 有且仅有一个为 true，则返回 true|x=6  <br>y=3  <br>(`x==6 xor y==3`) 返回 false |
 |x && y|与|如果 x 和 y 都为 true，则返回 true|x=6  <br>y=3  <br>(x < 10 && y > 1) 返回 true|
 |x \|\| y |或|如果 x 和 y 至少有一个为 true，则返回 true|x=6  <br>y=3  <br>(x`==5 \| y==5`) 返回 false |
-|! x|非|如果 x 不为 true，则返回 true|x=6  <br>y=3  <br>!(x==y) 返回 true|
+|!x |非|如果 x 不为 true，则返回 true|x=6  <br>y=3  <br>!(x==y) 返回 true|
 
 ##### PHP 数组运算符
 
@@ -481,12 +405,10 @@ PHP 支持一个错误控制运算符：`@`。当将其放置在一个 PHP 表�
 	$arr[0][0]=10;
 	$arr[0][1]=10;
 	$arr[0][2]=10;
-	
 ?>
 ```
 和C语言的差不多。
-
-## day4（流程控制）
+## （流程控制）
 顺序结构：代码最基础的结构
 分支结构：if
 循环结构：for
@@ -519,7 +441,11 @@ else
 ```
 
 ##### 流程控制的代替语法：
-替代语法就把左花括号（{）换成冒号（:），把右花括号（}）分别换成 _endif;_，_endwhile;_，_endfor;_，_endforeach;_ 以及 _endswitch;_。
+替代语法就把左花括号（{）换成冒号（:），把右花括号（}）分别换成 
+```
+_endif;_，_endwhile;_，_endfor;_，_endforeach;_ 以及 _endswitch;_。
+```
+
 ```php
 <?php
 if($a==5):
@@ -578,7 +504,7 @@ foreach (array_expression as $key => $value)
     statement
 
 ```
-> **Note**:
+> Note:
 > 
 > 当 _foreach_ 开始执行时，数组内部的指针会自动指向第一个单元。这意味着不需要在 _foreach_ 循环之前调用 [reset()](mk:@MSITStore:C:\Users\ADMINI~1\AppData\Local\Temp\Rar$DIa10924.45350\php手册2015.chm::/res/function.reset.html)。
 > 
@@ -687,7 +613,7 @@ endfor;
 ```
 ![[Pasted image 20240105114832.png]]
 ##### switch
-> **Note**: 注意和其它语言不同，[continue](mk:@MSITStore:C:\Users\ADMINI~1\AppData\Local\Temp\Rar$DIa10924.45350\php手册2015.chm::/res/control-structures.continue.html) 语句作用到 switch 上的作用类似于 _break_。如果在循环中有一个 switch 并希望 continue 到外层循环中的下一轮循环，用 _continue 2_。
+> Note: 注意和其它语言不同，[continue](mk:@MSITStore:C:\Users\ADMINI~1\AppData\Local\Temp\Rar$DIa10924.45350\php手册2015.chm::/res/control-structures.continue.html) 语句作用到 switch 上的作用类似于 _break_。如果在循环中有一个 switch 并希望 continue 到外层循环中的下一轮循环，用 _continue 2_。
 ==这里和C语言不一样==
 
 > 注意 switch/case 作的是[松散比较](mk:@MSITStore:C:\Users\ADMINI~1\AppData\Local\Temp\Rar$DIa10924.45350\php手册2015.chm::/res/types.comparisons.html#types.comparisions-loose)。
@@ -713,7 +639,7 @@ case "cake":
 ![[Pasted image 20240105115840.png]]
 
 
-允许使用分号代替 case 语句后的冒号，例如：
+==允许使用分号代替 case 语句后的冒号，例如：==
 
 ```php
 <?php
@@ -733,7 +659,7 @@ switch($beer)
 
 ```
 ![[Pasted image 20240105115922.png]]
-## day5(函数)
+## (函数)
 #### 文件加载原理
 在使用include,require的时候，系统会自动将被包含的文件自动加载到对应代码位置。和C语言的预处理一样。
 php中被包含的文件是单独进行编译的。
@@ -751,7 +677,7 @@ echo '123123';
 ```
 
 ![[Pasted image 20240106145521.png]]
-include包含错误只是警告，后面还能用。
+==include包含错误只是警告，后面还能用。==
 ```php
 <?php
 require's.zip';
@@ -915,7 +841,7 @@ Number：数值的，可以是任意数值类型（整形和浮点型）
  
 ![[Pasted image 20240107103416.png]]
 
-## day6
+## 函数和数组
 #### 常用函数
 ###### 输出
 print():类似于echo ，不是一个真正的函数，而是一个结构，所以可以不用括号包裹
@@ -923,7 +849,7 @@ print_r()：类似于var_dump
 ![[Pasted image 20240106101623.png]]
 ###### 时间
 data():按照指定格式对应时间戳（从1970年格林威治时间开始计算秒数）
-string **date** ( string `$format` [, int `$timestamp` ] )
+string date ( string `$format` [, int `$timestamp` ] )
 
 返回将整数 `timestamp` 按照给定的格式字串而产生的字符串。如果没有给出时间戳则使用本地当前时间。换句话说，`timestamp` 是可选的，默认值为 [time()](mk:@MSITStore:C:\Users\ADMINI~1\AppData\Local\Temp\Rar$DIa10924.45350\php手册2015.chm::/res/function.time.html)。
 
@@ -962,6 +888,24 @@ abs()：绝对值
 sqrt():求平方根
 ###### 关于函数的函数
 ![[Pasted image 20240108093437.png]]
+###### is_numeric
+判断变量是否为数字。但是范围比较广，不仅仅是十进制数字
+```php
+<?php
+echo is_numeric(233333);       // 1
+echo is_numeric('233333');    // 1
+echo is_numeric(0x233333);    // 1
+echo is_numeric('0x233333');   // 1
+echo is_numeric('233333abc');  // 0
+?>
+```
+###### in_array
+in_array函数用来判断一个值是否在某一个数组列表里面，通常判断方式如下：
+```php
+in_array('b', array('a', 'b', 'c');
+```
+
+
 ##### php字符串定义
 ###### 引号定义：
 $str1='hellow';
@@ -1099,6 +1043,7 @@ echo ucfirst($str)."\n";
 ![[Pasted image 20240108152504.png]]
 ###### 查找函数：strpos(),strrpos()
 strpos(字符串,判断字符):判断字符在字符串的首次出现的地方
+stripos(字符串，判断字符)是不区分大小写。
 strrpos(字符串,判断字符):判断字符在字符串的最后出现的地方
 ```php
 <?php
@@ -1225,7 +1170,7 @@ foreach($arr as  $vul){
 ![[Pasted image 20240109111336.png]]
 ###### foreach()遍历原理
 1. foreach()会重置指针：让指针指向第一个元素：
-2. 进入foreach()循环：通过指针取得当前第一个元素，任何将下标取得变量$k（如果存在）中，将值取出来放到对应值变量$$v中（指针移动）
+2. 进入foreach()循环：通过指针取得当前第一个元素，任何将下标取得变量`$k（如果存在）中，将值取出来放到对应值变量$$v中（指针移动）`
 3. 进入循环内部（循环体），开始执行
 4. 重复2和3步骤，直到2取不到内容
 ###### for循环遍历
@@ -1242,7 +1187,7 @@ for($a=0;$a<count($arr);$a++){
 ![[Pasted image 20240109114008.png]]
 ###### while配合each和list遍历数组
 本身就可以和for一样遍历数组
-	each函数使用：能够从一个数组中获取当前数组指针所指向的元素的下标和值，拿到之后将数组指针下移，同时将这些值 
+	==each函数使用：能够从一个数组中获取当前数组指针所指向的元素的下标和值==，拿到之后将数组指针下移，同时将这些值 
 	以四个元素的数组返回
 	![[Pasted image 20240109120302.png]]
 
@@ -1280,7 +1225,7 @@ current():获取当前指针对应的元素值
 key():获取当前指针对应的下标值 
 ![[Pasted image 20240110090028.png]]
 #### 其他函数
-count():统计数组中元素的数量
+==count():统计数组中元素的数量==
 ![[Pasted image 20240111085420.png]]
 array_push()：在数组后追加一个元素
 array_pop()：从数组后取走一个元素
@@ -1300,7 +1245,7 @@ array_shift()和array_unshift()在前面模拟栈
 array_push()和array_shift()从后进前出
 array_unshift()和array_pop()从前进后出
 ![[Pasted image 20240111085153.png]]
-array_reverse():数组元素反转
+array_reverse():数组元素反转，对应的字符串翻转就是strrev()函数
 ![[Pasted image 20240111085622.png]]
 in_array():判断元素在数组中是否存在
 ![[Pasted image 20240111085800.png]]
@@ -1329,13 +1274,28 @@ for($i=0,$len=count($arr);$i<$len;$i++){
 }
 var_dump($arr);
 ?>
-
 ```
+![[selectionSort.gif]]
 ![[Pasted image 20240111162223.png]]
+###### 十大经典算法复杂度及稳定性比较
+https://blog.csdn.net/alzzw/article/details/98100378
+
+冒泡排序：https://blog.csdn.net/alzzw/article/details/97906690
+
+插入排序：https://blog.csdn.net/alzzw/article/details/97967278
+
+快速排序：https://blog.csdn.net/alzzw/article/details/97970371
+
+归并排序：https://blog.csdn.net/alzzw/article/details/98047030
+
+堆排序：https://blog.csdn.net/alzzw/article/details/98087519
+
+基数排序：https://blog.csdn.net/alzzw/article/details/98240042
+
+计数排序：https://blog.csdn.net/alzzw/article/details/98245871
 
 
-
-## day7
+## 类与对象
 ### 类与对象
 ###### 面向对象编程优点
 封装性
@@ -1359,14 +1319,14 @@ var_dump($arr);
 每个变量将存储不同的对象属性信息。
 其中成员属性必须用关键词修饰，public,protected private。
 声明成员属性可以不进行赋值操作。
-```
+```php
 public class student{
 	 public $name; 类成员属性
 }
 ```
 ###### 成员方法 
-指的是类中的函数，当然也能声明多个函数，类的成员方法可以通过关键字修饰,从而控制成员方法使用
-```
+指的是==类中的函数==，当然也能声明多个函数，类的成员方法可以通过关键字修饰,从而控制成员方法使用
+```php
 public class student{
 	 public $name; //类成员属性
 	 function s(){
@@ -1385,9 +1345,9 @@ new为创建对象的关键字
 通过对象的引用可以访问类中的成员属性和方法，这里需要特殊字符“->”具体语法
 ```
 $变量名=new 类名称();   //类的实例化
-$变量名->成员属性=值;   //为成员属性赋值
+$变量名->成员属性=值;   //为成员属性赋值 
 $变量名->成员属性;   //直接获取成员的属性值
-$变量名->成员方法   //访问对象中指定的方法
+$变量名->成员方法();  //访问对象中指定的方法
 ```
 和普通的调用对象和方法一样，只不过要加$变量名->成员属性或成员方法这里不用加 $
 另外用户还可以使用一些特殊的访问方法。
@@ -1410,7 +1370,7 @@ var_dump($nam->name);
 ```
 ![[Pasted image 20240112095501.png]]
 ###### 操作符"::"
-操作符”::“可以没有任何声明实例的情况下访问类中的成员。访问静态的，访问动态的会报错
+==操作符”::“可以没有任何声明实例的情况下访问类中(而不是对象)的成员。访问静态的，访问动态的会报错==
 ```
 关键字::变量名/常量名/方法名
 ```
@@ -1428,7 +1388,7 @@ class guests{
 }
 guests::pepnle();
 ?>
-```
+```fu
 ![[Pasted image 20240112100843.png]]
 ::class
 获取类名
@@ -1525,6 +1485,11 @@ echo gute::shan;
 ###### 类的自动加载
 ![[Pasted image 20240112150422.png]]
 感觉一般般没啥用
+###### 抽象类
+定义为抽象的类不能被实例化。任何一个类，==如果它里面至少有一个方法是被声明为抽象==的，那么这个类就必须被声明为抽象的。被定义为抽象的方法只是声明了其调用方式（参数），不能定义其具体的功能实现。
+
+
+
 ###### 构造函数和析构函数
 `__construct`：在实例化到时候一定会第一个调用这个，就像C语言的main()一样
 还可以给他加参数
@@ -1574,8 +1539,6 @@ $nam=new guests("shan",12); //传递的值给到__construct
 ?>
 ```
 ![[Pasted image 20240112153403.png]]
-###### 抽象类
-定义为抽象的类不能被实例化。任何一个类，==如果它里面至少有一个方法是被声明为抽象==的，那么这个类就必须被声明为抽象的。被定义为抽象的方法只是声明了其调用方式（参数），不能定义其具体的功能实现。
 
 
 
@@ -1609,11 +1572,12 @@ $nam=new guests("shan",12); //传递的值给到__construct
 
 
 
+
 \_FILE\_ 文件路径和文件名
 
 PHP_VERSION php版本
 
-**[strcmp]{.mark}**
+[strcmp]
 
 ```
 int strcmp ( string $str1 , string $str2 )1
@@ -1623,26 +1587,26 @@ int strcmp ( string $str1 , string $str2 )1
 \<0； 如果 str1 大于 str2 返回\> 0；如果两者相等，返回 0。区分大小写
 
 绕过的漏洞就是[数组或者一个 object
-即可，就可以让比较直接变成0,就是相当于两个都相等，从而绕过验证。]{.mark}
+即可，就可以让比较直接变成0,就是相当于两个都相等，从而绕过验证。]
 
-**empty判断字符是否为空**
+empty判断字符是否为空
 
 bool empty ( mixed \$var )
 
-**is_numeric**
+is_numeric
 
-**PHP 提供了 is_numeric
-函数，用来变量判断是否为数字。但是函数的范围比较广泛，不仅仅是十进制的数字。**
+PHP 提供了 is_numeric
+函数，用来变量判断是否为数字。但是函数的范围比较广泛，不仅仅是十进制的数字。
 
 bool is_numeric ( mixed \$var )
 
 [如果指定的变量是数字和数字字符串则返回 TRUE，否则返回
-FALSE，注意浮点型返回 1，即 TRUE。]{.mark}
+FALSE，注意浮点型返回 1，即 TRUE。]
 
 [is_numeric 函数对于空字符 %00，无论是 %00
-放在前后都可以判断为非数值，而 %20 空格字符只能放在数值后。]{.mark}
+放在前后都可以判断为非数值，而 %20 空格字符只能放在数值后。]
 
-**PHP preg_match_all() 函数**
+PHP preg_match_all() 函数
 
 1,方括号 \[n\] 在目标寻找字符n
 
@@ -1653,9 +1617,9 @@ FALSE，注意浮点型返回 1，即 TRUE。]{.mark}
 
 '''''''''''''''''''''''''
 
-[认证email的正则表达]{.mark}
+[认证email的正则表达]
 
-[\^\[a-zA-Z0-9\_-\]+@\[a-zA-Z0-9\_-\]+(\\.\[a-zA-Z0-9\_-\]+)+\$]{.mark}
+[\^\[a-zA-Z0-9\_-\]+@\[a-zA-Z0-9\_-\]+(\\.\[a-zA-Z0-9\_-\]+)+\$]
 
 [PHP 正则表达式(PCRE)](https://www.runoob.com/php/php-pcre.html)
 
@@ -1674,7 +1638,7 @@ show_source("test.php");
 ![截图.png](    Php语言/media/image1.png){width="4.291666666666667in"
 height="2.3755096237970252in"}
 
-[正则分析 /key.\*key.{4,7}key:/./(.\*key)\[a-z\]\[\[:punct:\]\]/]{.mark}
+[正则分析 /key.\*key.{4,7}key:/./(.\*key)\[a-z\]\[\[:punct:\]\]/]
 
 key就是普通的字符
 
@@ -1702,37 +1666,37 @@ key普通字符
 
 \[:punct:\]就是特殊字符的意思，\[\[:punct:\]\]就是在特殊字符里取一个，假设是;(当然也可以是@#等等)
 
-**json_encode()函数**
+json_encode()函数
 
-**格式转换**
+格式转换
 
-**echo 输出不了数组用 json_encode()转换**
+echo 输出不了数组用 json_encode()转换
 
-**如 echo json_encode($data);**
+如 echo json_encode($data);
 
-**serialize序列化函数**
+serialize序列化函数
 
-**对象转序列化**
+对象转序列化
 
-**如 echo serialize($data);**
+如 echo serialize($data);
 
-**unserialize反序列化**
+unserialize反序列化
 
-**序列化转对象**
+序列化转对象
 
-**在序列化转对象时候如果没过滤并且有执行函数就可以传php代码**
+在序列化转对象时候如果没过滤并且有执行函数就可以传php代码
 
-**如**
+如
 
 ![截图.png](    Php语言/media/image2.png){width="5.760416666666667in"
 height="3.2402351268591425in"}
 
-**[有@eval()函数和\$\_GET变量利用]{.mark}**
+[有@eval()函数和\$\_GET变量利用]
 
 ![截图.png](    Php语言/media/image3.png){width="5.760416666666667in"
 height="3.2402351268591425in"}
 
-**[注意长度也要符合]{.mark}**
+[注意长度也要符合]
 
 ![截图.png](    Php语言/media/image4.png){width="5.760416666666667in"
 height="2.033589238845144in"}
@@ -1800,9 +1764,9 @@ var_dump(base64_encode($C));            //base64加密
 
 ?>
 ```
-**getimagesize检查文件大小，一般用于文件上传**
+getimagesize检查文件大小，一般用于文件上传
 
-**preg_replace()函数**
+preg_replace()函数
 
 替换函数
 
@@ -1811,7 +1775,7 @@ var_dump(base64_encode($C));            //base64加密
 ```php
 <?php
 
-$str=preg_replace('/a/,'b',"aaaaaaaaa'')
+$str=preg_replace('/a/','b',"aaaaaaaaa'')
 
 echo $str
 
@@ -1838,14 +1802,14 @@ if(isset($_GET['code'])){
 ?>
 ```
 
-[trim函数：去除首尾空格]{.mark}
+[trim函数：去除首尾空格]
 
-[file_get_contents函数：读取文件内容]{.mark}
+[file_get_contents函数：读取文件内容]
 
 ![stickPicture.png](    Php语言/media/image5.png){width="5.760416666666667in"
 height="2.576596675415573in"}
 
-**[PHP内置过滤函数]{.mark}**
+[PHP内置过滤函数]
 
 php.ini 魔术引号：
 
@@ -1853,18 +1817,18 @@ magic_quotes_gpc = On
 
 magic_quotes_runtime =Off
 
-[本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。]{.mark}
+[本特性已自 PHP 5.3.0 起废弃并将自 PHP 5.4.0 起移除。]
 
 [当打开时，所有的 \'（单引号），\"（双引号），\\（反斜线）和 NULL
 字符都会被自动加上一个反斜线进行转义。这和 addslashes()
-作用完全相同]{.mark}
+作用完全相同]
 
-**[addslashes()]{.mark}**
+[addslashes()]
 
-[将单引号，双引号，反斜杠，NULL进行加反斜杠转义]{.mark}
+[将单引号，双引号，反斜杠，NULL进行加反斜杠转义]
 
 [用法：addslashes(\$x)
-#就可以将\$x之前不管是使用什么传入方式发现可以转义就在前面添加反斜杠转义]{.mark}
+#就可以将\$x之前不管是使用什么传入方式发现可以转义就在前面添加反斜杠转义]
 
 ```php
 <?php
@@ -1883,7 +1847,7 @@ magic_quotes_runtime =Off
 ![截图.png](    Php语言/media/image6.png){width="5.760416666666667in"
 height="4.345704286964129in"}
 
-** stripslashes（）**
+ stripslashes（）
 
 该方法会删除所有的反斜杠
 
@@ -1903,9 +1867,9 @@ height="2.217205818022747in"}
 ![截图.png](    Php语言/media/image10.png){width="5.760416666666667in"
 height="1.0523840769903763in"}
 
-**[htmlspecialchars()函数]{.mark}**
+[htmlspecialchars()函数]
 
-**[防止xss注入的绝招]{.mark}**
+[防止xss注入的绝招]
 
 ![截图.png](    Php语言/media/image11.png){width="5.760416666666667in"
 height="1.6954068241469815in"}
@@ -1934,13 +1898,13 @@ height="1.1708748906386701in"}
 ![截图.png](    Php语言/media/image13.png){width="5.760416666666667in"
 height="0.85793416447944in"}
 
-**strip_tags()函数**
+strip_tags()函数
 
-**防止xss好办法**
+防止xss好办法
 
-**去除空字符串，html和php标记**
+去除空字符串，html和php标记
 
-**用法也是：strip_tags(\$x);**
+用法也是：strip_tags(\$x);
 
 ```php
 <?php
@@ -1959,11 +1923,11 @@ height="0.85793416447944in"}
 ![截图.png](    Php语言/media/image14.png){width="5.760416666666667in"
 height="0.8960651793525809in"}
 
-**escapeshellcmd()函数**
+escapeshellcmd()函数
 
-**对字符串中可能会欺骗shell命令执行任意的字符进行转义，保证用户输入数据是安全的**
+对字符串中可能会欺骗shell命令执行任意的字符进行转义，保证用户输入数据是安全的
 
-**用法：escapeshellcmd(\$x);**
+用法：escapeshellcmd(\$x);
 ```php
 <?php
 
@@ -1981,13 +1945,13 @@ height="0.8960651793525809in"}
 ![截图.png](    Php语言/media/image15.png){width="5.760416666666667in"
 height="1.03920384951881in"}
 
-**intval函数**
+intval函数
 
-[函数用于获取变量的整数值。]{.mark}
+[函数用于获取变量的整数值。]
 
-**使用方法：**
+使用方法：
 
-**\$id=intval(\$\_GET\[\'id\'\]);**
+\$id=intval(\$\_GET\[\'id\'\]);
 
 ```php
 <?php
@@ -2004,14 +1968,14 @@ height="1.03920384951881in"}
 ![截图.png](    Php语言/media/image16.png){width="5.760416666666667in"
 height="1.0942443132108486in"}
 
-**http-only防御那么js脚本将无法读取cookie信息。**
+http-only防御那么js脚本将无法读取cookie信息。
 
 ![截图.png](    Php语言/media/image17.png){width="5.760416666666667in"
 height="0.6598862642169728in"}
 
-**sprintf函数漏洞**
+sprintf函数漏洞
 
-<https://www.ctf.show/challenges#%E7%BB%99%E5%A5%B9-119>**靶场**
+<https://www.ctf.show/challenges#%E7%BB%99%E5%A5%B9-119>靶场
 
 sprintf函数使用switch
 case对15种类型做了匹配，包括%s、%d、%u...但如果在15种类型之外就会直接break。
@@ -2026,11 +1990,11 @@ height="0.718853893263342in"}
 ![截图.png](    Php语言/media/image19.png){width="5.760416666666667in"
 height="0.7285520559930009in"}
 
-**[\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--]{.mark}**
+[\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--]
 
-**[文件上传笔记]{.mark}**
+[文件上传笔记]
 
-**[上传页面设置.上传方式是POST还是GET，还有enctype类型，和上传到文件的页面,加入上传的文件类型，和名字定义，]{.mark}**然后加入\<buttor\>提交\</buttor\>按钮
+[上传页面设置.上传方式是POST还是GET，还有enctype类型，和上传到文件的页面,加入上传的文件类型，和名字定义，]然后加入\<buttor\>提交\</buttor\>按钮
 
 ```html
     <form action="update.php" method="post" enctype="multipart/form-data">
@@ -2042,17 +2006,17 @@ height="0.7285520559930009in"}
     </form>
 ```
 
-**[并且设置好php.ini的]{.mark}** upload_tmp_dir =
+[并且设置好php.ini的] upload_tmp_dir =
 \"D:/phpstudy_pro/WWW/update\" （windows格式，默认在前面有；要去掉）
 
-**[然后创建update.php文件]{.mark}**
+[然后创建update.php文件]
 
-[**用print_r(**\$\_FILES**)#**通过\$\_FILES超级全局变量进行读取]{.mark}
+[用print_r(\$\_FILES)#通过\$\_FILES超级全局变量进行读取]
 
 [然后文件就回上传到临时文件夹中不过一瞬间就
-回消失可以设置sleep(10)这样就可以停留10秒，然后在保存到永久的文件夹中]{.mark}
+回消失可以设置sleep(10)这样就可以停留10秒，然后在保存到永久的文件夹中]
 
-[将临时文件转移到永久目录里要写的函数：]{.mark}
+[将临时文件转移到永久目录里要写的函数：]
 
 ```php
 function uploader() #定义函数
@@ -2082,9 +2046,9 @@ function uploader() #定义函数
 var_dump(uploader());
 ```
 
-**[通过前台表单的形式过滤字节大小：]{.mark}**
+[通过前台表单的形式过滤字节大小：]
 
-**[字节大小过滤要放在\<form\>\</form\>里面的最前面]{.mark}**
+[字节大小过滤要放在\<form\>\</form\>里面的最前面]
 
 ```php
 <input type="hidden" name="MAX_FILE_SIZE" value="2000">#字节为单位
@@ -2100,9 +2064,9 @@ var_dump(uploader());
     </form>
 ```
 
-**[加固设置文件上传目录无执行权限（简单粗暴）]{.mark}**
+[加固设置文件上传目录无执行权限（简单粗暴）]
 
-**[文件上传设置白名单jpg/png/gif]{.mark}**
+[文件上传设置白名单jpg/png/gif]
 
 ```php
 <?php
@@ -2146,17 +2110,17 @@ height="0.5531353893263342in"}
 
 设置目录内禁止解析php后缀文件
 
-**[文件上传利用的常见函数]{.mark}**
+[文件上传利用的常见函数]
 
-**deldot函数（）**
+deldot函数（）
 
-**去除字符串尾部的点**
+去除字符串尾部的点
 
-**使用方法：echo deldot(\"hell.world\...);**
+使用方法：echo deldot(\"hell.world\...);
 
-**输出为:hell.world**
+输出为:hell.world
 
-**strrchr**
+strrchr
 
 strrchr(string \$haystack, mixed \$needle): string
 
@@ -2173,11 +2137,11 @@ strrchr函数在字符串\$haystack中查找\$needle，并将最后一次查找�
 ![截图.png](    Php语言/media/image23.png){width="4.013888888888889in"
 height="1.084271653543307in"}
 
-**5. strtolower**
+5. strtolower
 
 strtolower(string \$string): string
 
-将字符串\$string中的**各个英文字符转换为小写并返回**。
+将字符串\$string中的各个英文字符转换为小写并返回。
 
 当然也可以是数组集体转换
 
@@ -2196,12 +2160,12 @@ echo str_ireplace("php","",$k)."\n";
 ![截图.png](    Php语言/media/image24.png){width="3.263888888888889in"
 height="1.3973195538057743in"}
 
-**[str_ireplace函数]{.mark}**
+[str_ireplace函数]
 
-**[用于对数组中的元素或字符串中的子串进行替换。（不区分大小写，只会过滤一次绕过双写绕过就没办法了）]{.mark}**
+[用于对数组中的元素或字符串中的子串进行替换。（不区分大小写，只会过滤一次绕过双写绕过就没办法了）]
 
-[**用法：**echo
-str_ireplace(\"php\",\"\",\"hello.php\").\"\\n\";]{.mark}
+[用法：echo
+str_ireplace(\"php\",\"\",\"hello.php\").\"\\n\";]
 
 ```php
 <?php
@@ -2216,9 +2180,9 @@ echo str_ireplace("php","",$s)."\n";
 ![截图.png](    Php语言/media/image25.png){width="3.736111111111111in"
 height="0.978257874015748in"}
 
-**strstr**
+strstr
 
-**strchr :也是返回第一次出现的地方和strstr用法一样**
+strchr :也是返回第一次出现的地方和strstr用法一样
 
 strstr(string \$haystack, mixed \$needle, bool \$before_needle = false):
 string
@@ -2240,11 +2204,11 @@ echo strstr($s,"php");
 ![截图.png](    Php语言/media/image26.png){width="4.083333333333333in"
 height="1.0in"}
 
-**substr函数**
+substr函数
 
-**语法**
+语法
 
-substr(**string,start,length**)
+substr(string,start,length)
 
 ```php
 <?php
@@ -2271,14 +2235,14 @@ echo substr("Hello world",-2-3)."<br>";
 ![截图.png](    Php语言/media/image27.png){width="4.916666666666667in"
 height="2.6041666666666665in"}
 
-[**strrpos()**]{.mark}
+[strrpos()]
 
-[函数查找字符串在另一字符串中最后一次出现的位置（区分大小写）]{.mark}
+[函数查找字符串在另一字符串中最后一次出现的位置（区分大小写）]
 
 ![截图.png](    Php语言/media/image28.png){width="5.760416666666667in"
 height="1.1846281714785651in"}
 
-[将两个组合在一起就是strrchr函数一样的作用（文件上传第11题就是用这个方法代替想借此误导我们分析）]{.mark}
+[将两个组合在一起就是strrchr函数一样的作用（文件上传第11题就是用这个方法代替想借此误导我们分析）]
 
 ```php
 <?php
@@ -2297,12 +2261,12 @@ var_dump(strrchr($s,"."));
 ![截图.png](    Php语言/media/image29.png){width="4.694444444444445in"
 height="1.7317279090113735in"}
 
-[in_array函数]{.mark}
+[in_array函数]
 
-**[in_array() 函数搜索数组中是否存在指定的值。]{.mark}**
+[in_array() 函数搜索数组中是否存在指定的值。]
 
 [in_array(mixed \$needle, array \$haystack, bool \$strict = false):
-bool]{.mark}
+bool]
 
 其中第一个参数\$needle为待搜索的值，\$haystack为被搜索的数组，第三个参数决定是否进行类型比较。
 
@@ -2377,7 +2341,7 @@ var_dump(uploader());
 
 其实7,8,9行都没必要因为只要后缀是.jpg,.png,.gif，就保存，并且保存时会重新添加这三个白名单的后缀。
 
-**最简最强白名单**
+最简最强白名单
 
 ```php
 <?php
@@ -2415,12 +2379,392 @@ function uploader(){
 var_dump(uploader());
 ```
 
-**2.trim函数仅仅是去掉空格，不能去掉空白字符。因此本关可以通过在sh.php文件名末尾加十六进制81\~99（比如下图中加的是0x88）来绕过后缀黑名单限制
-对这个码也是无解**
+2.trim函数仅仅是去掉空格，不能去掉空白字符。因此本关可以通过在sh.php文件名末尾加十六进制81\~99（比如下图中加的是0x88）来绕过后缀黑名单限制
+对这个码也是无解
 
-**\<?php include(\'文件名\');?\>包含查看文件内容**
+\<?php include(\'文件名\');?\>包含查看文件内容
 
-**弱类型绕过**
+弱类型绕过
 
 ![截图.png](    Php语言/media/image30.png){width="5.760416666666667in"
 height="2.8830522747156606in"}
+#### 伪随机数
+计算机不会产生绝对随机的随机数
+
+###### random_bytes()
+每次都能生成不同内容的二进制字符串。
+```php
+<?php  
+var_dump(bin2hex(random_bytes(5)));  
+?>
+```
+记得转码，不然是乱码看不懂
+![[Pasted image 20240131184100.png]]
+##### 伪随机整数生成
+###### random_int()
+提供两个参数当做范围和mt_rand()一样
+```php
+<?php  
+var_dump(random_int(1,3));  
+?>
+```
+![[Pasted image 20240131184350.png]]
+###### rand()
+###### mt_rand()
+mt_rand() 函数使用 Mersenne Twister 算法返回随机整数（随机数生成器）。
+和C语言的差不多
+```
+mt_rand(min,max);
+```
+```php
+echo mt_rand(1,3);
+```
+
+###### mt_srand()随机数的种子
+```php
+<?php  
+mt_srand(123);  
+var_dump(mt_rand());  
+?>
+```
+重启脚本，也是一样的答案。
+###### php_mt_seed 爆破
+因为是伪随机，是用某个算法计算的数字，不可能是随机数，所以可以用工具爆破，提供一个值
+![[Pasted image 20240131195352.png]]
+
+![[Pasted image 20240131195343.png]]
+
+
+## php特性
+###### 数组
+```php
+<?php 
+$var = 1; 
+$var = array(); 
+$var = "string"; 
+?>
+```
+php不会严格验证传入变量类型，也可以将==变量自由转换类型==
+###### 松散比较
+然而，==PHP 内核的开发者原本是想让程序员借由这种不需要声明的体系，更加高效的开发==，所以在几乎所有内置函数以及基本结构中使用了==很多松散的比较和转换==，防止程序中的变量因为程序员的不规范而频繁的报错，然而这却带来了安全问题。
+弱类型：当一个整形和一个其他类型行比较的时候，会先把其他类型 `intval` 再比较
+```php
+<?php
+$a=null;
+$b=false;
+if($a==$b)echo "yes";
+$a='';
+$b=0;
+if($a==$b)echo "yes";
+?>
+```
+![[Pasted image 20240122094913.png]]
+```
+0=='0' //true
+0 == 'abcdefg' //true
+0 === 'abcdefg' //false
+1 == '1abcdef' //true
+var_dump(123==‘123asd’);//输出为true  
+var_dump(123==‘1234asd’);//输出为false  
+var_dump(123==‘123asd1234’);//输出为true  
+var_dump(“asdf1"==1) //false
+```
+`==在PHP中遇到数字与字符串进行松散比较(==)`时，会将字符串中前几位是数字且数字后面不是”."，“e"或"E"的子串转化为数字，与数字进行比较，如果相同则返回为true，不同返回为false，后面的所有字符串直接截断扔掉。
+上面提到过，如果字符串数字后面是”." , “e”, “E”，则会有其他结果。  
+"."为浮点数的标志，会将字符串的子串转化为浮点数。  
+"e"和"E"为==科学计数法的标志==，将字符串的子串转化为科学计数法。  
+所以比较出错。
+![[Pasted image 20240122095207.png]]
+###### 魔法Hash
+==PHP中的hash缺陷即指哈希算法加密之后的一种特殊组合，即以0e开头+纯数字的组合==，比如: 0e708279691820928818722257405159
+然后在PHP中这种特殊的hash(也就是所谓的Magic Hash)，会被认为是科学计数法，因为这是科学计数法的表示格式，而在科学计数法当中零的N次方(0 x 10^N)都是0
+```php
+"0e132456789"=="0e7124511451155" //true
+"0e123456abc"=="0e1dddada" //false
+"0e1abc"=="0" //true
+```
+==`0e\d+` 这种字符串，就会将这种字符串解析为科学计数法==
+###### 十六进制转换
+```
+"0x1e240"=="123456" //true
+"0x1e240"==123456 //true
+"0x1e240"=="1e240" //false
+```
+当其中的一个字符串是 `0x` 开头的时候，PHP 会将此字符串解析成为十进制然后再进行比较，`0x1240` 解析成为十进制就是 123456，所以与 `int` 类型和 `string` 类型的 123456 比较都是相等。
+###### 类型转换
+1. int转string：strval()函数
+$var = 5;
+方式1：`$item = (string)$var; `
+方式2：`$item = strval($var);`
+2. string转int：intval()函数
+```
+var_dump(intval('2')); //2
+var_dump(intval('3abcd')); //3
+var_dump(intval('abcd')); //0
+var_dump(intval('aas3233'));//0
+var_dump(intval('323a3aa'));//323
+```
+intval()函数会从字符串的开始进行转换直到遇到一个非数字的字符。即使出现无法转换的字符串， `intval()` 不会报错而是返回 0。
+###### 内置函数的参数的松散性
+1. md5()
+`md5()` 中的需要是一个 string 类型的参数。但是当你传递一个 array 时，`md5()` 不会报错，只是会无法正确地求出 array 的 md5 值，这样就会导致任意 2 个 array 的 md5 值都会相等。
+```php
+<?php
+$array1[]=1;
+$array2[]=2;
+var_dump(md5($array1)==md5($array2)); //true
+var_dump(md5($array1)===md5($array2)); //true
+?>
+```
+![[Pasted image 20240122202447.png]]
+1. strcmp()
+ 传递 2 个 `string` 类型的参数。如果 `str1` 小于 `str2`，返回 -1，相等返回 0，否则返回 1
+ 而我们传入两个数字就返回null
+![[Pasted image 20240122103526.png]]
+1. switch()
+如果 `switch()` 是数字类型的 case 的判断时，switch 会将其中的参数转换为 int 类型。如下：
+```php
+<?php
+$i ="2abc";
+switch ($i) {
+case 0:
+case 1:
+case 2:
+ echo "i is less than 3 but not negative";
+ break;
+case 3:
+ echo "i is 3";
+}
+?>
+```
+这个时候程序输出的是 `i is less than 3 but not negative` ，是由于 ==`switch()` 函数将 `$i` 进行了类型转换==，转换结果为 2。
+![[Pasted image 20240122113832.png]]
+![[Pasted image 20240122113846.png]]
+```
+第一个例子是a=0，a=0，a<=10是满足的所以该表达式的值是true，然后判断0==true吗？不是，继续下一个case一直到最后一个case都不相等，所以就走default。
+
+第二个例子是a=0，a=0，a<=10是满足的所以代码会判断0==true吗？不是，继续下一个case，$a>20不满足所以是false然后0==false故输出’大于20’。
+```
+所以例题就可以得到flag
+![[Pasted image 20240122113940.png]]
+1. in_array()
+如果 strict 参数没有提供，那么 `in_array` 就会使用松散比较来判断 `$needle` 是否在 `$haystack` 中。当 strict 的值为 true 时， `in_array()` 会比较 needls 的类型和 haystack 中的类型是否相同。
+```php
+$array=[0,1,2,'3'];
+var_dump(in_array('abc', $array)); //true
+var_dump(in_array('1bc', $array)); //true
+```
+`array_search()` 与 `in_array()` 也是一样的问题。
+#### PHP魔术方法
+特殊的一种方法，以双下划线`(__)`开始或结尾命名的，在对象的生命中被自动调用，执行特定操作。
+###### 16个魔术方法
+![[Pasted image 20240124094028.png]]
+###### `__construct()`初始化自动调用
+| 函数作用 | 对象创建之后进行初始化操作 |
+| ---- | ---- |
+| 调用时机 | 构造函数自动被调用 |
+| 传递参数 | 根据实际需求定义 |
+| 返回值 | 无要求 |
+![[Pasted image 20240124100741.png]]
+![[Pasted image 20240124100731.png]]
+###### `__destruct`对象销毁自动清理
+| 函数作用 | 在对象生命周期结束之前做的一系列清理操作，如释放资源，关闭数据库连接，保存对象状态等 |
+| ---- | ---- |
+| 调用时机 | 对象被销毁自动调用，php垃圾清理回收机制脚本结束自动销毁对象 |
+| 传递参数 | 不可设置 |
+| 返回值 | 无 |
+![[Pasted image 20240124101952.png]]
+要点：==这里反序列化也会触发`__destruct()`魔术方法==
+![[Pasted image 20240124101959.png]]
+###### `__call()`使用对象中不存在或者不可访问的==方法==自动启动
+
+| 函数作用 | 处理对象中不存在或不可调用的方法的调用 |
+| ---- | ---- |
+| 调用时机 | 调用一个不存在或不可访问的方法时候 |
+| 传递参数 | `$method`:被调用的方法明名（字符串类型）<br>`$arguments`:传递给该方法的参数列表（数组类型） |
+| 返回值 | 自由定义返回值 |
+这里故意调用没有的方法，导致`__call`自动调用
+![[Pasted image 20240124110636.png]]
+![[Pasted image 20240124110630.png]]
+这里故意调用一个不能被调用的方法，导致`__call`自动调用
+![[Pasted image 20240124111131.png]]
+![[Pasted image 20240124111104.png]]
+###### `__callStatic()`使用对象中不存在或者不可访问的==静态方法==自动启动
+| 函数作用 | 处理对象中不存在的静态方法的调用 |
+| ---- | ---- |
+| 调用时机 | 调用一个不存在或不可访问的静态方法时候 |
+| 传递参数 | `$method`:被调用的方法明名（字符串类型）<br>`$arguments`:传递给该方法的参数列表（数组类型） |
+| 返回值 | 自由定义返回值 |
+注意：==这里的__callStatic魔术方法要加static在前面不然会报错==
+没有静态方法
+![[Pasted image 20240124114312.png]]
+![[Pasted image 20240124114439.png]]
+不可访问的静态方法
+![[Pasted image 20240124114613.png]]
+![[Pasted image 20240124114439.png]]
+###### `__get()`使用对象中不存在或者不可访问的==属性==自动启动
+| 函数作用 | 访问应该对象的不存在或者不可访问的属性时自动启动 |
+| ---- | ---- |
+| 调用时机 | 访问对象中一个不存在或者不可访问的属性时候 |
+| 传递参数 | `$name`:访问的属性的名称 |
+| 返回值 | 自定义返回值 |
+同时访问两种情况
+![[Pasted image 20240124115457.png]]
+![[Pasted image 20240124115448.png]]
+###### `__set()`设置一个对象的不存在和不可设置的属性
+| 函数作用 | 在设置一个对象的不存在和不可设置的属性时提供一个统一的处理逻辑使其不会导致错误 |
+| ---- | ---- |
+| 调用时机 | ==设置==一个对象的不存在或不可设置的属性时 |
+| 传递参数 | `$name`:属性名字<br>`$value`:设置属性的值 |
+| 返回值 | 通常没有返回值 |
+![[Pasted image 20240124144416.png]]
+![[Pasted image 20240124144422.png]]
+###### `__issset()`检查对象中不存在或者不可访问的==属性==
+| 函数作用 | 检查一个对象的不存在或不可访问的属性时提供一个统一处理逻辑使其不会报错 |
+| ---- | ---- |
+| 调用时机 | 检查一个对象的不存在或不可访问的属性时 |
+| 传递参数 | `$name`:属性名称 |
+| 返回值 | 通常放返回一个布尔值 |
+![[Pasted image 20240124145116.png]]
+![[Pasted image 20240124145124.png]]
+使用isset测试有没有这个值的时候就会触发这个`__isset`魔术方法
+使用empty检查是否为空，也会触发这个`__isset`魔术方法
+###### `__unset()`销毁对象中未定义的属性时自定义操作
+| 函数作用 | 销毁对象时未定义的属性时执行的操作 |
+| ---- | ---- |
+| 调用时机 | unset()函数尝试删除对象的不存在或不可访问属性时自动触发 |
+| 传递参数 | `$name`:被销毁的属性 |
+| 返回值 | 无 |
+unset()函数触发
+![[Pasted image 20240124151951.png]]
+![[Pasted image 20240124151944.png]]
+##### 上8个魔术方法的总结
+![[Pasted image 20240124153750.png]]
+###### `__sleep()`用于指定哪些对象属性需要在序列化时被保存
+| 函数作用 | 用于指定哪些对象==属性==需要在序列化时被保存 |
+| ---- | ---- |
+| 调用时机 | 在对象被序列化之前 |
+| 传递参数 | 无 |
+| 返回值 | 返回需要被序列化的属性名的数组 |
+指定name属性保存到序列化的内容里面
+![[Pasted image 20240124154748.png]]
+![[Pasted image 20240124154819.png]]
+###### `__wakeup()`反序列化对象时启动
+| 函数作用 | 于执行对象反序列化时所需要执行的操作 |
+| ---- | ---- |
+| 调用时机 | 反序列化之后 |
+| 传递参数 | 无 |
+| 返回值 | 无 |
+在外面定义age=19，在`__wakeup()`定义age为20
+![[Pasted image 20240124201450.png]]
+![[Pasted image 20240124201600.png]]![[Pasted image 20240124201600.png]]
+###### `__toString()`转换为字符串的时候启动
+| 函数作用 | 于指定对象被当做字符串被调用时所需要执行的操作 |
+| ---- | ---- |
+| 调用时机 | 对象被转换为字符串时自动触发 |
+| 传递参数 | 无 |
+| 返回值 | 必须返回字符串 |
+![[Pasted image 20240124202546.png]]
+![[Pasted image 20240124202552.png]]###### `__invoke()`当对象被当做函数时启动
+
+| 函数作用 | 在一个对象被作为函数调用时执行相应的操作 |
+| ---- | ---- |
+| 调用时机 | 作为函数调用时自动触发 |
+| 传递参数 | 任意参数 |
+| 返回值 | 任何类型 |
+![[Pasted image 20240124203544.png]]
+![[Pasted image 20240124203550.png]]
+###### `__set_state()`
+![[Pasted image 20240124203714.png]]
+
+| 函数作用 |  |
+| ---- | ---- |
+| 调用时机 |  |
+| 传递参数 |  |
+| 返回值 |  |
+###### `__clone()`对象被克隆时候启动
+| 函数作用 | 在对象被克隆时提供一个修改克隆副本的机会 |
+| ---- | ---- |
+| 调用时机 | 使用clone关键字对一个对象进行克隆 |
+| 传递参数 | 无 |
+| 返回值 | 无要求 |
+![[Pasted image 20240125084039.png]]
+![[Pasted image 20240125084046.png]]
+###### `__autoload()`
+| 函数作用 | php引擎尝试实例化一个未定义的类时候，动态加载类文件 |
+| ---- | ---- |
+| 调用时机 | 尝试使用一个未定义的类 |
+| 传递参数 | `$name`:类名 |
+| 返回值 | 不需要 |
+![[Pasted image 20240125084606.png]]
+![[Pasted image 20240125084611.png]]
+php7以上都不支持，改成php5就差不多了。或者把`__autoload()`改成`spl_autoload_register`
+![[Pasted image 20240125084759.png]]
+![[Pasted image 20240125084804.png]]
+###### `__debugInfo()`
+| 函数作用 | 自定义对象被调试时的输出，或者控制对象在使用var_dump()函数打印的信息 |
+| ---- | ---- |
+| 调用时机 | 可以控制对象使用var_dump()函数或调试时打印的信息 |
+| 传递参数 | 无 |
+| 返回值 | 返回一个数组，其中要包含调试输出中显示属性和其对应的值 |
+![[Pasted image 20240125085617.png]]
+![[Pasted image 20240125085624.png]]
+###### 14个魔术方法写在一个类里面
+```php
+<?php  
+class penpon{  
+    public $name='shan';  
+    public  $age=10;  
+    private $clone="本体";  
+  
+    function __construct($name,$age){                           //__construct(*)  
+        $this->name=$name;  
+        $this->age=$age;  
+        echo "name=$this->name,age=$this->age 修改完毕\n";  
+    }  
+    function __call($method,$arguments){                        //__call($method,arguments)  
+        echo "调用错误没有$method 方法或者不可调用,$arguments 参数无效\n";  
+    }  
+    static function  __callStatic($method,$arguments){          //__callStatic($method,arguments)  
+        echo "调用错误没有$method 静态方法或者不可调用,$arguments 参数无效\n";  
+    }  
+    function __get($name){                                      //__get($name)  
+        echo "没有$name 属性或者不可调用\n";  
+    }  
+    function __set($name,$value){                               //__set($name,$value)  
+        echo "$name 属性不可设置或不存在，所以$value 值无效\n";  
+    }  
+    function __isset($name){                                    //__isset($name)  
+        echo "$name 属性不存在或者不可调用\n";  
+    }  
+    function __unset($name){                                     //__unset($name)  
+        echo "$name 属性不可删除或者不存在属性\n";  
+    }  
+    function __sleep(){                                           //__sleep()  
+        return ['name'];  
+    }  
+    function __wakeup(){                                            //__wakeup()  
+        $this->age=20;  
+    }  
+    function __toString(){                                           //__toString()  
+        return "NO\n";  
+    }  
+    function __invoke($a){                                          //__invoke(*)  
+        echo "额：$a\n";  
+    }  
+    function __clone(){                                             //__clone()  
+        $this->clone="克隆体";  
+        echo "克隆成功\n";  
+    }  
+    function __debugInfo(){                                         //__debugInfo()  
+        return ['a'=>'哈哈哈哈'];  
+    }  
+    function __destruct(){                                          //__destruct()  
+        echo "清理工作完毕";  
+    }  
+}  
+$a=new penpon('ji',19);  
+var_dump($a);  
+?>
+
+```

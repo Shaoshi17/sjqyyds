@@ -1,12 +1,16 @@
-**逆向工程基础**
+---
+created: 2023-11-21T17:19
+updated: 2024-02-01T14:48
+---
+逆向工程基础
 
-**逆向工程基础概述**
+逆向工程基础概述
 
 一般，题目的形式都是：程序接收用户的输入，并在系统中一系列的校验算法，如果通过算法则成功，输入的就是flag。这些算法可能是已经成熟的算法比如凯撒或者亦或这种经典的算法，还有一些是作者自己思考的算法，所以做这个题目需要我们，有一定的算法能力，和思维能力，甚至猜测，联想能力。
 
-**汇编语言的认识**
+汇编语言的认识
 
-**寄存器，内存寻址**
+寄存器，内存寻址
 
 寄存器是CPU的组成部分是有限储量的高速存储部件，用来缓存指令，数据和地址，一般的IA-32(intel
 32-bit),即x86架构的处理器中包含以下的寄存器：
@@ -37,21 +41,21 @@ OF：溢出标志，运算结果在有符号数里面溢出置时1
 
 CF：进位标志，运算结果在无符号数里进位置时1
 
-**X86/X64汇编语言**
+X86/X64汇编语言
 
 CTF和平时最常见的就是X86/X64架构
 
 基本格式：操作码 \[操作数1\],\[操作数2\]
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image1.png){width="5.760416666666667in"
-height="2.959413823272091in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image1.png)
+
 
 汇编语言跳转指令有很多，它们会根据标志位的情况进行跳转，在条件跳转前往往存在cmp比较指令，cmp只比较不进行修改。只会对标志位进行影响。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image2.png){width="5.760416666666667in"
-height="2.5993886701662294in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image2.png)
 
-**反汇编**
+
+反汇编
 
 我们将机械码翻译回汇编代码的过程叫做反汇编。
 
@@ -63,7 +67,7 @@ height="2.5993886701662294in"}
 
 递归下降反汇编算法:则是从从线性反汇编算法留下的种种问题后创造的新算法,不在是简单的一一解析并显示,而是尝试推测出每条指令执行后程序将如何进行下去,例如普通指令执行后还是直接执行下一条,无条件跳转指令会立即跳转到目标位置,函数会调用指令临时跳出再返回继续执行,返回指令则会终止当前执行流程,条件指令跳转则可能分出两条路径,在不同的位置,引擎会将一些已知的模式匹配到起始位置再根据指令的执行模式逐个对程序执行情况进行跟踪最后将程序完全反汇编.
 
-**调用规定**
+调用规定
 
 人们为了连接各程序员写的函数不出错,为编辑器创立了规定各函数之间的参数传递的约定,称为调用约定
 
@@ -102,7 +106,7 @@ RSI 、RDX、RCX 这4个寄存器，然后将剩下的参数从右至左压入�
 使用RDI、RSI、RDX、RCX
 、R8、R9这6个寄存器传递前6个参数，剩下的从右至左压栈。
 
-**局部变量**
+局部变量
 
 在写程序的时候经常用到局部变量，局部变量有易失性，一旦程序返回就局部变量失效，考虑这个特性，人们把局部变量存放到栈上，每次函数被调用，程序从栈中分配一段空间，作为存储的的局部变量区域。
 
@@ -110,8 +114,8 @@ RSI 、RDX、RCX 这4个寄存器，然后将剩下的参数从右至左压入�
 域和参数的区域 ,见图
 程序一层层地深入调用函数,每个函数自己的区域就一层层地叠在栈上。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image3.png){width="5.194444444444445in"
-height="7.1826990376202975in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image3.png)
+
 
 人们把每个函数自己的一片区域叫帧，由于每帧的的都在栈上所以又叫栈帧，然而栈帧的位置不一定是固定的，而随着每次的调用的不同，栈帧的位置也会变化，那么怎么正确引导局部变量呢？
 
@@ -129,8 +133,8 @@ ebp， 称为 帧指针。程 序在
 
 程在汇编代码中便是经典的组合：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image4.png){width="5.760416666666667in"
-height="0.4567169728783902in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image4.png)
+
 
 现在 每个函数的 栈帧 便由局部变量 、父 栈帧的值、 返回地 址、参数四 部分
 构成。可以看 出， ebp在 初
@@ -154,23 +158,23 @@ ebp形成了一个链表，代表一层 层的函数调用
 （ 如IDA Pro 等 ） 将 使 用高 级 的 栈 指针 跟 踪 方 法来 针 对 性 地处
 理 这 两 种函 数 ， 从 而正确处理局部变量
 
-**静态分析**
+静态分析
 
 逆向中最基本的方法就是静态分析，工具以IDA为主
 
-**IDA工具学习**
+IDA工具学习
 
 IDA是业界最成熟的反汇编工具，使用的是递归下降反汇编算法
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image5.png){width="5.760416666666667in"
-height="3.2073239282589676in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image5.png)
 
-**数据类型操作**
+
+数据类型操作
 
 用户可以根据地址颜色来分辨某个位置的数据类型，被标注为代码的位置，其地址将会是黑色显示的，标注为数据的位置，为灰色的显示的，未定义数据类型位置标注为黄色
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image6.png){width="5.760416666666667in"
-height="1.3536975065616799in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image6.png)
+
 
 下面介绍一些定义数据的快捷键
 
@@ -180,10 +184,10 @@ D将某个位置变为数据
 
 C将某个位置变为代码
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image7.png){width="5.760416666666667in"
-height="0.6200448381452318in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image7.png)
 
-**使用IDA Pro定位关键代码的方法：**
+
+使用IDA Pro定位关键代码的方法：
 
 搜索特征字符串。具体操作为：
 
@@ -191,7 +195,7 @@ height="0.6200448381452318in"}
 
 ②快捷键Alt+T，打开文本搜索对话框，在String文本框中输入要搜索的字符串点击OK即可；
 
-**函数操作**
+函数操作
 
 IDA有操作函数的方法：
 
@@ -207,19 +211,19 @@ IDA有操作函数的方法：
 
 对要进行反编译的函数点击，按F5即可获得反编译后的程序代码。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image8.png){width="5.760416666666667in"
-height="3.120226377952756in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image8.png)
+
 
 有的时候因为代码混淆等原因导致 IDA 无法建立函数：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image9.png){width="5.760416666666667in"
-height="4.030181539807524in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image9.png)
+
 
 当我们完成对函数识别的修复之后，我们可以在函数开头按下 [p]{.mark} 让 IDA
 重新自动识别函数，或是框选属于该函数的汇编代码之后再按下 [p]{.mark} 让
 IDA 重新自动识别函数：
 
-**IDAPython**
+IDAPython
 
 在 IDA Pro 当中内置了一个 Python 及一个 IDC
 模块，可以帮助我们快速地对二进制文件进行修改等工作。
@@ -229,8 +233,8 @@ IDA 重新自动识别函数：
 command"菜单命令，可以打开脚本面板，将"Scripting
 language"改为"Python"，即可获得一个简易的编辑器：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image10.png){width="5.527777777777778in"
-height="3.733857174103237in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image10.png)
+
 
 在使用之前需要先导入 ida 模块，比较常用的有以下 API：
 
@@ -254,12 +258,12 @@ value（小端序）
 idc.patch_qword(addr, value) \# 将 addr 处的 8 字节修改为
 value（小端序）
 
-**IDA的其他功能**
+IDA的其他功能
 
 IDA的菜单栏"View→Open subviews"下可以打开各种类型的窗口
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image11.png){width="5.760416666666667in"
-height="4.010690069991251in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image11.png)
+
 
 这些 窗口也有对应的快捷键调用出来
 
@@ -294,36 +298,36 @@ x66变为十进制数102，\'a\'和\'A\'被转化为其ASCII编码对应的十�
 
 将常量按位取反，形如C语言中的～0xF0，快捷键为～键。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image12.png){width="5.444444444444445in"
-height="6.268412073490814in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image12.png)
+
 
 HexRays的快捷键有时触发不了，可以在失败时尝试使用右键快捷菜单。
 
-**修改变量类型**
+修改变量类型
 
 本节使用GCC编译器开启的O3优化开关后编译的可执行文件和同样源代码经过复杂编译器优化过程，生成的伪代码有很大变化比如下面这个
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image13.png){width="5.760416666666667in"
-height="4.191092519685039in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image13.png)
+
 
 伪代码会对开头的一些常量进行显示格式转换，事实上原来的字符串复制操作已成为了
 64位qword赋值+整形+16位dword赋值。HexRays因此将原来的字符串数组划分为了三个变量，\_int64
 Str2,int v5,\_int16 v6,这样导致后面生成的伪代码阅读性差
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image14.png){width="5.625in"
-height="2.7708333333333335in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image14.png)
+
 
 变量str2,v5,v6实际上是一整个字符串数组，如果用户能正确的制定变量类型，则反编译的可读性将大大提高
 
 所以HexRays利用了前面的类型分析系统，给了我们一个修改类型的方法，直接点击str2按Y键,调出对话框修改类型，对于这个程序，根据计算，实际上这三个变量应该以str2开头，长度为16的字符串数组，固修改为char\[16\]或者更大的也可以
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image15.png){width="5.760416666666667in"
-height="4.601351706036746in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image15.png)
+
 
 然后就出来了
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image16.png){width="5.760416666666667in"
-height="4.464108705161855in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image16.png)
+
 
 [这样代码的可读性就大大提高了。]{.mark}
 
@@ -344,8 +348,8 @@ not change variable type"
 
 [点击字符串Shift+e就可以提取数据]{.mark}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image17.png){width="5.055555555555555in"
-height="5.649713473315836in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image17.png)
+
 
 [汇编代码和汇编代码流程图的切换用空格切换。]{.mark}
 
@@ -353,40 +357,40 @@ height="5.649713473315836in"}
 
 这个数字
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image18.png){width="3.6527777777777777in"
-height="1.2001979440069992in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image18.png)
+
 
 [对着按r就可以转字符串，]{.mark}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image19.png){width="2.861111111111111in"
-height="1.0404035433070866in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image19.png)
+
 
 [按h就会转十六进制]{.mark}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image20.png){width="2.8194444444444446in"
-height="1.1799901574803149in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image20.png)
+
 
 大小端：
 
 原理
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image21.png){width="5.760416666666667in"
-height="3.810275590551181in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image21.png)
+
 
 例题：这个很明显这个是翻过来了
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image22.png){width="2.6805555555555554in"
-height="0.9282863079615048in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image22.png)
+
 
 还有一些高级的调试因为接触的少就不记录了，到时候碰到再深入了解
 
-**动态分析**
+动态分析
 
 IDA调试器虽然是静态分析调试工具，可以在感兴趣地方设置断点，使得程序中断，然后一行一行跟踪设置断点，进入或者略过，在跟踪过程中查看变量的值，从而了解程序的内部状态，方便找到问题。
 
 动态分析就是让程序运行起来，观察程序运行的各种行为。
 
-**OllyDBG和x64DBG调试**
+OllyDBG和x64DBG调试
 
 OllyDBG和x64DBG都是调试windows平台可执行文件的调试器，x64DBG为后起之秀，支持32位和64位，而OllyDBG只支持32位并且停止更新
 
@@ -396,38 +400,38 @@ OD和X64DBG有极其相似重合的快捷键，两个放一起学习更方便。
 
 打开文件：直接拖入
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image23.png){width="5.760416666666667in"
-height="2.941412948381452in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image23.png)
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image24.png){width="5.760416666666667in"
-height="2.923410979877515in"}
 
-**控制台运行**
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image24.png)
+
+
+控制台运行
 
 按键Ctrl+G可以跳转到目标地址
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image25.png){width="5.760416666666667in"
-height="3.3025470253718283in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image25.png)
+
 
 在反汇编窗口按F2可以设置断点
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image26.png){width="5.760416666666667in"
-height="3.2371916010498687in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image26.png)
+
 
 F8是单步步过，F7为单步步入，F4为运行到光标处位置，F9为运行
 
-**简单的脱壳**
+简单的脱壳
 
-**认识壳**
+认识壳
 
 壳是在一些计算机软件里也有一段负责保护软件不被非法修改或反编译的程序，它们一般是先于程序运行，拿到控制权，然后完成他们的保护任务。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image27.png){width="5.208333333333333in"
-height="3.53125in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image27.png)
+
 
 由于这个和自然界的壳在功能上相似，所以命名这样的程序为壳。
 
-**壳分类**
+壳分类
 
 压缩壳
 
@@ -441,7 +445,7 @@ height="3.53125in"}
 
 常见的加密壳有：ASProtector,Armadillo,EXECrypto,Themida,VMProtect
 
-**壳的加载过程**
+壳的加载过程
 
 保存入口参数：
 
@@ -513,8 +517,8 @@ popf:将16位标志寄存器EFLAGS取出堆栈
 
 像这下面的代码，首先是将所有的通用寄存器和段寄存器的值都写入数据段中，然后执行pushfd将标志寄存器也压入栈中
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image28.png){width="5.760416666666667in"
-height="2.6229352580927383in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image28.png)
+
 
 于是，先单步执行pushad指令(按F8键)，再设置硬件读取断点。在OllyDBG中，右击寄存器区域，在弹出的快捷菜单中选择"Hw
 break \[ESP\]"即可。x64DBG则可直接在栈窗口中利用右键快捷菜单设置。
@@ -523,36 +527,36 @@ break \[ESP\]"即可。x64DBG则可直接在栈窗口中利用右键快捷菜单
 
 详细解说看ctfer成长之路-nu1l战队.pdf。因为没遇到现在也不能实践理解不透彻。
 
-**GDB调试器**
+GDB调试器
 
-**IDA调试器**
+IDA调试器
 
-**常见算法识别**
+常见算法识别
 
 在CTF逆向中，成熟的算法是出现频率非常高的，所以如果能识别这些算法可以大大提高做逆向的速度
 
-**特征值识别**
+特征值识别
 
 很多算法入TEA，Base,DES等，在运算中会使用一下有特征的常量，这些常量一般都是存在软件里，所以看到这些特征的常量就知道是什么加密算法在运算了
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image29.png){width="5.760416666666667in"
-height="2.753478783902012in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image29.png)
+
 
 当然那些分析工具也集成了函数和插件分析这些特征常量，如下图就是IDA用FindCrypt的KANNAL等分析出来的AES算法加密和MD5加密算法
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image30.png){width="5.760416666666667in"
-height="1.6763549868766405in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image30.png)
 
-**特征运算识别**
+
+特征运算识别
 
 当特征值不足我们可以进入里面查看他们的运算特征是否符合某种算法的特征，从而分析出是使用了什么算法。
 
 下表就是CTF中常见的算法运算特征表。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image31.png){width="5.760416666666667in"
-height="3.6399759405074366in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image31.png)
 
-**第三方库识别**
+
+第三方库识别
 
 为了提升编程效率一般会使用常用的算法，选择现成的库和函数，如系统库或者第三方库，对于动态链接库，函数名的符号信息可以轻松识别出来，对于静态链接的第三方库，IDA设别起来比较困难。
 
@@ -564,15 +568,15 @@ height="3.6399759405074366in"}
 
 知库，并且我们能够获得一份含有符号且同样使用了该库的静态编译二进制文件，我们便可以利用对比的方法具体确定每个库函数
 
-**二进制代码保护和混淆**
+二进制代码保护和混淆
 
 在显示中攻防无处不在，为了自己的程序不被逆向分析破解就要采取各种手段以防被轻松的逆向，干扰静态分析中的汇编过程。
 
-**低于静态分析**
+低于静态分析
 
 干扰反汇编的最简单方法就是在代码中加入花指令 所谓花指令就是:
 
-**花指令**
+花指令
 
 隐藏掉不想被逆向分析出来的工程代码块，在真实代码中插入一下垃圾代码同时保证，原有程序正确执行，而程序无法很好的反编译出来，达到混淆的效果，花指令通常用来加大静态分析的难度。
 
@@ -582,8 +586,8 @@ jet对应的机械码的汇编指令，使反汇编软件在识别的时候错�
 
 jn/jnz/jmp
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image32.png){width="5.760416666666667in"
-height="2.433182414698163in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image32.png)
+
 
 之前我们学过线性扫描和递归下降扫描两种，线性扫描代表就是OllyDBG和WinDBG，由于是一条一条的识别，我们可以简单的在第一条和第二条指令中插入jmp跳转指令并且加入0xE8字节。
 
@@ -630,10 +634,10 @@ addr1就会有一个分支来运行0xE8从而被识别成call导致后面的字�
 
 比如这种
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image33.png){width="5.319444444444445in"
-height="1.5854035433070865in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image33.png)
 
-**变形**
+
+变形
 
 变形就是使用其他的指令实现相同的内容。
 
@@ -643,40 +647,40 @@ call addr1=push addr1 ; ret
 
 例题：
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image34.png){width="5.760416666666667in"
-height="2.2199890638670166in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image34.png)
 
-**破解花指令的方法**
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image35.png){width="5.760416666666667in"
-height="2.91457895888014in"}
+破解花指令的方法
+
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image35.png)
+
 
 将E8修改为90,因为nop翻译为机械码是144，再转换为16进制就是90H.
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image36.png){width="4.722222222222222in"
-height="1.4906791338582677in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image36.png)
+
 
 修改成功
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image37.png){width="5.760416666666667in"
-height="2.8215780839895013in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image37.png)
+
 
 点击C重新运行代码
 
 得到flag和原有的程序
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image38.png){width="5.760416666666667in"
-height="2.3976126421697286in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image38.png)
 
-**代码自修改**
+
+代码自修改
 
 代码自修改（SMC）就是程序在执行过程中，将自己可执行代码进行修改的手段，让真正代码不被识别。
 
-**加密**
+加密
 
-**\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--**
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
 
-**要求 **
+要求 
 
 熟悉如操作系统，汇编语言，加解密等相关知识
 
@@ -686,8 +690,8 @@ height="2.3976126421697286in"}
 
 较强的程序理解和逆向分析能力
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image39.png){width="5.760416666666667in"
-height="2.1677679352580927in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image39.png)
+
 
 等工具收集信息，并根据这些静态信息进行使用
 strings/file/binwalk/stracegoogle/github 搜索
@@ -711,7 +715,7 @@ pip install uncompyle6
 pip install uncompyle6
 ```
 ![[Pasted image 20231125084630.png]]
-> 进入该文件夹，里面有许许多多后缀为`.dll`和`.pyd`的文件，还有一个名为`PYZ-00.pyz_extracted`的文件夹，这个文件夹里放的是程序引入的**依赖库**，如果你引入过自己其他的`.py`文件，就可以用类似的方法将依赖的`.py`文件反编译出来。
+> 进入该文件夹，里面有许许多多后缀为`.dll`和`.pyd`的文件，还有一个名为`PYZ-00.pyz_extracted`的文件夹，这个文件夹里放的是程序引入的依赖库，如果你引入过自己其他的`.py`文件，就可以用类似的方法将依赖的`.py`文件反编译出来。
 
 > 目录中有两个带`.pyc`后缀的文件，我们要找到那个与你的`.exe`文件同名的文件：
 
@@ -731,15 +735,15 @@ pip install uncompyle6
 
 怎么变成字符串，直接全选这些字符然后右键按A。
 
-![image.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image41.png){width="5.760416666666667in"
-height="4.08761811023622in"}
+![image.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image41.png)
+
 
 就变成这样了
 
-![image.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image42.png){width="5.760416666666667in"
-height="0.3525349956255468in"}
+![image.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image42.png)
 
-**[异或字符串]{.mark}**
+
+[异或字符串]{.mark}
 
 python
 
@@ -800,43 +804,43 @@ string2 =
 print(base64.b64decode(str1.translate(str.maketrans(string1,string2))))
 ```
 
-**[OllyGDB工具学习]{.mark}**
+[OllyGDB工具学习]{.mark}
 
 调试32位的程序，动态调试
 
-**Ghidra**
+Ghidra
 
-**例题**
+例题
 
-**控制台程序**
+控制台程序
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image43.png){width="3.361111111111111in"
-height="1.0926213910761156in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image43.png)
+
 
 控制台输入flag,或者是输入解密内容验证成功就输出flag
 
-**Crackme**
+Crackme
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image44.png){width="5.760416666666667in"
-height="1.1085575240594925in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image44.png)
+
 
 输入验证码得到flag
 
-**游戏**
+游戏
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image45.png){width="5.760416666666667in"
-height="2.459681758530184in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image45.png)
+
 
 完成游戏任务得到flag
 
-**Android App**
+Android App
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image46.png){width="3.8472222222222223in"
-height="4.462361111111111in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image46.png)
+
 
 就是验证用户名和密码是否正确，正确输出flag
 
-**CTF逆向共同点**
+CTF逆向共同点
 
 就是用户输入x
 
@@ -844,18 +848,18 @@ height="4.462361111111111in"}
 
 再判断是否正确
 
-**Unity外挂攻防**
+Unity外挂攻防
 
 Unity引擎:
 
 Unity是实施3D互动内容创作和运营的平台。
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image47.png){width="5.760416666666667in"
-height="2.92871719160105in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image47.png)
+
 
 引用场景：游戏，汽车，运输与制造，工程建设与数字城市。
 
-**开发流程**
+开发流程
 
 创建项目
 
@@ -863,18 +867,18 @@ height="2.92871719160105in"}
 
 搭建场景
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image48.png){width="5.760416666666667in"
-height="3.6860695538057744in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image48.png)
+
 
 添加组件
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image49.png){width="5.760416666666667in"
-height="2.7360837707786527in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image49.png)
+
 
 编写逻辑
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image50.png){width="5.760416666666667in"
-height="2.506804461942257in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image50.png)
+
 
 程序测试
 
@@ -882,44 +886,44 @@ height="2.506804461942257in"}
 
 1，Mono
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image51.png){width="5.760416666666667in"
-height="2.7490693350831146in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image51.png)
+
 
 打包的特性
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image52.png){width="5.760416666666667in"
-height="1.9724146981627297in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image52.png)
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image53.png){width="5.760416666666667in"
-height="2.058581583552056in"}
+
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image53.png)
+
 
 2, JIT
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image54.png){width="5.760416666666667in"
-height="2.592461723534558in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image54.png)
+
 
 IL2CPP
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image55.png){width="5.760416666666667in"
-height="2.5533934820647417in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image55.png)
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image56.png){width="5.760416666666667in"
-height="2.7979166666666666in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image57.png){width="5.760416666666667in"
-height="1.7695997375328083in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image56.png)
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image58.png){width="5.760416666666667in"
-height="2.411563867016623in"}
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image59.png){width="5.760416666666667in"
-height="2.7692279090113736in"}
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image57.png)
 
-![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image60.png){width="5.5in"
-height="5.833333333333333in"}
 
-**获取所需函数
-API**[¶](https://yangtf.gitee.io/ctf-wiki/reverse/unpack/packer-introduction/#api)
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image58.png)
+
+
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image59.png)
+
+
+![截图.png](D:\tools\Tools\Obsidian\sjqyyds\sjqyyds17\附件\Reverse/media/image60.png)
+
+
+获取所需函数
+API[¶](https://yangtf.gitee.io/ctf-wiki/reverse/unpack/packer-introduction/#api)
 
 一般壳的输入表中只有 
 

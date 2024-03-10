@@ -1,4 +1,8 @@
-**windows java搭建篇**
+---
+created: 2023-11-21T17:24
+updated: 2024-02-01T14:50
+---
+windows java搭建篇
 
 工具：
 
@@ -8,40 +12,40 @@ idea 2020.2.4
 
 jdk-14.0.2
 
-![截图.png](    Java语言/media/image1.png){width="5.760416666666667in"
-height="0.8142541557305337in"}
+![截图.png](    Java语言/media/image1.png)
+
 
 idea安装
 
 就这个要注意
 
-![截图.png](    Java语言/media/image2.png){width="5.305555555555555in"
-height="4.148548775153106in"}
+![截图.png](    Java语言/media/image2.png)
+
 
 然后激活idea,选择代码激活
 
-![截图.png](    Java语言/media/image3.png){width="5.760416666666667in"
-height="3.46496719160105in"}
+![截图.png](    Java语言/media/image3.png)
+
 
 idea激活码经常更新：<https://www.yuque.com/yueryi/oldfish/bqrfq3?>
 
 然后打开这个链接复制里面的代码进去就可以了
 
-![截图.png](    Java语言/media/image4.png){width="5.760416666666667in"
-height="4.479005905511811in"}
+![截图.png](    Java语言/media/image4.png)
 
-![截图.png](    Java语言/media/image5.png){width="5.760416666666667in"
-height="3.457684820647419in"}
+
+![截图.png](    Java语言/media/image5.png)
+
 
 激活成功
 
-![截图.png](    Java语言/media/image6.png){width="5.760416666666667in"
-height="4.115788495188101in"}
+![截图.png](    Java语言/media/image6.png)
+
 
 （如果这个激活方面有问题可以看这个
 
-![截图.png](    Java语言/media/image7.png){width="5.760416666666667in"
-height="1.3659426946631672in"}
+![截图.png](    Java语言/media/image7.png)
+
 
 ）
 
@@ -53,8 +57,8 @@ jdk的安装配置
 
 控制面板---系统和安全---系统---高级系统设置---环境变量
 
-![截图.png](    Java语言/media/image8.png){width="5.760416666666667in"
-height="6.3634930008748904in"}
+![截图.png](    Java语言/media/image8.png)
+
 
 新建系统变量JAVA_HOME 和CLASSPATH
 
@@ -62,8 +66,8 @@ height="6.3634930008748904in"}
 
 　　变量值：C:\\Program Files\\Java\\jdk-14.0.2 #jdk的安装目录
 
-![截图.png](    Java语言/media/image9.png){width="4.097222222222222in"
-height="4.201477471566054in"}
+![截图.png](    Java语言/media/image9.png)
+
 
 　　变量名：CLASSPATH
 
@@ -77,15 +81,15 @@ win7是用分;号做分割符
 
 win10是可以直接添加
 
-![截图.png](    Java语言/media/image10.png){width="4.069444444444445in"
-height="4.121482939632546in"}
+![截图.png](    Java语言/media/image10.png)
+
 
 然后打开cmd输入java \--version
 
 如图就成功了
 
-![截图.png](    Java语言/media/image11.png){width="5.760416666666667in"
-height="0.888847331583552in"}
+![截图.png](    Java语言/media/image11.png)
+
 
 maven配置
 
@@ -95,18 +99,18 @@ maven配置
 
 变量值为Maven的安装路径
 
-![截图.png](    Java语言/media/image12.png){width="4.277777777777778in"
-height="4.66288167104112in"}
+![截图.png](    Java语言/media/image12.png)
+
 
  配置完成后，通过cmd输入mvn -version验证是否安装成功。
 
-![截图.png](    Java语言/media/image13.png){width="4.208333333333333in"
-height="4.666666666666667in"}
+![截图.png](    Java语言/media/image13.png)
+
 
 成功
 
-![截图.png](    Java语言/media/image14.png){width="5.760416666666667in"
-height="1.5637937445319334in"}
+![截图.png](    Java语言/media/image14.png)
+
 
 进入idea内校验并配置maven本地路径
 
@@ -114,23 +118,23 @@ File\--\>Settings\--\>Maven，直接搜maven 更改下图的几个路径。
 
 打开idea配置
 
-![截图.png](    Java语言/media/image15.png){width="5.760416666666667in"
-height="2.9795264654418196in"}
+![截图.png](    Java语言/media/image15.png)
+
 
 接下来就默认就可以了
 
-![截图.png](    Java语言/media/image16.png){width="5.760416666666667in"
-height="3.107823709536308in"}
+![截图.png](    Java语言/media/image16.png)
+
 
 等他转完
 
-![截图.png](    Java语言/media/image17.png){width="5.760416666666667in"
-height="3.222813867016623in"}
+![截图.png](    Java语言/media/image17.png)
+
 
 搭建成功
 
-![截图.png](    Java语言/media/image18.png){width="5.760416666666667in"
-height="3.1415288713910763in"}
+![截图.png](    Java语言/media/image18.png)
+
 
 要配置java环境就看这个<https://product.pconline.com.cn/itbk/software/rjwt/1505/6483358.html>
 
@@ -138,8 +142,8 @@ height="3.1415288713910763in"}
 
 基础知识：
 
-![截图.png](    Java语言/media/image19.png){width="4.486111111111111in"
-height="1.0096347331583553in"}
+![截图.png](    Java语言/media/image19.png)
+
 
 java需要用javac来编译.java后缀的文件得到.class文件
 
@@ -147,22 +151,22 @@ java需要用javac来编译.java后缀的文件得到.class文件
 
 .class是编译文件
 
-![截图.png](    Java语言/media/image20.png){width="5.760416666666667in"
-height="3.2402351268591425in"}
+![截图.png](    Java语言/media/image20.png)
+
 
 使用kali2.o的java编译，2021以上都没有javac编译工具
 
-![截图.png](    Java语言/media/image21.png){width="5.760416666666667in"
-height="3.8481474190726157in"}
+![截图.png](    Java语言/media/image21.png)
 
-**原理篇**
+
+原理篇
 
 jdk jre jvm 三者的关系
 
 一、JDK(Java Development Kit)
 
 JDK(Java Development
-Kit)，即Java开发工具包，是一个编写Java应用程序的开发环境，是java的**核心**所在。
+Kit)，即Java开发工具包，是一个编写Java应用程序的开发环境，是java的核心所在。
 
 bin里面的都是开发文件javac之类的
 
@@ -176,16 +180,16 @@ bin里面是java可以运行java但是没有javac不能编译开发
 三、JVM(Java Virtual Machine)
 
 JVM(Java Virtual
-Machine)，即[Java虚拟机](https://so.csdn.net/so/search?q=Java%E8%99%9A%E6%8B%9F%E6%9C%BA&spm=1001.2101.3001.7020)，运行在操作系统之上，存在于内存中，与内存打交道，与硬件没有直接交互，**是Java语言实现跨平台的核心。**
+Machine)，即[Java虚拟机](https://so.csdn.net/so/search?q=Java%E8%99%9A%E6%8B%9F%E6%9C%BA&spm=1001.2101.3001.7020)，运行在操作系统之上，存在于内存中，与内存打交道，与硬件没有直接交互，是Java语言实现跨平台的核心。
 
-JV**M是Java程序跨平台的关键部分，只要为不同平台实现了相应的虚拟机，编译后的Java字节码就可以在该平台上运行**
+JVM是Java程序跨平台的关键部分，只要为不同平台实现了相应的虚拟机，编译后的Java字节码就可以在该平台上运行
 
-**基础语言学习**
+基础语言学习
 
-**效果图：**
+效果图：
 
-![截图.png](    Java语言/media/image22.png){width="3.9444444444444446in"
-height="1.1582895888013998in"}
+![截图.png](    Java语言/media/image22.png)
+
 
 ```java
 //要先定义类才能写方法
@@ -245,8 +249,8 @@ public class Hello {
 }
 ```
 
-![截图.png](    Java语言/media/image23.png){width="5.760416666666667in"
-height="3.1454910323709537in"}
+![截图.png](    Java语言/media/image23.png)
+
 
 java中的注释
 
@@ -264,14 +268,14 @@ javac 默认是GBK，而win是utf-8所以如果java里面有中文就要用：ja
 javadoc -d myHello -author -version -encoding UTF-8 charset UTF-8
 xxx.java
 
-**-d 创建目录**
+-d 创建目录
 
-**-author 显示作者**
+-author 显示作者
 
-**-encoding UTF-8 -charset UTF-8 字符集修改为UTF-8**
+-encoding UTF-8 -charset UTF-8 字符集修改为UTF-8
 
-![截图.png](    Java语言/media/image24.png){width="5.760416666666667in"
-height="2.0278105861767277in"}
+![截图.png](    Java语言/media/image24.png)
+
 
 字符常量分类：
 
@@ -287,8 +291,8 @@ height="2.0278105861767277in"}
 
 空常量:null
 
-![截图.png](    Java语言/media/image25.png){width="5.760416666666667in"
-height="2.5690299650043746in"}
+![截图.png](    Java语言/media/image25.png)
+
 
 Java所有关键字
 
@@ -308,9 +312,9 @@ Java中的关键字一共包含48个，分别是：abstract、assert、boolean�
 
 附上java关键字表
 
-**if语句**
+if语句
 ```java 
-/**
+/
 
  * if语句的三种语法
 
@@ -435,7 +439,7 @@ class examin {
 }
 ```
 
-**Scanner类**
+Scanner类
 
 ```java
 //Scanner类实现键盘录入整数
@@ -557,10 +561,10 @@ class He {
 }
 ```
 
-![截图.png](    Java语言/media/image26.png){width="5.760416666666667in"
-height="1.5250120297462817in"}
+![截图.png](    Java语言/media/image26.png)
 
-**for循环**
+
+for循环
 
 ```java
 // 循环1~5并且相加
@@ -652,7 +656,7 @@ class keing {
 }
 ```
 
-**witch循环**
+witch循环
 
 // while
 

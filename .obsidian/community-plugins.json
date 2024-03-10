@@ -1,7 +1,23 @@
 [
-  "obsidian-git",
   "cm-editor-syntax-highlight-obsidian",
   "remember-cursor-position",
   "mousewheel-image-zoom",
-  "obsidian-regex-pipeline"
+  "obsidian-regex-pipeline",
+  "update-time-on-edit",
+  "obsidian-admonition",
+  "obsidian-mind-map",
+  "calendar",
+  "obsidian-youglish-plugin",
+  "obsidian-tracker",
+  "privacy-glasses",
+  "quickadd",
+  "obsidian-activity-history",
+  "personal-assistant",
+  "media-extended",
+  "obsidian-image-toolkit",
+  "obsidian-icon-folder",
+  "obsidian-spaced-repetition",
+  "obsidian-commits",
+  "obsidian-hider",
+  "obsidian-git"
 ]
